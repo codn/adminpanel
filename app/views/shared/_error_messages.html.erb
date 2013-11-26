@@ -1,0 +1,12 @@
+<% if object.errors.any? %>
+	<div id="error_explanation">
+		<div class="alert alert-error">
+			<%= t( :errors, :count => object.errors.count, :model => t("activerecord.models.#{object.class.model_name}")) %>:
+			<ul>
+			<% object.errors.full_messages.each do |msg| %>
+				<li><%= t msg %></li>
+			<% end %>
+			</ul>
+		</div>
+	</div>
+<% end %>

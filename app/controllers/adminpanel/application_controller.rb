@@ -1,8 +1,8 @@
 module Adminpanel
     class ApplicationController < ::ApplicationController
-            # layout "admin"
+            layout "admin"
               # protect_from_forgery
-            # include Admin::SessionsHelper
+            # include helper :sessions
 
             # before_filter :signed_in_user
 
