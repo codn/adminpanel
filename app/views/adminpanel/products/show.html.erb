@@ -1,0 +1,61 @@
+<% provide(:page_title, @admin_product.name.humanize) %>
+<% breadcrumb_add('Productos', admin_products_path) %>
+
+<div class="row-fluid">
+	<div class="widget span6">
+		<div class="widget-header">
+			<i class="icon-truck"></i>
+			<h5><%= @admin_product.name.humanize %>
+				<%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_admin_product_path(@admin_product), :title => "Editar Producto" %>
+			</h5>
+		</div>
+		<div class="widget-body">
+			<div class="widget-tickets widget-tickets-large clearfix"><ul>
+				<li class="priority-high">
+					<div class="span3">
+						<h6>Breve Descripción:</h6>
+					</div>
+					<div class="span8">
+						<%= @admin_product.brief %>
+					</div>
+				</li>
+
+				<li class="priority-high">
+					<div class="span3">
+						<h6>Descripción:</h6>
+					</div>
+					<div class="span8">
+						<%= @admin_product.description.html_safe %>
+					</div>
+				</li>
+
+				<li class="priority-high">
+					<div class="span3">
+						<h6>Categoría</h6>
+					</div>
+					<div class="span8">
+						<%= @admin_product.category.name %>
+					</div>
+				</li>
+			</ul></div>
+		</div>
+	</div>
+	<div class="widget widget-padding span6">
+		<div class="widget-header">
+			<i class="icon-truck"></i>
+			<h5>Galería: <%= @admin_product.name.humanize %>
+				<%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_admin_product_path(@admin_product), :title => "Editar Producto" %>
+			</h5>
+		</div>
+		<div class="widget-body row-fluid">
+			<div id="gallery-container" class="js-masonry"
+			    data-masonry-options='{ "columnWidth": 3, "itemSelector": ".gallery-item" }'>
+	      		<% @admin_product.images.each do |image|%>
+	  				<div class="gallery-item">
+	  					<%= link_to (image_tag image.file_url(:thumb)), image.file.to_s, :rel  => "group", :name => @admin_product.name %>
+	  				</div>
+			    <% end %>
+			</div>
+		</div>
+	</div>
+</div>

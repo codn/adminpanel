@@ -1,0 +1,193 @@
+es:
+  activerecord:
+    models:
+      Product: "Producto"
+      Adminpanel::User: "Usuario"
+      Contact: "Contacto"
+      Client: "Cliente"
+      Movement: "Variación"
+      Investor: "Inversionista"
+      Project: "Proyecto"
+      Deposit: "Depósito"
+      Admin::User: "Usuario"
+      Section: "Sección"
+      Gallery: "Galería de Inicio"
+    attributes:
+      product:
+        name: "Nombre"
+        description: "Descripción"
+      user:
+        email: "Correo electrónico"
+        password_digest: "Confirmar contraseña"
+        name: "Nombre"
+        password: "Contraseña"
+        password_confirmation: "Confirmar contraseña"
+      contact:
+        name: "Nombre"
+        email: "Correo electrónico"
+        subject: "Asunto"
+        body: "Cuerpo"
+      admin/user:
+        email: "Correo electrónico"
+        password_digest: "Confirmar contraseña"
+        name: "Nombre"
+        password: "Contraseña"
+        password_confirmation: "Confirmar contraseña"
+      client:
+        name: "Nombre"
+      movement:
+        reason: "Motivo"
+        price: "Precio"
+      investor:
+        name: "Nombre"
+        email: "Correo electrónico"
+      project:
+        name: "Nombre"
+        description: "Descripción"
+        estimate_total: "Cantidad a invertir"
+        participants: "Inversionista"
+      deposit:
+        mount: "Monto"
+        concept: "Concepto"
+      section:
+        description: "Descripción"
+        file: "Imagen"
+      gallery:
+        description: "Descripción"
+        name: "Nombre"
+        file: "Imagen"
+  errors:
+    models:
+      investor:
+        attributes:
+          name:
+            blank: "no puede estar vacío"
+          email:
+            blank: "no puede estar vacío"
+      user:
+        attributes:
+          password_digest:
+            blank: "no puede estar vacío"
+          name:
+            blank: "no puede estar vacío"
+          password:
+            blank: "no puede estar vacío"
+            too_short: "es muy corta, mínimo 6 caracteres"
+            confirmation: "Deben ser iguales"
+          password_confirmation:
+            blank: "no puede estar vacío"
+          email:
+            blank: "no puede estar vacío"
+            invalid: "no es un correo"
+            taken: "ya está en uso"
+      contact:
+        attributes:
+          subject:
+            blank: "no puede estar vacío"
+          name:
+            blank: "no puede estar vacío"
+          body:
+            blank: "no puede estar vacío"
+          email:
+            blank: "no puede estar vacío"
+            invalid: "no es un correo"
+      project:
+        attributes:
+          name:
+            blank: "no puede estar vacío"
+            taken: "ya ha sido usado para otro proyecto"
+          description:
+            blank: "no puede estar vacío"
+          participants:
+            invalid: "no puede estar vacío"
+          estimate_total:
+            blank: "no puede estar vacío"
+      item:
+        attributes:
+          quantity:
+            not_a_number: "no es un número"
+            blank: "no puede estar vacío"
+          product_name:
+            blank: "no puede estar vacío"
+          project_name:
+            blank: "no puede estar vacío"
+      deposit:
+        attributes:
+          mount:
+            blank: "no puede estar vacío"
+            not_a_number: "debe ser un número"
+          concept:
+            blank: "no puede estar vacío"
+      section:
+        attributes:
+          description:
+            blank: "no puede estar vacía"
+          file:
+            blank: "no puede estar vacía"
+      gallery:
+        attributes:
+          description:
+            blank: "no puede estar vacía"
+          file:
+            blank: "no puede estar vacía"
+          name:
+            blank: "no puede estar vacío"
+    one:   "%{model} no pudo guardarse debido a 1 error"
+    other: "%{model} no pudo guardarse debido a %{count} errores"
+    different: "El nuevo precio no puede ser igual al actual"
+  time:
+    formats:
+      graphic: "%Y-%m-%d %H:%M:%S"
+      long: "%d/%m/%Y %l:%M:%S %p"
+      short: "%d de %B de %Y"
+      estimate: "%Y-%m-%d"
+  date: 
+    formats:
+      short: '%d de %B de %Y'
+    month_names:
+    - 
+    - enero
+    - febrero
+    - marzo
+    - abril
+    - mayo
+    - junio
+    - julio
+    - agosto
+    - septiembre
+    - octubre
+    - noviembre
+    - diciembre
+    abbr_month_names:
+    - 
+    - ene
+    - feb
+    - mar
+    - abr
+    - may
+    - jun
+    - jul
+    - ago
+    - sep
+    - oct
+    - nov
+    - dic
+  viva_mailer:
+    new_deposit:
+      subject: "Nuevo depósito en Viva Residencial "
+  description: "Descripción"
+  Description: "Descripción"
+  password: "Contraseña"
+  Password: "Contraseña"
+  Section: "Sección"
+  section: "sección"
+  name: "Nombre"
+  Gallery: "Galería de Inicio"
+  gallery: "Galería de inicio"
+  Email: "Correo Electrónico"
+  email: "Correo electrónico"
+  password_digest: "Confirmación de Contraseña"
+  password_confirmation: "Confirmación de Contraseña"
+  is too short (minimum is 6 characters): "es muy corto (mínimo 6 caracteres)"
+  is invalid: "es inválido"
+  can't be blank: "no puede estar vacío"

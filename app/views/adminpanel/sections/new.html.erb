@@ -1,0 +1,27 @@
+<% provide(:page_title, "Nueva") %>
+<% breadcrumb_add('Secciones', admin_sections_path) %>
+<div class="row-fluid">
+  <div class = "widget widget-padding span12">
+    <div class = "widget-header"><i class = "icon-tasks"></i><h5>Sección</h5></div>
+    <div class = "widget-body">
+      <div class = "widget-forms clearfix">
+        <%= custom_form_for(@section, :url => admin_sections_path) do |f| %>
+          <%= render 'shared/error_messages', :object => @section %>
+          <%= f.text_field :name, :label => "Nombre", :placeholder => "Nombre de la seccion" %>
+          <%= f.text_field :key, :label => "Identificador", :placeholder => "Identificador" %>
+          <div class="control-group">
+            <label class="control-label">Descripción</label>
+            <div class="controls">
+              <%= f.cktext_area :description, :label => t("Description") %>
+            </div>
+          </div>
+          <%= f.radio_button_group :has_image, ['1', '0'], :label => "Tiene Imagen" %>
+          <%= f.radio_button_group :has_description, ['1', '0'], :label => "Tiene Descripcion" %>
+      </div>
+    </div>
+    <div class = "widget-footer">
+      <%= f.submit "Agregar", :disable_with => 'Submiting...' %>
+    </div>
+      <% end -%>
+  </div>
+</div>

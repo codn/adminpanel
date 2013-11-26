@@ -24,6 +24,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rmagick", "2.13.2"
   spec.add_dependency "ckeditor", "4.0.6"
   spec.add_dependency "jquery-rails", "3.0.4"
+  spec.add_dependency "bcrypt-ruby", "3.0.0"
+  spec.add_dependency "rails-i18n", "3.0.0"
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"

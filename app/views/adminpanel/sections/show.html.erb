@@ -1,0 +1,28 @@
+<% provide(:page_title, @section.name.humanize) %>
+<% breadcrumb_add('Secciones', admin_sections_path) %>
+
+<div class="row-fluid">
+	<div class="widget widget-padding span12">
+		<div class="widget-header">
+			<i class="icon-tasks"></i>
+			<h5><%= @section.name.humanize %>&nbsp;
+				<%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_admin_section_path(@section), :title => "Editar Seccion" %>
+			</h5>
+		</div>
+		<div class="widget-body row-fluid">
+			<div class="span1">
+				<b>Descripción</b>
+			</div>
+			<div class="span11">
+				<%= @section.description.html_safe %>
+			</div>
+			<div class="span12">
+			<% if @section.has_image %>
+				<% @section.images.each do |image|-%>
+					<%= image_tag(image.file_url(:thumb)) %>
+				<% end %>
+			<% end %>
+			</div>
+		</div>
+	</div>
+</div>

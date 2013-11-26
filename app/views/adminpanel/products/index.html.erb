@@ -1,0 +1,57 @@
+<%= provide(:page_title, "Productos") %>
+<% #if can? :create, Client %>
+  <div class="row-fluid">
+    <%= 
+      link_to( 
+        content_tag(:div,
+          content_tag(:i, nil, :class => 'icon-plus-sign icon-2x') + content_tag(:span, 'Agregar Producto', nil), 
+          :class => "btn btn-box span2"), 
+        new_admin_product_path
+      )
+    %>
+  </div>
+<% #end %>
+
+<div class="row-fluid">
+  <div class="widget widget-padding span12">
+    <div class="widget-header">
+          <i class="icon-truck"></i>
+          <h5>Productos</h5>
+        </div>
+    <div class="widget-body">
+      <div class="dataTables_wrapper form-inline">
+        <table id="information-table" class="table table-striped table-bordered dataTable">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <% #if can? :manage, Client %>
+                <th>Acción</th>
+              <% #end %>
+            </tr>
+          </thead>
+          <tbody>
+            <% @admin_products.each do |product| %>
+            <tr>
+              <td><%= link_to product.name, admin_product_path(product) %></td>
+              <td><%= strip_tags product.description %></td>
+              <% #if can? :manage, product %>
+                <td>
+                  <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_admin_product_path(product), :title => "Editar"%>
+                  <%= link_to content_tag(:i, nil, :class => 'icon-remove'), admin_product_path(product), :title => "Borrar", :method => :delete,
+                                      :data => { :confirm => "Seguro?" }
+                  %>
+                </td>
+              <% #end %>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="row-fluid">
+          <div class="span6"></div>
+          <div class="span6"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

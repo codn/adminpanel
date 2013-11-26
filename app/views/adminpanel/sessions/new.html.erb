@@ -1,0 +1,26 @@
+<% provide(:title, 'Inicio') %>
+<% provide(:section, 'login') %>
+<div class="widget container-narrow">
+	<div class="widget-header">
+		<i class="icon-user"></i>
+		<h5>Bienvenido! Inicia Sesion</h5>
+	</div>
+	<div class="widget-body clearfix" style="padding:25px;">
+		<% flash.each do |key, value| %>
+			<div class = "alert alert-<%= key %>"><%= value %></div>
+		<% end %>
+		<%= form_for(:session, :url => admin_sessions_path) do |f| %>
+			<div class="control-group">
+				<div class="controls">
+					<%= f.email_field :email, :class => "btn-block", :id => "inputEmail" , :placeholder => "Correo" %>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<%= f.password_field :password, :class => "btn-block", :id => "inputPassword", :placeholder => "Contrasena" %>
+				</div>
+			</div>
+			<%= f.submit "Iniciar Sesión", :class => "btn pull-right" %>
+		<% end %>
+	</div>
+</div>
