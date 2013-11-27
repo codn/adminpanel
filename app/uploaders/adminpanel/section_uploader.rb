@@ -1,4 +1,5 @@
 # encoding: utf-8
+require 'carrierwave'
 module Adminpanel
   class SectionUploader < CarrierWave::Uploader::Base
 
