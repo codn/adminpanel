@@ -1,17 +1,17 @@
 es:
-  activerecord:
-    models:
-      Product: "Producto"
-      Adminpanel::User: "Usuario"
-      Contact: "Contacto"
-      Client: "Cliente"
-      Movement: "Variación"
-      Investor: "Inversionista"
-      Project: "Proyecto"
-      Deposit: "Depósito"
-      Admin::User: "Usuario"
-      Section: "Sección"
-      Gallery: "Galería de Inicio"
+  model:
+    Product: "Producto"
+    Adminpanel::User: "Usuario"
+    Contact: "Contacto"
+    Client: "Cliente"
+    Movement: "Variación"
+    Investor: "Inversionista"
+    Project: "Proyecto"
+    Deposit: "Depósito"
+    Admin::User: "Usuario"
+    Gallery: "Galería de Inicio"
+    Section: "Sección"
+    Adminpanel::Category: "Categoría"
     attributes:
       product:
         name: "Nombre"

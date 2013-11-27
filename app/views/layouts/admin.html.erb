@@ -11,14 +11,14 @@
 		<link rel="shortcut icon" href="favicon.ico">
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
 		<link rel="Favicon Icon" href="favicon.ico">
-		<%= render 'layouts/admin_shim' %>
+		<%= render 'layouts/shim' %>
 	</head>
 
 	<body>
 		<div id="wrap">
-		<%= render 'layouts/admin_top_bar' unless section_is_login(yield(:section)) %>
+		<%= render 'layouts/top_bar' unless section_is_login(yield(:section)) %>
 			<div class="container-fluid">
-				<%= render 'layouts/admin_side_menu' unless section_is_login(yield(:section)) %>
+				<%= render 'layouts/side_menu' unless section_is_login(yield(:section)) %>
 
 				<% content_for :dashboard do %>
 					<!-- Main window -->

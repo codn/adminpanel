@@ -1,7 +1,7 @@
 <% if object.errors.any? %>
 	<div id="error_explanation">
 		<div class="alert alert-error">
-			<%= t( :errors, :count => object.errors.count, :model => t("activerecord.models.#{object.class.model_name}", :locale => :es), :locale => :es) %>:
+			<%= t( :errors, :count => object.errors.count, :model => t("model.#{object.class.model_name}", :locale => :es), :locale => :es) %>:
 			<ul>
 			<% object.errors.messages.keys.each do |field| %>
 				<% object.errors.messages[field].each do |value| %>

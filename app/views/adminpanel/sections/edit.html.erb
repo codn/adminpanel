@@ -1,12 +1,12 @@
 <% provide(:page_title, "Editar") %>
-<% breadcrumb_add('Secciones', admin_sections_path) %>
-<% breadcrumb_add(@section.name, admin_section_path(@section)) %>
+<% breadcrumb_add('Secciones', sections_path) %>
+<% breadcrumb_add(@section.name, section_path(@section)) %>
 <div class="row-fluid">
   <div class = "widget widget-padding span12">
     <div class = "widget-header"><i class = "icon-tasks"></i><h5><%= @section.name %></h5></div>
     <div class = "widget-body">
       <div class = "widget-forms clearfix">
-        <%= custom_form_for(@section, :url => admin_section_path(@section)) do |f| %>
+        <%= custom_form_for(@section, :url => section_path(@section)) do |f| %>
           <%= render 'shared/error_messages', :object => @section %>
 
           <% if @section.has_description %>

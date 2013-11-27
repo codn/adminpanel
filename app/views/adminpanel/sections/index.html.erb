@@ -1,7 +1,4 @@
 <%= provide(:page_title, "Secciones") %>
-<% #if can? :create, Client %>
-
-<% #end %>
 
 <div class="row-fluid">
   <div class="widget widget-padding span12">
@@ -16,21 +13,17 @@
             <tr>
               <th>Nombre</th>
               <th>Descripción</th>
-              <% #if can? :manage, Client %>
-                <th>Acción</th>
-              <% #end %>
+              <th>Acción</th>
             </tr>
           </thead>
           <tbody>
             <% @sections.each do |section| %>
             <tr>
-              <td><%= link_to section.name, admin_section_path(section) %></td>
+              <td><%= link_to section.name, section_path(section) %></td>
               <td><%= strip_tags section.description %></td>
-              <% #if can? :manage, section %>
-                <td>
-                  <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_admin_section_path(section), :title => "Editar"%>
-                </td>
-              <% #end %>
+              <td>
+                <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_section_path(section), :title => "Editar" %>
+              </td>
             </tr>
             <% end %>
           </tbody>

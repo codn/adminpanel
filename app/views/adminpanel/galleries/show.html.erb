@@ -1,12 +1,12 @@
 <% provide(:page_title, 'Galeria de Inicio') %>
-<% breadcrumb_add(t("Gallery"), admin_galleries_path) %>
+<% breadcrumb_add(t("Gallery"), galleries_path) %>
 
 <div class="row-fluid">
 	<div class="widget widget-padding span12">
 		<div class="widget-header">
 			<i class="icon-picture"></i>
 			<h5>Galería de inicio
-				<%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_admin_gallery_path(@gallery), :title => "Editar Producto" %>
+				<%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_gallery_path(@gallery), :title => "Editar Producto" %>
 			</h5>
 		</div>
 		<div class="widget-body row-fluid">

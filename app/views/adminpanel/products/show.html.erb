@@ -1,12 +1,12 @@
-<% provide(:page_title, @admin_product.name.humanize) %>
-<% breadcrumb_add('Productos', admin_products_path) %>
+<% provide(:page_title, @product.name.humanize) %>
+<% breadcrumb_add('Productos', products_path) %>
 
 <div class="row-fluid">
 	<div class="widget span6">
 		<div class="widget-header">
 			<i class="icon-truck"></i>
-			<h5><%= @admin_product.name.humanize %>
-				<%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_admin_product_path(@admin_product), :title => "Editar Producto" %>
+			<h5><%= @product.name.humanize %>
+				<%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_product_path(@product), :title => "Editar Producto" %>
 			</h5>
 		</div>
 		<div class="widget-body">
@@ -16,7 +16,7 @@
 						<h6>Breve Descripción:</h6>
 					</div>
 					<div class="span8">
-						<%= @admin_product.brief %>
+						<%= @product.brief %>
 					</div>
 				</li>
 
@@ -25,7 +25,7 @@
 						<h6>Descripción:</h6>
 					</div>
 					<div class="span8">
-						<%= @admin_product.description.html_safe %>
+						<%= @product.description.html_safe %>
 					</div>
 				</li>
 
@@ -34,7 +34,7 @@
 						<h6>Categoría</h6>
 					</div>
 					<div class="span8">
-						<%= @admin_product.category.name %>
+						<%= @product.category.name %>
 					</div>
 				</li>
 			</ul></div>
@@ -43,16 +43,16 @@
 	<div class="widget widget-padding span6">
 		<div class="widget-header">
 			<i class="icon-truck"></i>
-			<h5>Galería: <%= @admin_product.name.humanize %>
-				<%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_admin_product_path(@admin_product), :title => "Editar Producto" %>
+			<h5>Galería: <%= @product.name.humanize %>
+				<%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_product_path(@product), :title => "Editar Producto" %>
 			</h5>
 		</div>
 		<div class="widget-body row-fluid">
 			<div id="gallery-container" class="js-masonry"
 			    data-masonry-options='{ "columnWidth": 3, "itemSelector": ".gallery-item" }'>
-	      		<% @admin_product.images.each do |image|%>
+	      		<% @product.images.each do |image|%>
 	  				<div class="gallery-item">
-	  					<%= link_to (image_tag image.file_url(:thumb)), image.file.to_s, :rel  => "group", :name => @admin_product.name %>
+	  					<%= link_to (image_tag image.file_url(:thumb)), image.file.to_s, :rel  => "group", :name => @product.name %>
 	  				</div>
 			    <% end %>
 			</div>

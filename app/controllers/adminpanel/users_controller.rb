@@ -41,7 +41,7 @@ module Adminpanel
     # POST /admin/users
     # POST /admin/users.json
     def create
-      @user = User.new(params[:admin_user])
+      @user = User.new(params[:user])
 
       respond_to do |format|
         if @user.save
@@ -60,7 +60,7 @@ module Adminpanel
       @user = User.find(params[:id])
 
       respond_to do |format|
-        if @user.update_attributes(params[:admin_user])
+        if @user.update_attributes(params[:user])
           format.html { redirect_to @user, :notice => 'Se ha actualizado con exito.' }
           format.json { head :no_content }
         else
@@ -77,7 +77,7 @@ module Adminpanel
       @user.destroy
 
       respond_to do |format|
-        format.html { redirect_to admin_users_url }
+        format.html { redirect_to users_url }
         format.json { head :no_content }
       end
     end

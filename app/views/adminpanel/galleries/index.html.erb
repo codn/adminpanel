@@ -16,7 +16,7 @@
         ),
         :class => "btn btn-box span2"
       ),
-      new_admin_gallery_path
+      new_gallery_path
     )
   %>
 </div>
@@ -39,10 +39,10 @@
           <tbody>
             <% @galleries.each do |gallery| %>
             <tr>
-              <td><%= link_to image_tag(gallery.file_url(:thumb)), admin_gallery_path(gallery) %></td>
+              <td><%= link_to image_tag(gallery.file_url(:thumb)), gallery_path(gallery) %></td>
                 <td>
-                  <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_admin_gallery_path(gallery), :title => "Editar"%>
-                  <%= link_to content_tag(:i, nil, :class => 'icon-remove'), admin_gallery_path(gallery), :title => "Borrar", :method => :delete,
+                  <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_gallery_path(gallery), :title => "Editar"%>
+                  <%= link_to content_tag(:i, nil, :class => 'icon-remove'), gallery_path(gallery), :title => "Borrar", :method => :delete,
                                       :data => { :confirm => "Seguro?" }
                   %>
                 </td>

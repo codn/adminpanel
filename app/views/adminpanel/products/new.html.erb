@@ -1,12 +1,12 @@
 <% provide(:page_title, "Nuevo") %>
-<% breadcrumb_add('Productos', admin_products_path) %>
+<% breadcrumb_add('Productos', products_path) %>
 <div class="row-fluid">
   <div class = "widget widget-padding span12">
     <div class = "widget-header"><i class = "icon-truck"></i><h5>Producto</h5></div>
     <div class = "widget-body">
       <div class = "widget-forms clearfix">
-        <%= custom_form_for(@admin_product, :url => admin_products_path, :html => {:class => "form-horizontal"}) do |f| %>
-          <%= render 'shared/error_messages', :object => @admin_product %>
+        <%= custom_form_for(@product, :url => products_path, :html => {:class => "form-horizontal"}) do |f| %>
+          <%= render 'shared/error_messages', :object => @product %>
           <%= f.text_field :name, :label => "Nombre", :placeholder => "Nombre del producto" %>
 
           <%= f.text_field :brief, :label => "Breve Descripcion", :placeholder => "Breve Descripcion del Producto" %>

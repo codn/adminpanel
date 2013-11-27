@@ -6,7 +6,7 @@
         content_tag(:div,
           content_tag(:i, nil, :class => 'icon-plus-sign icon-2x') + content_tag(:span, 'Agregar Producto', nil), 
           :class => "btn btn-box span2"), 
-        new_admin_product_path
+        new_product_path
       )
     %>
   </div>
@@ -31,14 +31,14 @@
             </tr>
           </thead>
           <tbody>
-            <% @admin_products.each do |product| %>
+            <% @products.each do |product| %>
             <tr>
-              <td><%= link_to product.name, admin_product_path(product) %></td>
+              <td><%= link_to product.name, product_path(product) %></td>
               <td><%= strip_tags product.description %></td>
               <% #if can? :manage, product %>
                 <td>
-                  <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_admin_product_path(product), :title => "Editar"%>
-                  <%= link_to content_tag(:i, nil, :class => 'icon-remove'), admin_product_path(product), :title => "Borrar", :method => :delete,
+                  <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_product_path(product), :title => "Editar"%>
+                  <%= link_to content_tag(:i, nil, :class => 'icon-remove'), product_path(product), :title => "Borrar", :method => :delete,
                                       :data => { :confirm => "Seguro?" }
                   %>
                 </td>

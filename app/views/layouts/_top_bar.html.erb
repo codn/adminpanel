@@ -1,0 +1,43 @@
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <div class="logo"> 
+        <%= link_to image_tag("logo.png", :alt => "PCP del Sureste"), root_path %>
+      </div>
+       <a class="btn btn-navbar visible-phone" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+       <a class="btn btn-navbar slide_menu_left visible-tablet">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <div class="top-menu visible-desktop">
+        <ul class="pull-right">  
+          <li>
+            <% if signed_in? %>
+              <%= link_to content_tag('i', nil, :class => 'icon-off') + ' Logout', signout_path, :method => "delete", :escape => true %>
+            <% else %>
+              <%= link_to content_tag('i', nil, :class => 'icon-off') + ' Login', signin_path, :escape => true %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+
+      <div class="top-menu visible-phone visible-tablet">
+        <ul class="pull-right">  
+          <li>
+            <% if signed_in? %>
+              <%= link_to content_tag('i', nil, :class => 'icon-off'), signout_path, :method => "delete", :title => 'Logout'%>
+            <% else %>
+              <%= link_to content_tag('i', nil, :class => 'icon-off'), signin_path, :title => 'Login' %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -9,7 +9,7 @@
 		<% flash.each do |key, value| %>
 			<div class = "alert alert-<%= key %>"><%= value %></div>
 		<% end %>
-		<%= form_for(:session, :url => admin_sessions_path) do |f| %>
+		<%= form_for(:session, :url => sessions_path) do |f| %>
 			<div class="control-group">
 				<div class="controls">
 					<%= f.email_field :email, :class => "btn-block", :id => "inputEmail" , :placeholder => "Correo" %>
