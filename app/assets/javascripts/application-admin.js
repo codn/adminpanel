@@ -13,6 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require adminpanel/bootstrap
-//= require adminpanel/wysihtml5
 //= require_tree ./adminpanel/.
-//= require adminpanel/init_editor
