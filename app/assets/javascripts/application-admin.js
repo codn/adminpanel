@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require adminpanel/bootstrap
+//= require adminpanel/wysihtml5
 //= require_tree ./adminpanel/.
-//= require ckeditor/init.min
+//= require adminpanel/init_editor

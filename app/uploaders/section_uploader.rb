@@ -1,6 +1,4 @@
 # encoding: utf-8
-require 'carrierwave'
-module Adminpanel
   class SectionUploader < CarrierWave::Uploader::Base
 
     # Include RMagick or MiniMagick support:
@@ -50,4 +48,3 @@ module Adminpanel
     # end
 
   end
-end

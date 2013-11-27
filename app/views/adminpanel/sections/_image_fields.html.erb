@@ -10,7 +10,7 @@
 			<%= f.label "Imagen", :class => "control-label"  %>
 		<div class="controls">
 			<%= f.file_field :file %>
-			<%= f.hidden_field :model, :value => model_name %>
+			<%= f.hidden_field :model, :value => f.object.class.name %>
 			<%= f.hidden_field :_destroy %>
 			<%= 
 			content_tag(
