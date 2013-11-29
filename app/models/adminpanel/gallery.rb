@@ -1,10 +1,10 @@
+require "carrierwave"
+require "carrierwave/orm/activerecord"
 module Adminpanel
 	class Gallery < ActiveRecord::Base
-	  attr_accessible :description, :file, :name
+	  attr_accessible :file
 
-	  mount_uploader :file, GalleryUploader
-	  validates_presence_of :description
+	  mount_uploader :file, Adminpanel::GalleryUploader
 	  validates_presence_of :file
-	  validates_presence_of :name
 	end
 end

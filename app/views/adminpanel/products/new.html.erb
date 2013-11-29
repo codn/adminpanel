@@ -20,10 +20,10 @@
           <%= f.select :category_id, @categories, :label => "Categoria" %>
 
           <%= f.fields_for :images do |builder| %>
-              <%= render 'image_fields', :f => builder, :model_name => f.object.class.name %>
+              <%= render 'image_fields', :f => builder, :model_name => @product.simple_name %>
           <% end -%>
 
-          <%= link_to_add_fields "Agregar Imagen", f, :images %>
+          <%= link_to_add_fields "Agregar Imagen", f, :images, @product.simple_name %>
       </div>
     </div>
     <div class = "widget-footer">

@@ -8,7 +8,7 @@ module Adminpanel
 		end
 
 		def full_title(page_title)
-			base_title = "JR Envases"
+			base_title = "Super admin"
 			if page_title.empty?
 				base_title
 			else
@@ -24,15 +24,15 @@ module Adminpanel
 			section_name.downcase == 'login'
 		end
 
-		def link_to_add_fields(name, f, association)
+		def link_to_add_fields(name, f, association, model_name)
 			new_object = f.object.send(association).klass.new
 			id = new_object.object_id
 			fields = f.fields_for(association, new_object, :child_index => id) do |builder|
-			  render(association.to_s.singularize + "_fields", :f => builder)
+			  render(association.to_s.singularize + "_fields", :f => builder, :model_name => model_name)
 			end
-			link_to(content_tag(:div, content_tag(:button, 
+			link_to(content_tag(:div, content_tag(:button,
 						content_tag(:h6, name, :id => "add-estimate-button"),
-						 :class => "btn btn-success btn-mini"), :class => "mws-form-row"), 
+						 :class => "btn btn-success btn-mini"), :class => "mws-form-row"),
 			'#', :class => "add_fields", :data => {:id => id, :fields => fields.gsub("\n", "")})
 		end
 

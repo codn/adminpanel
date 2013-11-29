@@ -19,7 +19,7 @@
 			<div class="span12">
 			<% if @section.has_image %>
 				<% @section.images.each do |image|-%>
-					<%= image_tag(image.file_url(:thumb)) %>
+					<%= image_tag(image.file_url :thumb) %>
 				<% end %>
 			<% end %>
 			</div>

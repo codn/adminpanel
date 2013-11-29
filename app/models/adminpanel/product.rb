@@ -1,3 +1,6 @@
+require "carrierwave"
+require "carrierwave/orm/activerecord"
+
 module Adminpanel
   class Product < ActiveRecord::Base
     attr_accessible :description, :name, :images_attributes, :category_id, :brief
@@ -12,6 +15,10 @@ module Adminpanel
 
     def to_param
     	"#{id} #{name}".parameterize
+    end
+
+    def simple_name
+        "Product"
     end
   end
 end
