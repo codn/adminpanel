@@ -6,11 +6,11 @@ require 'adminpanel/version'
 Gem::Specification.new do |spec|
   spec.name          = "adminpanel"
   spec.version       = Adminpanel::VERSION
-  spec.authors       = ["Jose Ramon Camacho"]
+  spec.authors       = ["Jose Ramon Camacho", "Victor Camacho"]
   spec.email         = ["joserracamacho@gmail.com"]
   spec.description   = %q{Gem that makes the admin panel for a site a breeze!}
   spec.summary       = %q{Developed with love for ruby 1.8.7}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/joseramonc/adminpanel"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
