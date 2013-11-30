@@ -9,8 +9,8 @@
         <%= custom_form_for(@user, :url => users_path) do |f| %>
           <%= render 'shared/error_messages', :object => @user %>
           <%= f.text_field :name, :label => "Nombre", :placeholder => "Nombre del usuario" %>
-          <%= f.text_field :email, :label => t("Email", :locale => :es), :placeholder => t("Email", :locale => :es) %>
-          <%= f.password_field :password, :label => t("Password", :locale => :es), :placeholder => t("Password", :locale => :es) %>
+          <%= f.text_field :email, :label => t("Email"), :placeholder => t("Email") %>
+          <%= f.password_field :password, :label => t("Password"), :placeholder => t("Password") %>
           <%= f.password_field :password_confirmation, :label => "Confirmar", :placeholder => "Confirmar" %>
       </div>
     </div>

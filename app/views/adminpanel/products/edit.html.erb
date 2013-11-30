@@ -1,34 +1,10 @@
-<% provide(:page_title, "Editar") %>
-<% breadcrumb_add('Productos', products_path) %>
+<% provide(:page_title, t("Edit")) %>
+<% breadcrumb_add(t("model.Products"), products_path) %>
 <% breadcrumb_add(@product.name, product_path(@product)) %>
 <div class="row-fluid">
   <div class = "widget widget-padding span12">
-    <div class = "widget-header"><i class = "icon-truck"></i><h5>Producto</h5></div>
-    <div class = "widget-body">
-      <div class = "widget-forms clearfix">
-        <%= custom_form_for(@product, :url => product_path(@product)) do |f| %>
-          <%= render 'shared/error_messages', :object => @product %>
-          <%= f.text_field :name, :label => "Nombre", :placeholder => "Nombre del producto" %>
-          <%= f.text_field :brief, :label => "Breve Descripcion", :placeholder => "Breve Descripcion del Producto" %>
-
-          <div class="control-group">
-            <label class="control-label">Descripción</label>
-            <div class="controls">
-              <%= f.cktext_area :description, :label => "Descripcion"%>
-            </div>
-          </div>
-          <%= f.select :category_id, @categories, :label => "Categoria" %>
-
-          <%= f.fields_for :images do |builder| %>
-              <%= render 'image_fields', :f => builder, :model_name => @product.simple_name %>
-          <% end -%>
-
-          <%= link_to_add_fields "Agregar Imagen", f, :images, @product.simple_name %>
-      </div>
-    </div>
-    <div class = "widget-footer">
-      <%= f.submit "Agregar", :disable_with => 'Submiting...' %>
-    </div>
-      <% end -%>
+    <div class = "widget-header"><i class = "icon-truck"></i><h5><%= t("model.Product") %></h5></div>
+      
+        <%= render 'product_form' %>
   </div>
 </div>

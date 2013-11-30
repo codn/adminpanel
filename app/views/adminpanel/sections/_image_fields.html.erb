@@ -7,7 +7,7 @@
 		</div>
 	<% end %>
 	<div class="control-group">
-			<%= f.label "Imagen", :class => "control-label"  %>
+			<%= f.label t("model.Image"), :class => "control-label"  %>
 		<div class="controls">
 			<%= f.file_field :file %>
 			<%= f.hidden_field :model, :value => model_name %>
@@ -15,7 +15,7 @@
 			<%= 
 			content_tag(
 				:button, 
-				"Eliminar", 
+				t("Delete"), 
 				:class => "btn btn-danger remove_fields"
 			) 
 			%>

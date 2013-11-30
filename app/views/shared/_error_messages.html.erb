@@ -1,13 +1,13 @@
 <% if object.errors.any? %>
 	<div id="error_explanation">
-		<div class="alert alert-error">
-			<%= t( :errors, :count => object.errors.count, :model => t("model.#{object.class.model_name}", :locale => :es), :locale => :es) %>:
+		<div id="alerts" class="alert alert-error">
+			<%= t( :errors, :count => object.errors.count, :model => t("model.#{object.class.model_name}")) %>:
 			<ul>
 			<% object.errors.messages.keys.each do |field| %>
 				<% object.errors.messages[field].each do |value| %>
 				 <li>
-				 	<%= t(field, :locale => :es) %>
-				 	<%= t(value, :locale => :es) %>
+				 	<%= t(field) %>
+				 	<%= t(value) %>
 				 </li>
 				<% end %>
 			<% end %>

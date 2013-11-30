@@ -1,5 +1,10 @@
 # Adminpanel
 
+
+In you application.rb 
+config.default_locale = :es
+#no other language is currently supported.
+
 TODO: Write a gem description
 
 ## Installation

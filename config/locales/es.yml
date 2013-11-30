@@ -1,8 +1,11 @@
 es:
   model:
     Product: "Producto"
+    Products: "Productos"
     Adminpanel::User: "Usuario"
     Contact: "Contacto"
+    Image: "Imagen"
+    Category: "Categría"
     Client: "Cliente"
     Movement: "Variación"
     Investor: "Inversionista"
@@ -172,9 +175,6 @@ es:
     - oct
     - nov
     - dic
-  viva_mailer:
-    new_deposit:
-      subject: "Nuevo depósito en Viva Residencial "
   description: "Descripción"
   Description: "Descripción"
   password: "Contraseña"
@@ -191,3 +191,12 @@ es:
   is too short (minimum is 6 characters): "es muy corto (mínimo 6 caracteres)"
   is invalid: "es inválido"
   can't be blank: "no puede estar vacío"
+  New: "Nuevo"
+  Add Image: "Agregar Imagen"
+  Save: "Guardar"
+  Edit: "Editar"
+  Delete: "Eliminar"
+  Name of product: "Nombre del product"
+  Short description : "Breve descripción"
+  Short description of product: "Breve descripción del producto"
+  Write description here: "Escriba la descripción aquí"

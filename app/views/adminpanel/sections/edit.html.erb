@@ -11,9 +11,12 @@
 
           <% if @section.has_description %>
             <div class="control-group">
-              <label class="control-label"><%= t "Description", :locale => :es %></label>
+              <label class="control-label"><%= t "Description" %></label>
               <div class="controls">
-                <%= f.text_area :description, :id => "some-textarea" %>
+                <%= f.hidden_field :description, :id => "description-field" %>
+                <div class="editable" data-placeholder = "Escriba la descripción aquí">
+                  <%= @section.description.html_safe %>
+                </div>
               </div>
             </div>
           <% else %>
@@ -30,7 +33,7 @@
       </div>
     </div>
     <div class = "widget-footer">
-      <%= f.submit "Guardar", :disable_with => 'Submiting...' %>
+      <%= f.submit "Guardar", :disable_with => 'Submiting...', :id => "save-button" %>
     </div>
       <% end -%>
   </div>

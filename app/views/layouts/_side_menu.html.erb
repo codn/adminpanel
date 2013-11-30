@@ -24,7 +24,7 @@
 		<% #if can? :index, Gallery %>
 			<div class="accordion-group">
 				<div class="accordion-heading">
-					<%= link_to content_tag(:i, nil, :class => 'icon-picture') + content_tag(:span, " #{t("Gallery", :locale => :es)}"), galleries_path, :class => "accordion-toggle b_C3F7A7 #{is_current_section?('galleries')}"  %>
+					<%= link_to content_tag(:i, nil, :class => 'icon-picture') + content_tag(:span, " #{t("Gallery")}"), galleries_path, :class => "accordion-toggle b_C3F7A7 #{is_current_section?('galleries')}"  %>
 				</div>
 			</div>
 		<% #end %>
