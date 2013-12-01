@@ -1,5 +1,6 @@
 module Adminpanel
 	module ApplicationHelper
+		include SessionsHelper
 		def custom_form_for(name, *args, &block)
 			options = args.extract_options!
 			options.reverse_merge! :builder => CustomFormBuilder, :html => { :class => "form-horizontal" }
@@ -34,28 +35,6 @@ module Adminpanel
 						content_tag(:h6, name, :id => "add-estimate-button"),
 						 :class => "btn btn-success btn-mini"), :class => "mws-form-row"),
 			'#', :class => "add_fields", :data => {:id => id, :fields => fields.gsub("\n", "")})
-		end
-
-		def sign_in(user)
-			cookies.permanent[:remember_token] = user.remember_token
-			self.current_user = user
-		end
-
-		def signed_in?
-			!current_user.nil?
-		end
-
-		def current_user=(user)
-			@current_user = user
-		end
-
-		def current_user
-			@current_user ||= User.find_by_remember_token(cookies[:remember_token])
-		end
-
-		def sign_out
-			self.current_user = nil
-			cookies.delete(:remember_token)
 		end
 
 		def initialize_breadcrumb

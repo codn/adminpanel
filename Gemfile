@@ -10,4 +10,3 @@ gem "ckeditor", "4.0.6"
 gem "jquery-rails", "3.0.4"
 gem "bcrypt-ruby", "3.0.0"
 gem "rails-i18n", "3.0.0"
-gem "ckeditor",

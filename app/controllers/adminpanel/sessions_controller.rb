@@ -7,7 +7,7 @@ module Adminpanel
 		end
 
 		def create
-			user = Admin::User.find_by_email(params[:session][:email].downcase)
+			user = User.find_by_email(params[:session][:email].downcase)
 			if user && user.authenticate(params[:session][:password])
 					sign_in user
 					flash[:success] = "Bienvenido!"
