@@ -1,7 +1,7 @@
 # Adminpanel
 
 
-In you application.rb 
+In your application.rb 
     config.default_locale = :es
 no other language is currently supported.
 
