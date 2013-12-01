@@ -1,11 +1,6 @@
 # Adminpanel
 
-
-In your application.rb 
-    config.default_locale = :es
-no other language is currently supported.
-
-TODO: Write a gem description
+This gem is developed to be a CMS for Ruby 1.8.7 and Rails 3.2.12 
 
 ## Installation
 
@@ -23,7 +18,14 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+In you application.rb 
+
+    config.default_locale = :es
+no other language is currently supported, but pull requests are welcome.
+
+The gem expects you to have a database with tables as the schema.rb in the root. You have to add your sections in the seeds.rb to add them to the database.
+
+Any doubt feel free to ask me!
 
 ## Contributing
 
