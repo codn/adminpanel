@@ -19,12 +19,12 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib", "app/assets"]
 
 
-  spec.add_dependency "rails", "3.2.12"
+  spec.add_dependency "rails", "~> 3.2.12"
   spec.add_dependency "carrierwave", "0.9.0"
   spec.add_dependency "rmagick", "2.13.2"
   spec.add_dependency "jquery-rails", "3.0.4"
   spec.add_dependency "bcrypt-ruby", "3.0.0"
-  spec.add_dependency "rails-i18n", "3.0.0"
+  spec.add_dependency "rails-i18n", "~> 3.0.0"
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "activerecord", "3.2.12"
