@@ -1,5 +1,7 @@
 language: ruby
 rvm:
-    - 1.8.7
+  - 1.8.7
 env:
-    - RAILS=3.2.12
+  - RAILS=3.2.12
+before_install:
+  - gem update --system
