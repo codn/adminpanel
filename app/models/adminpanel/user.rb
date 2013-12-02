@@ -5,6 +5,7 @@ module Adminpanel
 
   #name validations
     validates_presence_of :name
+    validates_length_of :name, :maximum => 25
 
   #password validations
     validates_confirmation_of :password

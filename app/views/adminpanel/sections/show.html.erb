@@ -14,7 +14,11 @@
 				<b>Descripción</b>
 			</div>
 			<div class="span11">
-				<%= @section.description.html_safe %>
+		        <% if @section.description.nil? %>
+		        	<%= t("no description") %>
+		        <% else %>
+					<%= @section.description.html_safe %>
+		        <% end %>
 			</div>
 			<div class="span12">
 			<% if @section.has_image %>

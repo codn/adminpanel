@@ -12,6 +12,7 @@ es:
     Project: "Proyecto"
     Deposit: "Depósito"
     Admin::User: "Usuario"
+    Adminpanel::Product: "Proucto"
     Gallery: "Galería de Inicio"
     Section: "Sección"
     Adminpanel::Category: "Categoría"
@@ -200,3 +201,4 @@ es:
   Short description : "Breve descripción"
   Short description of product: "Breve descripción del producto"
   Write description here: "Escriba la descripción aquí"
+  no description: "Este campo todavía no tiene descripción"

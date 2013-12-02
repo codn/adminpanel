@@ -14,9 +14,11 @@
               <label class="control-label"><%= t "Description" %></label>
               <div class="controls">
                 <%= f.hidden_field :description, :id => "description-field" %>
-                <div class="editable" data-placeholder = "Escriba la descripción aquí">
-                  <%= @section.description.html_safe %>
-                </div>
+                  <% if @section.description.nil? %>
+                    <%= content_tag(:div, @section.description, :class => "editable", "data-placeholder" => t("Write description here")) %>
+                  <% else %>
+                    <%= content_tag(:div, @section.description.html_safe, :class => "editable", "data-placeholder" => t("Write description here")) %>
+                  <% end %>
               </div>
             </div>
           <% else %>

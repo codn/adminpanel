@@ -6,8 +6,10 @@ module Adminpanel
 	  has_many :images, :foreign_key => "foreign_key", :conditions => { :model => "Section" }
 	  accepts_nested_attributes_for :images, :allow_destroy => true
 	  mount_uploader :file, Adminpanel::SectionUploader
-	  validates_length_of :description, :minimum => 10, :on => :update, :if => lambda{|section| section.key == "telephone"}
-	  validates_presence_of :description, :on => :update
+	  validates_length_of :description, :minimum => 10, :maximum => 10, :on => :update, :if => lambda{|section| section.key == "telephone"}
+	  validates_presence_of :description, :minimum => 9, :on => :update, :if => lambda{|section| section.has_description == true}
+	  validates_presence_of :key
+	  validates_presence_of :name
 
 	  def simple_name
 	  	"Section"
