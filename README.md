@@ -23,7 +23,11 @@ In you application.rb
     config.default_locale = :es
 no other language is currently supported, but pull requests are welcome.
 
-The gem expects you to have a database with tables as the schema.rb in the root. You have to add your sections in the seeds.rb to add them to the database.
+Then run:
+
+    rails g adminpanel:install
+    rake db:migrate
+to create the database that the adminpanel it's expecting.
 
 Any doubt feel free to ask me!
 
