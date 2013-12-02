@@ -7,6 +7,3 @@ env:
   - RAILS=3.2.12
 script:
   - RAILS_ENV=test bundle exec rake --trace db:migrate test
-before_script:
-  - mysql -e 'create database myapp_test'
-  - psql -c 'create database myapp_test' -U postgres
