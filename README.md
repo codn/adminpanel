@@ -29,6 +29,10 @@ Then run:
     rake db:migrate
 to create the database that the adminpanel it's expecting.
 
+Then, mount the gem wherever you like!
+
+    mount Adminpanel::Engine => "/admin"
+
 Any doubt feel free to ask me!
 
 ## Contributing
