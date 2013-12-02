@@ -5,3 +5,5 @@ env:
   - RAILS=3.2.12
 before_install:
   - gem update --system
+install:
+  - rake db:test:prepare
