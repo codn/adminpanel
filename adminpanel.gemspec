@@ -24,11 +24,11 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rmagick", "~> 2.13.2"
   spec.add_dependency "jquery-rails", "~> 3.0.4"
   spec.add_dependency "bcrypt-ruby", "~> 3.0.0"
-  spec.add_dependency "rails-i18n", "~> 3.0.0"
+  spec.add_dependency "rails-i18n", "~> 4.0.0"
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "activerecord", "~> 3.2.12"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "sqlite3"
-  spec.add_development_dependency "rspec", "~> 2.11.0"
+  spec.add_development_dependency "rspec", "~> 2.14.0"
 end
