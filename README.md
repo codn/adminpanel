@@ -25,7 +25,7 @@ no other language is currently supported, but pull requests are welcome.
 
 Then run:
 
-    rails g adminpanel:install
+    rails g adminpanel:install create_migrations
     rake db:migrate
 to create the database that the adminpanel it's expecting.
 
