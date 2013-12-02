@@ -15,5 +15,3 @@
 .powrc
 .rspec
 
-# an example database.yml is in database.yml.example
-config/database.yml
