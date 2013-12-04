@@ -2,6 +2,8 @@
 
 This gem is developed to be a CMS for Ruby 1.8.7 and Rails 3.2.12 
 
+[![Travis CI   ](https://api.travis-ci.org/joseramonc/adminpanel.png)       ](https://travis-ci.org/joseramonc/adminpanel)
+
 ## Installation
 
 Add this line to your application's Gemfile:
