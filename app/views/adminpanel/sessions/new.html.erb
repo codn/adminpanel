@@ -3,7 +3,7 @@
 <div class="widget container-narrow">
 	<div class="widget-header">
 		<i class="icon-user"></i>
-		<h5>Bienvenido! Inicia Sesion</h5>
+		<h5><%= t("Welcome") %></h5>
 	</div>
 	<div class="widget-body clearfix" style="padding:25px;">
 		<% flash.each do |key, value| %>
@@ -12,15 +12,15 @@
 		<%= form_for(:session, :url => sessions_path) do |f| %>
 			<div class="control-group">
 				<div class="controls">
-					<%= f.email_field :email, :class => "btn-block", :id => "inputEmail" , :placeholder => "Correo" %>
+					<%= f.text_field :email, :class => "btn-block", :id => "inputEmail" , :placeholder => "Correo" %>
 				</div>
 			</div>
 			<div class="control-group">
 				<div class="controls">
-					<%= f.password_field :password, :class => "btn-block", :id => "inputPassword", :placeholder => "Contrasena" %>
+					<%= f.password_field :password, :class => "btn-block", :id => "inputPassword", :placeholder => t("Password") %>
 				</div>
 			</div>
-			<%= f.submit "Iniciar Sesión", :class => "btn pull-right" %>
+			<%= f.submit "Iniciar Sesión", :class => "btn pull-right", :id => "signin-button" %>
 		<% end %>
 	</div>
 </div>

@@ -1,5 +1,4 @@
 require 'spec_helper'
-require "support/active_record"
 
 describe Adminpanel::Category do
 	before do

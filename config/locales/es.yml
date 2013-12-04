@@ -202,3 +202,7 @@ es:
   Short description of product: "Breve descripción del producto"
   Write description here: "Escriba la descripción aquí"
   no description: "Este campo todavía no tiene descripción"
+  Welcome: "Bienvenido! Inicia Sesión"
+  Panel title: "Panel Administrativo"
+  Signin error: "Contraseña incorrecta"
+  Signin success: "Bienvenido!"

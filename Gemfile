@@ -14,6 +14,11 @@ group :test do
 	gem "bundler", "~> 1.3"
 	gem "activerecord", "3.2.12"
 	gem "rspec", "2.14.0"
+	gem "rspec-rails"
 	gem "sqlite3", :platform => [:ruby, :mswin, :mingw]
 	gem "rake"
+	gem "factory_girl", "2.6.4"
+	gem "capybara", "1.1.4"
+	gem "nokogiri", "1.5.9"
+	gem "rubyzip", "0.9.9"
 end

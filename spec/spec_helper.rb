@@ -6,6 +6,17 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../dummy/config/environment", __FILE__)
+require "rspec/rails"
+require "factory_girl"
+
+Dir["./spec/support/**/*.rb"].sort.each {|f| require f}
+
+Factory.define :user, :class => Adminpanel::User do |u|
+	u.name "test user"
+	u.email "email@test.com"
+	u.password "123456"
+	u.password_confirmation "123456"
+end
 
 RSpec.configure do |config|
 	config.treat_symbols_as_metadata_keys_with_true_values = true
@@ -18,6 +29,8 @@ RSpec.configure do |config|
 	  :database => ':memory:'
 	)
 
+	config.include Rails.application.routes.url_helpers
+	# config.before(:each, :type => :routing)    { @routes = Utilizer::Engine.routes }
 	# Run specs in random order to surface order dependencies. If you find an
 	# order dependency and want to debug it, you can fix the order by providing
 	# the seed, which is printed after each run.
