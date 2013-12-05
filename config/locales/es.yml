@@ -4,6 +4,7 @@ es:
     Adminpanel::Product: "Producto"
     Adminpanel::Gallery: "Galería de Inicio"
     Adminpanel::Section: "Sección"
+    Adminpanel::Image: "Imagen"
     Adminpanel::Category: "Categoría"
     attributes:
       Adminpanel::User:
@@ -102,3 +103,6 @@ es:
   product:
     new: "Agregar Producto"
     success: "El producto ha sido guardado"
+  session:
+    password: "Contraseña"
+    email: "Correo electrónico"

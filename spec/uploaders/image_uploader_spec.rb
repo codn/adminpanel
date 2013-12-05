@@ -28,10 +28,4 @@ describe Adminpanel::ImageUploader do
       @image_uploader.portfolio.should be_no_larger_than(468, 312)
     end
   end
-
-  context 'the tiny version' do
-    it "should scale down a landscape image to fit within 400 by 307 pixels" do
-      @image_uploader.tiny.should have_dimensions(460, 307)
-    end
-  end
 end

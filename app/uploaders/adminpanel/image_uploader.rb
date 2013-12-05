@@ -5,7 +5,6 @@ module Adminpanel
     # Include RMagick or MiniMagick support:
     include CarrierWave::RMagick
     # include CarrierWave::MiniMagick
-
     # Choose what kind of storage to use for this uploader:
     storage :file
     # storage :fog
@@ -36,10 +35,6 @@ module Adminpanel
     # end
     version :portfolio do
       process :resize_to_fill => [468, 312]
-    end
-
-    version :tiny do
-      process :resize_to_fill => [460, 307]
     end
 
     # Create different versions of your uploaded files:

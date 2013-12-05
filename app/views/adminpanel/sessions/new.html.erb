@@ -12,12 +12,12 @@
 		<%= form_for(:session, :url => sessions_path) do |f| %>
 			<div class="control-group">
 				<div class="controls">
-					<%= f.text_field :email, :class => "btn-block", :id => "inputEmail" , :placeholder => "Correo" %>
+					<%= f.text_field :email, :class => "btn-block", :id => "inputEmail" , :placeholder => t("session.email") %>
 				</div>
 			</div>
 			<div class="control-group">
 				<div class="controls">
-					<%= f.password_field :password, :class => "btn-block", :id => "inputPassword", :placeholder => t("Password") %>
+					<%= f.password_field :password, :class => "btn-block", :id => "inputPassword", :placeholder => t("session.password") %>
 				</div>
 			</div>
 			<%= f.submit "Iniciar Sesión", :class => "btn pull-right", :id => "signin-button" %>

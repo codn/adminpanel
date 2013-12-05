@@ -4,11 +4,13 @@
       <div class="logo"> 
         <%= link_to image_tag("logo.png", :alt => "PCP del Sureste"), root_path %>
       </div>
+      <% if signed_in? %>
        <a class="btn btn-navbar visible-phone" data-toggle="collapse" data-target=".nav-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
+            <% end %>
        <a class="btn btn-navbar slide_menu_left visible-tablet">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -26,16 +28,16 @@
           </li>
         </ul>
       </div>
-
+      
       <div class="top-menu visible-phone visible-tablet">
         <ul class="pull-right">  
           <li>
             <% if signed_in? %>
               <%= link_to content_tag('i', nil, :class => 'icon-off'), signout_path, :method => "delete", :title => 'Logout', :id => "signout-button" %>
-            <% end %>
           </li>
         </ul>
       </div>
+      <% end %>
       
     </div>
   </div>
