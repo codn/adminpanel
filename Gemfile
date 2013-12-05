@@ -21,4 +21,5 @@ group :test do
 	gem "capybara", "1.1.4"
 	gem "nokogiri", "1.5.9"
 	gem "rubyzip", "0.9.9"
+	gem "database_cleaner"
 end

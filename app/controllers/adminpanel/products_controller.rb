@@ -47,7 +47,7 @@ module Adminpanel
 
       respond_to do |format|
         if @product.save
-          format.html { redirect_to product_path(@product), :notice => 'Product was successfully created.' }
+          format.html { redirect_to product_path(@product), :notice => t("product.success") }
           format.json { render :json =>  product_path(@product), :status => :created, :location => @product }
         else
           @categories = Category.all.collect{|c| [ c.name, c.id ] }

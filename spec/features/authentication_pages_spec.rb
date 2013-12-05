@@ -3,10 +3,11 @@ require 'spec_helper'
 describe "Authentication" do
 
   	subject { page }
+  	
 	describe "sign in page" do
 	    before { visit adminpanel.signin_path }
 
-	    it { should have_content(I18n.t("Welcome")) }
+	    it { should have_content(I18n.t("authentication.welcome")) }
 
 	    it { expect(page).to have_title(I18n.t("Panel title")) }
 	end
@@ -19,18 +20,16 @@ describe "Authentication" do
 
 	    	it { expect(page).to have_title(I18n.t("Panel title")) }
 
-	      	it { should have_selector('div.alert.alert-error', :text => I18n.t("Signin error")) }
+	      	it { should have_selector('div.alert.alert-error', :text => I18n.t("authentication.signin error")) }
 	    end
 
 	    describe "with valid information" do
 	    	let(:user) { Factory(:user) }
 	    	before do
-	    		fill_in "inputEmail", :with => user.email
-	    		fill_in "inputPassword", :with => user.password
-	    		click_button "signin-button"
+	    		valid_signin(user)
 	    	end
 
-	    	it { should have_selector('div.alert.alert-success', :text => I18n.t("Signin success")) }
+	    	it { should have_selector('div.alert.alert-success', :text => I18n.t("authentication.signin success")) }
 	    	it { should have_selector('i.icon-off') }
 
 	    	describe "signing out" do

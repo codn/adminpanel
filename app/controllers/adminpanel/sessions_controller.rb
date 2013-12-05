@@ -1,5 +1,7 @@
 module Adminpanel
 	class SessionsController < Adminpanel::ApplicationController
+
+		layout "login"
 		layout 'sessions'
 		skip_before_filter :signed_in_user
 
@@ -10,10 +12,10 @@ module Adminpanel
 			user = User.find_by_email(params[:session][:email].downcase)
 			if user && user.authenticate(params[:session][:password])
 					sign_in user
-					flash[:success] = t("Signin success")
+					flash[:success] = t("authentication.signin success")
 					redirect_to root_url
 			else
-				flash.now[:error] = t("Signin error")
+				flash.now[:error] = t("authentication.signin error")
 				render 'new'
 			end
 		end

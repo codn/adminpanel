@@ -11,7 +11,7 @@ module Adminpanel
 		def create
 			@category = Category.new(params[:category])
 			if @category.save
-				redirect_to categories_path, :notice => "La categoria ha sido guardada"
+				redirect_to categories_path, :notice => t("category.success")
 			else
 				render "new"
 			end

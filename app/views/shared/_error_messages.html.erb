@@ -6,8 +6,8 @@
 			<% object.errors.messages.keys.each do |field| %>
 				<% object.errors.messages[field].each do |value| %>
 				 <li>
-				 	<%= t(field) %>
-				 	<%= t(value) %>
+				 	<%= t("model.attributes.#{object.class.model_name}.#{field}") %>
+				 	<%= value %>
 				 </li>
 				<% end %>
 			<% end %>

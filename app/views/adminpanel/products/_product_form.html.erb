@@ -2,11 +2,11 @@
   <div class = "widget-forms clearfix">
   <%= custom_form_for(@product, {:class => "form-horizontal"}) do |f| %>
     <%= render 'shared/error_messages', :object => @product %>
-    <%= f.text_field :name, :label => t("model.attributes.product.Name"), :placeholder => t("Name of product") %>
-    <%= f.text_field :brief, :label => t("Short description"), :placeholder => t("Short description of product") %>
+    <%= f.text_field :name, :label => t("model.attributes.Adminpanel::Product.name"), :placeholder => t("model.attributes.Adminpanel::Product.name") %>
+    <%= f.text_field :brief, :label => t("model.attributes.Adminpanel::Product.brief"), :placeholder => t("model.attributes.Adminpanel::Product.brief") %>
 
     <div class="control-group">
-      <label class="control-label"><%= t "Description" %></label>
+      <label class="control-label"><%= t("Description") %></label>
       <div class="controls">
         <%= f.hidden_field :description, :id => "description-field" %>
         <% if @product.description.nil? %>
@@ -26,6 +26,6 @@
   </div>
 </div>
   <div class = "widget-footer">
-    <%= f.submit t("Save"), :disable_with => 'Submiting...', :id => "save-button" %>
+    <%= f.submit t("action.save"), :disable_with => 'Submiting...', :id => "save-button" %>
   </div>
   <% end -%>

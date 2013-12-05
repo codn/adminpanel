@@ -4,9 +4,10 @@
     <%= 
       link_to( 
         content_tag(:div,
-          content_tag(:i, nil, :class => 'icon-plus-sign icon-2x') + content_tag(:span, 'Agregar Categoria', nil), 
+          content_tag(:i, nil, :class => 'icon-plus-sign icon-2x') + content_tag(:span, t("category.new"), nil), 
           :class => "btn btn-box span2"), 
-        new_category_path
+        new_category_path,
+        :id => "new-category-button"
       )
     %>
   </div>
@@ -24,23 +25,22 @@
           <thead>
             <tr>
               <th>Nombre</th>
-              <% #if can? :manage, Client %>
                 <th>Acción</th>
-              <% #end %>
             </tr>
           </thead>
           <tbody>
             <% @categories.each do |category| %>
             <tr>
               <td><%= category.name %></td>
-              <% #if can? :manage, category %>
                 <td>
-                  <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_category_path(category), :title => "Editar"%>
-                  <%= link_to content_tag(:i, nil, :class => 'icon-remove'), category_path(category), :title => "Borrar", :method => :delete,
-                                      :data => { :confirm => "Seguro?" }
+                  <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_category_path(category), :title => t("action.edit") %>
+                  <%= link_to content_tag(:i, nil, :class => 'icon-remove'), category_path(category), 
+                    :title => t("action.delete"),
+                    :id => "category-delete",
+                    :method => :delete,
+                    :data => { :confirm => "Seguro?" }
                   %>
                 </td>
-              <% #end %>
             </tr>
             <% end %>
           </tbody>

@@ -35,7 +35,7 @@ Then, mount the gem wherever you like!
 
     mount Adminpanel::Engine => "/admin"
 
-Any doubt feel free to ask me!
+Any doubts or errors feel free to ask me!
 
 ## Contributing
 
@@ -44,3 +44,8 @@ Any doubt feel free to ask me!
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## To Do:
+
+1. Add english support
+2. Add the medium editor to the custom builder so it inits itself

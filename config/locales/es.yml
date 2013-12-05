@@ -1,208 +1,104 @@
 es:
   model:
-    Product: "Producto"
-    Products: "Productos"
     Adminpanel::User: "Usuario"
-    Contact: "Contacto"
-    Image: "Imagen"
-    Category: "Categría"
-    Client: "Cliente"
-    Movement: "Variación"
-    Investor: "Inversionista"
-    Project: "Proyecto"
-    Deposit: "Depósito"
-    Admin::User: "Usuario"
-    Adminpanel::Product: "Proucto"
-    Gallery: "Galería de Inicio"
-    Section: "Sección"
+    Adminpanel::Product: "Producto"
+    Adminpanel::Gallery: "Galería de Inicio"
+    Adminpanel::Section: "Sección"
     Adminpanel::Category: "Categoría"
     attributes:
-      product:
-        name: "Nombre"
-        description: "Descripción"
-      user:
+      Adminpanel::User:
         email: "Correo electrónico"
         password_digest: "Confirmar contraseña"
         name: "Nombre"
         password: "Contraseña"
         password_confirmation: "Confirmar contraseña"
-      contact:
-        name: "Nombre"
-        email: "Correo electrónico"
-        subject: "Asunto"
-        body: "Cuerpo"
-      admin/user:
-        email: "Correo electrónico"
-        password_digest: "Confirmar contraseña"
-        name: "Nombre"
-        password: "Contraseña"
-        password_confirmation: "Confirmar contraseña"
-      client:
-        name: "Nombre"
-      movement:
-        reason: "Motivo"
-        price: "Precio"
-      investor:
-        name: "Nombre"
-        email: "Correo electrónico"
-      project:
-        name: "Nombre"
-        description: "Descripción"
-        estimate_total: "Cantidad a invertir"
-        participants: "Inversionista"
-      deposit:
-        mount: "Monto"
-        concept: "Concepto"
-      section:
+      Adminpanel::Section:
         description: "Descripción"
         file: "Imagen"
-      gallery:
-        description: "Descripción"
-        name: "Nombre"
+      Adminpanel::Gallery:
         file: "Imagen"
+      Adminpanel::Category:
+        name: "Nombre"
+      Adminpanel::Product:
+        name: "Nombre"
+        brief: "Pequeña descripción"
+        category_id: "Categoría"
   errors:
-    models:
-      investor:
-        attributes:
-          name:
-            blank: "no puede estar vacío"
-          email:
-            blank: "no puede estar vacío"
-      user:
-        attributes:
-          password_digest:
-            blank: "no puede estar vacío"
-          name:
-            blank: "no puede estar vacío"
-          password:
-            blank: "no puede estar vacío"
-            too_short: "es muy corta, mínimo 6 caracteres"
-            confirmation: "Deben ser iguales"
-          password_confirmation:
-            blank: "no puede estar vacío"
-          email:
-            blank: "no puede estar vacío"
-            invalid: "no es un correo"
-            taken: "ya está en uso"
-      contact:
-        attributes:
-          subject:
-            blank: "no puede estar vacío"
-          name:
-            blank: "no puede estar vacío"
-          body:
-            blank: "no puede estar vacío"
-          email:
-            blank: "no puede estar vacío"
-            invalid: "no es un correo"
-      project:
-        attributes:
-          name:
-            blank: "no puede estar vacío"
-            taken: "ya ha sido usado para otro proyecto"
-          description:
-            blank: "no puede estar vacío"
-          participants:
-            invalid: "no puede estar vacío"
-          estimate_total:
-            blank: "no puede estar vacío"
-      item:
-        attributes:
-          quantity:
-            not_a_number: "no es un número"
-            blank: "no puede estar vacío"
-          product_name:
-            blank: "no puede estar vacío"
-          project_name:
-            blank: "no puede estar vacío"
-      deposit:
-        attributes:
-          mount:
-            blank: "no puede estar vacío"
-            not_a_number: "debe ser un número"
-          concept:
-            blank: "no puede estar vacío"
-      section:
-        attributes:
-          description:
-            blank: "no puede estar vacía"
-          file:
-            blank: "no puede estar vacía"
-      gallery:
-        attributes:
-          description:
-            blank: "no puede estar vacía"
-          file:
-            blank: "no puede estar vacía"
-          name:
-            blank: "no puede estar vacío"
-    one:   "%{model} no pudo guardarse debido a 1 error"
+    one: "%{model} no pudo guardarse debido a 1 error"
     other: "%{model} no pudo guardarse debido a %{count} errores"
-    different: "El nuevo precio no puede ser igual al actual"
+  activerecord:
+    errors:
+      models:
+        adminpanel/category:
+          attributes:
+            name:
+              blank: "no puede estar vacío"
+        adminpanel/user:
+          attributes:
+            password_digest:
+              blank: "no puede estar vacío"
+            name:
+              blank: "no puede estar vacío"
+            password:
+              blank: "no puede estar vacío"
+              too_short: "es muy corta, mínimo 6 caracteres"
+              confirmation: "Deben ser iguales"
+            password_confirmation:
+              blank: "no puede estar vacío"
+            email:
+              blank: "no puede estar vacío"
+              invalid: "no es un correo"
+              taken: "ya está en uso"
+        adminpanel/gallery:
+          attributes:
+            file:
+              blank: "no puede estar vacía"
+        adminpanel/section:
+          attributes:
+            description:
+              blank: "no puede estar vacía"
+              too_long: "es muy larga"
+              too_short: "es muy corta"
+              not_a_number: "tienen que ser sólo números"
+            file:
+              blank: "no puede estar vacía"
+        adminpanel/product:
+          attributes:
+            name:
+              blank: "no puede estar vacío"
+            category_id:
+              blank: "no puede estar vacía"
+            brief:
+              blank: "no puede estar vacía"
+        gallery:
+          attributes:
+            description:
+              blank: "no puede estar vacía"
+            file:
+              blank: "no puede estar vacía"
+            name:
+              blank: "no puede estar vacío"
   time:
     formats:
       graphic: "%Y-%m-%d %H:%M:%S"
       long: "%d/%m/%Y %l:%M:%S %p"
       short: "%d de %B de %Y"
       estimate: "%Y-%m-%d"
-  date: 
-    formats:
-      short: '%d de %B de %Y'
-    month_names:
-    - 
-    - enero
-    - febrero
-    - marzo
-    - abril
-    - mayo
-    - junio
-    - julio
-    - agosto
-    - septiembre
-    - octubre
-    - noviembre
-    - diciembre
-    abbr_month_names:
-    - 
-    - ene
-    - feb
-    - mar
-    - abr
-    - may
-    - jun
-    - jul
-    - ago
-    - sep
-    - oct
-    - nov
-    - dic
-  description: "Descripción"
-  Description: "Descripción"
-  password: "Contraseña"
-  Password: "Contraseña"
-  Section: "Sección"
-  section: "sección"
-  name: "Nombre"
-  Gallery: "Galería de Inicio"
-  gallery: "Galería de inicio"
-  Email: "Correo Electrónico"
-  email: "Correo electrónico"
-  password_digest: "Confirmación de Contraseña"
-  password_confirmation: "Confirmación de Contraseña"
-  is too short (minimum is 6 characters): "es muy corto (mínimo 6 caracteres)"
-  is invalid: "es inválido"
-  can't be blank: "no puede estar vacío"
-  New: "Nuevo"
   Add Image: "Agregar Imagen"
-  Save: "Guardar"
-  Edit: "Editar"
-  Delete: "Eliminar"
-  Name of product: "Nombre del product"
-  Short description : "Breve descripción"
-  Short description of product: "Breve descripción del producto"
   Write description here: "Escriba la descripción aquí"
-  no description: "Este campo todavía no tiene descripción"
-  Welcome: "Bienvenido! Inicia Sesión"
   Panel title: "Panel Administrativo"
-  Signin error: "Contraseña incorrecta"
-  Signin success: "Bienvenido!"
+  New: "Nuevo"
+  action:
+    save: "Guardar"
+    edit: "Editar"
+    delete: "Eliminar"
+  authentication:
+    welcome: "Bienvenido! Inicia Sesión"
+    signin error: "Contraseña incorrecta"
+    signin success: "Bienvenido!"
+  category:
+    new: "Agregar Categoría"
+    success: "La categoría ha sido guardada"
+  product:
+    new: "Agregar Producto"
+    success: "El producto ha sido guardado"

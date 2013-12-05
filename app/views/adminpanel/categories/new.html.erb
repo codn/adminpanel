@@ -1,4 +1,4 @@
-<% provide(:page_title, "Nueva") %>
+<% provide(:page_title, t("category.new")) %>
 <% breadcrumb_add('Categorias', products_path) %>
 <div class="row-fluid">
   <div class = "widget widget-padding span12">
@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class = "widget-footer">
-      <%= f.submit "Agregar", :disable_with => 'Submiting...' %>
+      <%= f.submit "Agregar", :disable_with => 'Submiting...', :id =>"new-category-button" %>
     </div>
       <% end -%>
   </div>

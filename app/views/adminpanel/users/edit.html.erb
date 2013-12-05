@@ -2,21 +2,5 @@
 <% breadcrumb_add('Usuarios', users_path) %>
 <% breadcrumb_add(@user.name, user_path(@user)) %>
 <div class="row-fluid">
-  <div class = "widget widget-padding span12">
-    <div class = "widget-header"><i class = "icon-user"></i><h5>Usuario</h5></div>
-    <div class = "widget-body">
-      <div class = "widget-forms clearfix">
-        <%= custom_form_for(@user, :url => user_path(@user)) do |f| %>
-          <%= render 'shared/error_messages', :object => @user %>
-          <%= f.text_field :name, :label => "Nombre", :placeholder => "Nombre del usuario" %>
-          <%= f.text_field :email, :label => t("Email"), :placeholder => t("Email") %>
-          <%= f.password_field :password, :label => t("Password"), :placeholder => t("Password") %>
-          <%= f.password_field :password_confirmation, :label => "Confirmar", :placeholder => "Confirmar" %>
-      </div>
-    </div>
-    <div class = "widget-footer">
-      <%= f.submit "Agregar", :disable_with => 'Submiting...' %>
-    </div>
-      <% end -%>
-  </div>
+  <%= render 'user_form' %>
 </div>

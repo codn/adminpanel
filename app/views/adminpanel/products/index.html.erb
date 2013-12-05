@@ -1,16 +1,14 @@
 <%= provide(:page_title, "Productos") %>
-<% #if can? :create, Client %>
   <div class="row-fluid">
     <%= 
       link_to( 
         content_tag(:div,
-          content_tag(:i, nil, :class => 'icon-plus-sign icon-2x') + content_tag(:span, 'Agregar Producto', nil), 
+          content_tag(:i, nil, :class => 'icon-plus-sign icon-2x') + content_tag(:span, t("product.new"), nil), 
           :class => "btn btn-box span2"), 
         new_product_path
       )
     %>
   </div>
-<% #end %>
 
 <div class="row-fluid">
   <div class="widget widget-padding span12">
@@ -25,9 +23,7 @@
             <tr>
               <th>Nombre</th>
               <th>Descripción</th>
-              <% #if can? :manage, Client %>
-                <th>Acción</th>
-              <% #end %>
+              <th>Acción</th>
             </tr>
           </thead>
           <tbody>

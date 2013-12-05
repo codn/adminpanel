@@ -16,22 +16,9 @@
 
 	<body>
 		<div id="wrap">
-		<%= render 'layouts/top_bar' %>
 			<div class="container-fluid">
-				<%= render 'layouts/side_menu' %>
-					<!-- Main window -->
-					<div class="main_container" id="dashboard_page">
-						<div class = "row-fluid">
-								<%= render_breadcrumb '/' %>
-							<h2 class = "heading"><%= yield(:page_title) %></h2>
-						</div>
-						<% flash.each do |key, value| %>
-							<div class = "alert alert-<%= key %>"><%= value %></div>
-						<% end %>
-						<%= yield %>
-						<%= debug(params) if Rails.env.development? %>
-					</div>
-					<!-- /Main window -->
+				<%= yield %>
+				<%= debug(params) if Rails.env.development? %>
 			</div>
 			<!--/.fluid-container-->
 		</div>
