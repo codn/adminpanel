@@ -28,7 +28,7 @@ describe "Section pages" do
 
 			before do
 				visit adminpanel.section_path(section)
-				image.file = image.file
+			end
 
 		    it { should have_title(section.name.humanize) }
 		    it { should have_content(section.description) }
