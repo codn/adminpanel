@@ -31,14 +31,12 @@
             <tr>
               <td><%= link_to product.name, product_path(product) %></td>
               <td><%= strip_tags product.description %></td>
-              <% #if can? :manage, product %>
                 <td>
                   <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_product_path(product), :title => "Editar"%>
                   <%= link_to content_tag(:i, nil, :class => 'icon-remove'), product_path(product), :title => "Borrar", :method => :delete,
                                       :data => { :confirm => "Seguro?" }
                   %>
                 </td>
-              <% #end %>
             </tr>
             <% end %>
           </tbody>

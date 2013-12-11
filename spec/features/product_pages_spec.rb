@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "Products" do
+describe "Product pages" do
 	subject {page}
 
 	let(:user) { Factory(:user) }
@@ -9,7 +9,7 @@ describe "Products" do
 		valid_signin(user)
 	end
 	
-	describe "products index" do
+	describe "index" do
 		let(:product) { Factory(:product) }
 		before do
 			visit adminpanel.products_path
@@ -20,7 +20,7 @@ describe "Products" do
 		it { should have_link("i", adminpanel.edit_product_path(product)) }
 	end
 
-	describe "create product" do
+	describe "new" do
 		let(:category) { Factory(:category) }
 		before do 
 			category.id = 1 #to force instantiation so it becomes available in the select
@@ -47,7 +47,18 @@ describe "Products" do
 
 			it { should have_content(I18n.t("product.success"))}
 		end
+	end
 
-		describe
+	describe "show" do
+		let(:product) { Factory(:product) }
+
+		before do
+			visit adminpanel.product_path(product)
+		end
+
+		it { page.should have_selector("div", :text => product.name.humanize) }
+		it { page.should have_selector("div", :text => product.brief) }
+		it { page.should have_selector("div", :text => product.description) }
+		it { page.should have_selector("div", :text => product.category.name) }
 	end
 end

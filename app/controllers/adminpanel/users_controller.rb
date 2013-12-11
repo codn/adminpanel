@@ -45,7 +45,7 @@ module Adminpanel
 
       respond_to do |format|
         if @user.save
-          format.html { redirect_to @user, :notice => 'Se ha creado con exito.' }
+          format.html { redirect_to @user, :notice => t("user.success") }
           format.json { render :json => @user, :status => :created, :location => @user }
         else
           format.html { render :action => "new" }

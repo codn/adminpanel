@@ -10,22 +10,21 @@
 			</h5>
 		</div>
 		<div class="widget-body row-fluid">
-			<div class="span1">
+
+			<div class="span2">
 				<b>Descripción</b>
 			</div>
-			<div class="span11">
+			<div class="span10">
 		        <% if @section.description.nil? %>
-		        	<%= t("no description") %>
+		        	<%= t("other.no description") %>
 		        <% else %>
 					<%= @section.description.html_safe %>
 		        <% end %>
 			</div>
 			<div class="span12">
-			<% if @section.has_image %>
 				<% @section.images.each do |image|-%>
 					<%= image_tag(image.file_url :thumb) %>
 				<% end %>
-			<% end %>
 			</div>
 		</div>
 	</div>

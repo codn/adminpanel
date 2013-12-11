@@ -32,7 +32,7 @@ module Adminpanel
 			  render(association.to_s.singularize + "_fields", :f => builder, :model_name => model_name)
 			end
 			link_to(content_tag(:div, content_tag(:button,
-						content_tag(:h6, name, :id => "add-estimate-button"),
+						content_tag(:h6, name, :id => "add-image-button"),
 						 :class => "btn btn-success btn-mini"), :class => "mws-form-row"),
 			'#', :class => "add_fields", :data => {:id => id, :fields => fields.gsub("\n", "")})
 		end

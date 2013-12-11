@@ -36,7 +36,6 @@ class CreateAdminpanelTables < ActiveRecord::Migration
 	      t.text :description
 	      t.string :key
 	      t.boolean :has_image
-	      t.string :file
 	      t.timestamps
 	    end
 	    add_index :adminpanel_sections, [:key]

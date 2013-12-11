@@ -1,4 +1,4 @@
-<% provide(:page_title, "Editar") %>
+<% provide(:page_title, t("section.edit")) %>
 <% breadcrumb_add('Secciones', sections_path) %>
 <% breadcrumb_add(@section.name, section_path(@section)) %>
 <div class="row-fluid">
@@ -11,7 +11,7 @@
 
           <% if @section.has_description %>
             <div class="control-group">
-              <label class="control-label"><%= t "Description" %></label>
+              <label class="control-label"><%= t("model.attributes.Adminpanel::Section.description") %></label>
               <div class="controls">
                 <%= f.hidden_field :description, :id => "description-field" %>
                   <% if @section.description.nil? %>
@@ -22,7 +22,7 @@
               </div>
             </div>
           <% else %>
-            <%= f.text_field :description, :label => t("Description") %>
+            <%= f.text_field :description, :label => t("model.attributes.Adminpanel::Section.description") %>
           <% end %>
 
           <% if @section.has_image %>
@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class = "widget-footer">
-      <%= f.submit "Guardar", :disable_with => 'Submiting...', :id => "save-button" %>
+      <%= f.submit t("action.save"), :disable_with => t("action.submiting"), :id => "save-button" %>
     </div>
       <% end -%>
   </div>

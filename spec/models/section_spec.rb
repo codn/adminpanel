@@ -4,7 +4,6 @@ describe Adminpanel::Section do
 	before do
 		@section = Adminpanel::Section.new(
 			:description => "Test description for product",
-			:file => "example.png",
 			:has_image => true,
 			:key => "example_key",
 			:has_description => true
@@ -14,7 +13,6 @@ describe Adminpanel::Section do
 	subject { @section }
 
 	it { should respond_to(:description) }
-	it { should respond_to(:file) }	
 	it { should respond_to(:has_image) }	
 	it { should respond_to(:key) }
 	it { should respond_to(:name) }

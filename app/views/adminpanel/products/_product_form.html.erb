@@ -12,7 +12,7 @@
         <% if @product.description.nil? %>
           <%= content_tag(:div, @product.description, :class => "editable", "data-placeholder" => t("Write description here")) %>
         <% else %>
-          <%= content_tag(:div, @product.description.html_safe, :class => "editable", "data-placeholder" => t("Write description here")) %>
+          <%= content_tag(:div, @product.description.html_safe, :class => "editable controls", "data-placeholder" => t("Write description here")) %>
         <% end %>
       </div>
     </div>

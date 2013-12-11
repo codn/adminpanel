@@ -90,9 +90,11 @@ es:
   Panel title: "Panel Administrativo"
   New: "Nuevo"
   action:
+    submiting: "Enviando..."
     save: "Guardar"
     edit: "Editar"
     delete: "Eliminar"
+    delete confirmation: "Estás seguro que desea eliminar?"
   authentication:
     welcome: "Bienvenido! Inicia Sesión"
     signin error: "Contraseña incorrecta"
@@ -101,8 +103,18 @@ es:
     new: "Agregar Categoría"
     success: "La categoría ha sido guardada"
   product:
-    new: "Agregar Producto"
+    new: "Agregar Producto" 
     success: "El producto ha sido guardado"
+  gallery:
+    new: "Agregar Imagen"
+    success: "La imagen ha sido guardada"
+  user:
+    new: "Agregar Usuario"
+    success: "El usuario ha sido guardado"
+  section:
+    edit: "Editar Sección"
   session:
     password: "Contraseña"
     email: "Correo electrónico"
+  other:
+    no description: "No tiene descripción aún"

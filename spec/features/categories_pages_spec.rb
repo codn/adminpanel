@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "Categories" do
+describe "Categories pages" do
 	subject {page}
 
 	let(:user) { Factory(:user) }
@@ -9,7 +9,7 @@ describe "Categories" do
 		valid_signin(user)
 	end
 	
-	describe "categories index" do
+	describe "index" do
 		let(:category) { Factory(:category) }
 		before do
 			visit adminpanel.categories_path
@@ -20,7 +20,7 @@ describe "Categories" do
 		it { should have_link("i", adminpanel.edit_category_path(category)) }
 	end
 
-	describe "create category" do
+	describe "new" do
 		before { visit adminpanel.new_category_path }
 
 		it { should have_title(I18n.t("category.new")) }

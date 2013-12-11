@@ -16,7 +16,7 @@ module Adminpanel
       @gallery = Gallery.new(params[:gallery])
 
       if @gallery.save
-        redirect_to gallery_path(@gallery), :notice => "La imagen ha sido creada"
+        redirect_to gallery_path(@gallery), :notice => t("gallery.success")
       else
         render 'new'
       end

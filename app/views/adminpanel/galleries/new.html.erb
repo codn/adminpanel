@@ -1,5 +1,5 @@
-<% provide(:page_title, "Nueva Imagen") %>
-<% breadcrumb_add(t("Gallery"), galleries_path) %>
+<% provide(:page_title, t("gallery.new")) %>
+<% breadcrumb_add(t("model.Adminpanel::Gallery"), galleries_path) %>
 <div class="row-fluid">
   <div class = "widget widget-padding span12">
     <div class = "widget-header"><i class = "icon-picture"></i><h5>Imagen</h5></div>
@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class = "widget-footer">
-      <%= f.submit "Agregar", :disable_with => 'Submiting...' %>
+      <%= f.submit t("gallery.new"), :disable_with => 'Submiting...' %>
     </div>
       <% end -%>
   </div>

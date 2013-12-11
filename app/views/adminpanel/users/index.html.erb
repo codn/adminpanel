@@ -1,16 +1,14 @@
-<%= provide(:page_title, "Usuarios") %>
-<% #if can? :create, Client %>
-  <div class="row-fluid">
-    <%= 
-      link_to( 
-        content_tag(:div,
-          content_tag(:i, nil, :class => 'icon-plus-sign icon-2x') + content_tag(:span, 'Agregar Usuario', nil), 
-          :class => "btn btn-box span2"), 
-        new_user_path
-      )
-    %>
-  </div>
-<% #end %>
+<%= provide(:page_title, t("model.Adminpanel::User")) %>
+<div class="row-fluid">
+  <%= 
+    link_to( 
+      content_tag(:div,
+        content_tag(:i, nil, :class => 'icon-plus-sign icon-2x') + content_tag(:span, t("user.new"), nil), 
+        :class => "btn btn-box span2"), 
+      new_user_path
+    )
+  %>
+</div>
 
 <div class="row-fluid">
   <div class="widget widget-padding span12">
@@ -24,23 +22,19 @@
           <thead>
             <tr>
               <th>Nombre</th>
-              <% #if can? :manage, Client %>
-                <th>Acción</th>
-              <% #end %>
+              <th>Acción</th>
             </tr>
           </thead>
           <tbody>
             <% @users.each do |user| %>
             <tr>
               <td><%= link_to user.name, user_path(user) %></td>
-              <% #if can? :manage, user %>
                 <td>
                   <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_user_path(user), :title => "Editar"%>
                   <%= link_to content_tag(:i, nil, :class => 'icon-remove'), user_path(user), :title => "Borrar", :method => :delete,
                                       :data => { :confirm => "Seguro?" }
                   %>
                 </td>
-              <% #end %>
             </tr>
             <% end %>
           </tbody>
