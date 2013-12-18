@@ -29,13 +29,16 @@ Then run:
 
     rails g adminpanel:install create_migrations
     rake db:migrate
-to create the database that the adminpanel it's expecting.
+to create the database that the adminpanel it's expecting, this will also seed the database with the default user.
 
 Then, mount the gem wherever you like!
 
     mount Adminpanel::Engine => "/admin"
 
-The version 0.1.0 is the first stable version, feel free to use it, any doubts or errors feel free to ask me!
+Also make sure to include adminpanel assets in your application.rb if you need to precompile them:
+
+    config.assets.precompile += ['application-admin.js', 'application-admin.css']
+The version 0.1.0 is the first stable version, feel free to use it, any doubts or errors feel free to ask me!.
 
 ## Contributing
 
