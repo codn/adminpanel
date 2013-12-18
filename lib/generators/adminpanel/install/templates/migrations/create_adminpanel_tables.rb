@@ -1,4 +1,10 @@
 class CreateAdminpanelTables < ActiveRecord::Migration
+	def migrate(direction)
+		super
+		# Create a default user
+		AdminUser.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password') if direction == :up
+	end
+	
 	def change
 		create_table :adminpanel_products do |t|
 	      t.integer :category_id
@@ -38,6 +44,13 @@ class CreateAdminpanelTables < ActiveRecord::Migration
 	      t.boolean :has_image
 	      t.timestamps
 	    end
+
+	    create_table :adminpanel_clients do |t|
+	    	t.string :name
+	    	t.string :logo
+	    	t.timestamps
+	    end
+
 	    add_index :adminpanel_sections, [:key]
 
 	    create_table :adminpanel_categories do |t|
