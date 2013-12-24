@@ -4,13 +4,12 @@
 		<meta charset="utf-8">
 		<title><%= full_title(yield(:page_title)) %></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="author" content="Bluth Company">
 		<%= stylesheet_link_tag    "application-admin", :media => "all" %>
 		<%= javascript_include_tag "application-admin" %>
 		<%= csrf_meta_tags %>
-		<link rel="shortcut icon" href="favicon.ico">
+  		<%= favicon_link_tag "favicon.ico" %>
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
-		<link rel="Favicon Icon" href="favicon.ico">
+		
 		<%= render 'layouts/shim' %>
 	</head>
 
