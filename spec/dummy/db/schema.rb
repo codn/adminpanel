@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,55 +10,6 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131120070259) do
-
-  create_table "adminpanel_users", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.string   "remember_token"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
-  create_table "adminpanel_categories", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "adminpanel_galleries", :force => true do |t|
-    t.string   "file"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "adminpanel_images", :force => true do |t|
-    t.string   "file"
-    t.integer  "foreign_key"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.string   "model"
-  end
-
-  create_table "adminpanel_products", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.integer  "category_id"
-    t.string   "brief"
-  end
-
-  create_table "adminpanel_sections", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "key"
-    t.boolean  "has_image"
-    t.string   "file"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.boolean  "has_description"
-  end
+ActiveRecord::Schema.define(:version => 0) do
 
 end

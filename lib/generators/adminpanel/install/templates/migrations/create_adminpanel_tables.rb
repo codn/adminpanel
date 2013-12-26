@@ -2,7 +2,9 @@ class CreateAdminpanelTables < ActiveRecord::Migration
 	def migrate(direction)
 		super
 		# Create a default user
-		Adminpanel::User.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password') if direction == :up
+		if direction == :up
+			Adminpanel::User.new(:email => 'admin@admin.com', :name => "Admin", :password => 'password', :password_confirmation => 'password').save
+		end
 	end
 	
 	def change
@@ -26,6 +28,7 @@ class CreateAdminpanelTables < ActiveRecord::Migration
 
         create_table :adminpanel_galleries do |t|
 	      t.string :file
+	      t.integer :position
 	      t.timestamps
 	    end
 

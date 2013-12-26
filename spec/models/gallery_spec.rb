@@ -15,4 +15,8 @@ describe Adminpanel::Gallery do
 		before {@gallery.file = " "}
 		it {should_not be_valid}
 	end
+
+	describe "default scope" do
+		it { expect(Adminpanel::Gallery.scoped.to_sql).to eq Adminpanel::Gallery.reorder('').order('position ASC').to_sql}
+	end
 end

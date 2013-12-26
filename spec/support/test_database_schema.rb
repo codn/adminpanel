@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20131120070259) do
 
   create_table "adminpanel_galleries", :force => true do |t|
     t.string   "file"
+    t.integer  "position"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

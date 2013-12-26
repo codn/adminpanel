@@ -29,25 +29,16 @@
         </div>
     <div class="widget-body">
       <div class="dataTables_wrapper form-inline">
-        <table id="information-table" class="table table-striped table-bordered dataTable">
+        <table class="table table-striped table-bordered dataTable">
           <thead>
             <tr>
-              <th>Imagen</th>
-              <th>Acción</th>
+              <th><%= t("gallery.image") %></th>
+              <th><%= t("gallery.position") %></th>
+              <th><%= t("gallery.action") %></th>
             </tr>
           </thead>
-          <tbody>
-            <% @galleries.each do |gallery| %>
-            <tr>
-              <td><%= link_to image_tag(gallery.file_url(:thumb)), gallery_path(gallery) %></td>
-                <td>
-                  <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_gallery_path(gallery), :title => t("action.edit") %>
-                  <%= link_to content_tag(:i, nil, :class => 'icon-remove'), gallery_path(gallery), :title => t("action.delete"), :method => :delete,
-                                      :data => { :confirm => t("action.delete confirmation") }
-                  %>
-                </td>
-            </tr>
-            <% end %>
+          <tbody id = "galleries-content">
+            <%= render 'galleries_table', :galleries => @galleries %>
           </tbody>
         </table>
         <div class="row-fluid">

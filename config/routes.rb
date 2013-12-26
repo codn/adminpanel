@@ -1,7 +1,12 @@
 Adminpanel::Engine.routes.draw do
   	resources :sections, :except => [:new]
     resources :users
-    resources :galleries
+    resources :galleries do
+    	member do 
+    		put :move_better, :as => "move_to_better"
+    		put :move_worst, :as => "move_to_worst"
+    	end
+    end
     resources :sessions, :only => [:new, :create, :destroy]
     resources :products
     resources :categories

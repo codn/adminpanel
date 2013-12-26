@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'support/active_record'
 require 'carrierwave/test/matchers'
 
 describe Adminpanel::ImageUploader do

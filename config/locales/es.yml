@@ -108,6 +108,12 @@ es:
   gallery:
     new: "Agregar Imagen"
     success: "La imagen ha sido guardada"
+    deleted: "La imagen ha sido eliminada"
+    moved : "Se ha actualizado la posición de la galería"
+    not-moved: "No se pudo mover la Imagen"
+    image: "Imagen"
+    position: "Posición"
+    action: "Acción"
   user:
     new: "Agregar Usuario"
     success: "El usuario ha sido guardado"
