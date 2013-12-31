@@ -44,6 +44,7 @@ class CreateAdminpanelTables < ActiveRecord::Migration
 	      t.boolean :has_description
 	      t.text :description
 	      t.string :key
+	      t.string :page
 	      t.boolean :has_image
 	      t.timestamps
 	    end

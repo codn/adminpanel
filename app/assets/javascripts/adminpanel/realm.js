@@ -60,9 +60,6 @@ $(function() {
 }); // end document reday
 
 
-
-
-
 //-----  Side menu functions -----//
 
   // slide menu out of view

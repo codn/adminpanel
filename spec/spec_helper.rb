@@ -10,6 +10,7 @@ require File.expand_path("../dummy/config/environment", __FILE__)
 require "rspec/rails"
 require "factory_girl"
 require "carrierwave/test/matchers"
+require "active_record"
 
 Dir["./spec/support/**/*.rb"].sort.each {|f| require f}
 

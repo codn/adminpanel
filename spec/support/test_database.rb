@@ -1,5 +1,3 @@
-require "active_record"
-
 ActiveRecord::Migration.create_table :adminpanel_users do |t|
     t.string   :name
     t.string   :email
@@ -39,7 +37,7 @@ ActiveRecord::Migration.create_table :adminpanel_sections do |t|
     t.text     :description
     t.string   :key
     t.boolean  :has_image
-    t.string   :file
+    t.string   :page
     t.datetime :created_at,      :null => false
     t.datetime :updated_at,      :null => false
     t.boolean  :has_description

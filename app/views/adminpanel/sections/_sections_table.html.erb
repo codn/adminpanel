@@ -1,0 +1,17 @@
+<table class="table table-striped table-bordered">
+	<tr>
+	 <th><%= t("section.name") %></th>
+	 <th><%= t("section.description") %></th>
+	 <th><%= t("actions") %></th>
+	</tr>
+	<% sections.each do |section| %>
+        <tr>
+          <td><%= link_to section.name, section_path(section) %></td>
+          <td><%= strip_tags section.description %></td>
+          <td>
+            <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_section_path(section), :title => "Editar" %>
+          </td>
+        </tr>
+	<% end %>
+
+</table>

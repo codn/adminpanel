@@ -33,4 +33,5 @@ Factory.define :section_with_gallery, :class => Adminpanel::Section do |section|
 	section.has_image true
 	section.has_description false
 	section.name "section_name"
+	section.page "index"
 end

@@ -89,6 +89,7 @@ es:
   Write description here: "Escriba la descripción aquí"
   Panel title: "Panel Administrativo"
   New: "Nuevo"
+  actions: "Acciones"
   action:
     submiting: "Enviando..."
     save: "Guardar"
@@ -118,7 +119,10 @@ es:
     new: "Agregar Usuario"
     success: "El usuario ha sido guardado"
   section:
+    name: "Nombre"
+    description: "Descripción"
     edit: "Editar Sección"
+    default: "Sin Sección"
   session:
     password: "Contraseña"
     email: "Correo electrónico"

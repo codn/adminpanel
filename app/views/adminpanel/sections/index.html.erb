@@ -1,38 +1,44 @@
 <%= provide(:page_title, "Secciones") %>
 
 <div class="row-fluid">
-  <div class="widget widget-padding span12">
+  <div class="widget widget-padding span12" id="wizard">
     <div class="widget-header">
-          <i class="icon-tasks"></i>
-          <h5>Secciones</h5>
-        </div>
+      <ul class="nav nav-tabs">
+        <% current_page = "no-page" %>
+        <% @sections.each_with_index do |section, index| %>
+          <% if current_page != section.page %>
+          <% if index == 0 %>
+            <li class = "active">
+          <% else %>
+            <li>
+          <% end %>
+              <%= link_to (section.page.capitalize), "#tab#{index}", "data-toggle" => "tab" %></li>
+            <% current_page = section.page %>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+
     <div class="widget-body">
-      <div class="dataTables_wrapper form-inline">
-        <table id="information-table" class="table table-striped table-bordered dataTable">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Descripción</th>
-              <th>Acción</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @sections.each do |section| %>
-            <tr>
-              <td><%= link_to section.name, section_path(section) %></td>
-              <td><%= strip_tags section.description %></td>
-              <td>
-                <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_section_path(section), :title => "Editar" %>
-              </td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-        <div class="row-fluid">
-          <div class="span6"></div>
-          <div class="span6"></div>
-        </div>
-      </div>
+      <div class="tab-content">
+        <% current_page = "no-page" %>
+        <% @sections.each_with_index do |section, index| %>
+          <% if current_page != section.page %>
+          <% if index == 0 %>
+            <div class="tab-pane active" id="tab<%= index %>">
+          <% else %>
+            <div class="tab-pane" id="tab<%= index %>">
+          <% end %>
+              <% section_pages = Adminpanel::Section.of_page section.page %>
+              <%= render "sections_table", :sections => section_pages %>
+            </div>
+            <% current_page = section.page %>
+          <% end %>
+        <% end %>
+      </div>  
+
     </div>
   </div>
 </div>
+
+
