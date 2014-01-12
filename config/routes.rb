@@ -4,7 +4,7 @@ Adminpanel::Engine.routes.draw do
     end
 
     def find_resources
-        controllersDirectory = 'app/adminpanel/'
+        controllersDirectory = "#{Rails.root.to_s}/app/adminpanel/"
         if File.directory?(controllersDirectory)
             controllers = Dir.entries(controllersDirectory).collect do |f|
                 filePath = "#{controllersDirectory}#{f}"

@@ -7,17 +7,6 @@ Factory.define :user, :class => Adminpanel::User do |user|
 	user.password_confirmation "123456"
 end
 
-Factory.define :category, :class => Adminpanel::Category do |category|
-	category.name "test category"
-end
-
-Factory.define :product, :class => Adminpanel::Product do |product|
-	product.name "test product"
-	product.brief "very little description"
-	product.description "this is a little longer description, can be very long"
-	product.association :category, :factory => :category
-end
-
 Factory.define :gallery, :class => Adminpanel::Gallery do |gallery|
 	gallery.file { fixture_file_upload(Rails.root.join('app', 'assets', 'images', 'hipster.jpg'), 'image/jpeg') }
 end
