@@ -1,21 +1,21 @@
 Adminpanel::Engine.routes.draw do
     def adminPanelresources
-        @controllers ||= find_resources
+        @files ||= find_resources
     end
 
     def find_resources
-        controllersDirectory = "#{Rails.root.to_s}/app/adminpanel/"
-        if File.directory?(controllersDirectory)
-            controllers = Dir.entries(controllersDirectory).collect do |f|
-                filePath = "#{controllersDirectory}#{f}"
-                File.file?(filePath) ? filePath.sub!(controllersDirectory, '') : nil
+        resources_path = "#{Rails.root.to_s}/app/adminpanel/"
+        if File.directory?(resources_path)
+            files = Dir.entries(resources_path).collect do |f|
+                file_path = "#{resources_path}#{f}"
+                File.file?(file_path) ? file_path.sub!(resources_path, '') : nil
             end
         end
     end
 
-    adminPanelresources.each do |controllers|
-        if controllers
-            resources controllers.sub!('.rb', '').to_sym
+    adminPanelresources.each do |file|
+        if file
+            resources file.sub!('.rb', '').to_sym
         end
     end
 	resources :sections, :except => [:new, :create, :destroy]
