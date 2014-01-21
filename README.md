@@ -53,5 +53,4 @@ The version 0.1.0 is the first stable version, feel free to use it, any doubts o
 1. Add english support
 2. Add the medium editor to the custom builder so it inits itself
 3. Get a section generator or some kind of it
-4. Add test to section edit(the only tests remaining)
-5. Add a generator that let you create scaffolded model/controller/view in way that you can change them in the main app.
+4. Add a generator that let you create scaffolded model/controller/view in way that you can change them in the main app.

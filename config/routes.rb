@@ -1,19 +1,6 @@
 Adminpanel::Engine.routes.draw do
-    def adminPanelresources
-        @files ||= find_resources
-    end
 
-    def find_resources
-        resources_path = "#{Rails.root.to_s}/app/adminpanel/"
-        if File.directory?(resources_path)
-            files = Dir.entries(resources_path).collect do |f|
-                file_path = "#{resources_path}#{f}"
-                File.file?(file_path) ? file_path.sub!(resources_path, '') : nil
-            end
-        end
-    end
-
-    adminPanelresources.each do |file|
+    Adminpanel::Router.adminpanel_resources.each do |file|
         if file
             resources file.sub!('.rb', '').to_sym
         end
