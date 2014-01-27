@@ -1,17 +1,16 @@
 <%= provide(:page_title, "Categorias") %>
-<% #if can? :create, Client %>
-  <div class="row-fluid">
-    <%= 
-      link_to( 
-        content_tag(:div,
-          content_tag(:i, nil, :class => 'icon-plus-sign icon-2x') + content_tag(:span, t("category.new"), nil), 
-          :class => "btn btn-box span2"), 
-        new_category_path,
-        :id => "new-category-button"
-      )
-    %>
-  </div>
-<% #end %>
+
+<div class="row-fluid">
+  <%= 
+    link_to( 
+      content_tag(:div,
+        content_tag(:i, nil, :class => 'icon-plus-sign icon-2x') + content_tag(:span, t("category.new"), nil), 
+        :class => "btn btn-box span2"), 
+      new_category_path,
+      :id => "new-category-button"
+    )
+  %>
+</div>
 
 <div class="row-fluid">
   <div class="widget widget-padding span12">

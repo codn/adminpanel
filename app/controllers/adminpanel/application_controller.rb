@@ -1,18 +1,23 @@
 module Adminpanel
-    class ApplicationController < ::ApplicationController
-            layout "admin"
-              protect_from_forgery
-            include SessionsHelper
+    class ApplicationController < ActionController::Base
+        protect_from_forgery
 
-            before_filter :signed_in_user
+        inherit_resources
 
-            def signed_in_user
-                redirect_to signin_url, :notice => "Favor de Iniciar sesion" unless signed_in?
-            end
+        include SessionsHelper
+        include RestActionsHelper
 
-            def handle_unverified_request
-                sign_out
-                super
-            end
+        layout "admin"
+
+        before_filter :signed_in_user
+
+        def signed_in_user
+            redirect_to signin_url, :notice => "Favor de Iniciar sesion" unless signed_in?
+        end
+
+        def handle_unverified_request
+            sign_out
+            super
+        end
     end
 end
