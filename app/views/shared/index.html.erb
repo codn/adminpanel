@@ -1,13 +1,14 @@
-<%# provide(:page_title, "Categorias") %>
-<!-- provide correct title name -->
+<% provide(:page_title, @model.display_name) -%>
 <div class="row-fluid">
   <%= 
     link_to( 
       content_tag(:div,
-        content_tag(:i, nil, :class => 'icon-plus-sign icon-2x') + content_tag(:span, "new model", nil), 
+        content_tag(:i, nil, :class => 'icon-plus-sign icon-2x') + content_tag(:span, "Crear #{@model.display_name}", nil), 
         :class => "btn btn-box span2"), 
-      "#",
-      :id => "new-category-button"
+      {
+        :controller => params[:controller],
+        :action => "new"
+      }
     )
   %>
 </div>
@@ -16,16 +17,61 @@
   <div class="widget widget-padding span12">
     <div class="widget-header">
           <i class="icon-truck"></i>
-          <h5>Table titile (model name)</h5>
+          <h5>
+            <%= @model.display_name %>
+          </h5>
         </div>
     <div class="widget-body">
       <div class="dataTables_wrapper form-inline">
         <table id="information-table" class="table table-striped table-bordered dataTable">
           <thead>
-            table header
+            <tr>
+              <% @model.form_attributes.each do |attribute, value| %>
+                <th><%= value[:name] %></th>
+              <% end %>
+              <th><%= I18n.t("actions") %></th>
+            </tr>
           </thead>
           <tbody>
-            table body
+            <tr>
+            <% collection.each do |member| %>
+              <% @model.form_attributes.each do |attribute, values| %>
+                <td><%= member.send(attribute) -%></td>
+              <% end %>
+              <td>
+                <%= 
+                link_to( 
+                  content_tag(:i, nil, :class => 'icon-zoom-in'), 
+                  [member],
+                  :title => t("action.show")
+                )
+                %>
+
+                <%= 
+                link_to( 
+                  content_tag(:i, nil, :class => 'icon-pencil'), 
+                  [:edit, member],
+                  :title => t("action.edit")
+                )
+                %>
+
+                <%= 
+                link_to( 
+                  content_tag(
+                    :i, 
+                    nil, 
+                    :class => 'icon-remove'
+                  ), 
+                  [member], 
+                  :title => I18n.t("action.delete"),
+                  :id => "category-delete",
+                  :method => :delete,
+                  :data => { :confirm => "Eliminar #{@model.display_name}?" }
+                )
+                %>
+              </td>
+            <% end %>
+            </tr>
           </tbody>
         </table>
         <div class="row-fluid">

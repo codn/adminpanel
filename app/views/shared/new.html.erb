@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class = "widget-footer">
-      <%= f.submit "Agregar", :disable_with => 'Enviando...', :id =>"new-resource-button" %>
+      <%= f.submit t.("action.add") + @model.display_name, :disable_with => t("action.submitting"), :id =>"new-resource-button" %>
     </div>
       <% end -%>
   </div>

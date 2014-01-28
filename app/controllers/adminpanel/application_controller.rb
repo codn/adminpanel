@@ -9,10 +9,15 @@ module Adminpanel
 
         layout "admin"
 
-        before_filter :signed_in_user
+        before_filter :signed_in_user, :set_model
+
 
         def signed_in_user
             redirect_to signin_url, :notice => "Favor de Iniciar sesion" unless signed_in?
+        end
+
+        def set_model
+            @model = params[:controller].classify.constantize
         end
 
         def handle_unverified_request

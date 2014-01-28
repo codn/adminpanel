@@ -91,7 +91,9 @@ es:
   New: "Nuevo"
   actions: "Acciones"
   action:
-    submiting: "Enviando..."
+    add: "Agregar"
+    show: "Ver"
+    submitting: "Enviando..."
     save: "Guardar"
     edit: "Editar"
     delete: "Eliminar"
