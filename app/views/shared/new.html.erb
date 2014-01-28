@@ -1,6 +1,6 @@
-<% provide(:page_title, "Crear #{resource.name.capitalize}") -%>
+<% provide(:page_title, "Crear #{@model.display_name.capitalize}") -%>
 <% breadcrumb_add(
-  resource.name.capitalize.pluralize, 
+  @model.display_name.capitalize.pluralize, 
     {
       :controller => params[:controller],
       :action => "index"
@@ -11,20 +11,20 @@
   <div class = "widget widget-padding span12">
     <div class = "widget-header">
       <i class = "icon-truck"></i>
-      <h5><%= resource.name %></h5>
+      <h5><%= t("action.create") + " " + @model.display_name %></h5>
     </div>
     <div class = "widget-body">
       <div class = "widget-forms clearfix">
         <%= custom_form_for(resource, :html => {:class => "form-horizontal"}) do |f| -%>
           <%= render 'shared/error_messages', :object => resource %>
-          <% resource.form_attributes.each do |attribute, form_field| %>
-            <%= f.send(form_field, attribute) %>
+          <% @model.form_attributes.each do |attribute, properties| %>
+            <%= f.send(properties[:type], attribute) %>
             <%# f.text_field :author, :label => "author", :placeholder => "Nombre de la resource" %>
           <% end %>
       </div>
     </div>
     <div class = "widget-footer">
-      <%= f.submit t.("action.add") + @model.display_name, :disable_with => t("action.submitting"), :id =>"new-resource-button" %>
+      <%= f.submit t("action.add") + " " + @model.display_name, :disable_with => t("action.submitting"), :id =>"new-resource-button" %>
     </div>
       <% end -%>
   </div>
