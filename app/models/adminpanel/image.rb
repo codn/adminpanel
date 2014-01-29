@@ -6,8 +6,8 @@ module Adminpanel
 		validates_presence_of :model
 		validates_presence_of :file
 
-		if is_class?("ProductUploader")
-	  		mount_uploader :file, ProductUploader
+		if is_class?("CustomImageUploader")
+	  		mount_uploader :file, CustomImageUploader
 		else
 	  		mount_uploader :file, Adminpanel::ImageUploader
 		end

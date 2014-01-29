@@ -1,4 +1,13 @@
 <% @model.form_attributes.each do |attribute, properties| %>
-    <%= f.send(properties[:type], attribute) %>
-    <%# f.text_field :author, :label => "author", :placeholder => "Nombre de la resource" %>
+
+	<% if properties[:type] != "adminpanel_file_field" %>
+		<% type = properties[:type] %>
+		<% args = properties.except(:type, :name) %>
+	    <%= f.send(type, attribute, args) %>
+	<% else %>
+		<%= f.fields_for :images do |builder| %>
+        	<%= render 'shared/image_fields', :f => builder, :model_name => @model.display_name.capitalize %>
+    	<% end -%>
+    	<%= link_to_add_fields t("Add Image"), f, :images, @model.display_name.capitalize %>
+    <% end %>
 <% end %>

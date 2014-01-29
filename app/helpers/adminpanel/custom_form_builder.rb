@@ -19,7 +19,7 @@ module Adminpanel
 			end
 		end
 
-		def custom_file_field(name, *args)
+		def adminpanel_file_field(name, *args)
 			options = args.extract_options!
 
 			options.reverse_merge! :class => "span7"
