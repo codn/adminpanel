@@ -11,10 +11,6 @@ describe Adminpanel::ImageUploader do
     @image_uploader.store!(File.open(Rails.root + "app/assets/images/test.jpg"))
   end
 
-  after do
-    Adminpanel::ImageUploader.enable_processing = false
-    @image_uploader.remove!
-  end
 
   context 'the thumb version' do
     it "should scale down a landscape image to be exactly 220 by 220 pixels" do
@@ -26,5 +22,10 @@ describe Adminpanel::ImageUploader do
     it "should scale down a landscape image to be exactly 468 by 312 pixels" do
       @image_uploader.portfolio.should be_no_larger_than(468, 312)
     end
+  end
+  
+  after do
+    Adminpanel::ImageUploader.enable_processing = false
+    @image_uploader.remove!
   end
 end
