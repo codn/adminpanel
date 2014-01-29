@@ -2,7 +2,7 @@ module Adminpanel
 	class SessionsController < Adminpanel::ApplicationController
 
 		layout "admin-login"
-		skip_before_filter :signed_in_user
+		skip_before_filter :signed_in_user, :set_model
 
 		def new
 		end
