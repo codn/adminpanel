@@ -97,18 +97,14 @@ es:
     submitting: "Enviando..."
     save: "Guardar"
     edit: "Editar"
+    update: "Actualizar"
     delete: "Eliminar"
+    view: "Ver"
     delete confirmation: "Estás seguro que desea eliminar?"
   authentication:
     welcome: "Bienvenido! Inicia Sesión"
     signin error: "Contraseña incorrecta"
     signin success: "Bienvenido!"
-  category:
-    new: "Agregar Categoría"
-    success: "La categoría ha sido guardada"
-  product:
-    new: "Agregar Producto" 
-    success: "El producto ha sido guardado"
   gallery:
     new: "Agregar Imagen"
     success: "La imagen ha sido guardada"
