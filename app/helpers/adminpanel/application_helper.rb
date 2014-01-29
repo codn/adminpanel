@@ -3,7 +3,7 @@ module Adminpanel
 		include SessionsHelper
 		def custom_form_for(name, *args, &block)
 			options = args.extract_options!
-			options.reverse_merge! :builder => CustomFormBuilder, :html => { :class => "form-horizontal" }
+			options.reverse_merge! :builder => Adminpanel::CustomFormBuilder, :html => { :class => "form-horizontal" }
 
 			form_for(name, *(args << options), &block)
 		end
