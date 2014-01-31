@@ -33,6 +33,33 @@ module Adminpanel
 			end
 		end
 
+		def wysiwyg_field(name, *args)
+			options = args.extract_options!
+			label = options[:label]
+			options.delete(:label)
+
+			@template.content_tag(:div, :class => "control-group") do
+				@template.content_tag(:label, label, :class => "control-label") +
+				@template.content_tag(:div, :class => "controls") do
+					if self.object.send(name).nil?
+						@template.content_tag(
+							:div, 
+							self.object.description, 
+							:id => name,
+							"data-placeholder" => I18n.t("Write description here")
+						)
+					else
+						@template.content_tag(
+							:div, 
+							self.object.description.html_safe, 
+							:id => name,
+							"data-placeholder" => I18n.t("Write description here")
+						)
+					end
+				end
+			end
+		end
+
 		def radio_button_group(name, buttons, options)
 
 			options.reverse_merge! :label => name

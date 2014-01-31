@@ -1,13 +1,24 @@
 <% @model.form_attributes.each do |attribute, properties| %>
 
-	<% if properties[:type] != "adminpanel_file_field" %>
+	<% if properties[:type] != "adminpanel_file_field" &&
+		properties[:type] != "wysiwyg_field" %>
 		<% type = properties[:type] %>
 		<% args = properties.except(:type, :name) %>
 	    <%= f.send(type, attribute, args) %>
-	<% else %>
+	<% elsif properties[:type] == "adminpanel_file_field" %>
 		<%= f.fields_for :images do |builder| %>
         	<%= render 'shared/image_fields', :f => builder, :model_name => @model.display_name.capitalize %>
     	<% end -%>
     	<%= link_to_add_fields t("Add Image"), f, :images, @model.display_name.capitalize %>
+    <% else %>
+		<% type = properties[:type] %>
+		<% args = properties.except(:type, :name) %>
+		<%= f.hidden_field attribute, :id => "#{attribute}-field", :value => "def" %>
+		<%= f.send(type, attribute, args) %>
+		<%= content_for :scripts do %>
+			<script type="text/javascript">
+			<%= render "shared/init_editor", :field_var => attribute, :label => properties[:label] %>
+			</script>
+		<% end %>
     <% end %>
 <% end %>

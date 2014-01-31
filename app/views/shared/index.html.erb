@@ -39,7 +39,7 @@
               <tr>
               <% @model.form_attributes.each do |attribute, values| %>
                 <% if values[:type] != "adminpanel_file_field" %>
-                  <td><%= member.send(attribute) -%></td>
+                  <td><%= member.send(attribute).html_safe -%></td>
                 <% end %>
               <% end %>
                 <td>

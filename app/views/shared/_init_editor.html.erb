@@ -1,0 +1,24 @@
+var elements = document.querySelectorAll('#<%= field_var %>'),
+<%= field_var %> = new MediumEditor(elements,{
+	 			buttons: [
+	 				'bold', 
+	 				'italic', 
+	 				'underline', 
+	 				'anchor', 
+	 				'header1', 
+	 				'header2', 
+	 				'quote', 
+	 				'unorderedlist'
+ 				]
+	});
+
+$(document).ready(function(){
+	$("#<%= field_var %>").on("focusout", function(){
+		
+
+		//alert(document.getElementById("<%= field_var %>-field").value);
+		//.value = <%= field_var %>.serialize()["editable"]["value"];
+		//$("#<%= field_var %>-field").value = <%= field_var %>.serialize()["editable"]["value"];
+		document.getElementById("<%= field_var %>-field").value = <%= field_var %>.serialize()["<%= field_var %>"]["value"];
+	});
+});

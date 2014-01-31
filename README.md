@@ -51,7 +51,5 @@ The version 0.1.0 is the first stable version, feel free to use it, any doubts o
 ## To Do:
 
 1. Add english support
-2. Add the medium editor to the custom builder so it inits itself
-3. Get a section generator or some kind of it
-4. Add a generator that let you create scaffolded model/controller/view in way that you can change them in the main app.
-5. Make the generator create the app/adminpanel directory
+2. Get a model generator or some kind of it
+3. Make a mount_uploader like, that make the relationship of a model with Adminpanel::Image so we get cleaner models
