@@ -31,6 +31,10 @@ Then run:
     rake db:migrate
 to create the database that the adminpanel it's expecting, this will also seed the database with the default user.
 
+You can seed the sections with help of the [Section wiki](https://github.com/joseramonc/adminpanel/wiki/Section-objects).
+
+
+
 Then, mount the gem wherever you like!
 
     mount Adminpanel::Engine => "/admin"
