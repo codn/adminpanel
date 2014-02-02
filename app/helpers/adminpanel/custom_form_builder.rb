@@ -44,14 +44,14 @@ module Adminpanel
 					if self.object.send(name).nil?
 						@template.content_tag(
 							:div, 
-							self.object.description, 
+							self.object.send(name), 
 							:id => name,
 							"data-placeholder" => I18n.t("Write description here")
 						)
 					else
 						@template.content_tag(
 							:div, 
-							self.object.description.html_safe, 
+							self.object.send(name).html_safe, 
 							:id => name,
 							"data-placeholder" => I18n.t("Write description here")
 						)
@@ -153,7 +153,7 @@ module Adminpanel
 			super(name, *args << options)
 		end
 
-		def date_picker(name, *args)
+		def datepicker(name, *args)
 
 			options = args.extract_options!
 

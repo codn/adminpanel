@@ -8,9 +8,9 @@ module ActiveRecordExtension
   # static(class) methods
   module ClassMethods
     def form_attributes
-      {
-        :name => {:type => "text_field", :name => ":name"}
-      }
+      [{
+        "name" => {"type" => "text_field", "name" => ":name"}
+      }]
     end
 
     def display_name
@@ -18,12 +18,14 @@ module ActiveRecordExtension
     end
 
     def has_images?
-      form_attributes.each do |attribute, values|
-        if values[:type] == "adminpanel_file_field"
+      form_attributes.each do |fields|
+      fields.each do |attribute, properties|
+        if properties["type"] == "adminpanel_file_field"
           return true
         end
       end
-      false
+      end
+      return false
     end
   end
 end

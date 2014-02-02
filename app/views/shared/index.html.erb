@@ -26,10 +26,12 @@
         <table id="information-table" class="table table-striped table-bordered dataTable">
           <thead><!-- model attributes -->
             <tr>
-              <% @model.form_attributes.each do |attribute, values| %>
-                <% if values[:type] != "adminpanel_file_field" %>
-                  <th><%= values[:name] %></th>
+              <% @model.form_attributes.each do |fields| %>
+              <% fields.each do |attribute, properties| %>
+                <% if properties["type"] != "adminpanel_file_field" %>
+                  <th><%= properties["name"] %></th>
                 <% end %>
+              <% end %>
               <% end %>
               <th><%= I18n.t("actions") %></th>
             </tr>
@@ -37,10 +39,14 @@
           <tbody>
             <% collection.each do |member| %>
               <tr>
-              <% @model.form_attributes.each do |attribute, values| %>
-                <% if values[:type] != "adminpanel_file_field" %>
+              <% @model.form_attributes.each do |fields| %>
+              <% fields.each do |attribute, properties| %>
+                <% if properties["type"] == "wysiwyg_field" %>
                   <td><%= member.send(attribute).html_safe -%></td>
+                <% elsif properties["type"] != "adminpanel_file_field" %>
+                  <td><%= member.send(attribute) -%></td>
                 <% end %>
+              <% end %>
               <% end %>
                 <td>
                   <%= 
