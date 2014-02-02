@@ -1,8 +1,10 @@
 Adminpanel::Engine.routes.draw do
 
-    Adminpanel::Router.adminpanel_resources.each do |file|
-        if file
-            resources file.sub!('.rb', '').to_sym
+    if !Adminpanel::Router.adminpanel_resources.nil?
+        Adminpanel::Router.adminpanel_resources.each do |file|
+            if file
+                resources file.sub!('.rb', '').to_sym
+            end
         end
     end
 	resources :sections, :except => [:new, :create, :destroy]
