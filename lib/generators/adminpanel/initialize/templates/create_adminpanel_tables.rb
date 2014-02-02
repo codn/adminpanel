@@ -8,14 +8,6 @@ class CreateAdminpanelTables < ActiveRecord::Migration
 	end
 	
 	def change
-		create_table :adminpanel_products do |t|
-	      t.integer :category_id
-	      t.string :name
-	      t.string :brief
-	      t.text :description
-	      t.timestamps
-	    end
-
 	    create_table :adminpanel_users do |t|
 	      t.string :name
 	      t.string :email
@@ -49,17 +41,6 @@ class CreateAdminpanelTables < ActiveRecord::Migration
 	      t.timestamps
 	    end
 
-	    create_table :adminpanel_clients do |t|
-	    	t.string :name
-	    	t.string :logo
-	    	t.timestamps
-	    end
-
 	    add_index :adminpanel_sections, [:key]
-
-	    create_table :adminpanel_categories do |t|
-	      t.string :name
-	      t.timestamps
-	    end
 	end
 end
