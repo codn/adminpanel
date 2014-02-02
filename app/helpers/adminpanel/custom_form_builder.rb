@@ -35,8 +35,8 @@ module Adminpanel
 
 		def wysiwyg_field(name, *args)
 			options = args.extract_options!
-			label = options[:label]
-			options.delete(:label)
+			label = options["label"]
+			options.delete("label")
 
 			@template.content_tag(:div, :class => "control-group") do
 				@template.content_tag(:label, label, :class => "control-label") +
