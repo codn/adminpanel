@@ -16,7 +16,7 @@
 <div class="row-fluid">
   <div class="widget widget-padding span12">
     <div class="widget-header">
-          <i class="icon-truck"></i>
+          <%= content_tag(:i, nil, :class => @model.icon) %>
           <h5>
             <%= @model.display_name %>
           </h5>

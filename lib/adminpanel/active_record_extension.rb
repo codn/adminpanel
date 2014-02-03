@@ -27,6 +27,10 @@ module ActiveRecordExtension
       end
       return false
     end
+
+    def icon
+      "icon-truck"
+    end
   end
 end
 
