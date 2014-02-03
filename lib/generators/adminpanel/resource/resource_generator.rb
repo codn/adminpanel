@@ -5,7 +5,7 @@ module Adminpanel
 		class ResourceGenerator < Rails::Generators::Base
 
     		source_root File.expand_path("../templates", __FILE__)
-    		argument :resource_name, :type => :string
+    		argument :resource_name, :type => :string, :default => "Resource"
     		argument :fields, :type => :hash, :default => "name:string"
 			desc "Generate the resource files necessary to use a model"
 

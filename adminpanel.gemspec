@@ -37,4 +37,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "capybara", "1.1.4"
   spec.add_development_dependency "nokogiri", "1.5.9"
   spec.add_development_dependency "rubyzip", "0.9.9"
+  spec.add_development_dependency "genspec", "0.9.9"
 end

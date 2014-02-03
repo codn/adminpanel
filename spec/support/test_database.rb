@@ -6,11 +6,6 @@ ActiveRecord::Migration.create_table :adminpanel_users do |t|
     t.datetime :created_at,      :null => false
     t.datetime :updated_at,      :null => false
 end
-ActiveRecord::Migration.create_table :adminpanel_categories do |t|
-    t.string   :name
-    t.datetime :created_at,      :null => false
-    t.datetime :updated_at,      :null => false
-end
 ActiveRecord::Migration.create_table :adminpanel_galleries do |t|
     t.string   :file
     t.integer  :position
@@ -23,14 +18,6 @@ ActiveRecord::Migration.create_table :adminpanel_images do |t|
     t.string   :model
     t.datetime :created_at,      :null => false
     t.datetime :updated_at,      :null => false
-end
-ActiveRecord::Migration.create_table :adminpanel_products do |t|
-    t.string   :name
-    t.text     :description
-    t.datetime :created_at,      :null => false
-    t.datetime :updated_at,      :null => false
-    t.string   :category_id
-    t.string   :brief
 end
 ActiveRecord::Migration.create_table :adminpanel_sections do |t|
     t.string   :name

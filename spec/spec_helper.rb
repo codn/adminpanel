@@ -11,6 +11,7 @@ require "rspec/rails"
 require "factory_girl"
 require "carrierwave/test/matchers"
 require "active_record"
+require "genspec"
 
 Dir["./spec/support/**/*.rb"].sort.each {|f| require f}
 
