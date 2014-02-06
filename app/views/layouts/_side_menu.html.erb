@@ -11,6 +11,12 @@
 	<div class="accordion" id="accordion2">
 		<div class="accordion-group">
 			<div class="accordion-heading">
+				<%= link_to content_tag(:i, nil, :class => 'icon-user') + content_tag(:span, ' Usuarios'), users_path, :class => "accordion-toggle b_9FDDF6 #{is_current_section?('users')}"  %>
+			</div>
+		</div>
+
+		<div class="accordion-group">
+			<div class="accordion-heading">
 				<%= link_to content_tag(:i, nil, :class => 'icon-picture') + content_tag(:span, " #{t("model.Adminpanel::Gallery")}"), galleries_path, :class => "accordion-toggle b_C3F7A7 #{is_current_section?('galleries')}"  %>
 			</div>
 		</div>
@@ -21,11 +27,24 @@
 			</div>
 		</div>
 
-		<div class="accordion-group">
-			<div class="accordion-heading">
-				<%= link_to content_tag(:i, nil, :class => 'icon-user') + content_tag(:span, ' Usuarios'), users_path, :class => "accordion-toggle b_9FDDF6 #{is_current_section?('users')}"  %>
+		<% @menu_items.each do |menu| %>
+			<div class="accordion-group">
+				<div class="accordion-heading">
+					<%= 
+					link_to content_tag(
+						:i,
+						nil,
+						:class => menu.constantize.icon
+					) + content_tag(
+						:span, 
+						" #{menu.constantize.display_name}"
+					),
+					eval("#{menu.tableize}_path"),
+					:class => "accordion-toggle b_F6F1A2 #{is_current_section?(menu.tableize)}" 
+					%>
+				</div>
 			</div>
-		</div>
+		<% end %>
 	</div>
 </div>
 <!-- /Side menu -->
