@@ -1,12 +1,11 @@
 Adminpanel::Engine.routes.draw do
 
-    if !Adminpanel::Router.adminpanel_resources.nil?
-        Adminpanel::Router.adminpanel_resources.each do |file|
-            if file
-                resources file.sub!('.rb', '').to_sym
-            end
+    Adminpanel::Router.adminpanel_resources.each do |file|
+        if file
+            resources file.to_sym
         end
     end
+
 	resources :sections, :except => [:new, :create, :destroy]
     match '/signout', :to => 'sessions#destroy', :via => :delete, :as => "signout"
     match '/signin', :to => 'sessions#new', :as => "signin"

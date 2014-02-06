@@ -9,7 +9,7 @@ module Adminpanel
 
         layout "admin"
 
-        before_filter :signed_in_user, :set_model
+        before_filter :signed_in_user, :set_model, :get_menu_elements
 
 
         def signed_in_user
@@ -23,6 +23,10 @@ module Adminpanel
         def handle_unverified_request
             sign_out
             super
+        end
+
+        def get_menu_elements
+            @menu_items = Adminpanel::Router.menu_items
         end
     end
 end
