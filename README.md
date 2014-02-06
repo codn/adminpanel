@@ -27,13 +27,13 @@ no other language is currently supported, but pull requests are welcome.
 
 Then run:
 
-    rails g adminpanel:install create_migrations
+    rails g adminpanel:initialize
     rake db:migrate
 to create the database that the adminpanel it's expecting, this will also seed the database with the default user.
 
+To create a new resource check the [resource generator wiki](https://github.com/joseramonc/adminpanel/wiki/Resource-Generator)
+
 You can seed the sections with help of the [Section wiki](https://github.com/joseramonc/adminpanel/wiki/Section-objects).
-
-
 
 Then, mount the gem wherever you like!
 
@@ -42,7 +42,7 @@ Then, mount the gem wherever you like!
 Also make sure to include adminpanel assets in your application.rb if you need to precompile them:
 
     config.assets.precompile += ['application-admin.js', 'application-admin.css']
-The version 0.1.0 is the first stable version, feel free to use it, any doubts or errors feel free to ask me!.
+Feel free to use it, any doubts, errors or requests you can open a new issue!
 
 ## Contributing
 
@@ -54,6 +54,4 @@ The version 0.1.0 is the first stable version, feel free to use it, any doubts o
 
 ## To Do:
 
-1. Add english support
-2. Get a model generator or some kind of it
-3. Make a mount_uploader like, that make the relationship of a model with Adminpanel::Image so we get cleaner models
+[] Check the issues
