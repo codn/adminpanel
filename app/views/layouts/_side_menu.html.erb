@@ -34,10 +34,10 @@
 					link_to content_tag(
 						:i,
 						nil,
-						:class => menu.constantize.icon
+						:class => "Adminpanel::#{menu}".constantize.icon
 					) + content_tag(
 						:span, 
-						" #{menu.constantize.display_name}"
+						" " + ("Adminpanel::#{menu}".constantize.display_name)
 					),
 					eval("#{menu.tableize}_path"),
 					:class => "accordion-toggle b_F6F1A2 #{is_current_section?(menu.tableize)}" 
