@@ -1,9 +1,11 @@
 es:
   model:
     Adminpanel::User: "Usuario"
+    Adminpanel::Product: "Producto"
     Adminpanel::Gallery: "Galería de Inicio"
     Adminpanel::Section: "Sección"
     Adminpanel::Image: "Imagen"
+    Adminpanel::Category: "Categoría"
     attributes:
       Adminpanel::User:
         email: "Correo electrónico"
@@ -16,13 +18,22 @@ es:
         file: "Imagen"
       Adminpanel::Gallery:
         file: "Imagen"
+      Adminpanel::Category:
         name: "Nombre"
+      Adminpanel::Product:
+        name: "Nombre"
+        brief: "Pequeña descripción"
+        category_id: "Categoría"
   errors:
     one: "%{model} no pudo guardarse debido a 1 error"
     other: "%{model} no pudo guardarse debido a %{count} errores"
   activerecord:
     errors:
       models:
+        adminpanel/category:
+          attributes:
+            name:
+              blank: "no puede estar vacío"
         adminpanel/user:
           attributes:
             password_digest:
@@ -52,6 +63,22 @@ es:
               not_a_number: "tienen que ser sólo números"
             file:
               blank: "no puede estar vacía"
+        adminpanel/product:
+          attributes:
+            name:
+              blank: "no puede estar vacío"
+            category_id:
+              blank: "no puede estar vacía"
+            brief:
+              blank: "no puede estar vacía"
+        gallery:
+          attributes:
+            description:
+              blank: "no puede estar vacía"
+            file:
+              blank: "no puede estar vacía"
+            name:
+              blank: "no puede estar vacío"
   time:
     formats:
       graphic: "%Y-%m-%d %H:%M:%S"
