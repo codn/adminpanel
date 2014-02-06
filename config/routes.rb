@@ -1,6 +1,8 @@
+include Adminpanel::RouterHelper
+
 Adminpanel::Engine.routes.draw do
 
-    Adminpanel::Router.adminpanel_resources.each do |file|
+    adminpanel_resources.each do |file|
         if file
             resources file.to_sym
         end

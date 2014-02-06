@@ -6,6 +6,7 @@ module Adminpanel
 
         include SessionsHelper
         include RestActionsHelper
+        include RouterHelper
 
         layout "admin"
 
@@ -26,7 +27,7 @@ module Adminpanel
         end
 
         def get_menu_elements
-            @menu_items = Adminpanel::Router.menu_items
+            @menu_items = menu_items
         end
     end
 end
