@@ -2,7 +2,11 @@ require "spec_helper"
 
 describe "adminpanel:resource" do
 	context "with no arguments or options" do
-      it {subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_resources_table.rb")}
+      it "should generate the migration" do
+      	subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_resources_table.rb") { |content|
+      		content.should =~ /class CreateResourcesTable < ActiveRecord\:\:Migration/
+      	}
+      end
       it {subject.should generate("app/models/adminpanel/resource.rb")}
       it {subject.should generate("app/controllers/adminpanel/resources_controller.rb")}
 	end

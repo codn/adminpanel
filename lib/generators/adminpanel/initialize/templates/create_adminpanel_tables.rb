@@ -7,7 +7,7 @@ class CreateAdminpanelTables < ActiveRecord::Migration
 				Adminpanel::User.new(:email => 'admin@admin.com', :name => "Admin", :password => 'password', :password_confirmation => 'password').save
 				puts "The password for admin@admin.com is: password"
 			else
-				characters = ("a".."z").to_a.concat ("A".."Z").to_a.concat (0..9).to_a.concat(["!","@","#","$","%","^","&","*","(",")", "_", "-","+", "="])
+				characters = ("a".."z").to_a << ("A".."Z").to_a << (0..9).to_a <<(["!","@","#","$","%","^","&","*","(",")", "_", "-","+", "="])
 				password = ""
 				8.times do
 					password = password + "#{characters.sample}"

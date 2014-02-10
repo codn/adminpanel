@@ -3,7 +3,7 @@
   <%= 
     link_to( 
       content_tag(:div,
-        content_tag(:i, nil, :class => 'icon-plus-sign icon-2x') + content_tag(:span, "Crear #{@model.display_name}", nil), 
+        content_tag(:i, nil, :class => 'icon-plus-sign icon-2x') + content_tag(:span, I18n.t("action.create") + " #{@model.display_name}", nil), 
         :class => "btn btn-box span2"), 
       {
         :controller => params[:controller],
@@ -61,7 +61,7 @@
                   link_to( 
                     content_tag(:i, nil, :class => 'icon-pencil'), 
                     [:edit, member],
-                    :title => t("action.edit")
+                    :title => t("action.update") + " #{@model.display_name}"
                   )
                   %>
                 
@@ -74,7 +74,7 @@
                     ), 
                     [member], 
                     :title => I18n.t("action.delete"),
-                    :id => "category-delete",
+                    :id => "resource-delete",
                     :method => :delete,
                     :data => { :confirm => "Eliminar #{@model.display_name}?" }
                   )

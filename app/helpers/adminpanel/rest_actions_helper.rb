@@ -20,7 +20,10 @@ module Adminpanel
 
 		def create
             create! do |success, failure|
-                success.html { render "shared/index" }
+                success.html do
+                	flash.now[:success] = I18n.t("action.save_success")
+	                render "shared/index"
+	             end
                 failure.html { render "shared/new"}
             end
 		end
@@ -33,8 +36,11 @@ module Adminpanel
 
 		def update
             update! do |success, failure|
-                success.html { render "shared/index" }
-                failure.html { render "shared/update" }
+                success.html do 
+                	flash.now[:success] = I18n.t("action.save_success")
+                	render "shared/index" 
+                end
+                failure.html { render "shared/edit" }
             end
 		end
 

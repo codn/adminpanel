@@ -19,6 +19,13 @@ ActiveRecord::Migration.create_table :adminpanel_images do |t|
     t.datetime :created_at,      :null => false
     t.datetime :updated_at,      :null => false
 end
+ActiveRecord::Migration.create_table :adminpanel_products do |t|
+    t.string   :price
+    t.string   :name
+    t.text     :description
+    t.datetime :created_at,      :null => false
+    t.datetime :updated_at,      :null => false
+end
 ActiveRecord::Migration.create_table :adminpanel_sections do |t|
     t.string   :name
     t.text     :description

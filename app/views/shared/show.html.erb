@@ -12,27 +12,27 @@
       <div class="widget-header">
         <%= content_tag(:i, nil, :class => @model.icon) %>
         <h5><%= @model.display_name.humanize %>
-          <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), [:edit, resource], :title => t("action.edit") + " #{@model.display_name}" %>
+          <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), [:edit, resource], :title => t("action.update") + " #{@model.display_name}" %>
         </h5>
       </div>
       <div class="widget-body">
         <div class="widget-tickets widget-tickets-large clearfix"><ul>
           <% @model.form_attributes.each do |fields| %>
           <% fields.each do |attribute, properties| %>
-          <% if properties["type"] != "adminpanel_file_field" %>
-          <li class="priority-high">
-            <div class="span3">
-              <h6><%= properties["name"] %></h6>
-            </div>
-            <div class="span8">
-              <% if properties["type"] == "wysiwyg_field" %>
-              <%= resource.send(attribute).html_safe -%>
-              <% else %>
-              <%= resource.send(attribute) -%>
-              <% end %>
-            </div>
-          </li>
-          <% end %>
+            <% if properties["type"] != "adminpanel_file_field" %>
+            <li class="priority-high">
+              <div class="span3">
+                <h6><%= properties["name"] %></h6>
+              </div>
+              <div class="span8">
+                <% if properties["type"] == "wysiwyg_field" %>
+                  <%= resource.send(attribute).html_safe -%>
+                <% else %>
+                  <%= resource.send(attribute) -%>
+                <% end %>
+              </div>
+            </li>
+            <% end %>
           <% end %>
           <% end %>
         </ul>
@@ -44,8 +44,8 @@
   <div class="widget widget-padding span6">
     <div class="widget-header">
       <%= content_tag(:i, nil, :class => @model.icon) %>
-      <h5>Galería: <%= @model.display_name.humanize %>
-        <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), [:edit, resource], :title => t("action.edit") + " #{@model.display_name}" %>
+      <h5><%= I18n.t("Gallery") %>: <%= @model.display_name.humanize %>
+        <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), [:edit, resource], :title => t("action.update") + " #{@model.display_name}" %>
       </h5>
     </div>
     <div class="widget-body row-fluid">

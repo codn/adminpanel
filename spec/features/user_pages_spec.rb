@@ -20,7 +20,6 @@ describe "User pages" do
 	end
 
 	describe "new" do
-		let(:category) { Factory(:category) }
 		before do 
 			visit adminpanel.new_user_path
 		end

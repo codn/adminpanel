@@ -16,6 +16,17 @@ Factory.define :image_section, :class => Adminpanel::Image do |image|
 	image.file { fixture_file_upload(Rails.root.join('app', 'assets', 'images', 'hipster.jpg'), 'image/jpeg') }
 end
 
+Factory.define :product, :class => Adminpanel::Product do |product|
+	product.price "12392.2"
+	product.name "very little description"
+	product.description "this is a little longer description, can be very long"
+end
+
+Factory.define :image_resource, :class => Adminpanel::Image do |image|
+	image.model "Product"
+	image.file { fixture_file_upload(Rails.root.join('app', 'assets', 'images', 'hipster.jpg'), 'image/jpeg') }
+end
+
 Factory.define :section_with_gallery, :class => Adminpanel::Section do |section|
 	section.key "key"
 	# section.description "<p>description</p>"

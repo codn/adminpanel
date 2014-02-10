@@ -87,6 +87,7 @@ es:
       estimate: "%Y-%m-%d"
   Add Image: "Agregar Imagen"
   Write description here: "Escriba la descripción aquí"
+  Gallery: "Galería"
   Panel title: "Panel Administrativo"
   actions: "Acciones"
   action:
@@ -95,7 +96,7 @@ es:
     show: "Ver"
     submitting: "Enviando..."
     save: "Guardar"
-    edit: "Editar"
+    save_success: "Se ha guardado con éxito"
     update: "Actualizar"
     delete: "Eliminar"
     view: "Ver"
