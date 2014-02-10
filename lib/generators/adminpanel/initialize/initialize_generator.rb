@@ -9,7 +9,7 @@ module Adminpanel
     			Time.now.utc.strftime("%Y%m%d%H%M%S")
     		end
 
-			def create_migrations
+			def create_migration
         		migration_template 'create_adminpanel_tables.rb', 'db/migrate/create_adminpanel_tables.rb'
 			end
 		end

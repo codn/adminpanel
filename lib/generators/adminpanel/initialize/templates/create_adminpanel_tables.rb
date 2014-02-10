@@ -3,7 +3,18 @@ class CreateAdminpanelTables < ActiveRecord::Migration
 		super
 		# Create a default user
 		if direction == :up
-			Adminpanel::User.new(:email => 'admin@admin.com', :name => "Admin", :password => 'password', :password_confirmation => 'password').save
+			if Rails.env.development?
+				Adminpanel::User.new(:email => 'admin@admin.com', :name => "Admin", :password => 'password', :password_confirmation => 'password').save
+				puts "The password for admin@admin.com is: password"
+			else
+				characters = ("a".."z").to_a.concat ("A".."Z").to_a.concat (0..9).to_a.concat(["!","@","#","$","%","^","&","*","(",")", "_", "-","+", "="])
+				password = ""
+				8.times do
+					password = password + "#{characters.sample}"
+				end
+				puts "The password for admin@admin.com is: #{password}"
+				Adminpanel::User.new(:email => "admin@admin.com", :name => "Admin", :password => password, :password_confirmation => password).save
+			end
 		end
 	end
 	
