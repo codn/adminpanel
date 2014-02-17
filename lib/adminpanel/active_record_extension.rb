@@ -28,6 +28,18 @@ module ActiveRecordExtension
       return false
     end
 
+    def belongs_to_relationships
+      belongs_to_classes = []
+      form_attributes.each do |fields|
+      fields.each do |attribute, properties|
+        if properties["type"] == "belongs_to"
+          belongs_to_classes << properties["model"].classify.constantize
+        end
+      end
+      end
+      return belongs_to_classes
+    end
+
     def icon
       "icon-truck"
     end

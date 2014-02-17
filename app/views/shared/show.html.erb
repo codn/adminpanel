@@ -27,6 +27,8 @@
               <div class="span8">
                 <% if properties["type"] == "wysiwyg_field" %>
                   <%= resource.send(attribute).html_safe -%>
+                <% elsif properties["type"] == "belongs_to" %>
+                  <%= parent_object_name(resource, properties["model"]) %>
                 <% else %>
                   <%= resource.send(attribute) -%>
                 <% end %>

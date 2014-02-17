@@ -2,6 +2,7 @@ module Adminpanel
 	module ApplicationHelper
 		include SessionsHelper
 		include BreadcrumbsHelper
+		include SharedPagesHelper
 
 		def custom_form_for(name, *args, &block)
 			options = args.extract_options!

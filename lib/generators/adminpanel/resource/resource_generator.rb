@@ -27,7 +27,7 @@ module Adminpanel
 			end
 
 
-			private
+		private
 
 			def lower_name
 				resource_name.singularize.downcase
@@ -41,11 +41,21 @@ module Adminpanel
 				"#{lower_name.pluralize}"
 			end
 
+			def belongs_to_field(resource)
+				"#{resource.singularize.downcase}_id"
+			end
+
+			def resource_class_name(resource)
+				"#{resource.singularize.capitalize}"
+			end
+
 			def symbolized_attributes
 		        attributes = ""
 		        fields.each do |field, type|
 		        	if type == "images"
 		            	attributes = attributes + ":images_attributes, "
+		        	elsif type == "belongs_to"
+		        		attributes = "#{attributes}:#{belongs_to_field(field)}, "
 		        	else
 		            	attributes = attributes + ":#{field}, "
 		        	end
@@ -69,6 +79,8 @@ module Adminpanel
 						form_hash = form_hash + "\n\t\t\t\t{\"#{field}\" => {\"type\" => \"datepicker\", \"name\" => \"#{field}\", \"label\" => \"#{field}\", \"placeholder\" => \"#{field}\"}},"
 					elsif type == "images"
 						form_hash = form_hash + "\n\t\t\t\t{\"#{field}\" => {\"type\" => \"adminpanel_file_field\", \"name\" => \"#{field}\"}},"
+					elsif type == "belongs_to"
+						form_hash = form_hash + "\n\t\t\t\t{\"#{belongs_to_field(field)}\" => {\"type\" => \"belongs_to\", \"model\" => \"Adminpanel\:\:#{resource_class_name(field)}\", \"name\" => \"#{belongs_to_field(field)}\"}},"
 					end
 				end
 				form_hash
@@ -78,27 +90,46 @@ module Adminpanel
 				if type == "datepicker"
 					"t.string :#{field}"
 				elsif type == "images"
-					""
+					""# no need for a association here.
 				elsif type == "wysiwyg"
 					"t.text :#{field}"
+				elsif type == "belongs_to"
+					"t.integer :#{belongs_to_field(field)}"
 				else
 					"t.#{type} :#{field}"
 				end
 			end
 
-			def has_images?
+			def has_associations?
 				fields.each do |field, type|
-					if type == "images"
+					if type == "images" || type == "belongs_to"
 						return true
 					end
 				end
 				return false
 			end
 
-			def image_relationship
+			def associations
+				association = ""
+				fields.each do |field, type|
+					if type == "belongs_to"
+						association = "#{association}#{belongs_to_association(field)}"
+					elsif type == "images"
+						association = "#{association}#{image_association}"
+					end
+						
+				end
+				association
+			end
+
+			def belongs_to_association(field)
+				"belongs_to :#{field.singularize.downcase}\n\t\t"
+			end
+
+			def image_association
 				return "has_many :images, :foreign_key => \"foreign_key\", :conditions => { :model => \"#{lower_name}\" }
 		accepts_nested_attributes_for :images, :allow_destroy => true
-		#remember to change the relationship if you change this model display_name"
+		#remember to change the association if you change this model display_name\n\t\t"
 			end
 		end
 	end

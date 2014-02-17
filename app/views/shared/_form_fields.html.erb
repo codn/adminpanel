@@ -1,5 +1,6 @@
 <% @model.form_attributes.each do |entries| %>
 <% entries.each do |attribute, properties| %>
+
 	<% if properties["type"] == "wysiwyg_field" %>
 		<% type = properties["type"] %>
 		<% args = properties.except("type", "name") %>
@@ -10,15 +11,23 @@
 			<%= render "shared/init_editor", :field_var => attribute, :label => properties[:label] %>
 			</script>
 		<% end %>
+
 	<% elsif properties["type"] == "adminpanel_file_field" %>
 		<%= f.fields_for :images do |builder| %>
         	<%= render 'shared/image_fields', :f => builder, :model_name => @model.display_name.capitalize %>
     	<% end -%>
     	<%= link_to_add_fields t("Add Image"), f, :images, @model.display_name.capitalize %>
+
+    <% elsif properties["type"] == "belongs_to" %>
+		<% args = properties.except("type", "name", "model") %>
+		<% args.symbolize_keys! %>
+    	<%= f.select(attribute, (@collections["#{properties["model"]}"].collect{|resource| [resource.name, resource.id]}), args) %>
+
     <% else %>
 		<% type = properties["type"] %>
 		<% args = properties.except("type", "name") %>
 	    <%= f.send(type, attribute, args) %>
     <% end %>
+
 <% end %>
 <% end %>

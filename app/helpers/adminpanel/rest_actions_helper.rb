@@ -13,6 +13,7 @@ module Adminpanel
 		end
 
 		def new
+			set_belongs_to_collection
             new! do |format|
                 format.html { render "shared/new" }
             end
@@ -24,13 +25,19 @@ module Adminpanel
                 	flash.now[:success] = I18n.t("action.save_success")
 	                render "shared/index"
 	             end
-                failure.html { render "shared/new"}
+                failure.html do 
+					set_belongs_to_collection
+                	render "shared/new"
+				end
             end
 		end
 
 		def edit
             edit! do |format|
-                format.html { render "shared/edit" }
+                format.html do 
+                	set_belongs_to_collection
+                	render "shared/edit"
+                end
             end
 		end
 
@@ -40,13 +47,25 @@ module Adminpanel
                 	flash.now[:success] = I18n.t("action.save_success")
                 	render "shared/index" 
                 end
-                failure.html { render "shared/edit" }
+                failure.html do 
+                	set_belongs_to_collection
+                	render "shared/edit"
+                end
             end
 		end
 
 		def destroy
 			destroy! do |format|
 				format.html { render "shared/index" }
+			end
+		end
+
+	private
+
+		def set_belongs_to_collection
+			@collections = {}
+			@model.belongs_to_relationships.each do |class_variable|
+				@collections.merge!({"#{class_variable}" => class_variable.find(:all)})
 			end
 		end
 	end
