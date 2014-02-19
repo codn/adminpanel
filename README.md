@@ -1,7 +1,7 @@
 # Adminpanel
 
 This gem is developed to be a CMS for Ruby 1.8.7 and Rails 3.2.12 
-
+[![Gem Version](https://badge.fury.io/rb/adminpanel.png)](http://badge.fury.io/rb/adminpanel)
 [![Travis CI   ](https://api.travis-ci.org/joseramonc/adminpanel.png)       ](https://travis-ci.org/joseramonc/adminpanel)
 
 ## Installation
@@ -13,10 +13,6 @@ Add this line to your application's Gemfile:
 And then execute:
 
     $ bundle
-
-Or install it yourself as:
-
-    $ gem install adminpanel
 
 ## Usage
 
@@ -37,12 +33,16 @@ You can seed the sections with help of the [Section wiki](https://github.com/jos
 
 Then, mount the gem wherever you like!
 
-    mount Adminpanel::Engine => "/admin"
+    mount Adminpanel::Engine => "/CoDN"
 
 Also make sure to include adminpanel assets in your application.rb if you need to precompile them:
 
     config.assets.precompile += ['application-admin.js', 'application-admin.css']
 Feel free to use it, any doubts, errors or requests you can open a new issue!
+
+## Dependencies
+
+Please make sure that you have (rmagick) ImageMagick -v 3.13.2 installed before trying to use the gem.
 
 ## Contributing
 
@@ -54,4 +54,4 @@ Feel free to use it, any doubts, errors or requests you can open a new issue!
 
 ## To Do:
 
-[] Check the issues
+## Check the issues if you'd like to help or request a new feature.
