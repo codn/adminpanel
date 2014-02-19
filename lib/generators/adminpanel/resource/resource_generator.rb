@@ -52,7 +52,11 @@ module Adminpanel
 			end
 
 			def models_in_parameter(field)
-				field.split(",")
+				models = []
+				field.split(",").each do |member|
+					models << member.downcase.pluralize
+				end
+				models
 			end
 
 			def symbolized_attributes
@@ -96,7 +100,6 @@ module Adminpanel
 						form_hash = form_hash + "\n\t\t\t\t{\"#{belongs_to_field(field)}\" => {\"type\" => \"belongs_to\", \"model\" => \"Adminpanel\:\:#{resource_class_name(field)}\", \"name\" => \"#{belongs_to_field(field)}\"}},"
 					elsif type == "has_many" || type == "has_many_through"
 						if models_in_parameter(field).second.nil? 
-							puts field
 							through_model = field
 						else 
 							through_model = models_in_parameter(field).first
@@ -152,16 +155,23 @@ module Adminpanel
 
 			def has_many_association(field)
 				if models_in_parameter(field).second.nil?
-					return "has_many :#{models_in_parameter(field).first}\n\t\t"
+					return "has_many :#{models_in_parameter(field).first}\n\t\t" + 
+					"has_many :#{models_in_parameter(field).first}, " + 
+					":through => :#{models_in_parameter(field).first}ation, " + 
+					":dependent => :destroy\n\t\t"
 				else
-					return "has_many :#{models_in_parameter(field).second}\n\t\thas_many :#{models_in_parameter(field).first}, :through => :#{models_in_parameter(field).second}, :dependent => :destroy\n\t\t"
+					return "has_many :#{models_in_parameter(field).second}\n\t\t" +
+					"has_many :#{models_in_parameter(field).first}, " + 
+					":through => :#{models_in_parameter(field).second}, " + 
+					":dependent => :destroy\n\t\t"
 				end
 			end
 
 			def image_association
-				return "has_many :images, :foreign_key => \"foreign_key\", :conditions => { :model => \"#{lower_name}\" }
-		accepts_nested_attributes_for :images, :allow_destroy => true
-		#remember to change the association if you change this model display_name\n\t\t"
+				return "has_many :images, :foreign_key => \"foreign_key\", " + 
+				":conditions => { :model => \"#{lower_name}\" } \n\t\t " +
+				"accepts_nested_attributes_for :images, :allow_destroy => true\n\t\t" +
+				"#remember to change the association if you change this model display_name\n\t\t"
 			end
 		end
 	end
