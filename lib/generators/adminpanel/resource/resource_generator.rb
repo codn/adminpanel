@@ -23,12 +23,10 @@ module Adminpanel
 
 			def create_migrations
 				migration_template "migration.rb", "db/migrate/create_#{pluralized_name}_table"
-				# generate "migration.rb", "db/migrate/create_#{pluralized_name}_table"
 			end
 
 
 		private
-
 			def lower_name
 				resource_name.singularize.downcase
 			end
@@ -45,8 +43,16 @@ module Adminpanel
 				"#{resource.singularize.downcase}_id"
 			end
 
+			def has_many_field(resource)
+				"#{resource.singularize.downcase}_ids"
+			end
+
 			def resource_class_name(resource)
 				"#{resource.singularize.capitalize}"
+			end
+
+			def models_in_parameter(field)
+				field.split(",")
 			end
 
 			def symbolized_attributes
@@ -56,6 +62,13 @@ module Adminpanel
 		            	attributes = attributes + ":images_attributes, "
 		        	elsif type == "belongs_to"
 		        		attributes = "#{attributes}:#{belongs_to_field(field)}, "
+		        	elsif type == "has_many" || type == "has_many_through"
+		        		if field.split(",").second == nil
+		        			attributes = "#{attributes}:#{has_many_field(field)}, "
+		        		else
+		        			model_name = models_in_parameter(field).first
+		        			attributes = "#{attributes}:#{has_many_field(model_name)}, "
+		        		end
 		        	else
 		            	attributes = attributes + ":#{field}, "
 		        	end
@@ -73,7 +86,7 @@ module Adminpanel
 						form_hash = form_hash + "\n\t\t\t\t{\"#{field}\" => {\"type\" => \"text_field\", \"name\" => \"#{field}\", \"label\" => \"#{field}\", \"placeholder\" => \"#{field}\"}},"
 					elsif type == "text" || type == "wysiwyg"
 						form_hash = form_hash + "\n\t\t\t\t{\"#{field}\" => {\"type\" => \"wysiwyg_field\", \"name\" => \"#{field}\", \"label\" => \"#{field}\", \"placeholder\" => \"#{field}\"}},"
-					elsif type == "integer"
+					elsif type == "integer" 
 						form_hash = form_hash + "\n\t\t\t\t{\"#{field}\" => {\"type\" => \"number_field\", \"name\" => \"#{field}\", \"label\" => \"#{field}\", \"placeholder\" => \"#{field}\"}},"
 					elsif type == "datepicker"
 						form_hash = form_hash + "\n\t\t\t\t{\"#{field}\" => {\"type\" => \"datepicker\", \"name\" => \"#{field}\", \"label\" => \"#{field}\", \"placeholder\" => \"#{field}\"}},"
@@ -81,6 +94,15 @@ module Adminpanel
 						form_hash = form_hash + "\n\t\t\t\t{\"#{field}\" => {\"type\" => \"adminpanel_file_field\", \"name\" => \"#{field}\"}},"
 					elsif type == "belongs_to"
 						form_hash = form_hash + "\n\t\t\t\t{\"#{belongs_to_field(field)}\" => {\"type\" => \"belongs_to\", \"model\" => \"Adminpanel\:\:#{resource_class_name(field)}\", \"name\" => \"#{belongs_to_field(field)}\"}},"
+					elsif type == "has_many" || type == "has_many_through"
+						if models_in_parameter(field).second.nil? 
+							puts field
+							through_model = field
+						else 
+							through_model = models_in_parameter(field).first
+						end 
+						through_model = resource_class_name(through_model)
+						form_hash = form_hash + "\n\t\t\t\t{\"#{has_many_field(through_model)}\" => {\"type\" => \"has_many\", \"model\" => \"Adminpanel\:\:#{through_model}\", \"name\" => \"#{has_many_field(through_model)}\"}},"
 					end
 				end
 				form_hash
@@ -89,12 +111,12 @@ module Adminpanel
 			def migration_string(field, type)
 				if type == "datepicker"
 					"t.string :#{field}"
-				elsif type == "images"
-					""# no need for a association here.
 				elsif type == "wysiwyg"
 					"t.text :#{field}"
 				elsif type == "belongs_to"
 					"t.integer :#{belongs_to_field(field)}"
+				elsif type == "images" || type == "has_many" || type == "has_many_through"
+					""# no need for an association here.
 				else
 					"t.#{type} :#{field}"
 				end
@@ -102,7 +124,7 @@ module Adminpanel
 
 			def has_associations?
 				fields.each do |field, type|
-					if type == "images" || type == "belongs_to"
+					if type == "images" || type == "belongs_to" || type == "has_many" || type == "has_many_through"
 						return true
 					end
 				end
@@ -116,6 +138,8 @@ module Adminpanel
 						association = "#{association}#{belongs_to_association(field)}"
 					elsif type == "images"
 						association = "#{association}#{image_association}"
+					elsif type == "has_many" || type == "has_many_through"
+						association = "#{association}#{has_many_association(field)}"
 					end
 						
 				end
@@ -124,6 +148,14 @@ module Adminpanel
 
 			def belongs_to_association(field)
 				"belongs_to :#{field.singularize.downcase}\n\t\t"
+			end
+
+			def has_many_association(field)
+				if models_in_parameter(field).second.nil?
+					return "has_many :#{models_in_parameter(field).first}\n\t\t"
+				else
+					return "has_many :#{models_in_parameter(field).second}\n\t\thas_many :#{models_in_parameter(field).first}, :through => :#{models_in_parameter(field).second}, :dependent => :destroy\n\t\t"
+				end
 			end
 
 			def image_association

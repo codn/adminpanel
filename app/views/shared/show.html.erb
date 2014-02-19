@@ -29,6 +29,13 @@
                   <%= resource.send(attribute).html_safe -%>
                 <% elsif properties["type"] == "belongs_to" %>
                   <%= parent_object_name(resource, properties["model"]) %>
+
+                <% elsif properties["type"] == "has_many" %>
+                  <ul>
+                    <% resource.send("#{pluralize_model(properties["model"])}").each do |member| %>
+                      <li class="priority-low"><%= member.name %></li>
+                    <% end %>
+                  </ul>
                 <% else %>
                   <%= resource.send(attribute) -%>
                 <% end %>
@@ -37,29 +44,28 @@
             <% end %>
           <% end %>
           <% end %>
-        </ul>
+        </ul></div>
       </div>
     </div>
-  </div>
 
-  <% if @model.has_images? %>
-  <div class="widget widget-padding span6">
-    <div class="widget-header">
-      <%= content_tag(:i, nil, :class => @model.icon) %>
-      <h5><%= I18n.t("Gallery") %>: <%= @model.display_name.humanize %>
-        <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), [:edit, resource], :title => t("action.update") + " #{@model.display_name}" %>
-      </h5>
-    </div>
-    <div class="widget-body row-fluid">
-      <div id="gallery-container" class="js-masonry"
-      data-masonry-options='{ "columnWidth": 3, "itemSelector": ".gallery-item" }'>
-      <% resource.images.each do |image|%>
-      <div class="gallery-item">
-        <%= link_to (image_tag image.file_url(:thumb)), image.file.to_s, :rel  => "group", :name => @model.display_name %>
+    <% if @model.has_images? %>
+    <div class="widget widget-padding span6">
+      <div class="widget-header">
+        <%= content_tag(:i, nil, :class => @model.icon) %>
+        <h5><%= I18n.t("Gallery") %>: <%= @model.display_name.humanize %>
+          <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), [:edit, resource], :title => t("action.update") + " #{@model.display_name}" %>
+        </h5>
       </div>
-      <% end %>
+      <div class="widget-body row-fluid">
+        <div id="gallery-container" class="js-masonry"
+        data-masonry-options='{ "columnWidth": 3, "itemSelector": ".gallery-item" }'>
+        <% resource.images.each do |image|%>
+        <div class="gallery-item">
+          <%= link_to (image_tag image.file_url(:thumb)), image.file.to_s, :rel  => "group", :name => @model.display_name %>
+        </div>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
-<% end %>
+  <% end %>
 </div>

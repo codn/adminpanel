@@ -76,16 +76,16 @@ module Adminpanel
 			end
 		end
 
-		def check_box(name, *args)
-			options = args.extract_options!
-
-			options.reverse_merge! :class => "span7"
-			options.reverse_merge! :label => name
-			options.reverse_merge! :include_blank => "(Seleccione por favor)";
-			label = options[:label]
-			options.delete(:label)
-
-			@template.content_tag(:label, super(name, *args) + label, :class => "checkbox")
+		def checkbox(checkbox_object, form_object_name, relationship)
+			@template.content_tag(
+				:label, 
+				@template.check_box_tag(
+					"#{form_object_name}[#{relationship}][]", 
+					checkbox_object.id, 
+					self.object.send(relationship).include?(checkbox_object.id)
+					) + checkbox_object.name, 
+				:class => "checkbox"
+			)
 		end
 
 		def select(name, select_options, *args)

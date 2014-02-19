@@ -27,7 +27,7 @@
             <tr>
               <% @model.form_attributes.each do |fields| %>
               <% fields.each do |attribute, properties| %>
-                <% if properties["type"] != "adminpanel_file_field" %>
+                <% if properties["type"] != "adminpanel_file_field" && properties["type"] != "has_many" %>
                   <th><%= properties["name"] %></th>
                 <% end %>
               <% end %>
@@ -46,7 +46,7 @@
                   <td>
                     <%= parent_object_name(member, properties["model"]) %>
                   </td>
-                <% elsif properties["type"] != "adminpanel_file_field" %>
+                <% elsif properties["type"] != "adminpanel_file_field" && properties["type"] != "has_many" %>
                   <td><%= member.send(attribute) -%></td>
                 <% end %>
               <% end %>

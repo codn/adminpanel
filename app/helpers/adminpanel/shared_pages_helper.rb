@@ -11,5 +11,23 @@ module Adminpanel
 	            end
 	        end
 		end
+
+		def pluralize_model(class_name)
+			"#{demodulize_class(class_name).pluralize}"
+		end
+
+		def relationship_ids(class_string)
+			"#{demodulize_class(class_string)}_ids"
+		end
+
+		def class_name_downcase(object)
+			demodulize_class(object.class)
+		end
+
+		def demodulize_class(class_name)
+			class_name.to_s.demodulize.downcase
+		end
+
+
 	end
 end

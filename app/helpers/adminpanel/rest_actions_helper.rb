@@ -13,7 +13,7 @@ module Adminpanel
 		end
 
 		def new
-			set_belongs_to_collection
+			set_collections
             new! do |format|
                 format.html { render "shared/new" }
             end
@@ -26,7 +26,7 @@ module Adminpanel
 	                render "shared/index"
 	             end
                 failure.html do 
-					set_belongs_to_collection
+					set_collections
                 	render "shared/new"
 				end
             end
@@ -35,7 +35,7 @@ module Adminpanel
 		def edit
             edit! do |format|
                 format.html do 
-                	set_belongs_to_collection
+                	set_collections
                 	render "shared/edit"
                 end
             end
@@ -48,7 +48,7 @@ module Adminpanel
                 	render "shared/index" 
                 end
                 failure.html do 
-                	set_belongs_to_collection
+                	set_collections
                 	render "shared/edit"
                 end
             end
@@ -62,9 +62,12 @@ module Adminpanel
 
 	private
 
-		def set_belongs_to_collection
+		def set_collections
 			@collections = {}
 			@model.belongs_to_relationships.each do |class_variable|
+				@collections.merge!({"#{class_variable}" => class_variable.find(:all)})
+			end
+			@model.has_many_relationships.each do |class_variable|
 				@collections.merge!({"#{class_variable}" => class_variable.find(:all)})
 			end
 		end

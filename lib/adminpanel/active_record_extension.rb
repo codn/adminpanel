@@ -40,6 +40,18 @@ module ActiveRecordExtension
       return belongs_to_classes
     end
 
+    def has_many_relationships
+      has_many_classes = []
+      form_attributes.each do |fields|
+      fields.each do |attribute, properties|
+        if properties["type"] == "has_many"
+          has_many_classes << properties["model"].classify.constantize
+        end
+      end
+      end
+      return has_many_classes
+    end
+
     def icon
       "icon-truck"
     end

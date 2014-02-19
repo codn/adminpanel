@@ -23,6 +23,12 @@
 		<% args.symbolize_keys! %>
     	<%= f.select(attribute, (@collections["#{properties["model"]}"].collect{|resource| [resource.name, resource.id]}), args) %>
 
+    <% elsif properties["type"] == "has_many" %>
+    	<%= hidden_field_tag("#{class_name_downcase(f.object)}[#{relationship_ids(properties["model"])}][]", nil) %>
+    	<% @collections["#{properties["model"]}"].each do |resource| %>
+    		<%= f.checkbox(resource, class_name_downcase(f.object) ,relationship_ids(properties["model"])) %>
+		<% end %>
+
     <% else %>
 		<% type = properties["type"] %>
 		<% args = properties.except("type", "name") %>
