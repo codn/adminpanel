@@ -2,7 +2,7 @@
 
 This gem is developed to be a CMS for Ruby 1.8.7 and Rails 3.2.12 
 
-[![Gem Version](https://badge.fury.io/rb/adminpanel.png)](http://badge.fury.io/rb/adminpanel)
+[![Gem Version](https://badge.fury.io/rb/adminpanel.png)](http://badge.fury.io/rb/adminpanel@2x)
 [![Travis CI   ](https://api.travis-ci.org/joseramonc/adminpanel.png)       ](https://travis-ci.org/joseramonc/adminpanel)
 
 ## Installation
