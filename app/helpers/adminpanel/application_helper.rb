@@ -20,8 +20,8 @@ module Adminpanel
 			end
 		end
 
-		def is_current_section?(*controller)
-			controller.include?(params[:controller]) ? 'active' : nil
+		def is_current_section?(controller_name)
+			"adminpanel/#{controller_name.downcase.pluralize}".include?(params[:controller]) ? 'active' : nil
 		end
 
 		def section_is_login(section_name)
@@ -38,6 +38,10 @@ module Adminpanel
 						content_tag(:h6, name, :id => "add-image-button"),
 						 :class => "btn btn-success btn-mini"), :class => "mws-form-row"),
 			'#', :class => "add_fields", :data => {:id => id, :fields => fields.gsub("\n", "")})
+		end
+
+		def route_symbol(model_name)
+			model_name.downcase.pluralize.downcase
 		end
 	end
 end

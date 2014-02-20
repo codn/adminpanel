@@ -34,10 +34,10 @@
           <li>
             <% if signed_in? %>
               <%= link_to content_tag('i', nil, :class => 'icon-off'), signout_path, :method => "delete", :title => 'Logout', :id => "signout-button" %>
+            <% end %>
           </li>
         </ul>
       </div>
-      <% end %>
       
     </div>
   </div>
