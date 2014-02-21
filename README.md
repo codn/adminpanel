@@ -43,7 +43,7 @@ Feel free to use it, any doubts, errors or requests you can open a new issue!
 
 ## Dependencies
 
-Please make sure that you have (rmagick) ImageMagick -v 3.13.2 installed before trying to use the gem.
+Please make sure that you have (rmagick) ImageMagick -v 2.13.2 installed before trying to use the gem.
 
 ## Contributing
 
@@ -55,4 +55,4 @@ Please make sure that you have (rmagick) ImageMagick -v 3.13.2 installed before 
 
 ## To Do:
 
-## Check the issues if you'd like to help or request a new feature.
+# Check the issues if you'd like to help or request a new feature.
