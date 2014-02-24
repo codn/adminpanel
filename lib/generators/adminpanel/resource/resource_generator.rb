@@ -18,7 +18,9 @@ module Adminpanel
 			end
 
 			def create_controller
-				template "controller.rb", "app/controllers/adminpanel/#{pluralized_name}_controller.rb"
+				if is_a_resource?
+					template "controller.rb", "app/controllers/adminpanel/#{pluralized_name}_controller.rb"
+				end
 			end
 
 			def create_migrations
@@ -27,6 +29,15 @@ module Adminpanel
 
 
 		private
+			def is_a_resource?
+				fields.each do |field, type|
+					if type != "belongs_to"
+						return true
+					end
+				end
+				false
+			end
+
 			def lower_name
 				resource_name.singularize.downcase
 			end

@@ -21,6 +21,62 @@ describe "adminpanel:resource" do
 		it "should generate category model" do
 			subject.should generate("app/models/adminpanel/category.rb")
 		end
+
+		context "with has_many and belongs_to" do
+			with_args :"products,categorizations:has_many_through", :"product:belongs_to" do
+				it "should generate categories migration" do
+					subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_categories_table.rb") { |content|
+						content.should =~ /t.integer \:product_id/ && 
+						(
+							content.should_not =~ /t.integer \:products_id/ ||
+							content.should_not =~ /t.integer \:categorizations_id/
+						)
+					}
+				end
+
+				it "should generate model with has_many categorizations" do
+					subject.should generate("app/models/adminpanel/category.rb") { |content|
+						content.should =~ /has_many \:categorizations/
+					}
+				end
+
+				it "should generate model with has_many products through categorizations" do
+					subject.should generate("app/models/adminpanel/category.rb") { |content|
+						content.should =~ /has_many \:products, \:through => \:categorizations/
+					}
+				end
+
+				it "should generate categories model" do
+					subject.should generate("app/models/adminpanel/category.rb") { |content|
+						content.should =~ /belongs_to :product/
+					}
+				end
+			end
+		end
+	end
+
+	with_args :categorization do
+		context "with only :belongs_to as types" do
+			with_args :"product:belongs_to", :"category:belongs_to" do
+				it "should generate categorizations migration" do
+					subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_categorizations_table.rb") { |content|
+						content.should =~ /t.integer \:product_id/ && 
+						content.should =~ /t.integer \:category_id/
+					}
+				end
+
+				it "shouldn't generate categorizations controller" do
+					subject.should_not generate("app/controllers/adminpanel/categorizations_controller.rb")
+				end
+
+				it "should generate categorization model" do
+					subject.should generate("app/models/adminpanel/categorization.rb") { |content|
+						content.should =~ /belongs_to :product/ && 
+						content.should =~ /belongs_to :category/
+					}
+				end
+			end
+		end
 	end
 
 	with_args "Product" do
