@@ -43,5 +43,13 @@ module Adminpanel
 		def route_symbol(model_name)
 			model_name.downcase.pluralize.downcase
 		end
+
+		def main_root_path
+			if main_app.respond_to?(root_path)
+				main_app.root_path
+			else
+				"/"
+			end
+		end
 	end
 end

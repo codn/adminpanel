@@ -26,6 +26,17 @@ ActiveRecord::Migration.create_table :adminpanel_products do |t|
     t.datetime :created_at,      :null => false
     t.datetime :updated_at,      :null => false
 end
+ActiveRecord::Migration.create_table :adminpanel_categories do |t|
+    t.string   :name
+    t.datetime :created_at,      :null => false
+    t.datetime :updated_at,      :null => false
+end
+ActiveRecord::Migration.create_table :adminpanel_categorizations do |t|
+    t.integer  :product_id
+    t.integer  :category_id
+    t.datetime :created_at,      :null => false
+    t.datetime :updated_at,      :null => false
+end
 ActiveRecord::Migration.create_table :adminpanel_sections do |t|
     t.string   :name
     t.text     :description

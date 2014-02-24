@@ -22,6 +22,10 @@ Factory.define :product, :class => Adminpanel::Product do |product|
 	product.description "this is a little longer description, can be very long"
 end
 
+Factory.define :category, :class => Adminpanel::Category do |category|
+	category.name "Test Category"
+end
+
 Factory.define :image_resource, :class => Adminpanel::Image do |image|
 	image.model "Product"
 	image.file { fixture_file_upload(Rails.root.join('app', 'assets', 'images', 'hipster.jpg'), 'image/jpeg') }
