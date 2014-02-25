@@ -44,6 +44,29 @@ Also make sure to include adminpanel assets in your application.rb if you need t
     config.assets.precompile += ['application-admin.js', 'application-admin.css']
 Feel free to use it, any doubts, errors or requests you can open a new issue!
 
+###Google Analytics Integration
+
+To take advantage of the Integration with the Google Analytics Service you should add the analytics script to the public side of your application and then create an intializer called when you setup your authentication with Google
+	
+	#The configuration values you can provide are
+
+	Adminpanel.setup do |config|
+		#You get this from the Google Analytics Dashboard, this configuration is required.
+		config.analytics_profile_id = '12341234'
+		#The next configuration is the file used to establish server to server authentication/authorization you need to download this file from the Google Developers Console
+		#and place it inside your application, this configuration is required.
+		config.analytics_key_filename = '12345ABCDE.p12'
+		#Path to the key file, defaults to config/analytics
+  		config.analytics_key_path = "config/analytics"
+	end
+
+Currently it only shows the visits from the last week, but more integrations will come.
+
+For more information about using the Google API visit 
+* [Google Analytics API](https://developers.google.com/analytics/devguides/reporting/core/v3/)
+* [Google API Ruby Client](https://github.com/google/google-api-ruby-client)
+* [Google OAuth 2.0](https://developers.google.com/accounts/docs/OAuth2)
+
 ## Contributing
 
 1. Fork it
