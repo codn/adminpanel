@@ -20,5 +20,5 @@ Adminpanel::Engine.routes.draw do
     end
     resources :sessions, :only => [:new, :create, :destroy]
 
-    root :to => 'galleries#index'
+    root :to => 'pages#index'
 end
