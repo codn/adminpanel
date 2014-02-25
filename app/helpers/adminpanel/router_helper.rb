@@ -23,7 +23,7 @@ module Adminpanel
         end
 
         def default_controllers
-            ["application_controller.rb", "sessions_controller.rb", "galleries_controller.rb", "users_controller.rb", "sections_controller.rb"]
+            ["application_controller.rb", "sessions_controller.rb", "galleries_controller.rb", "users_controller.rb", "sections_controller.rb", "pages_controller.rb"]
         end
 
         def resources_path

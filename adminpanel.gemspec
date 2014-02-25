@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "bcrypt-ruby", "~> 3.0.0"
   spec.add_dependency "rails-i18n", "~> 3.0.0"
   spec.add_dependency "inherited_resources", "~> 1.3.1"
+  spec.add_dependency "google-api-client", "~> 0.7.1"
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "activerecord", "~> 3.2.12"
