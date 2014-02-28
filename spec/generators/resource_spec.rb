@@ -80,45 +80,19 @@ describe "adminpanel:resource" do
 	end
 
 	with_args "Product" do
-		with_args :"description:wysiwyg" do
-			
-			it "should generate products migration with attributes" do
+		with_args :"description:wysiwyg", :"long_text:text",
+					:"price:float", :"date:datepicker", 
+					:"name:string", :"quantity:integer" do
+			it "should generate migration with correct values" do
 				subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_products_table.rb") { |content|
-					content.should =~ /t.text \:description/
-				}
-			end	
-		end		
-
-		with_args :"long_text:text" do
-			it "should generate products migration with attributes" do
-				subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_products_table.rb") { |content|
-					content.should =~ /t.text \:long_text/
-				}
-			end
-		end
-
-		with_args :"price:float" do
-			it "should generate products migration with attributes" do
-				subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_products_table.rb") { |content|
-					content.should =~ /t.float \:price/
-				}
-			end
-		end
-
-		with_args :"date:datepicker" do
-			it "should generate products migration with attributes" do
-				subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_products_table.rb") { |content|
-					content.should =~ /t.string \:date/
-				}
-			end
-		end
-
-		with_args :"quantity:integer" do
-			it "should generate products migration with attributes" do
-				subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_products_table.rb") { |content|
+					content.should =~ /t.text \:description/ &&
+					content.should =~ /t.text \:long_text/ &&
+					content.should =~ /t.float \:price/ &&
+					content.should =~ /t.string \:date/ &&
+					content.should =~ /t.string \:name/ &&
 					content.should =~ /t.integer \:quantity/
 				}
-			end
+			end	
 		end
 
 		with_args :"image:images" do
@@ -135,13 +109,6 @@ describe "adminpanel:resource" do
 			end
 		end
 
-		with_args "name:string" do
-			it "should generate products migration with attributes" do
-				subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_products_table.rb") { |content|
-					content.should =~ /t.string \:name/
-				}
-			end
-		end
 
 		with_args :"name:string", :"description:wysiwyg" do
 			it "should generate namespaced products_controller.rb" do
