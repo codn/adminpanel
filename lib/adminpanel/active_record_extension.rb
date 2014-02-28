@@ -17,6 +17,10 @@ module ActiveRecordExtension
       "display_name"
     end
 
+    def plural_name
+      display_name.pluralize
+    end
+
     def has_images?
       form_attributes.each do |fields|
       fields.each do |attribute, properties|

@@ -37,7 +37,7 @@
 						:class => "Adminpanel::#{menu}".constantize.icon
 					) + content_tag(
 						:span, 
-						" " + ("Adminpanel::#{menu}".constantize.display_name)
+						" " + ("Adminpanel::#{menu}".constantize.plural_name)
 					),
 					[route_symbol(menu)],
 					:class => "accordion-toggle b_F5C294 #{is_current_section?(menu)}" 
