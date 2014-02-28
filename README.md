@@ -19,7 +19,7 @@ And then execute:
 
 In you application.rb 
 
-    config.default_locale = :es
+    config.i18n.default_locale = :es
 no other language is currently supported, but pull requests are welcome.
 
 Then run:
