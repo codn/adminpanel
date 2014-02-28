@@ -17,6 +17,19 @@ module ActiveRecordExtension
       "display_name"
     end
 
+    def display_attributes
+      display_attributes = []
+      form_attributes.each do |attribute|
+        attribute.each do |name, properties|
+          if properties["show"].nil? || properties["show"] == "true"
+            display_attributes << attribute
+          end
+        end
+      end
+
+      return display_attributes
+    end
+
     def plural_name
       display_name.pluralize
     end

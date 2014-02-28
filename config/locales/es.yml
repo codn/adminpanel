@@ -6,6 +6,7 @@ es:
     Adminpanel::Section: "Sección"
     Adminpanel::Image: "Imagen"
     Adminpanel::Category: "Categoría"
+    Adminpanel::Client: "Cliente"
     attributes:
       Adminpanel::User:
         email: "Correo electrónico"
@@ -24,6 +25,12 @@ es:
         name: "Nombre"
         brief: "Pequeña descripción"
         category_id: "Categoría"
+      Adminpanel::Client:
+        username: "Nombre de usuario"
+        name: "Nombre"
+        password: "Contraseña"
+        password_confirmation: "Confirmar contraseña"
+        password_digest: "Confirmar contraseña"
   errors:
     one: "%{model} no pudo guardarse debido a 1 error"
     other: "%{model} no pudo guardarse debido a %{count} errores"
