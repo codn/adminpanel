@@ -7,85 +7,36 @@ es:
     Adminpanel::Image: "Imagen"
     Adminpanel::Category: "Categoría"
     Adminpanel::Client: "Cliente"
+    Adminpanel::Post: "Publicación"
+    Adminpanel::Adminproject: "Proyecto"
+    Adminpanel::Siteproject: "Proyecto"
     attributes:
-      Adminpanel::User:
-        email: "Correo electrónico"
-        password_digest: "Confirmar contraseña"
-        name: "Nombre"
-        password: "Contraseña"
-        password_confirmation: "Confirmar contraseña"
-      Adminpanel::Section:
-        description: "Descripción"
-        file: "Imagen"
-      Adminpanel::Gallery:
-        file: "Imagen"
-      Adminpanel::Category:
-        name: "Nombre"
-      Adminpanel::Product:
-        name: "Nombre"
-        brief: "Pequeña descripción"
-        category_id: "Categoría"
-      Adminpanel::Client:
-        username: "Nombre de usuario"
-        name: "Nombre"
-        password: "Contraseña"
-        password_confirmation: "Confirmar contraseña"
-        password_digest: "Confirmar contraseña"
+      adminproject_id: "Proyecto"
+      brief: "Pequeña descripción"
+      category_id: "Categoría"
+      client_id: "Cliente"
+      adminproject_id: "Proyecto"
+      description: "Descripción"
+      email: "Correo electrónico"
+      file: "Imagen"
+      name: "Nombre"
+      password: "Contraseña"
+      password_confirmation: "Confirmar contraseña"
+      password_digest: "Confirmar contraseña"
+      username: "Nombre de usuario"
   errors:
     one: "%{model} no pudo guardarse debido a 1 error"
     other: "%{model} no pudo guardarse debido a %{count} errores"
   activerecord:
     errors:
-      models:
-        adminpanel/category:
-          attributes:
-            name:
-              blank: "no puede estar vacío"
-        adminpanel/user:
-          attributes:
-            password_digest:
-              blank: "no puede estar vacío"
-            name:
-              blank: "no puede estar vacío"
-            password:
-              blank: "no puede estar vacío"
-              too_short: "es muy corta, mínimo 6 caracteres"
-              confirmation: "Deben ser iguales"
-            password_confirmation:
-              blank: "no puede estar vacío"
-            email:
-              blank: "no puede estar vacío"
-              invalid: "no es un correo"
-              taken: "ya está en uso"
-        adminpanel/gallery:
-          attributes:
-            file:
-              blank: "no puede estar vacía"
-        adminpanel/section:
-          attributes:
-            description:
-              blank: "no puede estar vacía"
-              too_long: "es muy larga"
-              too_short: "es muy corta"
-              not_a_number: "tienen que ser sólo números"
-            file:
-              blank: "no puede estar vacía"
-        adminpanel/product:
-          attributes:
-            name:
-              blank: "no puede estar vacío"
-            category_id:
-              blank: "no puede estar vacía"
-            brief:
-              blank: "no puede estar vacía"
-        gallery:
-          attributes:
-            description:
-              blank: "no puede estar vacía"
-            file:
-              blank: "no puede estar vacía"
-            name:
-              blank: "no puede estar vacío"
+      messages:
+        blank: "no puede estar vacío"
+        confirmation: "Deben ser iguales"
+        invalid: "no es un correo"
+        not_a_number: "tienen que ser sólo números"
+        taken: "ya está en uso"
+        too_long: "es muy larga"
+        too_short: "es muy corta, mínimo 6 caracteres"
   time:
     formats:
       graphic: "%Y-%m-%d %H:%M:%S"
