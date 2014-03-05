@@ -12,7 +12,7 @@ gem "rails-i18n", "~> 3.0.0"
 gem "inherited_resources", "~> 1.3.1"
 gem "google-api-client", "~> 0.7.1"
 
-group :test do 
+group :test do
 	gem "bundler", "~> 1.3"
 	gem "activerecord", "3.2.12"
 	gem "rake", "~> 10.1.1"
