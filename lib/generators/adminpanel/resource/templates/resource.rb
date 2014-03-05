@@ -2,7 +2,7 @@ module Adminpanel
   class <%= capitalized_resource %> < ActiveRecord::Base
     attr_accessible <%= symbolized_attributes %>
 
-    <%= associations if has_associations? %>
+    <%= associations if has_associations? -%>
 
     def self.form_attributes
       [<%= adminpanel_form_attributes %>
