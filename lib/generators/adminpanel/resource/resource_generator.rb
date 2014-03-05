@@ -126,7 +126,7 @@ module Adminpanel
 						form_hash = form_hash + "\n\t\t\t\t{\"#{@attr_field}\" => {\"type\" => \"adminpanel_file_field\", \"name\" => \"#{@attr_field}\"}},"
 					elsif @attr_type == "belongs_to"
 						form_hash = form_hash + "\n\t\t\t\t{\"#{belongs_to_field(@attr_field)}\" => {\"@attr_type\" => \"belongs_to\", \"model\" => \"Adminpanel\:\:#{resource_class_name(@attr_field)}\", \"name\" => \"#{belongs_to_field(@attr_field)}\"}},"
-					elsif @attr_type == "has_many" || type == "has_many_through"
+					elsif @attr_type == "has_many" || @attr_type == "has_many_through"
 						if models_in_parameter(@attr_field).second.nil?
 							through_model = @attr_field
 						else

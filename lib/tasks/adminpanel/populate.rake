@@ -6,8 +6,8 @@ namespace :adminpanel do
     model = "adminpanel/#{args[:model]}".classify.constantize
 
     attributes = args[:attributes].split(" ")
-    prefixes = ["Don", "El loco", "Entrepeneur"]
-    names = %W[Juan Jorge Transito Jose Victor John Jane]
+    prefixes = %W["Sir" "CEO" "Entrepeneur" "Bgr" "MVP"]
+    names = %W[Transito Jose Victor John Jane Ramon Katy]
     l_names = %W[Camacho Magana Cuervo Gonzalez Lopez Doe Roe]
     categories = %[CoDN Varios Comestibles Electronicos Web Basura lorem ipsum dolor]
     lorem = %W[Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -17,6 +17,7 @@ namespace :adminpanel do
       velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
       est laborum.]
+    domains = %W[codn.com gmail.com]
 
     has_image = false
     args[:times].to_i.times do |time|
@@ -48,10 +49,15 @@ namespace :adminpanel do
           value = "adminpanel/#{field}".classify.constantize.order("RAND()").first.id
           field = "#{field}_id"
 
+        elsif type = "email"
+          value = "#{names.sample.first}#{l_names.sample}@#{domains.sample}"
+
         elsif type == "image" #force an image...
           has_image = true
           @file_url = "http://placehold.it/#{field}"
         end
+
+
         if(type != "image")
           instance.send("#{field}=", value)
         end
