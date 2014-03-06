@@ -6,7 +6,7 @@ namespace :adminpanel do
     model = "adminpanel/#{args[:model]}".classify.constantize
 
     attributes = args[:attributes].split(" ")
-    prefixes = %W["Sir" "CEO" "Entrepeneur" "Bgr" "MVP"]
+    prefixes = %W[Sir CEO Entrepeneur Bgr MVP]
     names = %W[Transito Jose Victor John Jane Ramon Katy]
     l_names = %W[Camacho Magana Cuervo Gonzalez Lopez Doe Roe]
     categories = %[CoDN Varios Comestibles Electronicos Web Basura lorem ipsum dolor]
