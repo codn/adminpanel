@@ -1,18 +1,28 @@
 *.gem
 *.rbc
-.bundle
-.config
-.yardoc
+/.config
+/coverage/
+/Gemfile.lock
+/spec/reports/
+/spec/dummy/public/uploads/
+/InstalledFiles
+/pkg/
+/test/tmp/
+/test/version_tmp/
+/tmp/
+
+## Documentation cache and generated files:
+/.yardoc/
+/_yardoc/
+/doc/
+/rdoc/
+
+## Environment normalisation:
+/.bundle/
+/lib/bundler/man/
+
+
+## gem sepecific ignored files
 Gemfile.lock
-InstalledFiles
-_yardoc
-coverage
-doc/
-lib/bundler/man
-pkg
-rdoc
-spec/reports
-spec/dummy/public/uploads/.
-test/tmp
-test/version_tmp
-tmp
+.ruby-version
+.ruby-gemset
