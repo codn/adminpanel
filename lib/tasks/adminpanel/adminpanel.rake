@@ -1,4 +1,3 @@
-module Adminpanel
     namespace :adminpanel do
     desc "Populate database of adminpanel model"
 
@@ -122,5 +121,4 @@ private
     @things = %W[T-shirt Cellphone Laptop iPhone Android Beer Belt Headphone
       Apple\ TV iMac Macbook\ pro iPod\ touch Github's\ octocat Mug Template
     ]
-  end
 end
