@@ -2,10 +2,9 @@
     desc "Populate database of adminpanel model"
 
     task :populate, [:times, :model, :attributes] => :environment do |t, args|
-      # if Rails.env === "development"
+
       puts "Generating #{args[:times]} records of #{args[:model]}"
-      # end
-      puts t
+
       model = "adminpanel/#{args[:model]}".classify.constantize
 
       attributes = args[:attributes].split(" ")
@@ -23,14 +22,17 @@
             when "name" #generate a name
               value = generate_name
 
-            when "category" #generate a category name
+            when "category" || "category_name" #generate a category name
               value = @things.sample.pluralize
 
-            when "description"
+            when "lorem_name" || "sentence"
+              value = generate_lorem_name #lorem random short sentence
+
+            when "description" || "lorem" #large paragraph.
               value = generate_lorem
 
             when "number" #generate a number
-              value = [*1..500].sample
+              value = [*1..5000].sample
 
             when "id" #assign field_id it to a random instance of Adminpanel::field
               value = "adminpanel/#{field}".classify.constantize.order("RAND()").first.id
@@ -42,9 +44,6 @@
             when "image" #force an image...
               has_image = true
               @file_url = "http://placehold.it/#{field}"
-
-            when "thing" #like products name
-              value = generate_thing
 
             else #no type
               value = "#{time + 1} Lorem ipsum dolor sit amec"
@@ -89,6 +88,14 @@ private
     "#{value}."
   end
 
+  def generate_lorem_name
+    value = ""
+    [*1..4].sample.times do
+      value = "#{value} #{@lorem.sample}"
+    end
+    "#{value.titleize}."
+  end
+
   def generate_email
     "#{@names.sample.first}#{@l_names.sample}@#{@domains.sample}"
   end
@@ -115,7 +122,23 @@ private
       ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
       velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.]
+      est laborum. Sed dapibus condimentum tempor. Curabitur tortor libero,
+      malesuada ac varius at, adipiscing non ante. Ut at neque vitae massa
+      volutpat bibendum a vel purus. Cras adipiscing accumsan placerat. Praesent
+      rhoncus pellentesque felis, vel faucibus ipsum convallis dictum. Donec
+      congue vitae risus quis sagittis. Interdum et malesuada fames ac ante
+      ipsum primis in faucibus. Suspendisse rhoncus tortor ut urna eleifend
+      molestie. Phasellus in viverra tortor. Pellentesque sagittis tortor tortor,
+      at auctor risus elementum non. Morbi sagittis ante tincidunt congue
+      fermentum. Quisque ac tellus in lacus interdum ultrices. Mauris ornare
+      justo nec sapien tempor, sit amet dapibus massa tincidunt. Interdum et
+      malesuada fames ac ante ipsum primis in faucibus. Nullam sodales ac mauris
+      eget egestas. Maecenas rhoncus ac metus quis condimentum. Vestibulum
+      consequat lacus nulla, eu varius leo consectetur vitae. Pellentesque vitae
+      sem mauris. Suspendisse ornare, dui eget elementum aliquam, augue neque
+      condimentum leo, nec ullamcorper lectus massa quis nibh. Etiam id egestas
+      mauris, eget eleifend enim.
+    ]
     @domains = %W[codn.com gmail.com hotmail.com codn.mx codn.com.mx]
     @adjective_denominations = %W[Nice Pretty Good Ugly Expensive Cheap Useful]
     @things = %W[T-shirt Cellphone Laptop iPhone Android Beer Belt Headphone

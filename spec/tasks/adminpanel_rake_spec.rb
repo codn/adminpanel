@@ -11,7 +11,6 @@ describe "adminpanel namespace task" do
 
     let(:has_nil_attribute) { false }
     before do
-      Adminpanel::Product.delete_all
       Rake.application.invoke_task "adminpanel:populate[20, product, name:name description:lorem price:number]"
     end
 
