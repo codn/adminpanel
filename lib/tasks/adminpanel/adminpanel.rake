@@ -1,74 +1,124 @@
-    namespace :adminpanel do
-    desc "Populate database of adminpanel model"
+namespace :adminpanel do
+  desc "Interact with adminpanel models :D"
 
-    task :populate, [:times, :model, :attributes] => :environment do |t, args|
+  task :section, [:section, :name, :type] => :environment do |t, args|
+    args.with_defaults(:section => "home", :name => "greeting", :type => "wysiwyg")
+    puts "Creating #{args[:name]} in #{args[:section]} section"
 
-      puts "Generating #{args[:times]} records of #{args[:model]}"
+    s = Adminpanel::Section.new(
+      :name => args[:name].titleize,
+      :has_description => false,
+      :description => "",
+      :key => args[:name].underscore,
+      :page => args[:section],
+      :has_image => false
+    )
 
-      model = "adminpanel/#{args[:model]}".classify.constantize
+    args[:type].split(" ").each do |type|
+      case type
+        when "wysiwyg" || "description"
+          s.has_description = true
+        when "images"
+          s.has_image = true
+      end
+    end
+    s.save
+  end
 
-      attributes = args[:attributes].split(" ")
-
-      init_variables
-
-      has_image = false
-      args[:times].to_i.times do |time|
-        instance = model.new
-        attributes.each do |attribute|
-          field = attribute.split(":").first
-          type = attribute.split(":").second
-
-          case type
-            when "name" #generate a name
-              value = generate_name
-
-            when "category" || "category_name" #generate a category name
-              value = @things.sample.pluralize
-
-            when "lorem_name" || "sentence"
-              value = generate_lorem_name #lorem random short sentence
-
-            when "description" || "lorem" #large paragraph.
-              value = generate_lorem
-
-            when "number" #generate a number
-              value = [*1..5000].sample
-
-            when "id" #assign field_id it to a random instance of Adminpanel::field
-              value = "adminpanel/#{field}".classify.constantize.order("RAND()").first.id
-              field = "#{field}_id"
-
-            when "email" #generates a random email
-              value = generate_email
-
-            when "image" #force an image...
-              has_image = true
-              @file_url = "http://placehold.it/#{field}"
-
-            else #no type
-              value = "#{time + 1} Lorem ipsum dolor sit amec"
-
-          end
-
-          if(type != "image")
-            instance.send("#{field}=", value)
-          end
-        end
-
-        instance.save
-
-        change_update_date(instance)
-
-        if(has_image) #forcing the image into the db
-          create_image_associated_to_id(instance.id)
-        end
-
+  task :dump_sections => :environment do |t|
+    puts "Dumping adminpanel_sections table into db/seeds.rb"
+    File.open("db/seeds.rb", "w") do |f|
+        f << "Adminpanel::Section.delete_all\n"
+      Adminpanel::Section.all.each do |section|
+        f << "#{creation_command(section)}"
       end
 
     end
+
   end
 
+  task :dump => :dump_sections
+
+  task :populate, [:times, :model, :attributes] => :environment do |t, args|
+
+    puts "Generating #{args[:times]} records of #{args[:model]}"
+
+    model = "adminpanel/#{args[:model]}".classify.constantize
+
+    attributes = args[:attributes].split(" ")
+
+    init_variables
+
+    has_image = false
+    args[:times].to_i.times do |time|
+      instance = model.new
+      attributes.each do |attribute|
+        field = attribute.split(":").first
+        type = attribute.split(":").second
+
+        case type
+          when "name" #generate a name
+            value = generate_name
+
+          when "category" || "category_name" #generate a category name
+            value = @things.sample.pluralize
+
+          when "lorem_name" || "sentence"
+            value = generate_lorem_name #lorem random short sentence
+
+          when "description" || "lorem" #large paragraph.
+            value = generate_lorem
+
+          when "number" #generate a number
+            value = [*1..5000].sample
+
+          when "id" #assign field_id it to a random instance of Adminpanel::field
+            value = "adminpanel/#{field}".classify.constantize.order("RAND()").first.id
+            field = "#{field}_id"
+
+          when "email" #generates a random email
+            value = generate_email
+
+          when "image" #force an image...
+            has_image = true
+            @file_url = "http://placehold.it/#{field}"
+
+          else #no type
+            value = "#{time + 1} Lorem ipsum dolor sit amec"
+
+        end
+
+        if(type != "image")
+          instance.send("#{field}=", value)
+        end
+      end
+
+      instance.save
+
+      change_update_date(instance)
+
+      if(has_image) #forcing the image into the db
+        create_image_associated_to_id(instance.id)
+      end
+
+    end
+
+  end
+end
+
 private
+
+  def creation_command(section)
+    "Adminpanel::Section.new(\n" +
+    ":name => \"#{section.name}\",\n" +
+    "\t:has_description => #{section.has_description},\n" +
+    "\t:description => \"#{section.description}\",\n" +
+    "\t:key => \"#{section.key}\",\n" +
+    "\t:page => \"#{section.page}\",\n" +
+    "\t:has_image => #{section.has_image}\n" +
+    ").save\n"
+
+  end
 
   def create_image_of(model_id)
     image_instance = Adminpanel::Image.new(
