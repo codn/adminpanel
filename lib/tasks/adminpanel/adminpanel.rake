@@ -43,7 +43,7 @@ namespace :adminpanel do
 
     puts "Generating #{args[:times]} records of #{args[:model]}"
 
-    model = "adminpanel/#{args[:model]}".classify.constantize
+    @model = "adminpanel/#{args[:model]}".classify.constantize
 
     attributes = args[:attributes].split(" ")
 
@@ -51,7 +51,7 @@ namespace :adminpanel do
 
     has_image = false
     args[:times].to_i.times do |time|
-      instance = model.new
+      instance = @model.new
       attributes.each do |attribute|
         field = attribute.split(":").first
         type = attribute.split(":").second
@@ -98,7 +98,7 @@ namespace :adminpanel do
       change_update_date(instance)
 
       if(has_image) #forcing the image into the db
-        create_image_associated_to_id(instance.id)
+        create_image_of(instance.id)
       end
 
     end
@@ -122,7 +122,7 @@ private
 
   def create_image_of(model_id)
     image_instance = Adminpanel::Image.new(
-      :model => model.display_name,
+      :model => @model.display_name,
       :foreign_key => model_id
       )
     image_instance.save(:validate => false)
