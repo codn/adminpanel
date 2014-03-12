@@ -25,6 +25,8 @@ namespace :adminpanel do
     s.save
   end
 
+  task :dump => :dump_sections
+
   task :dump_sections => :environment do |t|
     puts "Dumping adminpanel_sections table into db/seeds.rb"
     File.open("db/seeds.rb", "w") do |f|
@@ -32,12 +34,8 @@ namespace :adminpanel do
       Adminpanel::Section.all.each do |section|
         f << "#{creation_command(section)}"
       end
-
     end
-
   end
-
-  task :dump => :dump_sections
 
   task :populate, [:times, :model, :attributes] => :environment do |t, args|
 
@@ -95,7 +93,7 @@ namespace :adminpanel do
 
       instance.save
 
-      change_update_date(instance)
+      change_dates(instance)
 
       if(has_image) #forcing the image into the db
         create_image_of(instance.id)
@@ -127,7 +125,7 @@ private
       )
     image_instance.save(:validate => false)
     image_instance.update_column(:file, @file_url)
-    change_update_date(image_instance)
+    change_dates(image_instance)
   end
 
   def generate_lorem
@@ -158,8 +156,10 @@ private
     "#{@adjective_denominations} #{@things.sample}"
   end
 
-  def change_update_date(instance)
-    instance.update_attribute(:updated_at, rand(3.years).ago)
+  def change_dates(instance)
+    date = rand(3.years).ago
+    instance.update_attribute(:created_at, date)
+    instance.update_attribute(:updated_at, date)
   end
 
   def init_variables
