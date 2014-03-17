@@ -129,7 +129,7 @@ private
   end
 
   def generate_lorem
-    value = ""
+    value = "#{@lorem.sample}"
     [*60..80].sample.times do
       value = "#{value} #{@lorem.sample}"
     end
@@ -137,8 +137,8 @@ private
   end
 
   def generate_lorem_name
-    value = ""
-    [*1..4].sample.times do
+    value = "#{@lorem.sample}"
+    [*0..3].sample.times do
       value = "#{value} #{@lorem.sample}"
     end
     "#{value.titleize}."
