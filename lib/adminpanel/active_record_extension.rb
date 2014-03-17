@@ -2,19 +2,33 @@ module ActiveRecordExtension
   extend ActiveSupport::Concern
   #instance methods
   # def foo
-    
+
   # end
 
   # static(class) methods
   module ClassMethods
     def form_attributes
       [{
-        "name" => {"type" => "text_field", "name" => ":name"}
+        "name" => {
+          "type" => "text_field",
+          "name" => ":name"
+        }
       }]
     end
 
     def display_name
       "display_name"
+    end
+
+    def get_attribute_name(field)
+      form_attributes.each do |attribute|
+        attribute.each do |name, properties|
+          if name == field
+            return properties["name"]
+          end
+        end
+      end
+      return ":("
     end
 
     def display_attributes
@@ -75,5 +89,5 @@ module ActiveRecordExtension
   end
 end
 
-# include the extension 
+# include the extension
 ActiveRecord::Base.send(:include, ActiveRecordExtension)
