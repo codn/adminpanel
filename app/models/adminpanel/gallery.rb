@@ -40,6 +40,10 @@ module Adminpanel
 	  	end
 	  end
 
+		def self.display_name
+			"Galería"
+		end
+
   	private
   		def rearrange_positions
   			unarranged_galleries = Gallery.where("position > ?", position)
@@ -48,7 +52,7 @@ module Adminpanel
   			end
 
   		end
-		
+
 		def set_position
 		  	last_record = Gallery.last
 		  	if last_record.nil?

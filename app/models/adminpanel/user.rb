@@ -28,6 +28,10 @@ module Adminpanel
       roles.any? { |r| r.name.underscore.to_sym == role_sym }
     end
 
+    def form_attributes
+      
+    end
+
     private
       def create_remember_token
         self.remember_token = SecureRandom.base64.tr("+/", "-_")

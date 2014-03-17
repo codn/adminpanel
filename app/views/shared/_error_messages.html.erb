@@ -1,13 +1,13 @@
 <% if object.errors.any? %>
 	<div id="error_explanation">
 		<div id="alerts" class="alert alert-error">
-			<%= t( :errors, :count => object.errors.count, :model => t("model.#{object.class.model_name}")) %>:
+			<%= t( :errors, :count => object.errors.count, :model => @model.display_name) %>:
 			<ul>
 			<% object.errors.messages.keys.each do |field| %>
 				<% object.errors.messages[field].each do |value| %>
 				 <li>
-				 	<%= t("model.attributes.#{field}") %>
-				 	<%= value %>
+				  	<%= @model.get_attribute_name(field.to_s) %>
+				  	<%= value %>
 				 </li>
 				<% end %>
 			<% end %>

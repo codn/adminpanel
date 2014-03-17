@@ -1,15 +1,6 @@
 es:
   model:
-    Adminpanel::User: "Usuario"
-    Adminpanel::Product: "Producto"
     Adminpanel::Gallery: "Galería de Inicio"
-    Adminpanel::Section: "Sección"
-    Adminpanel::Image: "Imagen"
-    Adminpanel::Category: "Categoría"
-    Adminpanel::Client: "Cliente"
-    Adminpanel::Post: "Publicación"
-    Adminpanel::Adminproject: "Proyecto"
-    Adminpanel::Siteproject: "Proyecto"
     attributes:
       adminproject_id: "Proyecto"
       brief: "Pequeña descripción"
