@@ -1,17 +1,18 @@
 require "action_view"
-include Rails::Generators::Migration
+require 'rails/generators/active_record'
+
+# include Rails::Generators::Migration
 module Adminpanel
 	module Generators
-		class ResourceGenerator < Rails::Generators::Base
+		class ResourceGenerator < ActiveRecord::Generators::Base
 
   		source_root File.expand_path("../templates", __FILE__)
-  		argument :resource_name, :type => :string, :required => true
   		argument :fields, :type => :array, :default => "name:string"
 			desc "Generate the resource files necessary to use a model"
 
-			def self.next_migration_number(path)
-	  		Time.now.utc.strftime("%Y%m%d%H%M%S")
-			end
+			# def self.next_migration_number(path)
+	  	# 	Time.now.utc.strftime("%Y%m%d%H%M%S")
+			# end
 
 			def create_model
     		template 'resource.rb', "app/models/adminpanel/#{lower_name}.rb"
@@ -40,7 +41,7 @@ module Adminpanel
 			end
 
 			def lower_name
-				resource_name.singularize.downcase
+				name.singularize.downcase
 			end
 
 			def capitalized_resource
