@@ -10,19 +10,15 @@
           <%= render 'shared/error_messages', :object => @section %>
 
           <% if @section.has_description %>
-            <div class="control-group">
-              <label class="control-label"><%= t("model.attributes.Adminpanel::Section.description") %></label>
-              <div class="controls">
-                <%= f.hidden_field :description, :id => "description-field" %>
-                  <% if @section.description.nil? %>
-                    <%= content_tag(:div, @section.description, :class => "editable", "data-placeholder" => t("Write description here")) %>
-                  <% else %>
-                    <%= content_tag(:div, @section.description.html_safe, :class => "editable", "data-placeholder" => t("Write description here")) %>
-                  <% end %>
-              </div>
-            </div>
+            <%= f.hidden_field 'description', :id => "description-field", :value => @section.description %>
+            <%= f.wysiwyg_field 'description', 'label' => I18n.t('section.description'), :name => 'description' %>
+            <%= content_for :scripts do %>
+              <script type="text/javascript">
+              <%= render "shared/init_editor", :field_var => 'description', :label => 'description' %>
+              </script>
+            <% end %>
           <% else %>
-            <%= f.text_field :description, :label => t("model.attributes.Adminpanel::Section.description") %>
+            <%= f.text_field 'description', :label => t("section.description") %>
           <% end %>
 
           <% if @section.has_image %>

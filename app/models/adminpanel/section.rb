@@ -8,9 +8,9 @@ module Adminpanel
 	  accepts_nested_attributes_for :images, :allow_destroy => true
 
 
-	  validates_length_of :description, :minimum => 10, :maximum => 10, :on => :update, :if => lambda{|section| section.key == "telephone"}
+	  validates_length_of :description, :minimum => 10, :maximum => 10, :on => :update, :if => lambda{|section| section.key == I18n.t('key.telephone')}
 	  validates_presence_of :description, :minimum => 9, :on => :update, :if => lambda{|section| section.has_description == true}
-	  validates :description, :numericality => { :only_integer => true }, :on => :update, :if => lambda{|section| section.key == "telephone"}
+	  validates :description, :numericality => { :only_integer => true }, :on => :update, :if => lambda{|section| section.key == I18n.t('key.telephone')}
 	  validates_presence_of :key
 	  validates_presence_of :name
 	  validates_presence_of :page
@@ -18,6 +18,17 @@ module Adminpanel
 	  default_scope { order("page ASC")}
 
 	  scope :of_page, lambda{|page| where(:page => page)}
+
+		def self.form_methods
+			[
+				{'description' => {'name' => 'Descripcion'}},
+				{'name' => {'name' => 'name'}},
+				{'key' => {'name' => 'key'}},
+				{'page' => {'name' => 'page'}},
+				# {'key' => {'name' => 'key'}},
+			]
+
+		end
 
 	  def simple_name
 	  	"Section"

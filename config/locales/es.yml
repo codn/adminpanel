@@ -74,9 +74,12 @@ es:
     description: "Descripción"
     edit: "Editar Sección"
     default: "Sin Sección"
+  image: "Imagen"
   session:
     password: "Contraseña"
     email: "Correo electrónico"
   other:
     choose: "Selecciona %{model} pertenecientes"
     no description: "No tiene descripción aún"
+  key:
+    telephone: 'Teléfono'

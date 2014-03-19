@@ -3,7 +3,7 @@
 
 	<% if properties["type"] == "wysiwyg_field" %>
 		<% type = properties["type"] %>
-		<% args = properties.except("type", "name") %>
+		<% args = properties.except("type") %>
 		<%= f.hidden_field attribute, :id => "#{attribute}-field", :value => resource.send(attribute) %>
 		<%= f.send(type, attribute, args) %>
 		<%= content_for :scripts do %>
@@ -24,11 +24,18 @@
   	<%= f.select(attribute, (@collections["#{properties["model"]}"].collect{|resource| [resource.name, resource.id]}), args) %>
 
   <% elsif properties["type"] == "has_many" %>
-		<%= I18n.t('other.choose', :model => pluralize_es(properties["model"].classify.constantize.display_name)) %>
-  	<%= hidden_field_tag("#{class_name_downcase(f.object)}[#{relationship_ids(properties["model"])}][]", nil) %>
-  	<% @collections["#{properties["model"]}"].each do |resource| %>
-  		<%= f.checkbox(resource, class_name_downcase(f.object) ,relationship_ids(properties["model"])) %>
-		<% end %>
+		<%#= f.checkbox(collection, relationship) %>
+		<div class="control-group">
+			<div class="control-label">
+				<%= I18n.t('other.choose', :model => pluralize_es(properties["model"].classify.constantize.display_name)) %>
+			</div>
+	  	<%= hidden_field_tag("#{class_name_downcase(f.object)}[#{relationship_ids(properties["model"])}][]", nil) %>
+			<div class="controls">
+		  	<% @collections["#{properties["model"]}"].each do |resource| %>
+		  		<%= f.checkbox(resource, class_name_downcase(f.object) ,relationship_ids(properties["model"])) %>
+				<% end %>
+			</div>
+		</div>
 
   <% else %>
 		<% type = properties["type"] %>
