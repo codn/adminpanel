@@ -13,10 +13,10 @@
 		<% end %>
 
 	<% elsif properties["type"] == "adminpanel_file_field" %>
-		<%= f.fields_for :images do |builder| %>
-    	<%= render 'shared/image_fields', :f => builder, :model_name => @model.display_name.capitalize %>
+		<%= f.fields_for attribute do |builder| %>
+    	<%= render 'shared/image_fields', :f => builder %>
   	<% end -%>
-  	<%= link_to_add_fields t("Add Image"), f, :images, @model.display_name.capitalize %>
+  	<%= link_to_add_fields t("Add Image"), f, attribute %>
 
   <% elsif properties["type"] == "belongs_to" %>
 		<% args = properties.except("type", "name", "model") %>

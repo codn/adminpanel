@@ -23,10 +23,10 @@
 
           <% if @section.has_image %>
               <%= f.fields_for :images do |builder| %>
-                <%= render 'image_fields', :f => builder, :model_name => @section.simple_name %>
+                <%= render 'shared/image_fields', :f => builder %>
               <% end -%>
 
-              <%= link_to_add_fields "Agregar Imagen", f, :images, @section.simple_name %>
+              <%= link_to_add_fields "Agregar Imagen", f, :images %>
           <% end %>
       </div>
     </div>

@@ -4,8 +4,7 @@ module Adminpanel
 	class Section < ActiveRecord::Base
 	  attr_accessible :description, :has_image, :key, :page, :name, :has_description, :images_attributes
 
-	  has_many :images, :foreign_key => "foreign_key", :conditions => { :model => "Section" }
-	  accepts_nested_attributes_for :images, :allow_destroy => true
+	  mount_images :images
 
 
 	  validates_length_of :description, :minimum => 10, :maximum => 10, :on => :update, :if => lambda{|section| section.key == I18n.t('key.telephone')}
