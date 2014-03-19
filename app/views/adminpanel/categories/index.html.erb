@@ -1,0 +1,55 @@
+<%= provide(:page_title, "Categorias") %>
+
+<div class="row-fluid">
+  <div class="widget widget-padding span12" id="wizard">
+    <div class="widget-header">
+      <ul class="nav nav-tabs">
+        <% current_page = "no-page" %>
+        <% @categories.each_with_index do |category, index| %>
+          <% if current_page != category.model %>
+          <% if index == 0 %>
+            <li class = "active">
+          <% else %>
+            <li>
+          <% end %>
+            <% if !category.model.nil? %>
+              <%= link_to (category.model.capitalize), "#tab#{index}", "data-toggle" => "tab" %></li>
+            <% current_page = category.model %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="widget-body">
+      <div class="tab-content">
+        <% current_page = "no-page" %>
+        <% @categories.each_with_index do |categories, index| %>
+
+          <% if current_page != categories.model %>
+            <% if index == 0 %>
+              <div class="tab-pane active" id="tab<%= index %>">
+            <% else %>
+              <div class="tab-pane" id="tab<%= index %>">
+            <% end %>
+              <% current_cateogory_records = Adminpanel::Category.of_model categories.model %>
+              <%= render "categories_table", :categories => current_cateogory_records, :model => categories.model %>
+            </div>
+            <% current_page = categories.model %>
+          <% end %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- example modal -->
+<div id="example_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header" id="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Crear Categoría</h3>
+  </div>
+  <div id="modal-container">
+  </div>
+</div>

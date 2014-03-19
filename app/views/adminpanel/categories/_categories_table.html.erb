@@ -1,0 +1,48 @@
+<div class="row-fluid">
+  <%=
+    link_to(
+      content_tag(:div,
+        content_tag(
+          :i,
+          nil,
+          :class => 'icon-plus-sign icon-2x') +
+          content_tag(
+            :span,
+            I18n.t("action.create") + " #{@model.display_name} de #{model}",
+            nil
+          ),
+          :class => "btn btn-box span2"),
+      {
+        :controller => params[:controller],
+        :action => "new",
+      :"model" => model
+      },
+      :"data-target" => '#example_modal',
+      :"data-toggle" => 'modal',
+      :remote => true
+    )
+  %>
+</div>
+
+<br/>
+
+<table class="table table-striped table-bordered">
+  <tr>
+   <th><%= t("category.name") %></th>
+   <th><%= t("actions") %></th>
+  </tr>
+  <% categories.each do |category| %>
+    <tr>
+      <td><%= link_to category.name, category_path(category) %></td>
+      <td>
+        <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_category_path(category), :title => "Editar" %>
+        <%= link_to content_tag(:i, nil, :class => 'icon-remove'),
+          [category],
+          :title => "Editar",
+          :method => :delete,
+          :data => { :confirm => "Eliminar #{category.name}?"} %>
+      </td>
+    </tr>
+  <% end %>
+
+</table>

@@ -11,7 +11,7 @@ module ActiveRecordExtension
       [{
         "name" => {
           "type" => "text_field",
-          "name" => ":name"
+          "name" => "name"
         }
       }]
     end
@@ -31,6 +31,40 @@ module ActiveRecordExtension
       return ":("
     end
 
+
+    def get_attribute_name(field)
+      form_attributes.each do |attribute|
+        attribute.each do |name, properties|
+          if name == field
+            return properties["name"]
+          end
+        end
+      end
+      return ":("
+    end
+
+    def get_attribute_label(field)
+      form_attributes.each do |attribute|
+        attribute.each do |name, properties|
+          if name == field
+            return properties["label"]
+          end
+        end
+      end
+      return ":("
+    end
+
+    def get_attribute_placeholder(field)
+      form_attributes.each do |attribute|
+        attribute.each do |name, properties|
+          if name == field
+            return properties["placeholder"]
+          end
+        end
+      end
+      return ":("
+    end
+
     def display_attributes
       display_attributes = []
       form_attributes.each do |attribute|
@@ -42,10 +76,6 @@ module ActiveRecordExtension
       end
 
       return display_attributes
-    end
-
-    def plural_name
-      display_name.pluralize
     end
 
     def has_images?

@@ -28,8 +28,18 @@ module Adminpanel
       roles.any? { |r| r.name.underscore.to_sym == role_sym }
     end
 
-    def form_attributes
-      
+    def self.form_attributes
+      [
+        {"name" => {"type" => "text_field", "name" => "Nombre", 'label' => "Nombre", "placeholder" => "Nombre"}},
+        {"email" => {"type" => "text_field", "name" => "Correo", 'label' => 'Correo', 'placeholder' => 'Correo'}},
+        {"password" => {"type" => "password_field", "name" => "Contrasena", 'label' => I18n.t('model.attributes.password'), "placeholder" => I18n.t('model.attributes.password'), 'show' => 'false'}},
+        {"password_confirmation" => {"type" => "password_field", "name" => "Confirmacion de contrasena", 'placeholder' => I18n.t('model.attributes.password_confirmation'), 'label' => I18n.t('model.attributes.password_confirmation'), 'show' => 'false'}},
+      ]
+    end
+
+    def self.display_name
+      "Usuario"
+
     end
 
     private

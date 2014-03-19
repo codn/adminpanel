@@ -17,7 +17,7 @@
     <div class="widget-header">
       <%= content_tag(:i, nil, :class => @model.icon) %>
       <h5>
-        <%= @model.display_name %>
+        <%= pluralize_es(@model.display_name) %>
       </h5>
     </div>
     <div class="widget-body">

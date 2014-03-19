@@ -1,6 +1,8 @@
 es:
   model:
-    Adminpanel::Gallery: "Galería de Inicio"
+    Analytics: "Google Analytics"
+    Gallery: "Galería de Inicio"
+    Categories: "Categorías"
     attributes:
       adminproject_id: "Proyecto"
       brief: "Pequeña descripción"
@@ -42,6 +44,7 @@ es:
   action:
     add: "Agregar"
     create: "Crear"
+    close: "Cerrar"
     show: "Ver"
     submitting: "Enviando..."
     save: "Guardar"
@@ -75,4 +78,5 @@ es:
     password: "Contraseña"
     email: "Correo electrónico"
   other:
+    choose: "Selecciona %{model} pertenecientes"
     no description: "No tiene descripción aún"

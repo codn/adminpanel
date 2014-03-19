@@ -1,6 +1,6 @@
 module Adminpanel
 	class Image < ActiveRecord::Base
-		extend ImagesHelper
+		extend ClassDefinitionsHelper
 
 		attr_accessible :file, :foreign_key, :model
 		validates_presence_of :model
