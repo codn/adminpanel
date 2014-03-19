@@ -9,9 +9,8 @@ module Adminpanel
 			options = args.extract_options!
 
 			options.reverse_merge! :class => "span7"
-			options.reverse_merge! :label => name
-			label = options[:label]
-			options.delete(:label)
+			label = options['label']
+			options.delete('label')
 
 			@template.content_tag :div, :class => "control-group" do
 				@template.content_tag(:label, label, :class => "control-label") +
@@ -43,15 +42,15 @@ module Adminpanel
 				@template.content_tag(:div, :class => "controls") do
 					if self.object.send(name).nil?
 						@template.content_tag(
-							:div, 
-							self.object.send(name), 
+							:div,
+							self.object.send(name),
 							:id => name,
 							"data-placeholder" => I18n.t("Write description here")
 						)
 					else
 						@template.content_tag(
-							:div, 
-							self.object.send(name).html_safe, 
+							:div,
+							self.object.send(name).html_safe,
 							:id => name,
 							"data-placeholder" => I18n.t("Write description here")
 						)
@@ -78,12 +77,12 @@ module Adminpanel
 
 		def checkbox(checkbox_object, form_object_name, relationship)
 			@template.content_tag(
-				:label, 
+				:label,
 				@template.check_box_tag(
-					"#{form_object_name}[#{relationship}][]", 
-					checkbox_object.id, 
+					"#{form_object_name}[#{relationship}][]",
+					checkbox_object.id,
 					self.object.send(relationship).include?(checkbox_object.id)
-					) + checkbox_object.name, 
+					) + checkbox_object.name,
 				:class => "checkbox"
 			)
 		end
@@ -92,7 +91,7 @@ module Adminpanel
 			options = args.extract_options!
 
 			options.reverse_merge! :class => "span7"
-			options.reverse_merge! :label => name
+			# options.reverse_merge! :label => name
 			options.reverse_merge! :include_blank => "(Seleccione por favor)";
 			label = options[:label]
 			options.delete(:label)
@@ -121,9 +120,9 @@ module Adminpanel
 			options = args.extract_options!
 
 			options.reverse_merge! :class => "span7"
-			options.reverse_merge! :label => name
-			label = options[:label]
-			options.delete(:label)
+			# options.reverse_merge! :label => name
+			label = options['label']
+			options.delete('label')
 
 			@template.content_tag :div, :class => "control-group" do
 				@template.content_tag(:label, label, :class => "control-label") +
@@ -165,10 +164,10 @@ module Adminpanel
 			@template.content_tag :div, :class => "control-group" do
 				@template.content_tag(:label, label, :class => "control-label") +
 				@template.content_tag(
-					:div, 
+					:div,
 					@template.content_tag(
 						:div,
-						text_field_original(name, *args << options) + 
+						text_field_original(name, *args << options) +
 						@template.content_tag(
 							:span,
 							@template.content_tag(
@@ -176,7 +175,7 @@ module Adminpanel
 								nil,
 								:class => "icon-th"
 							),
-							:class => "add-on" 
+							:class => "add-on"
 						),
 						{
 							:class => "input-append date span5 datepicker datepicker-basic",
@@ -185,7 +184,7 @@ module Adminpanel
 								:date => options[:value]
 							}
 						}
-					), 
+					),
 					:class => "controls"
 				)
 			end
@@ -211,8 +210,8 @@ module Adminpanel
 						:div,
 						@template.content_tag(:span, symbol, :class => "add-on") +
 						text_field_original(name, *args << options),
-						:class => "input-prepend" 
-					), 
+						:class => "input-prepend"
+					),
 					:class => "controls"
 				)
 			end
@@ -238,8 +237,8 @@ module Adminpanel
 						:div,
 						text_field_original(name, *args << options) +
 						@template.content_tag(:span, symbol, :class => "add-on"),
-						:class => "input-append" 
-					), 
+						:class => "input-append"
+					),
 					:class => "controls"
 				)
 			end

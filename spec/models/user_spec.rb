@@ -4,9 +4,9 @@ describe Adminpanel::User do
 
   before do
     @user = Adminpanel::User.new(
-      :name => "Example User", 
+      :name => "Example User",
       :email => "user@example.com",
-      :password => "foobar", 
+      :password => "foobar",
       :password_confirmation => "foobar"
       )
   end

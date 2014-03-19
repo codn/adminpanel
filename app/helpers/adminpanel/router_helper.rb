@@ -27,7 +27,11 @@ module Adminpanel
     end
 
     def resources_path
-      "#{Rails.root.to_s}/app/controllers/adminpanel/"
+      route = "#{Rails.root.to_s}/app/controllers/adminpanel/"
+      if !File.directory?(route)
+        Dir.mkdir(route)
+      end
+      route
     end
   end
 end
