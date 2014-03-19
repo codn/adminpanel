@@ -4,11 +4,11 @@ describe "Section pages" do
 	subject {page}
 
 	let(:user) { Factory(:user) }
-	before do 
+	before do
 		visit adminpanel.signin_path
 		valid_signin(user)
 	end
-	
+
 	describe "index" do
 		let(:section) { Factory(:section_with_gallery) }
 		before do
@@ -22,7 +22,7 @@ describe "Section pages" do
 	describe "show" do
 		describe "with gallery" do
 			let(:section) { Factory(:section_with_gallery) }
-			let(:image) { Factory(:image_section, :foreign_key => section.id) }
+			let(:image) { Factory(:image_section, :section_id => section.id) }
 			# let(:image2) { Factory(:image_section, :foreign_key => section.id) }
 			# let(:image3) { Factory(:image_section, :foreign_key => section.id) }
 

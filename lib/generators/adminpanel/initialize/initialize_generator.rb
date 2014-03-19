@@ -1,4 +1,3 @@
-# include Rails::Generators::Migration
 require 'rails/generators/active_record'
 module Adminpanel
 	module Generators
@@ -7,10 +6,6 @@ module Adminpanel
   		source_root File.expand_path("../templates", __FILE__)
 			argument :name, :type => :string, :default => "Admi", :require => false
 			class_option :include_category, :type => :boolean, :aliases => "-c", :default => true, :desc => "Include category skeleton and migration for it"
-
-  		# def self.next_migration_number(path)
-  		# 	Time.now.utc.strftime("%Y%m%d%H%M%S")
-  		# end
 
 			def create_initializers
 				copy_file 'adminpanel_setup.rb', 'config/initializers/adminpanel_setup.rb'
