@@ -2,9 +2,9 @@ module Adminpanel
 	module SharedPagesHelper
 		def parent_object_name(resource, parent_model)
 			@model.reflect_on_all_associations.each do |association|
-                if association.klass.to_s == parent_model 
+                if association.klass.to_s == parent_model
                 	if !resource.send(association.name).nil?
-                		return resource.send(association.name).name 
+                		return resource.send(association.name).name
                 	else
                 		return "N/A"
                 	end
@@ -28,6 +28,13 @@ module Adminpanel
 			class_name.to_s.demodulize.downcase
 		end
 
+		def active_tab(index)
+			if index == 0
+				return "active"
+			else
+				return ""
+			end
+		end
 
 	end
 end

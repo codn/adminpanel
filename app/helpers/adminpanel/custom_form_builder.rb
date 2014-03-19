@@ -91,7 +91,7 @@ module Adminpanel
 			options = args.extract_options!
 
 			options.reverse_merge! :class => "span7"
-			# options.reverse_merge! :label => name
+
 			options.reverse_merge! :include_blank => "(Seleccione por favor)";
 			label = options[:label]
 			options.delete(:label)

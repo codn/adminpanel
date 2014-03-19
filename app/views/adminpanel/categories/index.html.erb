@@ -7,15 +7,16 @@
         <% current_page = "no-page" %>
         <% @categories.each_with_index do |category, index| %>
           <% if current_page != category.model %>
-          <% if index == 0 %>
-            <li class = "active">
-          <% else %>
-            <li>
-          <% end %>
-            <% if !category.model.nil? %>
-              <%= link_to (category.model.capitalize), "#tab#{index}", "data-toggle" => "tab" %></li>
+            <li class = "<%= active_tab(index) %>">
+              <%=
+              link_to(
+                (pluralize_es(category.model.capitalize)),
+                "#tab#{index}",
+                "data-toggle" => "tab"
+              )
+              %>
+            </li>
             <% current_page = category.model %>
-            <% end %>
           <% end %>
         <% end %>
       </ul>
