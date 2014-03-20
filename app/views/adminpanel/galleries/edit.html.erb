@@ -8,14 +8,7 @@
       <div class = "widget-forms clearfix">
         <%= custom_form_for(@gallery, :url => gallery_path(@gallery), :html => {:class => "form-horizontal"}) do |f| %>
           <%= render 'shared/error_messages', :object => @gallery %>
-          <% if @gallery.file %>
-          	<div class="controls">
-          		<div class="control-group">
-          			<%= image_tag @gallery.file_url(:thumb) %>
-          		</div>
-          	</div>
-          <% end %>
-          <%= f.file_field :file, :label => "Imagen" -%>
+          <%= f.gallery_field :file %>
       </div>
     </div>
     <div class = "widget-footer">
