@@ -4,6 +4,7 @@
 /coverage/
 /Gemfile.lock
 /spec/reports/
+/spec/dummy/log/
 /spec/dummy/public/uploads/
 /InstalledFiles
 /pkg/
