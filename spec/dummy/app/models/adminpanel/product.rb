@@ -1,32 +1,56 @@
 module Adminpanel
-    class Product < ActiveRecord::Base
-        attr_accessible :price, :name, :category_ids, :description, :images_attributes
-        has_many :categorizations
-        has_many :categories, :through => :categorizations, :dependent => :destroy
+  class Product < ActiveRecord::Base
+    attr_accessible :price, :name, :photos_attributes, :category_ids, :description
 
-        mount_images :photos
-    		#remember to change the relationship if you change this model display_name
+    has_many :categorizations
+    has_many :categories, :through => :categorizations
+		mount_images :photos
 
-        validates_presence_of :name
-        validates_presence_of :description
-        validates_presence_of :price
+    validates_presence_of :name
+    validates_presence_of :price
+    validates_presence_of :description
 
-        def self.form_attributes
-            [
-                {"category_ids" => {"type" => "has_many", "model" => "Adminpanel::Category", "name" => "category_ids"}},
-				{"price" => {"type" => "text_field", "name" => "price", "label" => "price", "placeholder" => "price"}},
-				{"name" => {"type" => "text_field", "name" => "name", "label" => "name", "placeholder" => "name"}},
-				{"description" => {"type" => "wysiwyg_field", "name" => "description", "label" => "description", "placeholder" => "description"}},
-				{"photos" => {"type" => "adminpanel_file_field", "name" => "image"}},
-            ]
-        end
+    def self.form_attributes
 
-        def self.display_name
-            "Product"
-        end
 
-        # def self.icon
-        #     "icon-truck"
-        # end
+      [
+      {"category_ids" => {"type" => "has_many", "model" => "Adminpanel::Category", "name" => "category_ids"}},
+			{
+				'name' => {
+					'type' => 'text_field',
+					'name' => 'name',
+					'label' => 'name',
+					'placeholder' => 'name'}
+			},
+      {
+        'price' => {
+          'type' => 'text_field',
+          'name' => 'price'
+        }
+      },
+			{
+				'photos' => {
+					'type' => 'adminpanel_file_field',
+					'name' => 'photo',
+					'label' => 'photo',
+					'placeholder' => 'photo'}
+			},
+			{
+				'description' => {
+					'type' => 'wysiwyg_field',
+					'name' => 'description',
+					'label' => 'description',
+					'placeholder' => 'description'}
+			},
+      ]
     end
+
+    def self.display_name
+      "Product"
+    end
+
+    # def self.icon
+    #     "icon-truck"
+    # end
+  end
 end

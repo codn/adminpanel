@@ -1,6 +1,6 @@
-require "spec_helper"
+require 'spec_helper'
 
-describe "shared pages" do
+describe 'shared pages' do
 	subject {page}
 
 	let(:user) { Factory(:user) }
@@ -9,19 +9,19 @@ describe "shared pages" do
 		valid_signin(user)
 	end
 
-	context "when visiting" do
-		describe "index" do
+	context 'when visiting' do
+		describe 'index' do
 			let(:product) { Factory(:product) }
 			before do
 				visit adminpanel.products_path
 			end
 
 			it { should have_link(Adminpanel::Product.display_name, adminpanel.new_product_path)}
-			it { should have_link("i", adminpanel.product_path(product)) }
-			it { should have_link("i", adminpanel.edit_product_path(product)) }
+			it { should have_link('i', adminpanel.product_path(product)) }
+			it { should have_link('i', adminpanel.edit_product_path(product)) }
 		end
 
-		describe "new" do
+		describe 'new' do
 			let(:category){ Factory(:category) }
 			before do
 				category.id = 1 #to force instantiation and id.
