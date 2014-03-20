@@ -5,11 +5,11 @@ module Adminpanel
       source_root File.expand_path("../templates", __FILE__)
       desc "Generate the resource files necessary to use a model"
 
-      argument :reference_model,
-        :aliases => "-m",
-        :type => :string,
-        :require => true,
-        :desc => 'Choose the model that you want the uploader to belong_to'
+      # argument :reference_model,
+      #   :aliases => "-m",
+      #   :type => :string,
+      #   :require => true,
+      #   :desc => 'Choose the model that you want the uploader to belong_to'
 
       def create_model
         template 'gallery_template.rb', "app/models/adminpanel/#{lower_name}.rb"
@@ -21,20 +21,20 @@ module Adminpanel
 
       def create_migration
         migration_template 'gallery_migration.rb', "db/migrate/create_adminpanel_#{lower_name.pluralize}_table.rb"
-        puts "don't forget to add the form_field, the relationship and add it to attr_accessible"
+        puts "don't forget to add the form_field, the relationship and #{lower_name}s_attributes it to attr_accessible"
       end
 
     private
-      def lower_name
+      def reference_name
         name.singularize.downcase
       end
 
       def class_name
-        lower_name.capitalize
+        "#{lower_name.capitalize}"
       end
 
-      def reference_name
-        reference_model.singularize.downcase
+      def lower_name
+        "#{name.singularize.downcase}file"
       end
     end
   end
