@@ -1,4 +1,4 @@
-class CreateCategoriesTable < ActiveRecord::Migration
+class CreateAdminpanelCategoriesTable < ActiveRecord::Migration
   	def change
 		create_table :adminpanel_categories do |t|
 
