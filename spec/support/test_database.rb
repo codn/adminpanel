@@ -14,8 +14,7 @@ ActiveRecord::Migration.create_table :adminpanel_galleries do |t|
 end
 ActiveRecord::Migration.create_table :adminpanel_images do |t|
     t.string   :file
-    t.string   :foreign_key
-    t.string   :model
+    t.string   :section_id
     t.datetime :created_at,      :null => false
     t.datetime :updated_at,      :null => false
 end
@@ -23,6 +22,12 @@ ActiveRecord::Migration.create_table :adminpanel_products do |t|
     t.string   :price
     t.string   :name
     t.text     :description
+    t.datetime :created_at,      :null => false
+    t.datetime :updated_at,      :null => false
+end
+ActiveRecord::Migration.create_table :adminpanel_photos do |t|
+    t.string   :file
+    t.text     :product_id
     t.datetime :created_at,      :null => false
     t.datetime :updated_at,      :null => false
 end

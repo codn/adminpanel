@@ -40,6 +40,12 @@ module Adminpanel
 	  	end
 	  end
 
+		def self.form_attributes
+			[
+				{'file' => { 'name' => 'Archivo' }}
+			]
+		end
+
 		def self.display_name
 			"Galería"
 		end

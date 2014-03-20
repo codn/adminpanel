@@ -4,11 +4,11 @@ describe "shared pages" do
 	subject {page}
 
 	let(:user) { Factory(:user) }
-	before do 
+	before do
 		visit adminpanel.signin_path
 		valid_signin(user)
 	end
-	
+
 	context "when visiting" do
 		describe "index" do
 			let(:product) { Factory(:product) }
@@ -23,7 +23,7 @@ describe "shared pages" do
 
 		describe "new" do
 			let(:category){ Factory(:category) }
-			before do 
+			before do
 				category.id = 1 #to force instantiation and id.
 				visit adminpanel.new_product_path
 			end
@@ -55,7 +55,7 @@ describe "shared pages" do
 			let(:category){ Factory(:category) }
 			let(:product){ Factory(:product) }
 
-			before do 
+			before do
 				category.id = 1 #to force instantiation and id.
 				product.category_ids = ["1"]
 				visit adminpanel.edit_product_path(product)
@@ -64,7 +64,7 @@ describe "shared pages" do
 			it { should have_title(I18n.t("action.update") + " " + Adminpanel::Product.display_name) }
 
 			describe "with invalid information" do
-				before do 
+				before do
 					fill_in "product_name", :with => ""
 					fill_in "product_price", :with => ""
 					find("form#edit_resource").submit_form!
@@ -97,10 +97,10 @@ describe "shared pages" do
 
 		describe "show" do
 			let(:product) { Factory(:product) }
-			let(:image) { Factory(:image_resource) }
+			let(:photo) { Factory(:photo) }
 
 			before do
-				image.foreign_key = product.id
+				photo.product_id = product.id
 				visit adminpanel.product_path(product)
 			end
 

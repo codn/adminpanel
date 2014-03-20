@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe "adminpanel:resource" do
-	
+
 	with_args :category do
 		it "should generate categories migration" do
 			subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_categories_table.rb")
@@ -118,21 +118,21 @@ describe "adminpanel:resource" do
 
 			it "should generate model with description hash" do
 				subject.should generate("app/models/adminpanel/product.rb") { |content|
-					content.should =~ /\{\"description\" => \{/ &&
-					content.should =~ /\"type\" => \"wysiwyg_field\", /&&
-					content.should =~ /\"name\" => \"description\", / &&
-					content.should =~ /\"label\" => \"description\", / &&
-					content.should =~ /\"placeholder\" => \"description\"\}\}/
+					content.should =~ /'description' => \{/ &&
+					content.should =~ /'type' => 'wysiwyg_field',/&&
+					content.should =~ /'name' => 'description',/ &&
+					content.should =~ /'label' => 'description',/ &&
+					content.should =~ /'placeholder' => 'description'\}/
 				}
 			end
 
 			it "should generate model with name hash" do
 				subject.should generate("app/models/adminpanel/product.rb") { |content|
-					content.should =~ /\{\"name\" => \{/
-					content.should =~ /\"type\" => \"text_field\", /
-					content.should =~ /\"name\" => \"name\", /
-					content.should =~ /\"label\" => \"name\", /
-					content.should =~ /\"placeholder\" => \"name\"\}\}/
+					content.should =~ /'name' => \{/
+					content.should =~ /'type' => 'text_field',/
+					content.should =~ /'name' => 'name',/
+					content.should =~ /'label' => 'name',/
+					content.should =~ /'placeholder' => 'name'\}/
 				}
 			end
 

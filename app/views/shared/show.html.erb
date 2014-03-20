@@ -1,6 +1,6 @@
 <% provide(:page_title, t("action.view") + " #{@model.display_name.capitalize}") -%>
 <% breadcrumb_add(
-  @model.display_name.capitalize.pluralize, 
+  @model.display_name.capitalize.pluralize,
   {
     :controller => params[:controller],
     :action => "index"
@@ -59,9 +59,10 @@
       <div class="widget-body row-fluid">
         <div id="gallery-container" class="js-masonry"
         data-masonry-options='{ "columnWidth": 3, "itemSelector": ".gallery-item" }'>
-        <% resource.images.each do |image|%>
+        <% resource.send(@model.get_image_relationship).each do |image|%>
         <div class="gallery-item">
           <%= link_to (image_tag image.file_url(:thumb)), image.file.to_s, :rel  => "group", :name => @model.display_name %>
+          <%#= link_to (image_tag image.file_url(:thumb)), image.file.to_s, :rel  => "group", :name => @model.display_name %>
         </div>
         <% end %>
       </div>

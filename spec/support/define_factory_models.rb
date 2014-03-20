@@ -12,7 +12,6 @@ Factory.define :gallery, :class => Adminpanel::Gallery do |gallery|
 end
 
 Factory.define :image_section, :class => Adminpanel::Image do |image|
-	image.model "Section"
 	image.file { fixture_file_upload(Rails.root.join('app', 'assets', 'images', 'hipster.jpg'), 'image/jpeg') }
 end
 
@@ -26,9 +25,8 @@ Factory.define :category, :class => Adminpanel::Category do |category|
 	category.name "Test Category"
 end
 
-Factory.define :image_resource, :class => Adminpanel::Image do |image|
-	image.model "Product"
-	image.file { fixture_file_upload(Rails.root.join('app', 'assets', 'images', 'hipster.jpg'), 'image/jpeg') }
+Factory.define :photo, :class => Adminpanel::Photo do |photo|
+	photo.file { fixture_file_upload(Rails.root.join('app', 'assets', 'images', 'hipster.jpg'), 'image/jpeg') }
 end
 
 Factory.define :section_with_gallery, :class => Adminpanel::Section do |section|

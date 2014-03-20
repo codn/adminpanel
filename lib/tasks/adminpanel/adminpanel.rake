@@ -2,7 +2,7 @@ namespace :adminpanel do
   desc "Interact with adminpanel models :D"
 
   task :section, [:section, :name, :type] => :environment do |t, args|
-    args.with_defaults(:section => "home", :name => "greeting", :type => "wysiwyg")
+    args.with_defaults(:section => "home", :name => "greeting", :type => "")
     puts "Creating #{args[:name]} in #{args[:section]} section"
 
     s = Adminpanel::Section.new(
