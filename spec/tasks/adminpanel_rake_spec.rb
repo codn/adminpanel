@@ -45,4 +45,13 @@ describe "adminpanel rake task" do
       )
     end
   end
+
+  describe 'adminpanel:user' do
+    before do
+      Rake.application.invoke_task "adminpanel:user"
+    end
+    it 'should create admin@codn user' do
+      Adminpanel::User.last.email.should eq('admin@codn.com')
+    end
+  end
 end

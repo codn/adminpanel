@@ -1,0 +1,6 @@
+$("#modal-button").trigger("click");
+row = "<tr><td><%= escape_javascript link_to resource.name, category_path(resource) %></td>";
+row = row + "<td><%= escape_javascript link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_category_path(category), :title => 'Editar' %> ";
+row = row + "<%= escape_javascript link_to content_tag(:i, nil, :class => 'icon-remove'),[category], :title => 'Editar', :method => :delete %></td>";
+row = row + "</tr>";
+$("#<%= resource.model %>-table").append(row);
