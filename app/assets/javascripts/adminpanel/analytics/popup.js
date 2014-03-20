@@ -9,10 +9,10 @@ var tokenRegex = /\{([^\}]+)\}/g,
                 if (name in res) {
                     res = res[name];
                 }
-                typeof res == "function" && isFunc && (res = res());
+                // (typeof(res) == "function") && isFunc && (res = res());
             }
         });
-        res = (res == null || res == obj ? all : res) + "";
+        res = (res === null || res == obj ? all : res) + "";
         return res;
     },
     fill = function (str, obj) {
@@ -42,7 +42,7 @@ var tokenRegex = /\{([^\}]+)\}/g,
                 hx2: X - (x + r + gap),
                 vhy: Y - (y + r + h + r + gap),
                 "^hy": Y - (y - gap)
-                
+
             },
             mask = [{
                 x: x + r,
