@@ -6,14 +6,6 @@ class CreateAdminpanelTables < ActiveRecord::Migration
 			if Rails.env.development?
 				Adminpanel::User.new(:email => 'admin@admin.com', :name => "Admin", :password => 'password', :password_confirmation => 'password').save
 				puts "The password for admin@admin.com is: password"
-			else
-				characters = ("a".."z").to_a << ("A".."Z").to_a << (0..9).to_a <<(["!","@","#","$","%","^","&","*","(",")", "_", "-","+", "="])
-				password = ""
-				8.times do
-					password = password + "#{characters.sample}"
-				end
-				puts "The password for admin@admin.com is: #{password}"
-				Adminpanel::User.new(:email => "admin@admin.com", :name => "Admin", :password => password, :password_confirmation => password).save
 			end
 		end
 	end

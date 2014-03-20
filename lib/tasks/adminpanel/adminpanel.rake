@@ -25,14 +25,60 @@ namespace :adminpanel do
     s.save
   end
 
-  task :dump => :dump_sections
+  task :user => :environment do |t|
+    characters = []
+    characters.concat(("a".."z").to_a)
+    characters.concat(("A".."Z").to_a)
+    characters.concat((0..9).to_a)
+    characters.concat(%w[! @ \# $ % ^ & * , _ - + =])
+    password = ""
+    8.times do
+      password = password + "#{characters.sample}"
+    end
+    puts "Creating/overwriting admin@codn.com with password #{password}"
+    user = Adminpanel::User.find_by_email('admin@codn.com')
+    if !user.nil?
+      user.delete
+    end
+
+    Adminpanel::User.new(
+      :email => 'admin@codn.com',
+      :name => 'CoDN',
+      :password => password,
+      :password_confirmation => password
+    ).save
+  end
+
+  task :dump => :environment do |t|
+    puts "Dumping adminpanel_sections and adminpanel_categories into db/seeds.rb"
+    File.open("db/seeds.rb", "w") do |f|
+        f << "Adminpanel::Section.delete_all\n"
+        f << "Adminpanel::Category.delete_all\n"
+      Adminpanel::Section.all.each do |section|
+        f << "#{creation_command_section(section)}"
+      end
+      Adminpanel::Category.all.each do |category|
+        f << "#{creation_command_category(category)}"
+      end
+    end
+  end
 
   task :dump_sections => :environment do |t|
     puts "Dumping adminpanel_sections table into db/seeds.rb"
     File.open("db/seeds.rb", "w") do |f|
         f << "Adminpanel::Section.delete_all\n"
       Adminpanel::Section.all.each do |section|
-        f << "#{creation_command(section)}"
+        f << "#{creation_command_section(section)}"
+      end
+    end
+  end
+
+  task :dump_categories => :environment do |t|
+    puts "Dumping adminpanel_categories table into db/seeds.rb"
+    File.open("db/seeds.rb", "w") do |f|
+        f << "Adminpanel::Section.delete_all\n"
+      Adminpanel::Section.all.each do |section|
+        f << "#{creation_command_categories(section)}"
       end
     end
   end
@@ -91,7 +137,7 @@ namespace :adminpanel do
         end
       end
 
-      instance.save
+      instance.save(:validate => false)
 
       change_dates(instance)
 
@@ -106,16 +152,22 @@ end
 
 private
 
-  def creation_command(section)
+  def creation_command_section(section)
     "Adminpanel::Section.new(\n" +
-    ":name => \"#{section.name}\",\n" +
+    "\t:name => \"#{section.name}\",\n" +
     "\t:has_description => #{section.has_description},\n" +
     "\t:description => \"#{section.description}\",\n" +
     "\t:key => \"#{section.key}\",\n" +
     "\t:page => \"#{section.page}\",\n" +
     "\t:has_image => #{section.has_image}\n" +
     ").save\n"
+  end
 
+  def creation_command_category(category)
+    "Adminpanel::Category.new(\n" +
+    "\t:name => \"#{category.name}\",\n" +
+    "\t:model => \"#{category.model}\"\n" +
+    ").save\n"
   end
 
   def create_image_of(model_id)

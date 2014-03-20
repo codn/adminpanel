@@ -1,4 +1,3 @@
-
 <%= custom_form_for(resource, :remote => true, :html => {:class => "form-horizontal", :id => "new_resource"}) do |f| -%>
   <div class="row-fluid">
     <div class="modal-body">
@@ -8,7 +7,7 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true"><%= I18n.t('action.close') %></button>
+    <button id="modal-button" class="btn" data-dismiss="modal" aria-hidden="true"><%= I18n.t('action.close') %></button>
     <%= f.submit t("action.add") + " " + @model.display_name, :disable_with => t("action.submitting"), :id =>"new-resource-button" %>
   </div>
 <% end -%>
