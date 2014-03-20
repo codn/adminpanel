@@ -250,7 +250,7 @@ module Adminpanel
 			end
 
 			def generate_gallery
-				Rails::Generators.invoke("adminpanel:gallery", [@attr_field, lower_name])
+				Rails::Generators.invoke("adminpanel:gallery", lower_name)
 			end
 
 		end
