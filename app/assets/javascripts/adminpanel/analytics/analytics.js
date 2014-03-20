@@ -1,18 +1,22 @@
+//= require raphael-min
+//= require popup.js
+//= require_self
+
 $(document).ready(function() {
     Raphael.fn.drawGrid = function (x, y, w, h, wv, hv, color) {
         color = color || "#000";
         var path = [
-            "M", 
-            Math.round(x) + .5, 
-            Math.round(y) + .5, 
+            "M",
+            Math.round(x) + .5,
+            Math.round(y) + .5,
             "L",
             Math.round(x + w) + .5,
-            Math.round(y) + .5, 
-            Math.round(x + w) + .5, 
-            Math.round(y + h) + .5, 
-            Math.round(x) + .5, 
-            Math.round(y + h) + .5, 
-            Math.round(x) + .5, 
+            Math.round(y) + .5,
+            Math.round(x + w) + .5,
+            Math.round(y + h) + .5,
+            Math.round(x) + .5,
+            Math.round(y + h) + .5,
+            Math.round(x) + .5,
             Math.round(y) + .5
             ],
             rowHeight = h / hv,
@@ -60,7 +64,7 @@ $(document).ready(function() {
             data = [];
         data = $("#graphic-container").data('visits');
         labels = $("#graphic-container").data('dates');
-        
+
         // Draw
         var $sidebarMenu = $('#sidebar-navigation'),
             width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
