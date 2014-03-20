@@ -3,7 +3,7 @@ module Adminpanel
 
 		alias_method :text_field_original, :text_field
 		alias_method :radio_button_original, :radio_button
-		alias_method :checkbox_original, :check_box
+		alias_method :parent_file_field, :file_field
 
 		def text_field(name, *args)
 			options = args.extract_options!
@@ -18,17 +18,37 @@ module Adminpanel
 			end
 		end
 
-		def adminpanel_file_field(name, *args)
+		def file_field(name, *args)
 			options = args.extract_options!
-
-			options.reverse_merge! :class => "span7"
-			options.reverse_merge! :label => name
-			label = options[:label]
-			options.delete(:label)
+			label = options['label']
+			options.delete('label')
 
 			@template.content_tag :div, :class => "control-group" do
 				@template.content_tag(:label, label, :class => "control-label") +
-				@template.content_tag(:div, file_field(name, *args << options), :class => "controls")
+				@template.content_tag(:div, super(name, *args << options), :class => "controls")
+			end
+		end
+
+		def gallery_field(name, *args)
+			options = args.extract_options!
+			label = options['label']
+			options.delete('label')
+
+			@template.content_tag :div, :class => "control-group" do
+				@template.content_tag(:label, label, :class => "control-label") +
+				hidden_field(:_destroy) +
+				@template.content_tag(
+					:div,
+					(
+						parent_file_field(name, *args << options) +
+						hidden_field(:_destroy) +
+						@template.content_tag(:button,
+							I18n.t("action.delete"),
+							:class => "btn btn-danger remove_fields"
+						)
+					),
+					:class => "controls"
+				)
 			end
 		end
 
