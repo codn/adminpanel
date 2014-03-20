@@ -1,10 +1,25 @@
 require 'spec_helper'
 
-describe "adminpanel:initialize" do
-  context "with no arguments or options" do
-  #   it "should generate the initialization migration" do
-  #     subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S").to_i + 1}_create_adminpanel_tables.rb")
-  #   end
+describe "adminpanel:gallery" do
+
+  with_args :Product do
+    it 'should generate the model' do
+      subject.should generate('app/models/adminpanel/productfile.rb'){ |content|
+        content.should =~ /attr_accessible :product_id, :file/ &&
+        content.should =~ /mount_uploader :file, ProductfileUploader/
+      }
+    end
+
+    it 'should generate the uploader' do
+      subject.should generate('app/uploader/adminpanel/productfile_uploader.rb')
+    end
+
+    # it 'should generate the migration' do
+    #   subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_adminpanel_productfields_table.rb"){|content|
+    #     content.should =~ /t.integer :product_id/
+    #   }
+    #
+    # end
   #
   #   it "should generate the default category model" do
   #     subject.should generate("app/models/adminpanel/category.rb")
