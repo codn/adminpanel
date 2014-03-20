@@ -1,6 +1,6 @@
 # Adminpanel
 
-This gem is developed to be a CMS for Ruby 1.8.7 and Rails 3.2.12 
+This gem is developed to be a CMS for Ruby 1.8.7 and Rails 3.2.12
 
 [![Gem Version](https://badge.fury.io/rb/adminpanel.png)](http://badge.fury.io/rb/adminpanel@2x)
 [![Travis CI   ](https://api.travis-ci.org/joseramonc/adminpanel.png)       ](https://travis-ci.org/joseramonc/adminpanel)
@@ -17,10 +17,13 @@ And then execute:
 
 ## Usage
 
-In you application.rb 
+In you application.rb
 
-    config.i18n.default_locale = :es
+    config.default_locale = :es
+
 no other language is currently supported, but pull requests are welcome.
+
+The create a directory called `adminpanel` under `app/controllers` this is the directory where your admin resources will go.
 
 Then run:
 
@@ -48,13 +51,13 @@ Please make sure that you have (rmagick) ImageMagick -v 2.13.2 installed before 
 ###Google Analytics Integration
 
 To take advantage of the Integration with the Google Analytics Service you should add the analytics script to the public side of your application and then create an intializer called when you setup your authentication with Google
-	
+
 	# The configuration values you can provide are
 
 	Adminpanel.setup do |config|
 		# You get this from the Google Analytics Dashboard, this configuration is required.
 		config.analytics_profile_id = '12341234'
-		# The next configuration is the file used to establish server to server authentication/authorization 
+		# The next configuration is the file used to establish server to server authentication/authorization
 		# you need to download this file from the Google Developers Console
 		# and place it inside your application, this configuration is required.
 		config.analytics_key_filename = '12345ABCDE.p12'
@@ -64,7 +67,7 @@ To take advantage of the Integration with the Google Analytics Service you shoul
 
 Currently it only shows the visits from the last week, but more integrations will come.
 
-For more information about using the Google API visit 
+For more information about using the Google API visit
 * [Google Analytics API](https://developers.google.com/analytics/devguides/reporting/core/v3/)
 * [Google API Ruby Client](https://github.com/google/google-api-ruby-client)
 * [Google OAuth 2.0](https://developers.google.com/accounts/docs/OAuth2)
