@@ -6,19 +6,5 @@
 			</div>
 		</div>
 	<% end %>
-	<div class="control-group">
-			<%= f.label t("image"), :class => "control-label"  %>
-		<div class="controls">
-			<%= f.file_field :file %>
-			<%#= f.hidden_field :model, :value => model_name %>
-			<%= f.hidden_field :_destroy %>
-			<%=
-			content_tag(
-				:button,
-				t("action.delete"),
-				:class => "btn btn-danger remove_fields"
-			)
-			%>
-		</div>
-	</div>
+	<%= f.gallery_field :file %>
 </div>
