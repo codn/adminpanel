@@ -4,7 +4,7 @@ module Adminpanel
 		class InitializeGenerator < ActiveRecord::Generators::Base
 			desc "Generate the migrations necessary to start the gem"
   		source_root File.expand_path("../templates", __FILE__)
-			argument :name, :type => :string, :default => "Admi", :require => false
+			argument :name, :type => :string, :default => "default", :require => false
 			class_option :include_category, :type => :boolean, :aliases => "-c", :default => true, :desc => "Include category skeleton and migration for it"
 
 			def create_initializers
