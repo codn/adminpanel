@@ -1,39 +1,39 @@
-require "spec_helper"
+require 'spec_helper'
 
-describe "adminpanel:resource" do
+describe 'adminpanel:resource' do
 
 	with_args :category do
-		it "should generate categories migration" do
+		it 'should generate categories migration' do
 			subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_categories_table.rb")
 		end
-		it "should generate categories controller" do
-			subject.should generate("app/controllers/adminpanel/categories_controller.rb")
+		it 'should generate categories controller' do
+			subject.should generate('app/controllers/adminpanel/categories_controller.rb')
 		end
-		it "should generate category model" do
-			subject.should generate("app/models/adminpanel/category.rb")
+		it 'should generate category model' do
+			subject.should generate('app/models/adminpanel/category.rb')
 		end
 
 		context "with has_many and belongs_to" do
 			with_args :"products,categorizations:has_many_through", :"product:belongs_to" do
 				it "should generate categories migration" do
 					subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_categories_table.rb") { |content|
-						content.should =~ /t.integer \:product_id/ &&
+						content.should =~ /t.integer :product_id/ &&
 						(
-							content.should_not =~ /t.integer \:products_id/ ||
-							content.should_not =~ /t.integer \:categorizations_id/
+							content.should_not =~ /t.integer :products_id/ ||
+							content.should_not =~ /t.integer :categorizations_id/
 						)
 					}
 				end
 
 				it "should generate model with has_many categorizations" do
 					subject.should generate("app/models/adminpanel/category.rb") { |content|
-						content.should =~ /has_many \:categorizations/
+						content.should =~ /has_many :categorizations/
 					}
 				end
 
 				it "should generate model with has_many products through categorizations" do
 					subject.should generate("app/models/adminpanel/category.rb") { |content|
-						content.should =~ /has_many \:products, \:through => \:categorizations/
+						content.should =~ /has_many :products, :through => :categorizations/
 					}
 				end
 
@@ -76,28 +76,35 @@ describe "adminpanel:resource" do
 					:"name:string", :"quantity:integer" do
 			it "should generate migration with correct values" do
 				subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_products_table.rb") { |content|
-					content.should =~ /t.text \:description/ &&
-					content.should =~ /t.text \:long_text/ &&
-					content.should =~ /t.float \:price/ &&
-					content.should =~ /t.string \:date/ &&
-					content.should =~ /t.string \:name/ &&
-					content.should =~ /t.integer \:quantity/
+					content.should =~ /t.text :description/ &&
+					content.should =~ /t.text :long_text/ &&
+					content.should =~ /t.float :price/ &&
+					content.should =~ /t.string :date/ &&
+					content.should =~ /t.string :name/ &&
+					content.should =~ /t.integer :quantity/
 				}
 			end
 		end
 
-		with_args :"image:images" do
+		with_args :"photo:images" do
 			it "should generate model with image relationship" do
 				subject.should generate("app/models/adminpanel/product.rb") { |content|
-					content.should =~ /has_many :images, :foreign_key => "foreign_key", :conditions => \{ :model => "product" \}/
+					content.should =~ /mount_images :photos/ &&
+					content.should =~ /'photos' => \{/ &&
+					content.should =~ /'type' => 'adminpanel_file_field'/
 				}
 			end
-
-			it "should accept nested attributes for image" do
-				subject.should generate("app/models/adminpanel/product.rb") { |content|
-					content.should =~ /accepts_nested_attributes_for :images, :allow_destroy => true/
-				}
-			end
+			#
+			# it "should generate a photos uploader" do
+			# 	subject.should generate("app/uploader/adminpanel/photos_uploader.rb")
+			# end
+			#
+			# it "should generate a photo model" do
+			# 	subject.should generate("app/models/adminpanel/photo.rb"){ |content|
+			# 		content.should =~ /mount_uploader :file, CameraUploader/ &&
+			# 		content.should =~ /:camera_id/
+			# 	}
+			# end
 		end
 
 

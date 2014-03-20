@@ -1,4 +1,4 @@
 module Adminpanel
-	class ProductsController < Adminpanel::ApplicationController
-	end
+  class ProductsController < Adminpanel::ApplicationController
+  end
 end

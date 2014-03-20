@@ -1,4 +1,4 @@
 module Adminpanel
-    class CategoriesController < Adminpanel::ApplicationController
-    end
+  class CategoriesController < Adminpanel::ApplicationController
+  end
 end
