@@ -3,25 +3,25 @@ $(document).ready(function() {
         color = color || "#000";
         var path = [
             "M",
-            Math.round(x) + .5,
-            Math.round(y) + .5,
+            Math.round(x) + 0.5,
+            Math.round(y) + 0.5,
             "L",
-            Math.round(x + w) + .5,
-            Math.round(y) + .5,
-            Math.round(x + w) + .5,
-            Math.round(y + h) + .5,
-            Math.round(x) + .5,
-            Math.round(y + h) + .5,
-            Math.round(x) + .5,
-            Math.round(y) + .5
+            Math.round(x + w) + 0.5,
+            Math.round(y) + 0.5,
+            Math.round(x + w) + 0.5,
+            Math.round(y + h) + 0.5,
+            Math.round(x) + 0.5,
+            Math.round(y + h) + 0.5,
+            Math.round(x) + 0.5,
+            Math.round(y) + 0.5
             ],
             rowHeight = h / hv,
             columnWidth = w / wv;
         for (var i = 1; i < hv; i++) {
-            path = path.concat(["M", Math.round(x) + .5, Math.round(y + i * rowHeight) + .5, "H", Math.round(x + w) + .5]);
+            path = path.concat(["M", Math.round(x) + 0.5, Math.round(y + i * rowHeight) + 0.5, "H", Math.round(x + w) + 0.5]);
         }
         for (i = 1; i < wv; i++) {
-            path = path.concat(["M", Math.round(x + i * columnWidth) + .5, Math.round(y) + .5, "V", Math.round(y + h) + .5]);
+            path = path.concat(["M", Math.round(x + i * columnWidth) + 0.5, Math.round(y) + 0.5, "V", Math.round(y + h) + 0.5]);
         }
 
         return this.path(path.join(",")).attr({stroke: color});
@@ -76,7 +76,7 @@ $(document).ready(function() {
             bottomgutter = 25,
             topgutter = 25,
             colorhue = Math.random(),
-            color = "hsl(" + [colorhue, .5, .5] + ")",
+            color = "hsl(" + [colorhue, 0.5, 0.5] + ")",
             r = Raphael("graphic-container", width, height),
             txt = {font: '12px Helvetica, Arial', fill: "#fff"},
             txt1 = {font: '10px Helvetica, Arial', fill: "#fff"},
@@ -85,7 +85,7 @@ $(document).ready(function() {
             max = Math.max.apply(Math, data),
             Y = (height - bottomgutter - topgutter) / max;
 
-        r.drawGrid(leftgutter + X * .5 + .5, topgutter + .5, width - leftgutter - X, height - topgutter - bottomgutter, 10, 10, "#000");
+        r.drawGrid(leftgutter + X * 0.5 + 0.5, topgutter + 0.5, width - leftgutter - X, height - topgutter - bottomgutter, 10, 10, "#000");
 
         var path = r.path().attr({stroke: color, "stroke-width": 4, "stroke-linejoin": "round"}),
             bgp = r.path().attr({stroke: "none", opacity: .3, fill: color}),
@@ -102,15 +102,15 @@ $(document).ready(function() {
         var p, bgpp;
         for (var i = 0, ii = labels.length; i < ii; i++) {
             var y = Math.round(height - bottomgutter - Y * data[i]),
-                x = Math.round(leftgutter + X * (i + .5)),
+                x = Math.round(leftgutter + X * (i + 0.5)),
                 t = r.text(x, height - 6, labels[i]).attr(txt).toBack();
             if (!i) {
                 p = ["M", x, y, "C", x, y];
-                bgpp = ["M", leftgutter + X * .5, height - bottomgutter, "L", x, y, "C", x, y];
+                bgpp = ["M", leftgutter + X * 0.5, height - bottomgutter, "L", x, y, "C", x, y];
             }
             if (i && i < ii - 1) {
                 var Y0 = Math.round(height - bottomgutter - Y * data[i - 1]),
-                    X0 = Math.round(leftgutter + X * (i - .5)),
+                    X0 = Math.round(leftgutter + X * (i - 0.5)),
                     Y2 = Math.round(height - bottomgutter - Y * data[i + 1]),
                     X2 = Math.round(leftgutter + X * (i + 1.5));
                 var a = getAnchors(X0, Y0, x, y, X2, Y2);
