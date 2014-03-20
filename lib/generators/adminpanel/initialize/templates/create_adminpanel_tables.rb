@@ -17,7 +17,7 @@ class CreateAdminpanelTables < ActiveRecord::Migration
 			end
 		end
 	end
-	
+
 	def change
 	    create_table :adminpanel_users do |t|
 	      t.string :name
@@ -37,8 +37,7 @@ class CreateAdminpanelTables < ActiveRecord::Migration
 
 	    create_table :adminpanel_images do |t|
 	      t.string :file
-	      t.integer :foreign_key
-	      t.string :model
+	      t.integer :section_id
 	      t.timestamps
 	    end
 

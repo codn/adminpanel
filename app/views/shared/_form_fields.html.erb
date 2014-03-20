@@ -13,7 +13,7 @@
 		<% end %>
 
 	<% elsif properties["type"] == "adminpanel_file_field" %>
-		<%= f.fields_for attribute do |builder| %>
+		<%= f.fields_for(attribute) do |builder| %>
     	<%= render 'shared/image_fields', :f => builder %>
   	<% end -%>
   	<%= link_to_add_fields t("Add Image"), f, attribute %>

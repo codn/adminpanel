@@ -3,10 +3,10 @@ require 'rails/generators/active_record'
 module Adminpanel
 	module Generators
 		class ResourceGenerator < ActiveRecord::Generators::Base
-
   		source_root File.expand_path("../templates", __FILE__)
-  		argument :fields, :type => :array, :default => "name:string"
 			desc "Generate the resource files necessary to use a model"
+
+  		argument :fields, :type => :array, :default => "name:string"
 
 			def create_model
     		template 'resource.rb', "app/models/adminpanel/#{lower_name}.rb"
@@ -83,7 +83,7 @@ module Adminpanel
 					assign_attributes_variables(attribute)
 
         	if @attr_type == "images"
-            	attr_string = attr_string + ":images_attributes, "
+            	attr_string = attr_string + ":#{@attr_field.pluralize.downcase}_attributes, "
         	elsif @attr_type == "belongs_to"
         		attr_string = "#{attr_string}:#{belongs_to_field(@attr_field)}, "
         	elsif @attr_type == "has_many" || @attr_type == "has_many_through"
@@ -118,7 +118,7 @@ module Adminpanel
 					elsif @attr_type == "datepicker"
 						form_hash = form_hash + "#{attribute_hash('datepicker')}"
 					elsif @attr_type == "images"
-						form_hash = form_hash + "#{attribute_hash('adminpanel_file_field')}"
+						form_hash = form_hash + "#{file_field_hash}"
 					elsif @attr_type == "belongs_to"
 						form_hash = form_hash + "#{belongs_to_attribute_hash(belongs_to_field(@attr_field))}"
 					elsif @attr_type == "has_many" || @attr_type == "has_many_through"
@@ -137,6 +137,13 @@ module Adminpanel
 
 			def attribute_hash(type)
 				"#{attribute_name} => {#{form_type(type)}," +
+				"#{name_type}," +
+				"#{label_type}," +
+				"#{placeholder_type}}\n\t\t\t},"
+			end
+
+			def file_field_hash
+				"#{starting_hash(@attr_field.downcase.pluralize)} => {#{form_type('adminpanel_file_field')}," +
 				"#{name_type}," +
 				"#{label_type}," +
 				"#{placeholder_type}}\n\t\t\t},"
@@ -238,11 +245,14 @@ module Adminpanel
 			end
 
 			def image_association
-				return "has_many :images, :foreign_key => \"foreign_key\", " +
-				":conditions => { :model => \"#{lower_name}\" } \n\t\t" +
-				"accepts_nested_attributes_for :images, :allow_destroy => true\n\t\t" +
-				"#remember to change the association if you change this model display_name\n\t\t"
+				generate_gallery
+				return "\n\t\tmount_images :#{@attr_field.pluralize.downcase}\n"
 			end
+
+			def generate_gallery
+				Rails::Generators.invoke("adminpanel:gallery", [@attr_field, lower_name])
+			end
+
 		end
 	end
 end
