@@ -23,9 +23,22 @@ module Adminpanel
 			label = options['label']
 			options.delete('label')
 
-			@template.content_tag :div, :class => "control-group" do
+
+			image = @template.content_tag :div, :class => "control-group" do
 				@template.content_tag(:label, label, :class => "control-label") +
 				@template.content_tag(:div, super(name, *args << options), :class => "controls")
+			end
+
+			if object.new_record?
+				image
+			else
+				thumbnail = @template.content_tag :div, :class => 'control-group' do
+					@template.content_tag :div, :class => 'controls' do
+						@template.image_tag object.send("#{name}_url", :thumb)
+					end
+				end
+
+				"#{thumbnail}#{image}".html_safe
 			end
 		end
 
@@ -35,20 +48,23 @@ module Adminpanel
 			options.delete('label')
 
 			@template.content_tag :div, :class => "control-group" do
-				@template.content_tag(:label, label, :class => "control-label") +
-				hidden_field(:_destroy) +
-				@template.content_tag(
-					:div,
-					(
-						parent_file_field(name, *args << options) +
-						hidden_field(:_destroy) +
-						@template.content_tag(:button,
-							I18n.t("action.delete"),
-							:class => "btn btn-danger remove_fields"
-						)
-					),
-					:class => "controls"
-				)
+				label = @template.content_tag(:label, label, :class => "control-label")
+				input = @template.content_tag :div, :class => "controls" do
+					input = parent_file_field(name, *args << options)
+					hidden_input = hidden_field(:_destroy)
+					delete_button = @template.content_tag(:button, I18n.t("action.delete"), :class => "btn btn-danger remove_fields")
+
+					if object.new_record?
+						"#{input}#{hidden_input}#{delete_button}".html_safe
+					else
+						thumbnail = @template.content_tag :div, :class => 'control-group' do
+							@template.image_tag object.send("#{name}_url", :thumb)
+						end
+
+						"#{thumbnail}#{input}#{hidden_input}#{delete_button}".html_safe
+					end
+				end
+				"#{label}#{input}".html_safe
 			end
 		end
 

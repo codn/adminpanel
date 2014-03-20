@@ -6,7 +6,6 @@ module Adminpanel
 
 	  mount_images :images
 
-
 	  validates_length_of :description, :minimum => 10, :maximum => 10, :on => :update, :if => lambda{|section| section.key == I18n.t('key.telephone')}
 	  validates_presence_of :description, :minimum => 9, :on => :update, :if => lambda{|section| section.has_description == true}
 	  validates :description, :numericality => { :only_integer => true }, :on => :update, :if => lambda{|section| section.key == I18n.t('key.telephone')}

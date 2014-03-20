@@ -1,10 +1,3 @@
 <div class="product-image">
-	<% unless f.object.new_record? %>
-		<div class="control-group">
-			<div class="controls">
-				<%= image_tag f.object.file_url(:thumb) %>
-			</div>
-		</div>
-	<% end %>
 	<%= f.gallery_field :file %>
 </div>
