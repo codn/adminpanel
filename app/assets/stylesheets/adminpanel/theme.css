@@ -512,7 +512,6 @@ table.table thead .sorting_desc_disabled { background: url('sort_desc_disabled.p
 }
 .logo {
   float: left;
-  padding: 9px 0 0;
 }
 .container-fluid {
   padding: 0;
