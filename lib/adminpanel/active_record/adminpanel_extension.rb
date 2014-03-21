@@ -8,7 +8,7 @@ module ActiveRecord
 
     # static(class) methods
     module ClassMethods
-      
+
       def mount_images(relation)
         has_many relation, :dependent => :destroy
 		    accepts_nested_attributes_for relation, :allow_destroy => true
@@ -18,7 +18,7 @@ module ActiveRecord
         [{
           "name" => {
             "type" => "text_field",
-            "name" => "name"
+            "label" => "name"
           }
         }]
       end
@@ -31,19 +31,7 @@ module ActiveRecord
         form_attributes.each do |attribute|
           attribute.each do |name, properties|
             if name == field
-              return properties["name"]
-            end
-          end
-        end
-        return ":("
-      end
-
-
-      def get_attribute_name(field)
-        form_attributes.each do |attribute|
-          attribute.each do |name, properties|
-            if name == field
-              return properties["name"]
+              return properties["label"]
             end
           end
         end

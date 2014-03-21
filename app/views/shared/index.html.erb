@@ -28,7 +28,7 @@
               <% @model.display_attributes.each do |fields| %>
               <% fields.each do |attribute, properties| %>
                 <% if properties["type"] != "adminpanel_file_field" && properties["type"] != "has_many" %>
-                  <th><%= properties["name"] %></th>
+                  <th><%= properties["label"] %></th>
                 <% end %>
               <% end %>
               <% end %>

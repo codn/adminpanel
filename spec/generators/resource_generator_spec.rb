@@ -127,7 +127,6 @@ describe 'adminpanel:resource' do
 				subject.should generate("app/models/adminpanel/product.rb") { |content|
 					content.should =~ /'description' => \{/ &&
 					content.should =~ /'type' => 'wysiwyg_field',/&&
-					content.should =~ /'name' => 'description',/ &&
 					content.should =~ /'label' => 'description',/ &&
 					content.should =~ /'placeholder' => 'description'\}/
 				}
@@ -135,10 +134,9 @@ describe 'adminpanel:resource' do
 
 			it "should generate model with name hash" do
 				subject.should generate("app/models/adminpanel/product.rb") { |content|
-					content.should =~ /'name' => \{/
-					content.should =~ /'type' => 'text_field',/
-					content.should =~ /'name' => 'name',/
-					content.should =~ /'label' => 'name',/
+					content.should =~ /'name' => \{/ &&
+					content.should =~ /'type' => 'text_field',/ &&
+					content.should =~ /'label' => 'name',/ &&
 					content.should =~ /'placeholder' => 'name'\}/
 				}
 			end
