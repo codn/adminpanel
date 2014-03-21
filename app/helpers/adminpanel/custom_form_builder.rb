@@ -29,7 +29,7 @@ module Adminpanel
 				@template.content_tag(:div, super(name, *args << options), :class => "controls")
 			end
 
-			if object.new_record?
+			if object.nil? || object.new_record?
 				image
 			else
 				thumbnail = @template.content_tag :div, :class => 'control-group' do
