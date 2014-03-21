@@ -29,7 +29,7 @@ module Adminpanel
 				@template.content_tag(:div, super(name, *args << options), :class => "controls")
 			end
 
-			if object.new_record?
+			if object.nil? || object.new_record?
 				image
 			else
 				thumbnail = @template.content_tag :div, :class => 'control-group' do
@@ -54,7 +54,7 @@ module Adminpanel
 					hidden_input = hidden_field(:_destroy)
 					delete_button = @template.content_tag(:button, I18n.t("action.delete"), :class => "btn btn-danger remove_fields")
 
-					if object.new_record?
+					if object.nil? || object.new_record?
 						"#{input}#{hidden_input}#{delete_button}".html_safe
 					else
 						thumbnail = @template.content_tag :div, :class => 'control-group' do
