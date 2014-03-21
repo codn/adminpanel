@@ -16,7 +16,7 @@ module Adminpanel
       end
 
       def create_uploader
-        template 'uploader.rb', "app/uploader/adminpanel/#{lower_name}_uploader.rb"
+        template 'uploader.rb', "app/uploaders/adminpanel/#{lower_name}_uploader.rb"
       end
 
       def create_migration
