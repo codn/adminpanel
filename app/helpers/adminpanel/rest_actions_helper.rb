@@ -65,18 +65,26 @@ module Adminpanel
 		def set_collections
 			@collections = {}
 			set_belongs_to_collections
-			@model.has_many_relationships.each do |class_variable|
-				@collections.merge!({"#{class_variable}" => class_variable.find(:all)})
-			end
+			set_has_many_collections
 		end
 
 		def set_belongs_to_collections
 			@model.belongs_to_relationships.each do |class_variable|
-				if class_variable.respond_to?("of_model")
-					@collections.merge!({"#{class_variable}" => class_variable.of_model(@model.display_name)})
-				else
-					@collections.merge!({"#{class_variable}" => class_variable.find(:all)})
-				end
+				set_relationship(class_variable)
+			end
+		end
+
+		def set_has_many_collections
+			@model.has_many_relationships.each do |class_variable|
+				set_relationship(class_variable)
+			end
+		end
+
+		def set_relationship(class_variable)
+			if class_variable.respond_to?("of_model")
+				@collections.merge!({"#{class_variable}" => class_variable.of_model(@model.display_name)})
+			else
+				@collections.merge!({"#{class_variable}" => class_variable.find(:all)})
 			end
 		end
 	end

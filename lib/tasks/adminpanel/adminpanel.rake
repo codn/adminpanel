@@ -107,7 +107,7 @@ namespace :adminpanel do
           when "category" || "category_name" #generate a category name
             value = @things.sample.pluralize
 
-          when "lorem_name" || "sentence"
+          when "lorem_name" || 'small_lorem' || "sentence"
             value = generate_lorem_name #lorem random short sentence
 
           when "description" || "lorem" #large paragraph.

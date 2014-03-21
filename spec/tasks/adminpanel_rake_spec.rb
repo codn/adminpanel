@@ -7,7 +7,7 @@ describe "adminpanel rake task" do
     Rake::Task.define_task(:environment)
   end
 
-  describe "adminpanel:populate[10, product, name:name description:lorem price:number]" do
+  describe "adminpanel:populate[10, product, name:name description:lorem price:small_lorem]" do
 
     let(:has_nil_attribute) { false }
     before do
