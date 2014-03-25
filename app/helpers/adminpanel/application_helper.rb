@@ -21,8 +21,8 @@ module Adminpanel
 			end
 		end
 
-		def is_current_section?(controller_name)
-			"adminpanel/#{controller_name.downcase.pluralize}".include?(params[:controller]) ? 'active' : nil
+		def is_current_section?(display_name)
+			display_name == params[:controller].classify.constantize.display_name ? 'active' : nil
 		end
 
 		def section_is_login(section_name)
@@ -42,7 +42,11 @@ module Adminpanel
 		end
 
 		def route_symbol(model_name)
-			model_name.downcase.pluralize.downcase
+			model_name.pluralize.downcase
+		end
+
+		def symbol_class(symbol)
+			"adminpanel/#{symbol.to_s}".classify.constantize
 		end
 
 		def main_root_path

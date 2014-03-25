@@ -36,6 +36,10 @@
                       <li class="priority-low"><%= member.name %></li>
                     <% end %>
                   </ul>
+                <% elsif properties['type'] == 'file_field' %>
+                  <ul>
+                    <%= image_tag(resource.send("#{attribute}_url", :thumb)) %>
+                  </ul>
                 <% else %>
                   <%= resource.send(attribute) -%>
                 <% end %>

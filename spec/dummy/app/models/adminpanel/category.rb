@@ -17,8 +17,8 @@ module Adminpanel
             "Category"
         end
 
-        # def self.icon
-        #     "icon-truck"
-        # end
+        def self.display_icon
+            "icon-truck"
+        end
     end
 end

@@ -1,6 +1,6 @@
 module Adminpanel
-    class PagesController < Adminpanel::ApplicationController
-		
+    class AnalyticsController < Adminpanel::ApplicationController
+
 		skip_before_filter :set_model
 
 		API_VERSION = 'v3'
@@ -46,13 +46,13 @@ module Adminpanel
 				startDate = DateTime.now.prev_month.strftime("%Y-%m-%d")
 				endDate = DateTime.now.strftime("%Y-%m-%d")
 
-				@visitCount = client.execute(:api_method => analytics.data.ga.get, :parameters => { 
-				  'ids' => "ga:" + profileID, 
+				@visitCount = client.execute(:api_method => analytics.data.ga.get, :parameters => {
+				  'ids' => "ga:" + profileID,
 				  'start-date' => startDate,
 				  'end-date' => endDate,
 				  'dimensions' => "ga:day,ga:month",
 				  'metrics' => "ga:visits",
-				  'sort' => "ga:month,ga:day" 
+				  'sort' => "ga:month,ga:day"
 				})
 
 				@visits = @visitCount.data.rows.collect do |r|
@@ -60,7 +60,12 @@ module Adminpanel
 				end
 
 				@visitDates = @visitCount.data.rows.collect { |r| "#{r[0]}/#{r[1]}" }
+
 			end
+      respond_to do |format|
+        format.html
+        format.json {render :json => {:visit_count => @visitCount, :visits => @visits, :visit_dates => @visitDates }}
+      end
 		end
 	end
 end

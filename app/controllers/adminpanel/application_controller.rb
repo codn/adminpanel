@@ -6,11 +6,10 @@ module Adminpanel
 
         include SessionsHelper
         include RestActionsHelper
-        include RouterHelper
 
         layout "admin"
 
-        before_filter :signed_in_user, :set_model, :get_menu_elements
+        before_filter :signed_in_user, :set_model
 
 
         def signed_in_user
@@ -26,8 +25,8 @@ module Adminpanel
             super
         end
 
-        def get_menu_elements
-            @menu_items = menu_items
-        end
+        # def get_menu_elements
+        #     @menu_items = menu_items
+        # end
     end
 end
