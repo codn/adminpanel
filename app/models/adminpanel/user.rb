@@ -42,6 +42,10 @@ module Adminpanel
 
     end
 
+    def self.display_icon
+      'icon-user'
+    end
+
     private
       def create_remember_token
         self.remember_token = SecureRandom.base64.tr("+/", "-_")

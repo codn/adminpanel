@@ -50,6 +50,10 @@ module Adminpanel
 			"Galería"
 		end
 
+		def self.display_icon
+			'icon-picture'
+		end
+
   	private
   		def rearrange_positions
   			unarranged_galleries = Gallery.where("position > ?", position)

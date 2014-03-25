@@ -5,11 +5,16 @@ module Adminpanel
 
   class << self
   	mattr_accessor :analytics_profile_id, :analytics_key_path, :analytics_key_filename,
-    :unincluded_modules
+    :displayable_resources
   	self.analytics_profile_id = nil
   	self.analytics_key_path = "config/analytics"
   	self.analytics_key_filename = nil
-    self.unincluded_modules = []
+    self.displayable_resources = [
+      :categories,
+      :analytics,
+      :sections,
+      :categories
+    ]
   end
 
   def self.setup(&block)

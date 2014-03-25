@@ -12,8 +12,8 @@
 		%>
 	</div>
 	<div class="accordion" id="accordion2">
-
-		<% if !Adminpanel.unincluded_modules.include?(:analytics) %>
+		<% Adminpanel.displayable_resources.each do |resource| %>
+			<% resource_class = symbol_class(resource) %>
 			<div class="accordion-group">
 				<div class="accordion-heading">
 					<%=
@@ -21,99 +21,17 @@
 						content_tag(
 							:i,
 							nil,
-							:class => 'icon-dashboard') +
-							content_tag(:span," #{I18n.t('model.Analytics')}"),
-						pages_path,
-						:class => "accordion-toggle b_D1B2D1 #{is_current_section?('pages')}"
-						)
-					%>
-				</div>
-			</div>
-		<% end %>
-
-		<div class="accordion-group">
-			<div class="accordion-heading">
-				<%=
-				link_to(
-					content_tag(
-						:i,
-						nil,
-						:class => 'icon-user') +
-						content_tag(:span,' Usuarios'),
-					users_path,
-					:class => "accordion-toggle b_9FDDF6 #{is_current_section?('users')}"
-					)
-				%>
-			</div>
-		</div>
-
-		<% if !Adminpanel.unincluded_modules.include?(:gallery) %>
-			<div class="accordion-group">
-				<div class="accordion-heading">
-					<%=
-					link_to(
-						content_tag(
-							:i,
-							nil,
-							:class => 'icon-picture') +
-							content_tag(:span, " #{t('model.Gallery')}"),
-						galleries_path,
-						:class => "accordion-toggle b_C3F7A7 #{is_current_section?('galleries')}"
+							:class => resource_class.display_icon) +
+							content_tag(:span," #{resource_class.display_name}"),
+						[route_symbol(resource.to_s)],
+						:class => "accordion-toggle b_99FFCC
+							#{is_current_section?(resource_class.display_name)}"
 					)
 					%>
 				</div>
 			</div>
 		<% end %>
 
-		<% if !Adminpanel.unincluded_modules.include?(:sections) %>
-			<div class="accordion-group">
-				<div class="accordion-heading">
-					<%=
-					link_to(
-						content_tag(:i, nil, :class => 'icon-tasks') +
-							content_tag(:span, ' Secciones'),
-						sections_path,
-						:class => "accordion-toggle b_F6F1A2 #{is_current_section?('sections')}"
-					)
-					%>
-				</div>
-			</div>
-		<% end %>
-
-		<% if !Adminpanel.unincluded_modules.include?(:categories) %>
-			<div class="accordion-group">
-				<div class="accordion-heading">
-					<%=
-					link_to(
-						content_tag(:i, nil, :class => 'icon-bookmark') +
-							content_tag(:span, " #{t('model.Categories')}"),
-						categories_path,
-						:class => "accordion-toggle b_99FFCC #{is_current_section?('categories')}"
-					)
-					%>
-				</div>
-			</div>
-		<% end %>
-
-
-		<% @menu_items.each do |menu| %>
-			<div class="accordion-group">
-				<div class="accordion-heading">
-					<%=
-					link_to content_tag(
-						:i,
-						nil,
-						:class => "Adminpanel::#{menu}".constantize.icon
-					) + content_tag(
-						:span,
-						" " + pluralize_es("Adminpanel::#{menu}".constantize.display_name)
-					),
-					[route_symbol(menu)],
-					:class => "accordion-toggle b_F5C294 #{is_current_section?(menu)}"
-					%>
-				</div>
-			</div>
-		<% end %>
 	</div>
 </div>
 <!-- /Side menu -->

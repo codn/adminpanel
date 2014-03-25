@@ -16,6 +16,10 @@ module Adminpanel
 
     def edit
       @section = Section.find(params[:id])
+      respond_to do |format|
+        format.html
+        format.json {render :json => {:section => @section }}
+      end
     end
 
     def update

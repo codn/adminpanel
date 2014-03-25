@@ -11,7 +11,7 @@ describe "adminpanel:gallery" do
     end
 
     it 'should generate the uploader' do
-      subject.should generate('app/uploader/adminpanel/productfile_uploader.rb')
+      subject.should generate('app/uploaders/adminpanel/productfile_uploader.rb')
     end
 
     # it 'should generate the migration' do

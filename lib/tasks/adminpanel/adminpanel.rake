@@ -84,7 +84,6 @@ namespace :adminpanel do
   end
 
   task :populate, [:times, :model, :attributes] => :environment do |t, args|
-
     puts "Generating #{args[:times]} records of #{args[:model]}"
 
     @model = "adminpanel/#{args[:model]}".classify.constantize
@@ -107,25 +106,26 @@ namespace :adminpanel do
           when "category" || "category_name" #generate a category name
             value = @things.sample.pluralize
 
-          when "lorem_name" || 'small_lorem' || "sentence"
+          when 'lorem_short'
             value = generate_lorem_name #lorem random short sentence
 
-          when "description" || "lorem" #large paragraph.
+          when "lorem" || "description" #large paragraph.
             value = generate_lorem
 
           when "number" #generate a number
             value = [*1..5000].sample
 
           when "id" #assign field_id it to a random instance of Adminpanel::field
-            value = "adminpanel/#{field}".classify.constantize.order("RAND()").first.id
-            field = "#{field}_id"
+            field = field.downcase.singularize
+            if field != 'category'
+              value = "adminpanel/#{field}".classify.constantize.order("RAND()").first.id
+            else
+              value = "adminpanel/#{field}".classify.constantize.of_model(@model.display_name).order("RAND()").first.id
+            end
+              field = "#{field}_id"
 
           when "email" #generates a random email
             value = generate_email
-
-          when "image" #force an image...
-            has_image = true
-            @file_url = "http://placehold.it/#{field}"
 
           else #no type
             value = "#{time + 1} Lorem ipsum dolor sit amec"
@@ -140,10 +140,6 @@ namespace :adminpanel do
       instance.save(:validate => false)
 
       change_dates(instance)
-
-      if(has_image) #forcing the image into the db
-        create_image_of(instance.id)
-      end
 
     end
 
@@ -168,16 +164,6 @@ private
     "\t:name => \"#{category.name}\",\n" +
     "\t:model => \"#{category.model}\"\n" +
     ").save\n"
-  end
-
-  def create_image_of(model_id)
-    image_instance = Adminpanel::Image.new(
-      :model => @model.display_name,
-      :foreign_key => model_id
-      )
-    image_instance.save(:validate => false)
-    image_instance.update_column(:file, @file_url)
-    change_dates(image_instance)
   end
 
   def generate_lorem
