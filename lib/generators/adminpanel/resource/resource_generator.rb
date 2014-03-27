@@ -246,11 +246,11 @@ module Adminpanel
 
 			def image_association
 				generate_gallery
-				return "\n\t\tmount_images :#{@attr_field.pluralize.downcase}\n"
+				return "\n\t\tmount_images :#{lower_name}files\n"
 			end
 
 			def generate_gallery
-				Rails::Generators.invoke("adminpanel:gallery", lower_name)
+				generate "adminpanel:gallery", lower_name
 			end
 
 		end

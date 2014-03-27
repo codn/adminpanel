@@ -1,41 +1,68 @@
 require 'spec_helper'
+require 'generators/adminpanel/initialize/initialize_generator'
 
-describe "adminpanel:initialize" do
+describe Adminpanel::Generators::InitializeGenerator do
+  destination File.expand_path("../../dummy/tmp", __FILE__)
 
-  context "with no arguments or options" do
-    it "should generate the initialization migration" do
-      subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S").to_i + 1}_create_adminpanel_tables.rb")
+  before do
+    Rails::Generators.options[:rails][:orm] = :active_record
+  end
+
+  after do
+    prepare_destination
+  end
+
+  describe 'with no arguments' do
+    before do
+      prepare_destination
+      run_generator
     end
 
-    it "should generate the default category model" do
-      subject.should generate("app/models/adminpanel/category.rb")
+    it 'should generate the initial migration' do
+      migration_file('db/migrate/create_adminpanel_tables.rb').should be_a_migration
+    end
+
+    it 'should generate the adminpanel_setup file' do
+      file('config/initializers/adminpanel_setup.rb').should exist
     end
 
     it 'should generate the categories migration' do
-      subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_adminpanel_categories_table.rb")
+      migration_file('db/migrate/create_adminpanel_categories_table.rb').should be_a_migration
     end
 
-    it 'should generate the configuration initializer' do
-      subject.should generate('config/initializers/adminpanel_setup.rb'){ |content|
-        content.should =~ /Adminpanel.setup do |config|/
-      }
+    it 'should generate the category file' do
+      file('app/models/adminpanel/category.rb').should exist
+    end
+
+    it 'should generate the section uploader' do
+      file('app/uploaders/adminpanel/section_uploader.rb').should exist
     end
   end
 
-  with_args :'-c', :true, :'-u', :true, :'-m', :true do
-
-    it "shouldn't generate the default category model" do
-      subject.should_not generate("app/models/adminpanel/category.rb")
+  describe 'with arguments -c true -u true -m true -s true' do
+    before do
+      prepare_destination
+      run_generator %w(-c true -u true -m true -s true)
     end
 
-    it "shouldn't generate the categories migration" do
-      subject.should_not generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_adminpanel_categories_table.rb")
+    it 'should\'t generate the adminpanel_setup' do
+      file('config/initializers/adminpanel_setup.rb').should_not exist
     end
 
-    it "shouldn't generate the initialization migration" do
-      subject.should_not generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S").to_i + 1}_create_adminpanel_tables.rb")
+    it 'should\'t generate the initial migration' do
+      migration_file('db/migrate/create_adminpanel_categories_table.rb').should_not exist
     end
 
+    it 'should\'t genearte the section uploader' do
+      file('app/uploaders/adminpanel/section_uploader.rb').should_not exist
+    end
+
+    it 'should\'t generate the categories migration' do
+      migration_file('db/migrate/create_adminpanel_categories_table.rb').should_not exist
+    end
+
+    it 'should\'t generate the category file' do
+      file('app/models/adminpanel/category.rb').should_not exist
+    end
   end
-
 end

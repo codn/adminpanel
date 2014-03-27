@@ -8,10 +8,16 @@ module ActiveRecord
 
     # static(class) methods
     module ClassMethods
-
       def mount_images(relation)
         has_many relation, :dependent => :destroy
 		    accepts_nested_attributes_for relation, :allow_destroy => true
+      end
+
+      def act_as_gallery(field)
+        before_create :set_position
+        before_destroy :rearrange_positions
+
+        default_scope { order("#{field} ASC")}
       end
 
       def form_attributes
@@ -123,8 +129,13 @@ module ActiveRecord
         "icon-truck"
       end
     end
-  end
 
+    private
+      def method_name
+
+      end
+
+  end
   # include the extension
   ActiveRecord::Base.send(:include, AdminpanelExtension)
 end
