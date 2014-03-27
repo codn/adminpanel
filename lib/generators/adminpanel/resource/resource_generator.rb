@@ -34,6 +34,10 @@ module Adminpanel
 				false
 			end
 
+			def gallery_name
+				"#{lower_name}file"
+			end
+
 			def lower_name
 				name.singularize.downcase
 			end
@@ -83,7 +87,7 @@ module Adminpanel
 					assign_attributes_variables(attribute)
 
         	if @attr_type == "images"
-            	attr_string = attr_string + ":#{@attr_field.pluralize.downcase}_attributes, "
+            	attr_string = attr_string + ":#{gallery_name.pluralize}_attributes, "
         	elsif @attr_type == "belongs_to"
         		attr_string = "#{attr_string}:#{belongs_to_field(@attr_field)}, "
         	elsif @attr_type == "has_many" || @attr_type == "has_many_through"
@@ -142,7 +146,7 @@ module Adminpanel
 			end
 
 			def file_field_hash
-				"#{starting_hash(@attr_field.downcase.pluralize)} => {#{form_type('adminpanel_file_field')}," +
+				"#{starting_hash(gallery_name.pluralize)} => {#{form_type('adminpanel_file_field')}," +
 				"#{label_type}," +
 				"#{placeholder_type}}\n\t\t\t},"
 			end
@@ -246,7 +250,7 @@ module Adminpanel
 
 			def image_association
 				generate_gallery
-				return "\n\t\tmount_images :#{lower_name}files\n"
+				return "\n\t\tmount_images :#{gallery_name.pluralize}\n"
 			end
 
 			def generate_gallery
