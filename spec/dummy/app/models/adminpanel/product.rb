@@ -49,7 +49,7 @@ module Adminpanel
       "Product"
     end
 
-    def self.display_icon
+    def self.icon
         "icon-truck"
     end
   end
