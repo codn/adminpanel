@@ -10,10 +10,10 @@ module Adminpanel
   	self.analytics_key_path = "config/analytics"
   	self.analytics_key_filename = nil
     self.displayable_resources = [
-      :categories,
       :analytics,
-      :sections,
-      :categories
+      :users,
+      :galleries,
+      :sections
     ]
   end
 

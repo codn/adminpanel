@@ -29,7 +29,7 @@ module Adminpanel
 
 		end
 
-	  def self.display_icon
+	  def self.icon
 	  	"icon-tasks"
 	  end
 
