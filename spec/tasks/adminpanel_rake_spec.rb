@@ -16,11 +16,11 @@ describe "adminpanel rake task" do
 
 
     it "should generate 10 product records" do
-      Adminpanel::Product.all.count.should eq 10
+      Adminpanel::Product.find(:all).count.should eq 10
     end
 
     it "attributes shouldn't be nil" do
-      Adminpanel::Product.all.each do |product|
+      Adminpanel::Product.find(:all).each do |product|
         if (product.name.nil? || product.description.nil? || product.price.nil? ||
           product.name == "" || product.description == "" || product.price == "")
           has_nil_attribute = true
