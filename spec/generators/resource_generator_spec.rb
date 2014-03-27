@@ -1,151 +1,123 @@
 require 'spec_helper'
+require 'generators/adminpanel/resource/resource_generator'
 
-describe 'adminpanel:resource' do
+describe Adminpanel::Generators::ResourceGenerator do
+	destination File.expand_path("../../dummy/tmp", __FILE__)
 
-	with_args :category do
-		it 'should generate categories migration' do
-			subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_categories_table.rb")
+	 before do
+    prepare_destination
+    Rails::Generators.options[:rails][:orm] = :active_record
+  end
+
+	# after do
+	# 	prepare_destination
+	# end
+
+	describe 'with arguments %w(post name description:wysiwyg number:float
+		quantity:integer date:datepicker photo:images)' do
+
+    before do
+			run_generator %w(
+				post
+				name
+				description:wysiwyg
+				number:float
+				quantity:integer
+				date:datepicker
+				photo:images
+			)
 		end
-		it 'should generate categories controller' do
-			subject.should generate('app/controllers/adminpanel/categories_controller.rb')
-		end
-		it 'should generate category model' do
-			subject.should generate('app/models/adminpanel/category.rb')
+
+    it 'should generate the posts migration' do
+			migration_file('db/migrate/create_posts_table.rb').should be_a_migration
 		end
 
-		context "with has_many and belongs_to" do
-			with_args :"products,categorizations:has_many_through", :"product:belongs_to" do
-				it "should generate categories migration" do
-					subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_categories_table.rb") { |content|
-						content.should =~ /t.integer :product_id/ &&
-						(
-							content.should_not =~ /t.integer :products_id/ ||
-							content.should_not =~ /t.integer :categorizations_id/
-						)
-					}
-				end
+		context 'the migration' do
+			it 'should have the correct fields' do
+				migration_file('db/migrate/create_posts_table.rb').should(
+					contain(/t.string :name/) &&
+					contain(/t.float :number/) &&
+					contain(/t.integer :quantity/) &&
+					contain(/t.string :date/) &&
+					contain(/t.text :description/)
+				)
+			end
+		end
 
-				it "should generate model with has_many categorizations" do
-					subject.should generate("app/models/adminpanel/category.rb") { |content|
-						content.should =~ /has_many :categorizations/
-					}
-				end
+		it 'should generate posts controller' do
+			file('app/controllers/adminpanel/posts_controller.rb').should exist
+		end
 
-				it "should generate model with has_many products through categorizations" do
-					subject.should generate("app/models/adminpanel/category.rb") { |content|
-						content.should =~ /has_many :products, :through => :categorizations/
-					}
-				end
 
-				it "should generate categories model" do
-					subject.should generate("app/models/adminpanel/category.rb") { |content|
-						content.should =~ /belongs_to :product/
-					}
-				end
+		it 'should generate post model' do
+			file('app/models/adminpanel/post.rb').should exist
+		end
+
+		context 'the model' do
+			it 'should generate the model with correct values' do
+				file('app/models/adminpanel/post.rb').should(
+					contain(/mount_images :postfiles/) &&
+					contain(/'photos' => \{/) &&
+					contain(/'type' => 'adminpanel_file_field'/)
+				)
+			end
+
+			it 'should have the description hash' do
+				file('app/models/adminpanel/post.rb').should(
+					contain(/'description' => \{/) &&
+					contain(/'type' => 'wysiwyg_field',/) &&
+					contain(/'name' => \{/) &&
+					contain(/'type' => 'text_field',/) &&
+					contain(/'number' => \{/) &&
+					contain(/'type' => 'text_field',/) &&
+					contain(/'quantity' => \{/) &&
+					contain(/'type' => 'number_field',/) &&
+					contain(/'date' => \{/) &&
+					contain(/'type' => 'datepicker_field',/) &&
+					contain(/'postfiles' => \{/) &&
+					contain(/'type' => 'adminpanel_file_field',/)
+				)
 			end
 		end
 	end
 
-	with_args :categorization do
-		context "with only :belongs_to as types" do
-			with_args :"product:belongs_to", :"category:belongs_to" do
-				it "should generate categorizations migration" do
-					subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_categorizations_table.rb") { |content|
-						content.should =~ /t.integer \:product_id/ &&
-						content.should =~ /t.integer \:category_id/
-					}
-				end
+	describe 'with arguments categorizations
+		category:belongs_to product:belongs_to' do
 
-				it "shouldn't generate categorizations controller" do
-					subject.should_not generate("app/controllers/adminpanel/categorizations_controller.rb")
-				end
+		before do
+			run_generator %w(
+				categorization
+				category:belongs_to
+				product:belongs_to
+			)
+		end
 
-				it "should generate categorization model" do
-					subject.should generate("app/models/adminpanel/categorization.rb") { |content|
-						content.should =~ /belongs_to :product/ &&
-						content.should =~ /belongs_to :category/
-					}
-				end
-			end
+		it 'shouldn\'t generate categorizations controller' do
+			file('app/controllers/adminpanel/categorizations_controller').should_not exist
+		end
+
+		it 'should generate categorization model' do
+			file('app/models/adminpanel/categorization.rb').should(
+				contain(/belongs_to :product/) &&
+				contain(/belongs_to :category/)
+			)
 		end
 	end
 
-	with_args "Product" do
-		with_args :"description:wysiwyg", :"long_text:text",
-					:"price:float", :"date:datepicker",
-					:"name:string", :"quantity:integer" do
-			it "should generate migration with correct values" do
-				subject.should generate("db/migrate/#{Time.now.utc.strftime("%Y%m%d%H%M%S")}_create_products_table.rb") { |content|
-					content.should =~ /t.text :description/ &&
-					content.should =~ /t.text :long_text/ &&
-					content.should =~ /t.float :price/ &&
-					content.should =~ /t.string :date/ &&
-					content.should =~ /t.string :name/ &&
-					content.should =~ /t.integer :quantity/
-				}
-			end
+	describe 'with arguments post name products,categorizations:has_many_through' do
+		before do
+			run_generator %w(
+				post
+				name
+				products,categorizations:has_many_through
+			)
 		end
 
-		with_args :"photo:images" do
-			it "should generate model with image relationship" do
-				subject.should generate("app/models/adminpanel/product.rb") { |content|
-					content.should =~ /mount_images :photos/ &&
-					content.should =~ /'photos' => \{/ &&
-					content.should =~ /'type' => 'adminpanel_file_field'/
-				}
-			end
-			#
-			# it "should generate a photos uploader" do
-			# 	subject.should generate("app/uploader/adminpanel/photos_uploader.rb")
-			# end
-			#
-			# it "should generate a photo model" do
-			# 	subject.should generate("app/models/adminpanel/photo.rb"){ |content|
-			# 		content.should =~ /mount_uploader :file, CameraUploader/ &&
-			# 		content.should =~ /:camera_id/
-			# 	}
-			# end
-		end
-
-
-		with_args :"name:string", :"description:wysiwyg" do
-			it "should generate namespaced products_controller.rb" do
-				subject.should generate("app/controllers/adminpanel/products_controller.rb") { |content|
-					content.should =~ /module Adminpanel/ &&
-					content.should =~ /class ProductsController < Adminpanel\:\:ApplicationController/ &&
-					content.should =~ /end\nend/
-				}
-			end
-
-			it "should generate model with attr_accessible" do
-				subject.should generate("app/models/adminpanel/product.rb") { |content|
-					content.should =~ /attr_accessible/
-				}
-			end
-
-			it "should generate model with description hash" do
-				subject.should generate("app/models/adminpanel/product.rb") { |content|
-					content.should =~ /'description' => \{/ &&
-					content.should =~ /'type' => 'wysiwyg_field',/&&
-					content.should =~ /'label' => 'description',/ &&
-					content.should =~ /'placeholder' => 'description'\}/
-				}
-			end
-
-			it "should generate model with name hash" do
-				subject.should generate("app/models/adminpanel/product.rb") { |content|
-					content.should =~ /'name' => \{/ &&
-					content.should =~ /'type' => 'text_field',/ &&
-					content.should =~ /'label' => 'name',/ &&
-					content.should =~ /'placeholder' => 'name'\}/
-				}
-			end
-
-			it "should generate model with overwritten sample_name" do
-				subject.should generate("app/models/adminpanel/product.rb") { |content|
-					content.should =~ /def self.display_name\n      \"Product\"\n    end/
-				}
-			end
+		it 'should generate the model with has_many :categorizations' do
+			file('app/models/adminpanel/post.rb').should(
+				contain(/has_many :categorizations/) &&
+				contain(/has_many :products, :through => :categorizations/)
+			)
 		end
 	end
 end

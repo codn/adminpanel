@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "activerecord", "~> 3.2.12"
-  spec.add_development_dependency "rake"
+  spec.add_development_dependency "rake", '10.1.1'
   spec.add_development_dependency "sqlite3"
   spec.add_development_dependency "factory_girl", "2.6.4"
   spec.add_development_dependency "rspec", "~> 2.14.0"
@@ -38,5 +38,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "capybara", "1.1.4"
   spec.add_development_dependency "nokogiri", "1.5.9"
   spec.add_development_dependency "rubyzip", "0.9.9"
-  spec.add_development_dependency "genspec", "0.2.8"
+  spec.add_development_dependency "ammeter", "0.2.9"
 end

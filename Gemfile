@@ -23,5 +23,5 @@ group :test do
 	gem "capybara", "~> 1.1.4"
 	gem "nokogiri", "~> 1.5.9"
 	gem "rubyzip", "~> 0.9.9"
-	gem "genspec", "~> 0.2.8"
+	gem "ammeter", "~> 0.2.9"
 end
