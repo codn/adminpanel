@@ -15,9 +15,9 @@ describe "adminpanel rake task" do
     end
 
 
-    it "should generate 10 product records" do
-      Adminpanel::Product.find(:all).count.should eq 10
-    end
+    # it "should generate 10 product records" do
+    #   Adminpanel::Product.find(:all).count.should eq 10
+    # end
 
     it "attributes shouldn't be nil" do
       Adminpanel::Product.find(:all).each do |product|
