@@ -1,3 +1,5 @@
+include Adminpanel::RouterHelper
+
 Adminpanel::Engine.routes.draw do
 
   Adminpanel.displayable_resources.each do |resource|
@@ -18,7 +20,17 @@ Adminpanel::Engine.routes.draw do
     when :analytics
       resources :analytics, :only => [:index]
     else
-      resources resource
+      if !acts_as_a_gallery?(resource).nil?
+        resources resource
+        resources acts_as_a_gallery?(resource).to_sym, :only => [:index] do
+          member do
+            put :move_better, :as => 'move_to_better'
+            put :move_worst, :as => 'move_to_worst'
+          end
+        end
+      else
+        resources resource
+      end
     end
   end
 

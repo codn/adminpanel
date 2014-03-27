@@ -18,7 +18,7 @@
       <div class="widget-body">
         <div class="widget-tickets widget-tickets-large clearfix"><ul>
           <% @model.display_attributes.each do |fields| %>
-          <% fields.each do |attribute, properties| %>
+           <% fields.each do |attribute, properties| %>
             <% if properties["type"] != "adminpanel_file_field" %>
             <li class="priority-high">
               <div class="span3">
@@ -60,16 +60,24 @@
           <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), [:edit, resource], :title => t("action.update") + " #{@model.display_name}" %>
         </h5>
       </div>
-      <div class="widget-body row-fluid">
-        <div id="gallery-container" class="js-masonry"
-        data-masonry-options='{ "columnWidth": 3, "itemSelector": ".gallery-item" }'>
-        <% resource.send(@model.get_image_relationship).each do |image|%>
-        <div class="gallery-item">
-          <%= link_to (image_tag image.file_url(:thumb)), image.file.to_s, :rel  => "group", :name => @model.display_name %>
-          <%#= link_to (image_tag image.file_url(:thumb)), image.file.to_s, :rel  => "group", :name => @model.display_name %>
+      <% if @model.act_as_a_gallery?.nil? %>
+        <div class="widget-body row-fluid">
+          <div id="gallery-container" class="js-masonry"
+          data-masonry-options='{ "columnWidth": 3, "itemSelector": ".gallery-item" }'>
+          <% resource.send(@model.get_image_relationship).each do |image|%>
+            <div class="gallery-item">
+              <%= link_to (image_tag image.file_url(:thumb)), image.file_url(:thumb).to_s, :rel  => "group", :name => @model.display_name %>
+            </div>
+          <% end %>
+          </div>
         </div>
-        <% end %>
+      <% else %>
+      <div class="widget-body widget-tasks-assigned clearfix">
+        <ul id="gallery-entries">
+          <%= render 'shared/gallery_entries', :images => resource.send(@model.get_image_relationship) %>
+        </ul>
       </div>
+      <% end %>
     </div>
   </div>
   <% end %>

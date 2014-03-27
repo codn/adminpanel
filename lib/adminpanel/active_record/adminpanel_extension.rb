@@ -2,9 +2,32 @@ module ActiveRecord
   module AdminpanelExtension
     extend ActiveSupport::Concern
     #instance methods
-    # def foo
+    def move_to_better_position
+      if self.position > 1
+        conflicting_gallery = self.class.where(self.class.relation_field => self.send(self.class.relation_field)).find_by_position(position - 1)
+        self.update_attribute(:position, self.position - 1)
+        conflicting_gallery.update_attribute(
+          :position, conflicting_gallery.position + 1
+          )
+        true
+      else
+        false
+      end
+    end
 
-    # end
+    def move_to_worst_position
+      records = self.class.count
+      if self.position < records
+        conflicting_gallery = self.class.where(self.class.relation_field => self.send(self.class.relation_field)).find_by_position(position + 1)
+        update_attribute(:position, self.position + 1)
+        conflicting_gallery.update_attribute(
+          :position, conflicting_gallery.position - 1
+          )
+        true
+      else
+        false
+      end
+    end
 
     # static(class) methods
     module ClassMethods
@@ -13,12 +36,16 @@ module ActiveRecord
 		    accepts_nested_attributes_for relation, :allow_destroy => true
       end
 
-      def act_as_gallery(field)
+      def act_as_a_gallery
         before_create :set_position
         before_destroy :rearrange_positions
 
-        default_scope { order("#{field} ASC")}
+        default_scope { order("position ASC")}
       end
+
+      # def self.of_parent(field, id)
+      #   where(field.to_sym => id)
+      # end
 
       def form_attributes
         [{
@@ -128,12 +155,33 @@ module ActiveRecord
       def icon
         "icon-truck"
       end
+
+      def act_as_a_gallery?
+        nil
+      end
+
+      def self.relation_field
+        'undefined_relation_field'
+      end
     end
 
-    private
-      def method_name
-
+  private
+    def rearrange_positions
+      unarranged_galleries = self.class.where(self.class.relation_field => self.send(self.class.relation_field)).where("position > ?", self.position)
+      unarranged_galleries.each do |gallery|
+        gallery.update_attribute(:position, gallery.position - 1)
       end
+
+    end
+
+    def set_position
+      last_record = self.class.where(self.class.relation_field => self.send(self.class.relation_field)).last
+      if last_record.nil?
+        self.position = 1
+      else
+        self.position = last_record.position + 1
+      end
+    end
 
   end
   # include the extension
