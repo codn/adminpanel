@@ -5,7 +5,7 @@ module Adminpanel
       "Google Analytics"
     end
 
-    def self.display_icon
+    def self.icon
       'icon-dashboard'
     end
   end
