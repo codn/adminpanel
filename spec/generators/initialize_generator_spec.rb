@@ -39,10 +39,10 @@ describe Adminpanel::Generators::InitializeGenerator do
     end
   end
 
-  describe 'with arguments -c true -u true -m true -s true' do
+  describe 'with arguments -c true -u true -m true -p true' do
     before do
       prepare_destination
-      run_generator %w(-c true -u true -m true -s true)
+      run_generator %w(-c true -u true -m true -p true)
     end
 
     it 'should\'t generate the adminpanel_setup' do
