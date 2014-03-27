@@ -32,10 +32,10 @@ module Adminpanel
     end
 
     def self.display_name
-      "Categoría"
+      "Categorías"
     end
 
-    def self.display_icon
+    def self.icon
         "icon-bookmark"
     end
 
