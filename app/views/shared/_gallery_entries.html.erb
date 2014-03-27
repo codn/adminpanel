@@ -1,0 +1,11 @@
+<% images.each do |image| %>
+  <li>
+    <%= link_to (image_tag image.file_url(:thumb)), image.file.to_s, :rel  => "group", :name => @model.display_name %>
+    <ul class="rightboxes">
+      <li>
+        <%= link_to content_tag(:i, nil, :class => "icon-chevron-up"), [:move_to_better, image], :method => :put, :remote => true %>
+        <%= link_to content_tag(:i, nil, :class => "icon-chevron-down"), [:move_to_worst, image], :method => :put, :remote => true %>
+      </li>
+    </ul>
+  </li>
+<% end %>
