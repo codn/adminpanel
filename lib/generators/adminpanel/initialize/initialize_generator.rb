@@ -5,10 +5,26 @@ module Adminpanel
 			desc "Generate the migrations necessary to start the gem"
   		source_root File.expand_path("../templates", __FILE__)
 			argument :name, :type => :string, :default => "default", :require => false
-			class_option :'skip-category', :type => :boolean, :aliases => "-c", :default => false, :desc => "Include category skeleton and migration for it"
-			class_option :'skip-section-uploader', :type => :boolean, :aliases => "-u", :default => false
-			class_option :'skip-migration', :type => :boolean, :aliases => "-m", :default => false
-			class_option :'skip-setup', :type => :boolean, :aliases => "-s", :default => false
+			class_option :'skip-category',
+				:type => :boolean,
+				:aliases => '-c',
+				:default => false,
+				:desc => "Skip category skeleton and migration for it if true"
+			class_option :'skip-section-uploader',
+				:type => :boolean,
+				:aliases => '-u',
+				:default => false,
+				:desc => 'Skip section uploader if true'
+			class_option :'skip-migration',
+				:type => :boolean,
+				:aliases => '-m',
+				:default => false,
+				:desc => 'Skip initial migrations if true'
+			class_option :'skip-setup',
+				:type => :boolean,
+				:aliases => '-p',
+				:default => false,
+				:desc => 'Skip setup if true'
 
 			def create_initializers
 				if !options[:'skip-setup']
