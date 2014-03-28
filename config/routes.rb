@@ -2,34 +2,40 @@ include Adminpanel::RouterHelper
 
 Adminpanel::Engine.routes.draw do
 
-  adminpanel_resources.each do |file|
-    if file
-      resources file.to_sym
-    end
-  end
-
-	resources :sections, :except => [:new, :create, :destroy]
-    match '/signout', :to => 'sessions#destroy', :via => :delete, :as => "signout"
-    match '/signin', :to => 'sessions#new', :as => "signin"
-    resources :users
-    if !Adminpanel.unincluded_modules.include?(:categories)
-      resources :categories
-    end
-
-    if !Adminpanel.unincluded_modules.include?(:gallery)
+  Adminpanel.displayable_resources.each do |resource|
+    case resource
+    when :sections
+      resources :sections, :except => [:new, :create, :destroy]
+    when :users
+      resources :users
+    when :galleries
       resources :galleries do
         member do
           put :move_better, :as => "move_to_better"
           put :move_worst, :as => "move_to_worst"
         end
       end
-    end
-    resources :sessions, :only => [:new, :create, :destroy]
-
-    if !Adminpanel.unincluded_modules.include?(:analytics)
-      resources :pages, :path => 'analytics', :only => [:index]
-      root :to => 'pages#index'
+    when :categories
+      resources :categories
+    when :analytics
+      resources :analytics, :only => [:index]
     else
-      root :to => 'users#index'
+      if !acts_as_a_gallery?(resource).nil?
+        resources resource
+        resources acts_as_a_gallery?(resource).to_sym, :only => [:index] do
+          member do
+            put :move_better, :as => 'move_to_better'
+            put :move_worst, :as => 'move_to_worst'
+          end
+        end
+      else
+        resources resource
+      end
     end
+  end
+
+  root :to => "#{Adminpanel.displayable_resources.first}#index"
+  resources :sessions, :only => [:new, :create, :destroy]
+  match '/signout', :to => 'sessions#destroy', :via => :delete, :as => "signout"
+  match '/signin', :to => 'sessions#new', :as => "signin"
 end

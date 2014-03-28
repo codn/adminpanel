@@ -8,9 +8,9 @@ module Adminpanel
       @gallery = Gallery.find(params[:id])
     end
 
-    def edit
-      @gallery = Gallery.find(params[:id])
-    end
+    # def edit
+    #   @gallery = Gallery.find(params[:id])
+    # end
 
     def create
       @gallery = Gallery.new(params[:gallery])
@@ -29,15 +29,15 @@ module Adminpanel
       else
         flash[:warning] = t("gallery.not-moved")
       end
-        respond_to do |format|
-          format.html do 
-            redirect_to galleries_path 
-          end
-          format.js do
-            @galleries = Gallery.all
-            render :locals => { :galleries => @galleries }
-          end
+      respond_to do |format|
+        format.html do
+          redirect_to galleries_path
         end
+        format.js do
+          @galleries = Gallery.all
+          render :locals => { :galleries => @galleries }
+        end
+      end
     end
 
     def move_worst
@@ -47,15 +47,15 @@ module Adminpanel
       else
         flash[:warning] = t("gallery.not-moved")
       end
-        respond_to do |format|
-          format.html do 
-            redirect_to galleries_path 
-          end
-          format.js do
-            @galleries = Gallery.all
-            render :locals => { :galleries => @galleries }
-          end
+      respond_to do |format|
+        format.html do
+          redirect_to galleries_path
         end
+        format.js do
+          @galleries = Gallery.all
+          render :locals => { :galleries => @galleries }
+        end
+      end
     end
 
     def destroy
@@ -74,8 +74,8 @@ module Adminpanel
       end
     end
 
-    def new
-      @gallery = Gallery.new
-    end
+    # def new
+    #   @gallery = Gallery.new
+    # end
   end
 end

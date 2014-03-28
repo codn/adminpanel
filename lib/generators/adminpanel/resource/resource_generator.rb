@@ -34,6 +34,10 @@ module Adminpanel
 				false
 			end
 
+			def gallery_name
+				"#{lower_name}file"
+			end
+
 			def lower_name
 				name.singularize.downcase
 			end
@@ -83,7 +87,7 @@ module Adminpanel
 					assign_attributes_variables(attribute)
 
         	if @attr_type == "images"
-            	attr_string = attr_string + ":#{@attr_field.pluralize.downcase}_attributes, "
+            	attr_string = attr_string + ":#{gallery_name.pluralize}_attributes, "
         	elsif @attr_type == "belongs_to"
         		attr_string = "#{attr_string}:#{belongs_to_field(@attr_field)}, "
         	elsif @attr_type == "has_many" || @attr_type == "has_many_through"
@@ -129,7 +133,7 @@ module Adminpanel
 						end
 						through_model = resource_class_name(through_model)
 						# form_hash = form_hash + "#{relational_attribute_hash('belongs_to')}"
-						form_hash = form_hash + "\n\t\t\t\t{'#{has_many_field(through_model)}' => {'type' => 'has_many', 'model' => 'Adminpanel::#{through_model}', 'name' => '#{has_many_field(through_model)}'}},"
+						form_hash = form_hash + has_many_attribute_hash(has_many_field(through_model), through_model)
 					end
 				end
 				form_hash
@@ -137,22 +141,26 @@ module Adminpanel
 
 			def attribute_hash(type)
 				"#{attribute_name} => {#{form_type(type)}," +
-				"#{name_type}," +
 				"#{label_type}," +
 				"#{placeholder_type}}\n\t\t\t},"
 			end
 
 			def file_field_hash
-				"#{starting_hash(@attr_field.downcase.pluralize)} => {#{form_type('adminpanel_file_field')}," +
-				"#{name_type}," +
+				"#{starting_hash(gallery_name.pluralize)} => {#{form_type('adminpanel_file_field')}," +
 				"#{label_type}," +
 				"#{placeholder_type}}\n\t\t\t},"
 			end
 
 			def belongs_to_attribute_hash(name)
 				"#{starting_hash(name)} => {#{form_type('belongs_to')}," +
-				"#{model_type}," +
-				"#{name_type}," +
+				"#{model_type(resource_class_name(@attr_field))}," +
+				"#{label_type}," +
+				"#{placeholder_type}}\n\t\t\t},"
+			end
+
+			def has_many_attribute_hash(name, through_model)
+				"#{starting_hash(name)} => {#{form_type('has_many')}," +
+				"#{model_type(through_model)}," +
 				"#{label_type}," +
 				"#{placeholder_type}}\n\t\t\t},"
 			end
@@ -169,10 +177,6 @@ module Adminpanel
 				"\n\t\t\t\t\t'type' => '#{type}'"
 			end
 
-			def name_type
-				"\n\t\t\t\t\t'name' => '#{@attr_field}'"
-			end
-
 			def label_type
 				"\n\t\t\t\t\t'label' => '#{@attr_field}'"
 			end
@@ -181,8 +185,8 @@ module Adminpanel
 				"\n\t\t\t\t\t'placeholder' => '#{@attr_field}'"
 			end
 
-			def model_type
-				"\n\t\t\t\t\t'model' => 'Adminpanel::#{resource_class_name(@attr_field)}'"
+			def model_type(type)
+				"\n\t\t\t\t\t'model' => 'Adminpanel::#{type}'"
 
 			end
 
@@ -246,11 +250,11 @@ module Adminpanel
 
 			def image_association
 				generate_gallery
-				return "\n\t\tmount_images :#{@attr_field.pluralize.downcase}\n"
+				return "\n\t\tmount_images :#{gallery_name.pluralize}\n"
 			end
 
 			def generate_gallery
-				Rails::Generators.invoke("adminpanel:gallery", lower_name)
+				generate "adminpanel:gallery", lower_name
 			end
 
 		end

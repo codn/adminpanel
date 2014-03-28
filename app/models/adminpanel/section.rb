@@ -29,8 +29,12 @@ module Adminpanel
 
 		end
 
-	  def simple_name
-	  	"Section"
+	  def self.icon
+	  	"icon-tasks"
 	  end
+
+		def self.display_name
+			'Secciones'
+		end
 	end
 end

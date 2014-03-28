@@ -60,23 +60,51 @@ module Adminpanel
 			end
 		end
 
+		def move_better
+			respond_to do |format|
+				format.js do
+					resource = @model.find(params[:id])
+					resource.move_to_better_position
+					render 'shared/gallery_entries', :locals => { :collection => @model.where(@model.relation_field.to_sym => resource.send(@model.relation_field)) }
+				end
+			end
+		end
+
+		def move_worst
+			respond_to do |format|
+				format.js do
+					resource = @model.find(params[:id])
+					resource.move_to_worst_position
+					render 'shared/gallery_entries', :locals => { :collection => @model.where(@model.relation_field.to_sym => resource.send(@model.relation_field)) }
+				end
+			end
+		end
+
 	private
 
 		def set_collections
 			@collections = {}
 			set_belongs_to_collections
-			@model.has_many_relationships.each do |class_variable|
-				@collections.merge!({"#{class_variable}" => class_variable.find(:all)})
-			end
+			set_has_many_collections
 		end
 
 		def set_belongs_to_collections
 			@model.belongs_to_relationships.each do |class_variable|
-				if class_variable.respond_to?("of_model")
-					@collections.merge!({"#{class_variable}" => class_variable.of_model(@model.display_name)})
-				else
-					@collections.merge!({"#{class_variable}" => class_variable.find(:all)})
-				end
+				set_relationship(class_variable)
+			end
+		end
+
+		def set_has_many_collections
+			@model.has_many_relationships.each do |class_variable|
+				set_relationship(class_variable)
+			end
+		end
+
+		def set_relationship(class_variable)
+			if class_variable.respond_to?("of_model")
+				@collections.merge!({"#{class_variable}" => class_variable.of_model(@model.display_name)})
+			else
+				@collections.merge!({"#{class_variable}" => class_variable.find(:all)})
 			end
 		end
 	end
