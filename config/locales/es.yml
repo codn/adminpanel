@@ -79,6 +79,7 @@ es:
     password: "Contraseña"
     email: "Correo electrónico"
   other:
+    add : "Agregar %{model}"
     choose: "Selecciona %{model} pertenecientes"
     no description: "No tiene descripción aún"
   key:

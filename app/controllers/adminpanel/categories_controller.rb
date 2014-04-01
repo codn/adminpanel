@@ -8,30 +8,37 @@ module Adminpanel
       set_collections
       new! do |format|
         format.html { render "shared/new" }
-        format.js {render :locals => {:category => resource, :model => params[:model]}}
+        format.js do
+          render :locals => {:resource => resource, :model => params[:model]}
+        end
       end
     end
 
 
     def create
+      params.merge({:model_name => params[:model_name]}) if params[:model_name].present?
+      params.merge({:model => params[:model]}) if params[:model].present?
+      params.merge({:currentcontroller => params[:currentcontroller]}) if params[:currentcontroller].present?
+
       create! do |success, failure|
         success.html do
-          flash.now[:success] = I18n.t("action.save_success")
-          # render "shared/index"
+          flash[:success] = I18n.t("action.save_success")
           redirect_to categories_path
         end
         failure.html do
           set_collections
           render "shared/new"
         end
-
         success.js do
-           render :locals => {:category => resource }
-
+          if params[:currentcontroller] == 'adminpanel/categories'
+            render 'create', :locals => {:category => resource}
+          else
+            render 'shared/create_has_many', :locals => {:resource => resource}
+          end
         end
         failure.js do
           set_collections
-          render "new", :locals => {:category => resource, :model => resource.model }, :formats => [:js]
+          render "new", :locals => {:resource => resource }
 
         end
       end
@@ -49,7 +56,7 @@ module Adminpanel
     def update
       update! do |success, failure|
         success.html do
-          flash.now[:success] = I18n.t("action.save_success")
+          flash[:success] = I18n.t("action.save_success")
           # render "shared/index"
           redirect_to categories_path
         end
