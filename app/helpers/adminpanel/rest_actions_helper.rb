@@ -16,21 +16,38 @@ module Adminpanel
 			set_collections
       new! do |format|
         format.html { render "shared/new" }
+				format.js { render 'shared/new', :locals => { :resource => resource }}
       end
 		end
 
 		def create
-      create! do |success, failure|
-        success.html do
-        	flash.now[:success] = I18n.t("action.save_success")
-          render "shared/index"
-        end
-        failure.html do
-					set_collections
-        	render "shared/new"
+			params.merge({:model => params[:model]}) if params[:model].present?
+			params.merge({:model_name => params[:model_name]}) if params[:model_name].present?
+			params.merge({:belongs_request => params[:belongs_request]}) if params[:belongs_request].present?
+			create! do |success, failure|
+				success.html do
+					flash[:success] = I18n.t("action.save_success")
+					redirect_to resource
 				end
-      end
+				failure.html do
+					set_collections
+					render "shared/new"
+				end
+				success.js do
+					flash.now[:success] = I18n.t("action.save_success")
+					if params[:belongs_request]
+						render 'shared/create_belongs_to', :locals => {:resource => resource }
+					else
+						render 'shared/create_has_many', :locals => {:resource => resource }
+					end
+				end
+				failure.js do
+					set_collections
+					render 'shared/new', :locals => {:resource => resource }
+				end
+			end
 		end
+
 
 		def edit
       edit! do |format|
@@ -44,7 +61,7 @@ module Adminpanel
 		def update
       update! do |success, failure|
         success.html do
-        	flash.now[:success] = I18n.t("action.save_success")
+        	flash[:success] = I18n.t("action.save_success")
         	render "shared/index"
         end
         failure.html do

@@ -30,14 +30,14 @@ describe 'shared pages' do
 
 			it { should have_title(I18n.t("action.create") + " " + Adminpanel::Product.display_name) }
 
-			describe "with invalid information" do
+			describe 'submtting with invalid information' do
 				before { find("form#new_resource").submit_form! }
 
 				it { should have_title(I18n.t("action.create") + " " + Adminpanel::Product.display_name) }
 				it { should have_selector("div#alerts") }
 			end
 
-			describe "with valid information" do
+			describe 'submitting with valid information' do
 				before do
 					fill_in "product_name", :with => "product name"
 					fill_in "product_price", :with => "855.5"

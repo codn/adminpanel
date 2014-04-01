@@ -1,6 +1,6 @@
 <% provide(:page_title, t("action.create") + " #{@model.display_name.capitalize}") -%>
 <% breadcrumb_add(
-  @model.display_name.capitalize.pluralize, 
+  @model.display_name.capitalize.pluralize,
     {
       :controller => params[:controller],
       :action => "index"
@@ -26,3 +26,4 @@
       <% end -%>
   </div>
 </div>
+<%= render 'shared/modal' %>
