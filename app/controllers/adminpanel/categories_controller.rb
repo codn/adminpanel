@@ -9,7 +9,7 @@ module Adminpanel
       new! do |format|
         format.html { render "shared/new" }
         format.js do
-          render :locals => {:resource => resource, :model => params[:model]}
+          render :locals => {:resource => resource}
         end
       end
     end

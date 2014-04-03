@@ -40,6 +40,7 @@
 				:belongs_request => true
 			),
 			:class => 'btn btn-info',
+			:id => "#{model_name}-modal-link",
 			:'data-target' => "#new-modal",
 			:'data-toggle' => 'modal',
 			:remote => true
@@ -75,6 +76,7 @@
 				:model_name => @model.name.demodulize.downcase
 			),
 			:class => 'btn btn-info',
+			:id => "#{model_name}-modal-link",
 			:'data-target' => "#new-modal",
 			:'data-toggle' => 'modal',
 			:remote => true
