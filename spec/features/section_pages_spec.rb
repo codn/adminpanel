@@ -1,4 +1,5 @@
-require "spec_helper"
+require 'spec_helper'
+require 'support/test_database'
 
 describe "Section pages" do
 	subject {page}

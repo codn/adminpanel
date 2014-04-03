@@ -23,6 +23,7 @@ end
 
 Factory.define :category, :class => Adminpanel::Category do |category|
 	category.name "Test Category"
+	category.model "Product"
 end
 
 Factory.define :photo, :class => Adminpanel::Photo do |photo|

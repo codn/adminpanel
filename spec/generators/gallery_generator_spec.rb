@@ -8,9 +8,9 @@ describe Adminpanel::Generators::GalleryGenerator do
     Rails::Generators.options[:rails][:orm] = :active_record
   end
 
-  # after do
-  #   prepare_destination
-  # end
+  after do
+    prepare_destination
+  end
 
   describe 'with "product" as argument' do
     before do

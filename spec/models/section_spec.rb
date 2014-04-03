@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'support/test_database'
 
 describe Adminpanel::Section do
 	before do
@@ -15,27 +16,27 @@ describe Adminpanel::Section do
 	subject { @section }
 
 	it { should respond_to(:description) }
-	it { should respond_to(:has_image) }	
+	it { should respond_to(:has_image) }
 	it { should respond_to(:key) }
 	it { should respond_to(:name) }
-	it { should respond_to(:has_description) }	
-	it { should respond_to(:page) }	
+	it { should respond_to(:has_description) }
+	it { should respond_to(:page) }
 
 	describe "when key is telephone and has less than 10 chars" do
-		before do 
+		before do
 			@section.key = "telephone"
 			@section.description = "1" * 9
 		end
 		it { @section.valid? eq false}
-	end	
+	end
 
 	describe "when key is telephone and has more than 10 chars" do
-		before do 
+		before do
 			@section.key = "telephone"
 			@section.description = "1" * 11
 		end
 		it { @section.valid? eq false}
-	end	
+	end
 
 	describe "when key is telephone and has 10 chars" do
 		before do
@@ -44,17 +45,17 @@ describe Adminpanel::Section do
 		end
 		it { @section.valid? eq true}
 
-	end	
+	end
 
 	describe "when key is blank" do
 		before {@section.key = " "}
 		it { @section.valid? eq false}
-	end	
+	end
 
 	describe "when name is blank" do
 		before {@section.name = " "}
 		it { @section.valid? eq false}
-	end	
+	end
 
 	describe "when description is blank" do
 		before {@section.description = " "}

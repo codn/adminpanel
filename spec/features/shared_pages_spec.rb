@@ -1,7 +1,8 @@
 require 'spec_helper'
+require 'support/test_database'
 
 describe 'shared pages' do
-	subject {page}
+	subject { page }
 
 	let(:user) { Factory(:user) }
 	before do
@@ -30,11 +31,48 @@ describe 'shared pages' do
 
 			it { should have_title(I18n.t("action.create") + " " + Adminpanel::Product.display_name) }
 
+			it 'should have add remote category button' do
+				should have_selector(
+					'a.btn-info',
+					:text => I18n.t(
+						'other.add',
+						:model => Adminpanel::Category.display_name
+					)
+				)
+			end
+
 			describe 'submtting with invalid information' do
-				before { find("form#new_resource").submit_form! }
+				before do
+					find("form#new_resource").submit_form!
+				end
 
 				it { should have_title(I18n.t("action.create") + " " + Adminpanel::Product.display_name) }
 				it { should have_selector("div#alerts") }
+			end
+
+			describe 'opening the remote form modal' do
+				before do
+					# save_and_open_page
+					page.find("a##{Adminpanel::Category.name.demodulize.downcase}-modal-link").click
+				end
+
+				it 'should have modal with correct #modal-title' do
+					page.should have_selector(
+					:css,
+					'h3#modal-title',
+					:content => I18n.t('other.add', :model => Adminpanel::Category.display_name)
+					)
+				end
+
+				# describe 'sending the resource with invalid information' do
+				# 	before do
+				# 		find('#new-Category-button').click
+				# 	end
+				# 	it 'should display error message' do
+				# 		page.should have_selector("div#alerts")
+				# 	end
+				# end
+
 			end
 
 			describe 'submitting with valid information' do
