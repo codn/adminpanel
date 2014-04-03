@@ -33,6 +33,7 @@ ActiveRecord::Migration.create_table :adminpanel_photos do |t|
 end
 ActiveRecord::Migration.create_table :adminpanel_categories do |t|
     t.string   :name
+    t.string   :model
     t.datetime :created_at,      :null => false
     t.datetime :updated_at,      :null => false
 end

@@ -9,9 +9,9 @@ describe Adminpanel::Generators::ResourceGenerator do
     Rails::Generators.options[:rails][:orm] = :active_record
   end
 
-	# after do
-	# 	prepare_destination
-	# end
+	after do
+		prepare_destination
+	end
 
 	describe 'with arguments %w(post name description:wysiwyg number:float
 		quantity:integer date:datepicker photo:images)' do

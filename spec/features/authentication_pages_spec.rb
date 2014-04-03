@@ -1,9 +1,10 @@
 require 'spec_helper'
+require 'support/test_database'
 
 describe "Authentication" do
 
   	subject { page }
-  	
+
 	describe "sign in page" do
 	    before { visit adminpanel.signin_path }
 
@@ -37,7 +38,7 @@ describe "Authentication" do
 
 	    		it { current_path.should == adminpanel.signin_path }
 	    		it { expect(page).to have_title(I18n.t("Panel title")) }
-	    		
+
 	    	end
 	    end
 	end
