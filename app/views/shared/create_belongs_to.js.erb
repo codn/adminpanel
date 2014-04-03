@@ -1,4 +1,4 @@
-var model_name = "<%= params[:model].downcase %>";
+var model_name = "<%= params[:model_name] %>";
 var new_model = "<%= @model.name.demodulize.downcase %>";
 var option = '<option value="<%= resource.id %>" selected="selected"><%= resource.name %></option>';
 $("#" + model_name + "_" + new_model + "_id").append(option);
