@@ -1,0 +1,5 @@
+var model_name = "<%= params[:model_name] %>";
+var new_model = "<%= @model.name.demodulize.downcase %>";
+row = '<label class="checkbox"><input checked="checked" id="' + model_name + '_' + new_model + '_ids_" name="' + model_name + '[' + new_model + '_ids][]" type="checkbox" value="<%= resource.id %>"><%= resource.name %></label>';
+$("#" + new_model + "-relation").append(row);
+$("#new-modal").modal('toggle');

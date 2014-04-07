@@ -1,6 +1,8 @@
 module Adminpanel
     class Category < ActiveRecord::Base
-        attr_accessible :product_ids, :name
+        attr_accessible :product_ids, :name, :model
+
+        validates_presence_of :model
 
         has_many :categorizations
 		    has_many :products, :through => :categorizations, :dependent => :destroy
@@ -9,6 +11,7 @@ module Adminpanel
         def self.form_attributes
           [
     				{"name" => {"type" => "text_field", "name" => "name", "label" => "name", "placeholder" => "name"}},
+    				# {'model' => {"type" => "text_field", "name" => "name", "label" => "name", "placeholder" => "name", 'show' => 'false'}},
     				{"product_ids" => {"type" => "has_many", "model" => "Adminpanel::Product", "name" => "product_ids"}},
           ]
         end

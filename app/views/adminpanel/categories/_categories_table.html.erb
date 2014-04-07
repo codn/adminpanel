@@ -15,9 +15,10 @@
       {
         :controller => params[:controller],
         :action => "new",
-      :"model" => model
+        :"model" => model,
+        :currentcontroller => params[:controller]
       },
-      :"data-target" => '#example_modal',
+      :"data-target" => '#new-category',
       :"data-toggle" => 'modal',
       :remote => true
     )

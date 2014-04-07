@@ -1,1 +1,2 @@
-$("#modal-container").html('<%= escape_javascript(render "category_form", :resource => resource, :model => model) %>');
+$("#modal-title").html('Agregar <%= @model.display_name %>');
+$("#modal-container").html('<%= escape_javascript(render "category_form", :resource => resource) %>');

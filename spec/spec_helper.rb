@@ -8,23 +8,26 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../dummy/config/environment", __FILE__)
 require "rspec/rails"
+require "capybara/rspec"
 require "factory_girl"
 require "carrierwave/test/matchers"
 require "active_record"
 require "rake"
 
-Dir["./spec/support/**/*.rb"].sort.each {|f| require f}
+Dir["./spec/support/**/*.rb"].sort.each { |f| require f }
 
 RSpec.configure do |config|
 	config.treat_symbols_as_metadata_keys_with_true_values = true
 	config.run_all_when_everything_filtered = true
 	config.filter_run :focus
 
-	root = File.expand_path(File.join(File.dirname(__FILE__), '..'))
+	# root = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 	ActiveRecord::Base.establish_connection(
 	  :adapter => 'sqlite3',
 	  :database => ':memory:'
 	)
+
+	config.use_transactional_fixtures = false
 
 	config.include Rails.application.routes.url_helpers
 

@@ -13,30 +13,77 @@
 		<% end %>
 
 	<% elsif properties["type"] == "adminpanel_file_field" %>
+	<% if !defined? remote_request %>
 		<%= f.fields_for(attribute) do |builder| %>
     	<%= render 'shared/image_fields', :f => builder %>
   	<% end -%>
   	<%= link_to_add_fields t("Add Image"), f, attribute %>
 
+	<% end %>
   <% elsif properties["type"] == "belongs_to" %>
+	<% if !defined? remote_request %>
 		<% args = properties.except("type", "name", "model") %>
 		<% args.symbolize_keys! %>
   	<%= f.select(attribute, (@collections["#{properties["model"]}"].collect{|resource| [resource.name, resource.id]}), args) %>
 
+
+		<!-- Button to create a new of this belongs_to resource -->
+		<% model_name = properties['model'].classify.constantize.model_name.demodulize.downcase %>
+		<%=
+		link_to(
+			I18n.t('other.add',
+				:model => properties['model'].classify.constantize.display_name
+			),
+			polymorphic_path(
+				[:new, :"#{model_name}"],
+				:model => @model.display_name,
+				:model_name => @model.name.demodulize.downcase,
+				:belongs_request => true
+			),
+			:class => 'btn btn-info',
+			:id => "#{model_name}-modal-link",
+			:'data-target' => "#new-modal",
+			:'data-toggle' => 'modal',
+			:remote => true
+		)
+		%>
+
+
+	<% end %>
   <% elsif properties["type"] == "has_many" %>
-		<%#= f.checkbox(collection, relationship) %>
+	<% if !defined? remote_request %>
 		<div class="control-group">
 			<div class="control-label">
 				<%= I18n.t('other.choose', :model => pluralize_es(properties["model"].classify.constantize.display_name)) %>
 			</div>
 	  	<%= hidden_field_tag("#{class_name_downcase(f.object)}[#{relationship_ids(properties["model"])}][]", nil) %>
-			<div class="controls">
-		  	<% @collections["#{properties["model"]}"].each do |resource| %>
+			<div class="controls" id="<%= properties['model'].demodulize.downcase %>-relation">
+		  	<% @collections["#{properties['model']}"].each do |resource| %>
 		  		<%= f.checkbox(resource, class_name_downcase(f.object) ,relationship_ids(properties["model"])) %>
 				<% end %>
 			</div>
 		</div>
 
+		<!-- Button to create a new of this hasy_many resource -->
+		<% model_name = properties['model'].classify.constantize.model_name.demodulize.downcase %>
+		<%=
+		link_to(
+			I18n.t('other.add',
+				:model => properties['model'].classify.constantize.display_name
+			),
+			polymorphic_path(
+				[:new, :"#{model_name}"],
+				:model => @model.display_name,
+				:model_name => @model.name.demodulize.downcase
+			),
+			:class => 'btn btn-info',
+			:id => "#{model_name}-modal-link",
+			:'data-target' => "#new-modal",
+			:'data-toggle' => 'modal',
+			:remote => true
+		)
+		%>
+	<% end %>
   <% else %>
 		<% type = properties["type"] %>
 		<% args = properties.except("type", "name") %>

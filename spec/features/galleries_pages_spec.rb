@@ -1,4 +1,6 @@
-require "spec_helper"
+require 'spec_helper'
+require 'support/test_database'
+
 
 describe "Gallery pages" do
 	subject {page}

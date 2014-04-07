@@ -1,6 +1,6 @@
 <% provide(:page_title, t("action.create") + " #{@model.display_name.capitalize}") -%>
 <% breadcrumb_add(
-  @model.display_name.capitalize.pluralize, 
+  @model.display_name.capitalize.pluralize,
     {
       :controller => params[:controller],
       :action => "index"
@@ -15,14 +15,25 @@
     </div>
     <div class = "widget-body">
       <div class = "widget-forms clearfix">
-        <%= custom_form_for(resource, :html => {:class => "form-horizontal", :id => "new_resource"}) do |f| -%>
+        <%=
+        custom_form_for(
+          resource, :html => {
+            :class => "form-horizontal",
+            :id => "new_resource"
+          }
+        ) do |f| -%>
           <%= render 'shared/error_messages', :object => resource %>
           <%= render 'shared/form_fields', :f => f %>
       </div>
     </div>
     <div class = "widget-footer">
-      <%= f.submit t("action.add") + " " + @model.display_name, :disable_with => t("action.submitting"), :id =>"new-resource-button" %>
+      <%=
+      f.submit t("action.add") + " " + @model.display_name,
+        :disable_with => t("action.submitting"),
+        :id =>"new-#{@model.name.demodulize}-button"
+      %>
     </div>
       <% end -%>
   </div>
 </div>
+<%= render 'shared/modal' %>
