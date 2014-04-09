@@ -15,8 +15,9 @@ module Adminpanel
 
 
 				client = Google::APIClient.new(
-				  :application_name => 'Adminpanel',
-				  :application_version => '1.0.0')
+				  :application_name => 'AdminPanel',
+				  :application_version => '1.0.0'
+        )
 
 				analytics = nil
 				# Load cached discovered API, if it exists. This prevents retrieving the
@@ -35,10 +36,11 @@ module Adminpanel
 				key = Google::APIClient::KeyUtils.load_from_pkcs12(key_file, key_secret)
 				client.authorization = Signet::OAuth2::Client.new(
 					:token_credential_uri => 'https://accounts.google.com/o/oauth2/token',
-				  	:audience => 'https://accounts.google.com/o/oauth2/token',
-				  	:scope => 'https://www.googleapis.com/auth/analytics.readonly',
-				  	:issuer => service_account_email,
-				  	:signing_key => key
+				  :audience => 'https://accounts.google.com/o/oauth2/token',
+          :authorization_uri => 'https://accounts.google.com/o/oauth2/auth',
+				  :scope => 'https://www.googleapis.com/auth/analytics.readonly',
+				  :issuer => service_account_email,
+				  :signing_key => key
 				)
 				# Request a token for our service account
 				client.authorization.fetch_access_token!
@@ -46,14 +48,17 @@ module Adminpanel
 				startDate = DateTime.now.prev_month.strftime("%Y-%m-%d")
 				endDate = DateTime.now.strftime("%Y-%m-%d")
 
-				@visitCount = client.execute(:api_method => analytics.data.ga.get, :parameters => {
-				  'ids' => "ga:" + profileID,
-				  'start-date' => startDate,
-				  'end-date' => endDate,
-				  'dimensions' => "ga:day,ga:month",
-				  'metrics' => "ga:visits",
-				  'sort' => "ga:month,ga:day"
-				})
+				@visitCount = client.execute(
+          :api_method => analytics.data.ga.get,
+          :parameters => {
+  				  'ids' => "ga:#{profileID}",
+  				  'start-date' => startDate,
+  				  'end-date' => endDate,
+  				  'dimensions' => "ga:day,ga:month",
+  				  'metrics' => "ga:visits",
+  				  'sort' => "ga:month,ga:day"
+				  }
+        )
 
 				@visits = @visitCount.data.rows.collect do |r|
 				  	r[2]
