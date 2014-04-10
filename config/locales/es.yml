@@ -53,6 +53,8 @@ es:
     delete: "Eliminar"
     view: "Ver"
     delete confirmation: "Estás seguro que desea eliminar?"
+    is_true: 'Sí'
+    is_false: 'No'
   authentication:
     welcome: "Bienvenido! Inicia Sesión"
     signin_error: "Correo y/o Contraseña incorrecta."
