@@ -1,7 +1,11 @@
 module Adminpanel
   class User < ActiveRecord::Base
-    attr_accessible :email, :name, :password, :password_confirmation
+    attr_accessible :email, :name, :password, :password_confirmation, :group_id
     has_secure_password
+    belongs_to :group
+
+  #group validation
+    validates_presence_of :group_id
 
   #name validations
     validates_presence_of :name
@@ -30,10 +34,49 @@ module Adminpanel
 
     def self.form_attributes
       [
-        {"name" => {"type" => "text_field", "name" => "Nombre", 'label' => "Nombre", "placeholder" => "Nombre"}},
-        {"email" => {"type" => "text_field", "name" => "Correo", 'label' => 'Correo', 'placeholder' => 'Correo'}},
-        {"password" => {"type" => "password_field", "name" => "Contrasena", 'label' => I18n.t('model.attributes.password'), "placeholder" => I18n.t('model.attributes.password'), 'show' => 'false'}},
-        {"password_confirmation" => {"type" => "password_field", "name" => "Confirmacion de contrasena", 'placeholder' => I18n.t('model.attributes.password_confirmation'), 'label' => I18n.t('model.attributes.password_confirmation'), 'show' => 'false'}},
+        {
+          'name' => {
+            'type' => 'text_field',
+            'name' => 'Nombre',
+            'label' => 'Nombre',
+            'placeholder' => 'Nombre'
+            }
+        },
+        {
+          'email' => {
+            'type' => 'text_field',
+            'name' => 'Correo',
+            'label' => 'Correo',
+            'placeholder' => 'Correo'
+          }
+        },
+        {
+          'password' => {
+            'type' => 'password_field',
+            'name' => 'Contrasena',
+            'label' => I18n.t('model.attributes.password'),
+            'placeholder' => I18n.t('model.attributes.password'),
+            'show' => 'false'
+          }
+        },
+        {
+          'password_confirmation' => {
+            'type' => 'password_field',
+            'name' => 'Confirmacion de contrasena',
+            'placeholder' => I18n.t('model.attributes.password_confirmation'),
+            'label' => I18n.t('model.attributes.password_confirmation'),
+            'show' => 'false'
+          }
+        },
+        {
+          'group_id' => {
+            'type' => 'belongs_to',
+            'model' => 'Adminpanel::Group',
+            'remote_resource' => false,
+            'placeholder' => I18n.t('model.attributes.group_id'),
+            'label' => I18n.t('model.attributes.group_id')
+          }
+        },
       ]
     end
 

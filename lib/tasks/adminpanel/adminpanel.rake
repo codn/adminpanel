@@ -45,7 +45,8 @@ namespace :adminpanel do
       :email => 'admin@codn.com',
       :name => 'CoDN',
       :password => password,
-      :password_confirmation => password
+      :password_confirmation => password,
+      :group_id => Adminpanel::Group.find_by_name("Admin").object_id
     ).save
   end
 

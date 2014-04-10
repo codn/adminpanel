@@ -2,34 +2,36 @@
 <div class="sidebar-nav nav-collapse collapse" id="sidebar-navigation">
 	<div class="user_side clearfix">
 		<h5>
-			<%= @current_user.name.humanize %>
+			<%= current_user.name.humanize %>
 		</h5>
 		<%=
 		link_to(
-			content_tag(:i, nil, :class => 'icon-cog') + ' Editar',
-			edit_user_path(@current_user)
+			"#{current_user.group.name}",
+			"#"
 		)
 		%>
 	</div>
 	<div class="accordion" id="accordion2">
 		<% Adminpanel.displayable_resources.each do |resource| %>
 			<% resource_class = symbol_class(resource) %>
-			<div class="accordion-group">
-				<div class="accordion-heading">
-					<%=
-					link_to(
-						content_tag(
-							:i,
-							nil,
-							:class => resource_class.icon) +
-							content_tag(:span," #{resource_class.display_name}"),
-						[route_symbol(resource.to_s)],
-						:class => "accordion-toggle b_99FFCC
-							#{is_current_section?(resource_class.display_name)}"
-					)
-					%>
+			<% if can? :read, resource_class %>
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<%=
+						link_to(
+							content_tag(
+								:i,
+								nil,
+								:class => resource_class.icon) +
+								content_tag(:span," #{resource_class.display_name}"),
+							[route_symbol(resource.to_s)],
+							:class => "accordion-toggle b_99FFCC
+								#{is_current_section?(resource_class.display_name)}"
+						)
+						%>
+					</div>
 				</div>
-			</div>
+			<% end %>
 		<% end %>
 
 	</div>

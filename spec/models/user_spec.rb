@@ -3,13 +3,14 @@ require 'support/test_database'
 
 
 describe Adminpanel::User do
-
+  let(:group) { Factory(:group) }
   before do
     @user = Adminpanel::User.new(
       :name => "Example User",
       :email => "user@example.com",
       :password => "foobar",
-      :password_confirmation => "foobar"
+      :password_confirmation => "foobar",
+      :group_id => group.object_id
       )
   end
 
@@ -17,6 +18,7 @@ describe Adminpanel::User do
 
   it { should respond_to(:name) }
   it { should respond_to(:email) }
+  it { should respond_to(:group_id) }
   it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }

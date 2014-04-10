@@ -1,4 +1,5 @@
 def valid_signin(user)
+	Factory(:group)
 	fill_in "inputEmail", :with => user.email
 	fill_in "inputPassword", :with => user.password
  	click_button "signin-button"
