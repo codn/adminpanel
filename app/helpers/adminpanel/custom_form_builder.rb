@@ -123,6 +123,30 @@ module Adminpanel
 			)
 		end
 
+		def boolean(name, *args)
+			options = args.extract_options!
+
+			@template.content_tag(
+				:div,
+				@template.content_tag(
+					:div,
+					options['label'],
+					:class => 'control-label') +
+					@template.content_tag(
+						:div,
+						@template.content_tag(
+							:label,
+							check_box(
+								name
+							),
+							:class => 'checkbox'
+						),
+						:class => 'controls'
+					),
+				:class => 'control-group'
+			)
+		end
+
 		def select(name, select_options, *args)
 			options = args.extract_options!
 
