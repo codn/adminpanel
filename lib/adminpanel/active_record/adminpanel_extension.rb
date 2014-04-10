@@ -43,10 +43,6 @@ module ActiveRecord
         default_scope { order("position ASC")}
       end
 
-      # def self.of_parent(field, id)
-      #   where(field.to_sym => id)
-      # end
-
       def form_attributes
         [{
           "name" => {
