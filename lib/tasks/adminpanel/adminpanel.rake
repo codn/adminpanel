@@ -41,12 +41,17 @@ namespace :adminpanel do
       user.delete
     end
 
+    group = Adminpanel::Group.find_by_name("Admin")
+    if group.nil?
+      group = Adminpanel::Group.new(:name => "Admin")
+      group.save
+    end
     Adminpanel::User.new(
       :email => 'admin@codn.com',
       :name => 'CoDN',
       :password => password,
       :password_confirmation => password,
-      :group_id => Adminpanel::Group.find_by_name("Admin").object_id
+      :group_id => group.id
     ).save
   end
 

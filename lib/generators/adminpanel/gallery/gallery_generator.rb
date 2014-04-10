@@ -5,12 +5,6 @@ module Adminpanel
       source_root File.expand_path("../templates", __FILE__)
       desc "Generate the resource files necessary to use a model"
 
-      # argument :reference_model,
-      #   :aliases => "-m",
-      #   :type => :string,
-      #   :require => true,
-      #   :desc => 'Choose the model that you want the uploader to belong_to'
-
       def create_model
         template 'gallery_template.rb', "app/models/adminpanel/#{lower_name}.rb"
       end
