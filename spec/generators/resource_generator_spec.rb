@@ -22,6 +22,7 @@ describe Adminpanel::Generators::ResourceGenerator do
 				name
 				description:wysiwyg
 				number:float
+				flag:boolean
 				quantity:integer
 				date:datepicker
 				photo:images
@@ -37,6 +38,7 @@ describe Adminpanel::Generators::ResourceGenerator do
 				migration_file('db/migrate/create_posts_table.rb').should(
 					contain(/t.string :name/) &&
 					contain(/t.float :number/) &&
+					contain(/t.boolean :flag/) &&
 					contain(/t.integer :quantity/) &&
 					contain(/t.string :date/) &&
 					contain(/t.text :description/)
@@ -70,6 +72,8 @@ describe Adminpanel::Generators::ResourceGenerator do
 					contain(/'type' => 'text_field',/) &&
 					contain(/'number' => \{/) &&
 					contain(/'type' => 'text_field',/) &&
+					contain(/'flag' => \{/) &&
+					contain(/'type' => 'boolean',/) &&
 					contain(/'quantity' => \{/) &&
 					contain(/'type' => 'number_field',/) &&
 					contain(/'date' => \{/) &&

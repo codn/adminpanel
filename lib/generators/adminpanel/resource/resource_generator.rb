@@ -112,20 +112,22 @@ module Adminpanel
 				fields.each do |attribute|
 
 					assign_attributes_variables(attribute)
-
-					if @attr_type == "string" || @attr_type == "float"
+					case(@attr_type)
+					when 'string', 'float'
 						form_hash = form_hash + "#{attribute_hash('text_field')}"
-					elsif @attr_type == "text" || @attr_type == "wysiwyg"
+					when 'text', 'wysiwyg'
 						form_hash = form_hash + "#{attribute_hash('wysiwyg_field')}"
-					elsif @attr_type == "integer"
+					when 'integer'
 						form_hash = form_hash + "#{attribute_hash('number_field')}"
-					elsif @attr_type == "datepicker"
+					when 'boolean'
+						form_hash = form_hash + "#{attribute_hash('boolean')}"
+					when 'datepicker'
 						form_hash = form_hash + "#{attribute_hash('datepicker')}"
-					elsif @attr_type == "images"
+					when 'images'
 						form_hash = form_hash + "#{file_field_hash}"
-					elsif @attr_type == "belongs_to"
+					when 'belongs_to'
 						form_hash = form_hash + "#{belongs_to_attribute_hash(belongs_to_field(@attr_field))}"
-					elsif @attr_type == "has_many" || @attr_type == "has_many_through"
+					when 'has_many', 'has_many_through'
 						if models_in_parameter(@attr_field).second.nil?
 							through_model = @attr_field
 						else
@@ -187,7 +189,6 @@ module Adminpanel
 
 			def model_type(type)
 				"\n\t\t\t\t\t'model' => 'Adminpanel::#{type}'"
-
 			end
 
 			def migration_string(field, type)
