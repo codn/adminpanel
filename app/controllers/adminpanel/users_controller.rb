@@ -1,5 +1,7 @@
 module Adminpanel
   class UsersController < Adminpanel::ApplicationController
+    # authorize_resource :class => false
+    load_and_authorize_resource
     # GET /admin/users
     # GET /admin/users.json
     # def index
