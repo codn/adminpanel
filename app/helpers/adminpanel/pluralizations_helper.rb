@@ -6,7 +6,11 @@ module Adminpanel
       string.split.each do |word|
         case(word.last)
           when 'a', 'e', 'i', 'o', 'u', 'c'
-            pluralized_string = "#{pluralized_string}#{word}s "
+            if word[-2,1] == 'd' #if the second last letter is d...
+              pluralized_string = "#{pluralized_string}#{word} "
+            else
+              pluralized_string = "#{pluralized_string}#{word}s "
+            end
           when 'b', 'r'
             pluralized_string = "#{pluralized_string}#{word}es "
           when 'z'
