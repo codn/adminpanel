@@ -5,6 +5,11 @@ Factory.define :user, :class => Adminpanel::User do |user|
 	user.email "email@test.com"
 	user.password "123456"
 	user.password_confirmation "123456"
+	user.group_id '1'
+end
+
+Factory.define :group, :class => Adminpanel::Group do |group|
+	group.name 'Admin'
 end
 
 Factory.define :gallery, :class => Adminpanel::Gallery do |gallery|

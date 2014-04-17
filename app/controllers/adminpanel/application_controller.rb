@@ -7,13 +7,17 @@ module Adminpanel
         include SessionsHelper
         include RestActionsHelper
 
-        layout "admin"
+        layout 'admin'
 
         before_filter :signed_in_user, :set_model
 
+        rescue_from CanCan::AccessDenied do |exception|
+          sign_out
+          redirect_to signin_path, :alert => I18n.t('authentication.not_authorized')
+        end
 
         def signed_in_user
-            redirect_to signin_url, :notice => "Favor de Iniciar sesion" unless signed_in?
+            redirect_to signin_url, :notice => I18n.t("authentication.welcome") unless signed_in?
         end
 
         def set_model
@@ -24,9 +28,5 @@ module Adminpanel
             sign_out
             super
         end
-
-        # def get_menu_elements
-        #     @menu_items = menu_items
-        # end
     end
 end

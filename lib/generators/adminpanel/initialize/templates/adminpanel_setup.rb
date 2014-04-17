@@ -11,11 +11,11 @@ Adminpanel.setup do |config|
   # config.analytics_key_path = "config/analytics"
 
   # # This are the modules that are going to be displayed and order that are going to be displayed
-  # config.displayable_resources = [
-  #   :analytics,
-  #   :users,
-  #   :galleries,
-  #   :sections,
-  #   :categories
-  # ]
+  config.displayable_resources = [
+    :analytics,
+    :users,
+    :galleries,
+    :sections,
+    :categories
+  ]
 end

@@ -8,10 +8,10 @@ es:
       brief: "Pequeña descripción"
       category_id: "Categoría"
       client_id: "Cliente"
-      adminproject_id: "Proyecto"
       description: "Descripción"
       email: "Correo electrónico"
       file: "Imagen"
+      group_id: "Rol de usuario"
       name: "Nombre"
       password: "Contraseña"
       password_confirmation: "Confirmar contraseña"
@@ -53,10 +53,13 @@ es:
     delete: "Eliminar"
     view: "Ver"
     delete confirmation: "Estás seguro que desea eliminar?"
+    is_true: 'Sí'
+    is_false: 'No'
   authentication:
     welcome: "Bienvenido! Inicia Sesión"
-    signin error: "Contraseña incorrecta"
-    signin success: "Bienvenido!"
+    signin_error: "Correo y/o Contraseña incorrecta."
+    signin_success: "Bienvenido!"
+    not_authorized: 'No tienes permisos para acceder'
   gallery:
     new: "Agregar Imagen"
     success: "La imagen ha sido guardada"

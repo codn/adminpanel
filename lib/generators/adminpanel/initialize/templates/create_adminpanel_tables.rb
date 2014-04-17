@@ -4,8 +4,11 @@ class CreateAdminpanelTables < ActiveRecord::Migration
 		# Create a default user
 		if direction == :up
 			if Rails.env.development?
-				Adminpanel::User.new(:email => 'admin@admin.com', :name => "Admin", :password => 'password', :password_confirmation => 'password').save
+				group = Adminpanel::Group.new(:name => "Admin")
+				group.save
+				Adminpanel::User.new(:email => 'admin@admin.com', :name => "Admin", :password => 'password', :password_confirmation => 'password', :group_id => group.object_id).save
 				puts "The password for admin@admin.com is: password"
+
 			end
 		end
 	end
@@ -30,6 +33,11 @@ class CreateAdminpanelTables < ActiveRecord::Migration
 	    create_table :adminpanel_images do |t|
 	      t.string :file
 	      t.integer :section_id
+	      t.timestamps
+	    end
+
+	    create_table :adminpanel_groups do |t|
+	      t.string :name
 	      t.timestamps
 	    end
 

@@ -1,6 +1,6 @@
 module Adminpanel
     class AnalyticsController < Adminpanel::ApplicationController
-
+    authorize_resource :class => false
 		skip_before_filter :set_model
 
 		API_VERSION = 'v3'

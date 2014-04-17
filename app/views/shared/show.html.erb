@@ -40,6 +40,8 @@
                   <ul>
                     <%= image_tag(resource.send("#{attribute}_url", :thumb)) %>
                   </ul>
+                <% elsif properties["type"] == "boolean" %>
+                  <td><%= resource.send(attribute) ? I18n.t('action.is_true') : I18n.t('action.is_false') %></td>
                 <% else %>
                   <%= resource.send(attribute) -%>
                 <% end %>

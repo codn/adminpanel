@@ -21,7 +21,7 @@ describe "Authentication" do
 
 	    	it { expect(page).to have_title(I18n.t("Panel title")) }
 
-	      	it { should have_selector('div.alert.alert-error', :text => I18n.t("authentication.signin error")) }
+	      	it { should have_selector('div.alert.alert-error', :text => I18n.t("authentication.signin_error")) }
 	    end
 
 	    describe "with valid information" do
@@ -30,7 +30,7 @@ describe "Authentication" do
 	    		valid_signin(user)
 	    	end
 
-	    	it { should have_selector('div.alert.alert-success', :text => I18n.t("authentication.signin success")) }
+	    	it { should have_selector('div.alert.alert-success', :text => I18n.t("authentication.signin_success")) }
 	    	it { should have_selector('i.icon-off') }
 
 	    	describe "signing out" do

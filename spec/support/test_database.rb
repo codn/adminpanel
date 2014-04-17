@@ -3,6 +3,7 @@ ActiveRecord::Migration.create_table :adminpanel_users do |t|
     t.string   :email
     t.string   :password_digest
     t.string   :remember_token
+    t.integer  :group_id
     t.datetime :created_at,      :null => false
     t.datetime :updated_at,      :null => false
 end
@@ -40,6 +41,11 @@ end
 ActiveRecord::Migration.create_table :adminpanel_categorizations do |t|
     t.integer  :product_id
     t.integer  :category_id
+    t.datetime :created_at,      :null => false
+    t.datetime :updated_at,      :null => false
+end
+ActiveRecord::Migration.create_table :adminpanel_groups do |t|
+    t.string   :name
     t.datetime :created_at,      :null => false
     t.datetime :updated_at,      :null => false
 end
