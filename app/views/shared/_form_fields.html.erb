@@ -14,10 +14,12 @@
 
 	<% elsif properties["type"] == "adminpanel_file_field" %>
 	<% if !defined? remote_request %>
-		<%= f.fields_for(attribute) do |builder| %>
-    	<%= render 'shared/image_fields', :f => builder %>
-  	<% end -%>
-  	<%= link_to_add_fields t("Add Image"), f, attribute %>
+		<%= content_tag :div, :class => 'file-collection-container', :data => {:max => properties['max-files'].nil? ? 0 : properties['max-files'] } do %>
+			<%= f.fields_for(attribute) do |builder| %>
+	    	<%= render 'shared/image_fields', :f => builder %>
+	  	<% end -%>
+  		<%= link_to_add_fields t("Add Image"), f, attribute %>
+		<% end %>
 
 	<% end %>
   <% elsif properties["type"] == "belongs_to" %>
@@ -88,7 +90,7 @@
 			%>
 		<% end %>
 	<% end %>
-	
+
   <% else %>
 		<% type = properties["type"] %>
 		<% args = properties.except("type", "name") %>
