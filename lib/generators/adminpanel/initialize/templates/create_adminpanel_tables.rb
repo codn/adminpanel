@@ -6,7 +6,7 @@ class CreateAdminpanelTables < ActiveRecord::Migration
 			if Rails.env.development?
 				group = Adminpanel::Group.new(:name => "Admin")
 				group.save
-				Adminpanel::User.new(:email => 'admin@admin.com', :name => "Admin", :password => 'password', :password_confirmation => 'password', :group_id => group.object_id).save
+				Adminpanel::User.new(:email => 'admin@admin.com', :name => "Admin", :password => 'password', :password_confirmation => 'password', :group_id => group.id).save
 				puts "The password for admin@admin.com is: password"
 
 			end
@@ -17,6 +17,7 @@ class CreateAdminpanelTables < ActiveRecord::Migration
 	    create_table :adminpanel_users do |t|
 	      t.string :name
 	      t.string :email
+	      t.string :group_id
 	      t.string :password_digest
 	      t.string :remember_token
 	      t.timestamps
