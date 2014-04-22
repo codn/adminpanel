@@ -1,6 +1,5 @@
 module Adminpanel
   class User < ActiveRecord::Base
-    attr_accessible :email, :name, :password, :password_confirmation, :group_id
     has_secure_password
     belongs_to :group
 
@@ -85,13 +84,21 @@ module Adminpanel
 
     end
 
+    def User.new_remember_token
+      SecureRandom.urlsafe_base64
+    end
+
+    def User.digest(token)
+      Digest::SHA1.hexdigest(token.to_s)
+    end
+
     def self.icon
       'icon-user'
     end
 
     private
       def create_remember_token
-        self.remember_token = SecureRandom.base64.tr("+/", "-_")
+        self.remember_token = User.digest(User.new_remember_token)
       end
   end
 end

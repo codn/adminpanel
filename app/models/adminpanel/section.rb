@@ -2,8 +2,6 @@ require 'carrierwave'
 require 'carrierwave/orm/activerecord'
 module Adminpanel
 	class Section < ActiveRecord::Base
-	  attr_accessible :description, :has_image, :key, :page, :name, :has_description,
-		:images_attributes, :file
 
 	  mount_images :images
 
