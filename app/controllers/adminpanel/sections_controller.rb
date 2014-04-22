@@ -48,5 +48,19 @@ module Adminpanel
     def index
       @sections = Section.all
     end
+
+    private
+    def section_params
+      params.require(:section).permit(
+      :description,
+      :has_image,
+      :key,
+      :page,
+      :name,
+      :has_description,
+      :images_attributes => [:id, :file]
+      )
+
+    end
   end
 end

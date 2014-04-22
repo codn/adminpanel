@@ -36,6 +36,6 @@ Adminpanel::Engine.routes.draw do
 
   root :to => "#{Adminpanel.displayable_resources.first}#index"
   resources :sessions, :only => [:new, :create, :destroy]
-  match '/signout', :to => 'sessions#destroy', :via => :delete, :as => "signout"
-  match '/signin', :to => 'sessions#new', :as => "signin"
+  delete '/signout', :to => 'sessions#destroy', :as => "signout"
+  get '/signin', :to => 'sessions#new', :as => "signin"
 end

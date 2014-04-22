@@ -1,9 +1,9 @@
 module Adminpanel
   class GalleriesController < Adminpanel::ApplicationController
     load_and_authorize_resource
-    
+
     def index
-      @galleries = Gallery.find(:all)
+      @galleries = Gallery.all
     end
 
     def show
@@ -79,5 +79,11 @@ module Adminpanel
     # def new
     #   @gallery = Gallery.new
     # end
+
+    private
+    def gallery_params
+      params.require(:gallery).permit(:file)
+
+    end
   end
 end
