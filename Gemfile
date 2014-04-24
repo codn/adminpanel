@@ -20,4 +20,5 @@ group :test do
 	gem 'sqlite3', :platform => [:ruby, :mswin, :mingw]
 	gem 'capybara', '~> 2.2.1'
 	gem 'ammeter', '~> 1.0.0'
+	gem 'faker', '>= 1.3.0'
 end
