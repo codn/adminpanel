@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in adminpanel.gemspec
 # gemspec
 
-gem 'rails', '~> 4.0.4'
+gem 'rails', '>= 4.0.0'
 gem 'carrierwave', '~> 0.10.0'
 gem 'rmagick', '~> 2.13.2', require: false
 gem 'jquery-rails', '~> 3.1.0'
@@ -14,7 +14,6 @@ gem 'google-api-client', '~> 0.7.1'
 gem 'cancancan', '~> 1.7'
 
 group :test do
-	gem 'bundler', '1.5.3'
 	gem 'factory_girl_rails', '~> 4.4.1'
 	gem 'rspec', '~> 2.14.1'
 	gem 'rspec-rails', '~> 2.14.1'

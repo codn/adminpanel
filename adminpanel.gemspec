@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Jose Ramon Camacho", "Victor Camacho"]
   spec.email         = ["joserracamacho@gmail.com"]
   spec.description   = %q{Gem that makes the admin panel for a site a breeze!}
-  spec.summary       = %q{Developed with love for ruby 1.8.7}
+  spec.summary       = %q{Developed with <3 by CoDN}
   spec.homepage      = "https://github.com/joseramonc/adminpanel"
   spec.license       = "MIT"
 
@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 1.9.3'
 
-  spec.add_dependency "rails", '~> 4.0.4'
+  spec.add_dependency "rails", '>= 4.0.0'
   spec.add_dependency "carrierwave", "~> 0.10.0"
   spec.add_dependency "rmagick", "~> 2.13.2"
   spec.add_dependency "jquery-rails", "~> 3.1.0"
@@ -30,7 +30,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "cancancan", "~> 1.7"
   spec.add_dependency "google-api-client", "~> 0.7.1"
 
-  spec.add_development_dependency 'bundler', '1.5.3'
   spec.add_development_dependency "sqlite3"
   spec.add_development_dependency 'factory_girl_rails', '~> 4.4.1'
   spec.add_development_dependency 'rspec', '~> 2.14.1'
