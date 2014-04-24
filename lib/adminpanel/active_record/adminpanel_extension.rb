@@ -89,11 +89,13 @@ module ActiveRecord
         return ":("
       end
 
-      def display_attributes
+      def display_attributes(type)
         display_attributes = []
         form_attributes.each do |attribute|
           attribute.each do |name, properties|
-            if properties["show"].nil? || properties["show"] == "true"
+            if properties['show'].nil? ||
+              properties['show'] == 'true' ||
+              properties['show'] == type
               display_attributes << attribute
             end
           end
