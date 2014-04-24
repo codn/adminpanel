@@ -2,7 +2,7 @@
 
 CMS for Rails 4, for rails 3.x check the corresponding branch.
 
-[![Gem Version](https://badge.fury.io/rb/adminpanel.png)](http://badge.fury.io/rb/adminpanel@2x)
+[![Gem Version](https://badge.fury.io/rb/adminpanel.svg)](http://badge.fury.io/rb/adminpanel)
 [![Travis CI   ](https://api.travis-ci.org/joseramonc/adminpanel.png)       ](https://travis-ci.org/joseramonc/adminpanel)
 [![Dependency Status](https://gemnasium.com/joseramonc/adminpanel.svg)](https://gemnasium.com/joseramonc/adminpanel)
 
