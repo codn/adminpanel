@@ -96,9 +96,6 @@ namespace :adminpanel do
 
     attributes = args[:attributes].split(" ")
 
-    init_variables
-
-    has_image = false
     args[:times].to_i.times do |time|
       instance = @model.new
       attributes.each do |attribute|
@@ -106,39 +103,45 @@ namespace :adminpanel do
         type = attribute.split(":").second
 
         case type
-          when "name" #generate a name
-            value = generate_name
+          when 'name' #generate a name
+            value = Faker::Name.name
 
-          when "category" || "category_name" #generate a category name
-            value = @things.sample.pluralize
+          when 'category' || 'category_name' #generate a category name
+            value = Faker::Commerce.product_name
 
           when 'lorem_short'
-            value = generate_lorem_name #lorem random short sentence
+            value = generate_lorem([*0..3]) #lorem random short sentence
 
-          when "lorem" || "description" #large paragraph.
-            value = generate_lorem
+          when 'lorem' || 'description' #large paragraph.
+            value = generate_lorem([*60..80])
 
-          when "number" #generate a number
-            value = [*1..5000].sample
+          when 'number' #generate a number
+            value = [*1..7000].sample
 
-          when "id" #assign field_id it to a random instance of Adminpanel::field
+          when 'url' #generate an url
+            value = Faker::Internet.url
+          when 'id' #assign field_id it to a random instance of Adminpanel::field
             field = field.downcase.singularize
             if field != 'category'
-              value = "adminpanel/#{field}".classify.constantize.order("RAND()").first.id
+              value = "adminpanel/#{field}".classify.constantize.order('RAND()').first.id
             else
-              value = "adminpanel/#{field}".classify.constantize.of_model(@model.display_name).order("RAND()").first.id
+              value = "adminpanel/#{field}".classify.constantize.of_model(@model.display_name).order('RAND()').first.id
             end
               field = "#{field}_id"
 
-          when "email" #generates a random email
-            value = generate_email
+          when 'email' #generates a random email
+            value = Faker::Internet.email
 
-          else #no type
-            value = "#{time + 1} Lorem ipsum dolor sit amec"
+          when 'image' || 'images'
+            3.times do
+              instance.send("#{@model.name.demodulize.downcase}files").build
+            end
+          else #no type || not found
+            value = generate_lorem([*0..6])
 
         end
 
-        if(type != "image")
+        if(type != 'image')
           instance.send("#{field}=", value)
         end
       end
@@ -146,7 +149,6 @@ namespace :adminpanel do
       instance.save(:validate => false)
 
       change_dates(instance)
-
     end
 
   end
@@ -172,45 +174,22 @@ private
     ").save\n"
   end
 
-  def generate_lorem
-    value = "#{@lorem.sample}"
-    [*60..80].sample.times do
-      value = "#{value} #{@lorem.sample}"
+  def generate_lorem(range)
+    value = "#{lorem_words.sample}"
+    range.sample.times do
+      value = "#{value} #{lorem_words.sample}"
     end
     "#{value}."
   end
 
-  def generate_lorem_name
-    value = "#{@lorem.sample}"
-    [*0..3].sample.times do
-      value = "#{value} #{@lorem.sample}"
-    end
-    "#{value.titleize}."
-  end
-
-  def generate_email
-    "#{@names.sample.first}#{@l_names.sample}@#{@domains.sample}"
-  end
-
-  def generate_name
-    "#{@prefixes.sample} #{@names.sample} #{@l_names.sample}"
-  end
-
-  def generate_thing
-    "#{@adjective_denominations} #{@things.sample}"
-  end
-
   def change_dates(instance)
-    date = rand(3.years).ago
+    date = rand(Date.parse('2010-01-01')..Date.today)
     instance.update_attribute(:created_at, date)
     instance.update_attribute(:updated_at, date)
   end
 
-  def init_variables
-    @prefixes = %W[Sir CEO Entrepeneur Bgr MVP]
-    @names = %W[Transito Jose Victor John Jane Ramon Katy Sean Emma]
-    @l_names = %W[Camacho Ferreira Gonzalez Lopez Doe Roe Williams Holmes]
-    @lorem = %W[Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+  def lorem_words
+    %W[Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
       eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
       minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
       ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
@@ -232,10 +211,5 @@ private
       sem mauris. Suspendisse ornare, dui eget elementum aliquam, augue neque
       condimentum leo, nec ullamcorper lectus massa quis nibh. Etiam id egestas
       mauris, eget eleifend enim.
-    ]
-    @domains = %W[codn.com gmail.com hotmail.com codn.mx codn.com.mx]
-    @adjective_denominations = %W[Nice Pretty Good Ugly Expensive Cheap Useful]
-    @things = %W[T-shirt Cellphone Laptop iPhone Android Beer Belt Headphone
-      Apple\ TV iMac Macbook\ pro iPod\ touch Github's\ octocat Mug Template
     ]
 end

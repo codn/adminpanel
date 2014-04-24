@@ -1,6 +1,5 @@
 module Adminpanel
   class Category < ActiveRecord::Base
-    # attr_accessible :name, :model #, :product_ids
 
     validates_presence_of :model
     validates_presence_of :name
