@@ -31,14 +31,13 @@ describe Adminpanel::Generators::GalleryGenerator do
       )
     end
 
-    it 'should generate the productfile model with uploader and attr_accessible' do
+    it 'should generate the productfile model with uploader' do
       file('app/models/adminpanel/productfile.rb').should(
-        contain(/attr_accessible :product_id, :file/) &&
         contain(/mount_uploader :file, ProductfileUploader/)
       )
     end
 
-    it 'should generate the productfile model with uploader and attr_accessible' do
+    it 'should generate the productfile model with uploader' do
       file('app/models/adminpanel/productfile.rb').should exist
     end
 

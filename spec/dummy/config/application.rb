@@ -3,7 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 Bundler.require(*Rails.groups)
-require "adminpanel"
+require 'adminpanel'
 
 module Dummy
   class Application < Rails::Application
@@ -29,7 +29,7 @@ module Dummy
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :es
     I18n.config.enforce_available_locales = true
-    
+
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
@@ -44,14 +44,6 @@ module Dummy
     # like if you have constraints or database-specific column types
     # config.active_record.schema_format = :sql
 
-    # Enforce whitelist mode for mass assignment.
-    # This will create an empty whitelist of attributes available for mass-assignment for all models
-    # in your app. As such, your models will need to explicitly whitelist or blacklist accessible
-    # parameters by using an attr_accessible or attr_protected declaration.
-    if Rails::VERSION::MAJOR == 3
-      config.active_record.whitelist_attributes = true
-    end
-
     # Enable the asset pipeline
     config.assets.enabled = true
 
@@ -59,4 +51,3 @@ module Dummy
     config.assets.version = '1.0'
   end
 end
-
