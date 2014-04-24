@@ -1,14 +1,15 @@
 require 'spec_helper'
-require 'support/test_database'
 
-describe "adminpanel rake task" do
+
+describe 'adminpanel rake task' do
 
   before :all do
-    Rake.application.rake_require "tasks/adminpanel/adminpanel"
+    Adminpanel::Section.delete_all
+    Rake.application.rake_require 'tasks/adminpanel/adminpanel'
     Rake::Task.define_task(:environment)
   end
 
-  describe "adminpanel:populate[10, product, name:name description:lorem price:small_lorem]" do
+  describe 'adminpanel:populate[10, product, name:name description:lorem price:small_lorem]' do
 
     let(:has_nil_attribute) { false }
     before do
@@ -21,7 +22,7 @@ describe "adminpanel rake task" do
     # end
 
     it "attributes shouldn't be nil" do
-      Adminpanel::Product.find(:all).each do |product|
+      Adminpanel::Product.all.each do |product|
         if (product.name.nil? || product.description.nil? || product.price.nil? ||
           product.name == "" || product.description == "" || product.price == "")
           has_nil_attribute = true
@@ -31,7 +32,7 @@ describe "adminpanel rake task" do
     end
   end
 
-  describe "adminpanel:section[about, mission]" do
+  describe 'adminpanel:section[about, mission]' do
     before do
       Rake.application.invoke_task "adminpanel:section[about, mission]"
     end
@@ -49,7 +50,7 @@ describe "adminpanel rake task" do
 
   describe 'adminpanel:user' do
     before do
-      Rake.application.invoke_task "adminpanel:user"
+      Rake.application.invoke_task 'adminpanel:user'
     end
     it 'should create admin@codn user' do
       Adminpanel::User.last.email.should eq('admin@codn.com')

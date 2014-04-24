@@ -1,41 +1,50 @@
 require 'spec_helper'
-require 'support/test_database'
 
+describe 'Gallery pages' do
+	let(:gallery) { FactoryGirl.build(:gallery) }
+	let(:user) { FactoryGirl.build(:user) }
 
-describe "Gallery pages" do
-	subject {page}
+	subject { page }
 
-	let(:user) { Factory(:user) }
 	before do
+		gallery.save
 		visit adminpanel.signin_path
-		valid_signin(user)
+		valid_signin_as_admin(user)
 		clean_uploads_folder
 	end
 
-	describe "galleries" do
-		let(:gallery) { Factory(:gallery) }
+	describe 'galleries' do
 		before do
 			visit adminpanel.galleries_path
 		end
 
-		it { should have_link(I18n.t("gallery.new"), adminpanel.new_gallery_path)}
-		it { should have_link("i", adminpanel.gallery_path(gallery)) }
-		it { should have_link("i", adminpanel.edit_gallery_path(gallery)) }
-		it { should have_link("i", adminpanel.move_to_better_gallery_path(gallery)) }
-		it { should have_link("i", adminpanel.move_to_worst_gallery_path(gallery)) }
+		it { should have_link(I18n.t('gallery.new'), adminpanel.new_gallery_path)}
+		it { should have_link('i', adminpanel.gallery_path(gallery)) }
+		it { should have_link('i', adminpanel.edit_gallery_path(gallery)) }
+		it { should have_link('i', adminpanel.move_to_better_gallery_path(gallery)) }
+		it { should have_link('i', adminpanel.move_to_worst_gallery_path(gallery)) }
 	end
 
-	describe "when creating" do
-		describe "a single image" do
-			let(:gallery) { Factory(:gallery)}
-			it { gallery.position.should eq 1 }
+	context 'when creating' do
+    let(:gallery_1) { FactoryGirl.build(:gallery) }
+    let(:gallery_2) { FactoryGirl.build(:gallery) }
+    let(:gallery_3) { FactoryGirl.build(:gallery) }
+
+		before do
+			Adminpanel::Gallery.delete_all
+			gallery_1.save
 		end
 
-		describe "3 images" do
-			let!(:gallery_1) { Factory(:gallery) }
-			let!(:gallery_2) { Factory(:gallery) }
-			let!(:gallery_3) { Factory(:gallery) }
+		describe 'a single image' do
+			it { gallery_1.position.should eq 1 }
+		end
 
+		describe '3 images' do
+
+			before do
+				gallery_2.save
+				gallery_3.save
+			end
 			it { gallery_2.position.should eq 2 }
 			it { gallery_3.position.should eq 3 }
 			describe "when moving down the image in position 1" do
@@ -92,11 +101,10 @@ describe "Gallery pages" do
 	end
 
 	describe "show" do
-		let(:gallery) { Factory(:gallery) }
 		before do
 			visit adminpanel.gallery_path(gallery)
 		end
 
-		it { page.should have_selector("img", :src => gallery.file_url) }
+		it { page.should have_selector("img[src='#{gallery.file_url}']") }
 	end
 end

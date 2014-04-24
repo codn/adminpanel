@@ -5,17 +5,20 @@ module Adminpanel
       source_root File.expand_path("../templates", __FILE__)
       desc "Generate the resource files necessary to use a model"
 
-      def create_model
+      def generate_model
         template 'gallery_template.rb', "app/models/adminpanel/#{lower_name}.rb"
       end
 
-      def create_uploader
+      def generate_uploader
         template 'uploader.rb', "app/uploaders/adminpanel/#{lower_name}_uploader.rb"
       end
 
-      def create_migration
-        migration_template 'gallery_migration.rb', "db/migrate/create_adminpanel_#{lower_name.pluralize}_table.rb"
-        puts "don't forget to add the form_field, the relationship and #{lower_name}s_attributes it to attr_accessible"
+      def generate_migration
+        migration_template(
+          'gallery_migration.rb',
+          "db/migrate/create_adminpanel_#{lower_name.pluralize}_table.rb"
+        )
+        puts "don't forget to add the form_field, the relationship and #{lower_name}s_attributes it to the permited params"
       end
 
     private

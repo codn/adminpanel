@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'support/test_database'
+ 
 require 'carrierwave/test/matchers'
 
 describe Adminpanel::GalleryUploader do

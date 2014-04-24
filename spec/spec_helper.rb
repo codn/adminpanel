@@ -9,13 +9,16 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../dummy/config/environment", __FILE__)
 require "rspec/rails"
 require "capybara/rspec"
-require "factory_girl"
+require "factory_girl_rails"
+require 'carrierwave/orm/activerecord'
 require "carrierwave/test/matchers"
 require "active_record"
 require "rake"
 
+
 Dir["./spec/support/**/*.rb"].sort.each { |f| require f }
 
+# FactoryGirl.find_definitions
 RSpec.configure do |config|
 	config.treat_symbols_as_metadata_keys_with_true_values = true
 	config.run_all_when_everything_filtered = true
@@ -26,6 +29,11 @@ RSpec.configure do |config|
 	  :adapter => 'sqlite3',
 	  :database => ':memory:'
 	)
+
+	config.include ActionDispatch::TestProcess
+
+	puts "creating sqlite in memory database"
+	load "#{Rails.root}/db/schema.rb"
 
 	config.use_transactional_fixtures = false
 

@@ -29,7 +29,7 @@
     <div class = "widget-footer">
       <%=
       f.submit t("action.add") + " " + @model.display_name,
-        :disable_with => t("action.submitting"),
+        data: {:disable_with => t("action.submitting")},
         :id =>"new-#{@model.name.demodulize}-button"
       %>
     </div>

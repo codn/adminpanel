@@ -11,7 +11,7 @@ module Adminpanel
       new! do |format|
         format.html { render "shared/new" }
         format.js do
-          render :locals => {:resource => resource}
+          render
         end
       end
     end
@@ -21,6 +21,7 @@ module Adminpanel
       params.merge({:model_name => params[:model_name]}) if params[:model_name].present?
       params.merge({:model => params[:model]}) if params[:model].present?
       params.merge({:currentcontroller => params[:currentcontroller]}) if params[:currentcontroller].present?
+      params.merge({:belongs_request => params[:belongs_request]}) if params[:belongs_request].present?
 
       create! do |success, failure|
         success.html do
@@ -29,18 +30,20 @@ module Adminpanel
         end
         failure.html do
           set_collections
-          render "shared/new"
+          render 'shared/new'
         end
         success.js do
-          if params[:currentcontroller] == 'adminpanel/categories'
+          if params[:currentcontroller].to_s == 'adminpanel/categories'
             render 'create', :locals => {:category => resource}
+          elsif params[:belongs_request].present?
+            render 'shared/create_belongs_to'
           else
-            render 'shared/create_has_many', :locals => {:resource => resource}
+            render 'shared/create_has_many'
           end
         end
         failure.js do
           set_collections
-          render "new", :locals => {:resource => resource }
+          render "new"
 
         end
       end
@@ -76,5 +79,13 @@ module Adminpanel
         end
       end
     end
+
+    private
+      def category_params
+        params.require(:category).permit(:name, :model)
+        # permitted.permit(:currentcontroller)
+        # params.require(:currentcontroller)
+
+      end
   end
 end
