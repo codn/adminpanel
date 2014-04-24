@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '1.5.3'
   spec.add_development_dependency "sqlite3"
   spec.add_development_dependency 'factory_girl_rails', '~> 4.4.1'
+  spec.add_development_dependency 'rspec', '~> 2.14.1'
   spec.add_development_dependency 'rspec-rails', '~> 2.14.1'
   spec.add_development_dependency 'capybara', '2.2.1'
   spec.add_development_dependency 'ammeter', '1.0.0'
