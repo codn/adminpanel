@@ -5,22 +5,23 @@ describe 'Shared pages' do
 
 
 	let(:user) { get_user }
+	let!(:product) { FactoryGirl.create(:product) }
+	let!(:category){ FactoryGirl.create(:category) }
+	let!(:photo) { FactoryGirl.create(:photo) }
+
 	before do
+		Adminpanel::User.delete_all
 		visit adminpanel.signin_path
 		valid_signin_as_admin(user)
 	end
 
 	after do
-		user.delete
-
+		Adminpanel::User.delete_all
 	end
 
 	describe 'index' do
-		let!(:product) { FactoryGirl.create(:product) }
 		before do
-			# valid_signin_as_admin(user)
 			visit adminpanel.products_path
-			# valid_signin_as_admin(user)
 		end
 
 		it { page.should have_link(Adminpanel::Product.display_name, adminpanel.new_product_path)}
@@ -29,7 +30,6 @@ describe 'Shared pages' do
 	end
 
 	describe 'new' do
-		let!(:category){ FactoryGirl.create(:category) }
 		before do
 			visit adminpanel.new_product_path
 		end
@@ -71,8 +71,6 @@ describe 'Shared pages' do
 	end
 
 	describe "edit" do
-		let!(:category){ FactoryGirl.create(:category) }
-		let(:product){ FactoryGirl.create(:product) }
 
 		before do
 			product.category_ids = [category.id]
@@ -97,8 +95,6 @@ describe 'Shared pages' do
 	end
 
 	describe 'show' do
-		let(:product) { FactoryGirl.create(:product) }
-		let(:photo) { FactoryGirl.create(:photo) }
 
 		before do
 			photo.product_id = product.id

@@ -45,13 +45,3 @@ FactoryGirl.define do
 		file { fixture_file_upload(Rails.root.join('app', 'assets', 'images', 'hipster.jpg'), 'image/jpeg') }
 	end
 end
-# FactoryGirl.define :gallery, :class => Adminpanel::Gallery do |gallery|
-# 	gallery.file { fixture_file_upload(Rails.root.join('app', 'assets', 'images', 'hipster.jpg'), 'image/jpeg') }
-# end
-#
-#
-# FactoryGirl.define :product, :class => Adminpanel::Product do |product|
-# 	product.price "12392.2"
-# 	product.name "very little description"
-# 	product.description "this is a little longer description, can be very long"
-# end
