@@ -14,11 +14,11 @@ gem 'google-api-client', '~> 0.7.1'
 gem 'cancancan', '~> 1.7'
 
 group :test do
-	gem 'bundler', '~> 1.6'
+	gem 'bundler', '1.5.3'
 	gem 'activerecord', '~> 4.0'
 	gem 'activesupport', '~> 4.0'
 	gem 'rake', '~> 10.3.1'
-	gem 'factory_girl_rails', '4.1.0'
+	gem 'factory_girl_rails', '~> 4.4.1'
 	gem 'rspec', '~> 2.14.1'
 	gem 'rspec-rails', '~> 2.14.1'
 	gem 'sqlite3', :platform => [:ruby, :mswin, :mingw]
