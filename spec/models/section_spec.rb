@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'support/test_database'
+
 
 describe Adminpanel::Section do
 	before do
@@ -15,25 +15,18 @@ describe Adminpanel::Section do
 
 	subject { @section }
 
-	it { should respond_to(:description) }
-	it { should respond_to(:has_image) }
-	it { should respond_to(:key) }
-	it { should respond_to(:name) }
-	it { should respond_to(:has_description) }
-	it { should respond_to(:page) }
-
-	describe "when key is telephone and has less than 10 chars" do
+	describe 'when key is telephone and has less than 10 chars' do
 		before do
-			@section.key = "telephone"
-			@section.description = "1" * 9
+			@section.key = 'telephone'
+			@section.description = '1' * 9
 		end
 		it { @section.valid? eq false}
 	end
 
-	describe "when key is telephone and has more than 10 chars" do
+	describe 'when key is telephone and has more than 10 chars' do
 		before do
-			@section.key = "telephone"
-			@section.description = "1" * 11
+			@section.key = 'telephone'
+			@section.description = '1' * 11
 		end
 		it { @section.valid? eq false}
 	end
@@ -63,6 +56,6 @@ describe Adminpanel::Section do
 	end
 
 	describe "default scope" do
-		it { expect(Adminpanel::Section.scoped.to_sql).to eq Adminpanel::Section.reorder('').order('page ASC').to_sql}
+		it { expect(Adminpanel::Section.all.to_sql).to eq Adminpanel::Section.reorder('').order('page ASC').to_sql}
 	end
 end

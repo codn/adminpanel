@@ -1,7 +1,7 @@
 <% @model.form_attributes.each do |entries| %>
 <% entries.each do |attribute, properties| %>
 
-	<% if properties["type"] == "wysiwyg_field" %>
+	<% if properties['type'] == 'wysiwyg_field' %>
 		<% type = properties["type"] %>
 		<% args = properties.except("type") %>
 		<%= f.hidden_field attribute, :id => "#{attribute}-field", :value => resource.send(attribute) %>
@@ -12,7 +12,7 @@
 			</script>
 		<% end %>
 
-	<% elsif properties["type"] == "adminpanel_file_field" %>
+	<% elsif properties['type'] == 'adminpanel_file_field' %>
 	<% if !defined? remote_request %>
 		<%= content_tag :div, :class => 'file-collection-container', :data => {:max => properties['max-files'].nil? ? 0 : properties['max-files'] } do %>
 			<%= f.fields_for(attribute) do |builder| %>
@@ -22,16 +22,16 @@
 		<% end %>
 
 	<% end %>
-  <% elsif properties["type"] == "belongs_to" %>
+  <% elsif properties['type'] == 'belongs_to' %>
 	<% if !defined? remote_request %>
-		<% args = properties.except("type", "name", "model") %>
+		<% args = properties.except('type', 'name', 'model') %>
 		<% args.symbolize_keys! %>
   	<%= f.select(attribute, (@collections["#{properties["model"]}"].collect{|resource| [resource.name, resource.id]}), args) %>
 
 
 		<% if(properties['remote_resource'].nil? || properties['remote_resource']) %>
 			<!-- Button to create a new of this belongs_to resource -->
-			<% model_name = properties['model'].classify.constantize.model_name.demodulize.downcase %>
+			<% model_name = properties['model'].classify.constantize.model_name.to_s.demodulize.downcase %>
 			<%=
 			link_to(
 				I18n.t('other.add',
@@ -70,7 +70,7 @@
 
 		<% if properties['remote_resource'].nil? || propeties['remote_resource'] %>
 			<!-- Button to create a new of this has_many resource -->
-			<% model_name = properties['model'].classify.constantize.model_name.demodulize.downcase %>
+			<% model_name = properties['model'].classify.constantize.model_name.to_s.demodulize.downcase %>
 			<%=
 			link_to(
 				I18n.t('other.add',
@@ -92,8 +92,8 @@
 	<% end %>
 
   <% else %>
-		<% type = properties["type"] %>
-		<% args = properties.except("type", "name") %>
+		<% type = properties['type'] %>
+		<% args = properties.except('type', 'name') %>
     <%= f.send(type, attribute, args) %>
   <% end %>
 

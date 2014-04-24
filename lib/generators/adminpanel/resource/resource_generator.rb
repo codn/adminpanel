@@ -8,18 +8,21 @@ module Adminpanel
 
   		argument :fields, :type => :array, :default => "name:string"
 
-			def create_model
-    		template 'resource.rb', "app/models/adminpanel/#{lower_name}.rb"
+			def generate_model
+    		template 'resource.rb', "app/models/adminpanel/#{lower_singularized_name}.rb"
 			end
 
-			def create_controller
+			def generate_controller
 				if is_a_resource?
 					template "controller.rb", "app/controllers/adminpanel/#{pluralized_name}_controller.rb"
 				end
 			end
 
-			def create_migrations
-				migration_template "migration.rb", "db/migrate/create_#{pluralized_name}_table"
+			def generate_migrations
+				migration_template(
+					'migration.rb',
+					"db/migrate/create_#{pluralized_name}_table.rb"
+				)
 			end
 
 
@@ -35,19 +38,19 @@ module Adminpanel
 			end
 
 			def gallery_name
-				"#{lower_name}file"
+				"#{lower_singularized_name}file"
 			end
 
-			def lower_name
+			def lower_singularized_name
 				name.singularize.downcase
 			end
 
 			def capitalized_resource
-				lower_name.capitalize
+				lower_singularized_name.capitalize
 			end
 
 			def pluralized_name
-				"#{lower_name.pluralize}"
+				"#{lower_singularized_name.pluralize}"
 			end
 
 			def belongs_to_field(resource)
@@ -81,17 +84,17 @@ module Adminpanel
 			end
 
 			def symbolized_attributes
-        attr_string = ""
+        attr_string = ''
         fields.each do |attribute|
 
 					assign_attributes_variables(attribute)
 
-        	if @attr_type == "images"
-            	attr_string = attr_string + ":#{gallery_name.pluralize}_attributes, "
-        	elsif @attr_type == "belongs_to"
+        	if @attr_type == 'images'
+            	attr_string = attr_string + "{:#{gallery_name.pluralize}_attributes => [:file]}, "
+        	elsif @attr_type == 'belongs_to'
         		attr_string = "#{attr_string}:#{belongs_to_field(@attr_field)}, "
-        	elsif @attr_type == "has_many" || @attr_type == "has_many_through"
-        		if @attr_field.split(",").second == nil
+        	elsif @attr_type == 'has_many' || @attr_type == 'has_many_through'
+        		if @attr_field.split(',').second == nil
         			attr_string = "#{attr_string}:#{has_many_field(@attr_field)}, "
         		else
         			model_name = models_in_parameter(@attr_field).first
@@ -255,7 +258,7 @@ module Adminpanel
 			end
 
 			def generate_gallery
-				generate "adminpanel:gallery", lower_name
+				generate 'adminpanel:gallery', lower_singularized_name
 			end
 
 		end

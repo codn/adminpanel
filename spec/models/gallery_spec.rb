@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'support/test_database'
+
 
 
 describe Adminpanel::Gallery do
@@ -19,6 +19,6 @@ describe Adminpanel::Gallery do
 	end
 
 	describe "default scope" do
-		it { expect(Adminpanel::Gallery.scoped.to_sql).to eq Adminpanel::Gallery.reorder('').order('position ASC').to_sql}
+		it { expect(Adminpanel::Gallery.all.to_sql).to eq Adminpanel::Gallery.reorder('').order('position ASC').to_sql}
 	end
 end

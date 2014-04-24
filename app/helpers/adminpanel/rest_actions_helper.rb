@@ -2,20 +2,20 @@ module Adminpanel
 	module RestActionsHelper
 		def index
       index! do |format|
-        format.html { render "shared/index" }
+        format.html { render 'shared/index' }
       end
 		end
 
 		def show
 			show! do |format|
-				format.html { render "shared/show" }
+				format.html { render 'shared/show' }
 			end
 		end
 
 		def new
 			set_collections
       new! do |format|
-        format.html { render "shared/new" }
+        format.html { render 'shared/new' }
 				format.js { render 'shared/new', :locals => { :resource => resource }}
       end
 		end
@@ -31,7 +31,7 @@ module Adminpanel
 				end
 				failure.html do
 					set_collections
-					render "shared/new"
+					render 'shared/new'
 				end
 				success.js do
 					flash.now[:success] = I18n.t("action.save_success")
@@ -53,7 +53,7 @@ module Adminpanel
       edit! do |format|
         format.html do
         	set_collections
-        	render "shared/edit"
+        	render 'shared/edit'
         end
       end
 		end
@@ -62,18 +62,18 @@ module Adminpanel
       update! do |success, failure|
         success.html do
         	flash[:success] = I18n.t("action.save_success")
-        	render "shared/index"
+        	render 'shared/index'
         end
         failure.html do
         	set_collections
-        	render "shared/edit"
+        	render 'shared/edit'
         end
       end
 		end
 
 		def destroy
 			destroy! do |format|
-				format.html { render "shared/index" }
+				format.html { render 'shared/index' }
 			end
 		end
 
@@ -121,7 +121,7 @@ module Adminpanel
 			if class_variable.respond_to?("of_model")
 				@collections.merge!({"#{class_variable}" => class_variable.of_model(@model.display_name)})
 			else
-				@collections.merge!({"#{class_variable}" => class_variable.find(:all)})
+				@collections.merge!({"#{class_variable}" => class_variable.all})
 			end
 		end
 	end

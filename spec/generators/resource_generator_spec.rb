@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'generators/adminpanel/resource/resource_generator'
 
 describe Adminpanel::Generators::ResourceGenerator do
-	destination File.expand_path("../../dummy/tmp", __FILE__)
+	destination File.expand_path('../../dummy/tmp', __FILE__)
 
 	 before do
     prepare_destination
@@ -46,8 +46,24 @@ describe Adminpanel::Generators::ResourceGenerator do
 			end
 		end
 
-		it 'should generate posts controller' do
-			file('app/controllers/adminpanel/posts_controller.rb').should exist
+		context 'the controller' do
+			it 'should generate posts controller' do
+				file('app/controllers/adminpanel/posts_controller.rb').should exist
+			end
+
+			it 'should have the params whitelisted' do
+				file('app/controllers/adminpanel/posts_controller.rb').should(
+					contain(/params.require(:post).permit/) &&
+					contain(/:name/) &&
+					contain(/:description/) &&
+					contain(/:number/) &&
+					contain(/:flag/) &&
+					contain(/:quantity/) &&
+					contain(/:date/) &&
+					contain(/{:postfiles_attributes => \[:file\]}/)
+				)
+			end
+
 		end
 
 

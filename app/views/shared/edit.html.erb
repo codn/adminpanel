@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class = "widget-footer">
-      <%= f.submit t("action.save") + " " + @model.display_name, :disable_with => t("action.submitting"), :id =>"new-resource-button" %>
+      <%= f.submit t("action.save") + " " + @model.display_name, data:{:disable_with => t("action.submitting")}, :id =>"new-resource-button" %>
     </div>
       <% end -%>
   </div>

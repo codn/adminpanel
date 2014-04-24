@@ -1,6 +1,5 @@
 module Adminpanel
   class Product < ActiveRecord::Base
-    attr_accessible :price, :name, :photos_attributes, :category_ids, :description
 
     has_many :categorizations
     has_many :categories, :through => :categorizations
