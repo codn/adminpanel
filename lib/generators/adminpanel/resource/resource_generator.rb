@@ -90,7 +90,7 @@ module Adminpanel
 					assign_attributes_variables(attribute)
 
         	if @attr_type == 'images'
-            	attr_string = attr_string + "{:#{gallery_name.pluralize}_attributes => [:file]}, "
+            	attr_string = attr_string + "{:#{gallery_name.pluralize}_attributes => [:id, :file, :_destroy]}, "
         	elsif @attr_type == 'belongs_to'
         		attr_string = "#{attr_string}:#{belongs_to_field(@attr_field)}, "
         	elsif @attr_type == 'has_many' || @attr_type == 'has_many_through'

@@ -1,5 +1,6 @@
 module Adminpanel
   class User < ActiveRecord::Base
+    include Adminpanel::Base
     has_secure_password
     belongs_to :group
 

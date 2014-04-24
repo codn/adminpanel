@@ -1,5 +1,6 @@
 module Adminpanel
   class <%= capitalized_resource %> < ActiveRecord::Base
+    include Adminpanel::Base
 
     <%= associations if has_associations? -%>
 

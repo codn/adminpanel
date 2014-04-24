@@ -2,6 +2,7 @@ require 'carrierwave'
 require 'carrierwave/orm/activerecord'
 module Adminpanel
 	class Section < ActiveRecord::Base
+		include Adminpanel::Base
 
 	  mount_images :images
 

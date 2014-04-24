@@ -1,6 +1,7 @@
 module Adminpanel
   class Product < ActiveRecord::Base
-
+    include Adminpanel::Base
+    
     has_many :categorizations
     has_many :categories, :through => :categorizations
 		mount_images :photos

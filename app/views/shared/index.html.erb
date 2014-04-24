@@ -42,11 +42,11 @@
               <% fields.each do |attribute, properties| %>
                 <% if properties["type"] == "wysiwyg_field" %>
                   <td><%= member.send(attribute).html_safe -%></td>
-                <% elsif properties["type"] == "belongs_to" %>
+                <% elsif properties['type'] == 'belongs_to' %>
                   <td>
-                    <%= parent_object_name(member, properties["model"]) %>
+                    <%= parent_object_name(member, properties['model']) %>
                   </td>
-                <% elsif properties["type"] == "boolean" %>
+                <% elsif properties['type'] == 'boolean' %>
                   <td><%= member.send(attribute) ? I18n.t('action.is_true') : I18n.t('action.is_false') %></td>
                 <% elsif properties["type"] != "adminpanel_file_field" && properties["type"] != "has_many" %>
                   <td><%= member.send(attribute) -%></td>

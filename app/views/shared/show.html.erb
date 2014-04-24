@@ -62,7 +62,7 @@
           <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), [:edit, resource], :title => t("action.update") + " #{@model.display_name}" %>
         </h5>
       </div>
-      <% if @model.act_as_a_gallery?.nil? %>
+      <% if @model.gallery_children.nil? %>
         <div class="widget-body row-fluid">
           <div id="gallery-container" class="js-masonry"
           data-masonry-options='{ "columnWidth": 3, "itemSelector": ".gallery-item" }'>

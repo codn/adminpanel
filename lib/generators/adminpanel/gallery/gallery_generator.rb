@@ -26,13 +26,14 @@ module Adminpanel
         name.singularize.downcase
       end
 
+      def lower_name
+        "#{reference_name}file"
+      end
+      
       def class_name
         "#{lower_name.capitalize}"
       end
 
-      def lower_name
-        "#{name.singularize.downcase}file"
-      end
     end
   end
 end

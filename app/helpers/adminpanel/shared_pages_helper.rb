@@ -5,7 +5,6 @@ module Adminpanel
         if association.klass.to_s == parent_model
         	if !resource.send(association.name).nil?
         		return resource.send(association.name).name
-						# return resource.client
         	else
         		return "N/A #{association.klass.to_s}"
         	end

@@ -1,6 +1,6 @@
 module Adminpanel
   class Categorization < ActiveRecord::Base
-
+    include Adminpanel::Base
     belongs_to :product
     belongs_to :category
 

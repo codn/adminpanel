@@ -60,7 +60,7 @@ describe Adminpanel::Generators::ResourceGenerator do
 					contain(/:flag/) &&
 					contain(/:quantity/) &&
 					contain(/:date/) &&
-					contain(/{:postfiles_attributes => \[:file\]}/)
+					contain(/{:postfiles_attributes => \[:id, :file, :_destroy\]}/)
 				)
 			end
 
@@ -74,6 +74,7 @@ describe Adminpanel::Generators::ResourceGenerator do
 		context 'the model' do
 			it 'should generate the model with correct values' do
 				file('app/models/adminpanel/post.rb').should(
+					contain(/include Adminpanel::Base/) &&
 					contain(/mount_images :postfiles/) &&
 					contain(/'photos' => \{/) &&
 					contain(/'type' => 'adminpanel_file_field'/)
