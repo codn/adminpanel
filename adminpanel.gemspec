@@ -30,17 +30,17 @@ Gem::Specification.new do |spec|
   spec.add_dependency "cancancan", "~> 1.7"
   spec.add_dependency "google-api-client", "~> 0.7.1"
 
-  spec.add_development_dependency 'bundler', '~> 1.6'
+  spec.add_development_dependency 'bundler', '1.5.3'
   spec.add_development_dependency 'activerecord', '~> 4.0'
   spec.add_development_dependency 'activesupport', '~> 4.0'
   spec.add_development_dependency 'rake', '~> 10.3.1'
   spec.add_development_dependency "sqlite3"
-  spec.add_development_dependency 'factory_girl_rails', '~> 4.1.0'
+  spec.add_development_dependency 'factory_girl_rails', '~> 4.4.1'
   spec.add_development_dependency 'rspec', '~> 2.14.1'
   spec.add_development_dependency 'rspec-rails', '~> 2.14.1'
   spec.add_development_dependency 'capybara', '2.2.1'
   spec.add_development_dependency 'nokogiri', '1.6.1'
   spec.add_development_dependency 'rubyzip', '1.1.3'
   spec.add_development_dependency 'ammeter', '1.0.0'
-  spec.add_development_dependency 'debugger', '1.6'
+  spec.add_development_dependency 'debugger', '~> 1.6'
 end
