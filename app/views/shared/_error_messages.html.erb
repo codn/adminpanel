@@ -6,7 +6,7 @@
 			<% object.errors.messages.keys.each do |field| %>
 				<% object.errors.messages[field].each do |value| %>
 				 <li>
-				  	<%= @model.get_attribute_name(field.to_s) %>
+				  	<%= @model.get_attribute_label(field.to_s) %>
 				  	<%= value %>
 				 </li>
 				<% end %>
