@@ -32,9 +32,9 @@ Then run:
     rake db:migrate
 to create the database that the adminpanel it's expecting, this will also seed the database with the default user.
 
-To create a new resource check the [resource generator wiki](https://github.com/joseramonc/adminpanel/wiki/Resource-Generator)
+To create a new resource check the [Resource Generator.](https://github.com/joseramonc/adminpanel/wiki/Geneartor-adminpanel:resource)
 
-You can seed the sections with help of the [Section wiki](https://github.com/joseramonc/adminpanel/wiki/Section-objects).
+You can seed the sections with help of the [Section task.](https://github.com/joseramonc/adminpanel/wiki/Rake-task-adminpanel:section)
 
 Then, mount the gem wherever you like!
 
@@ -43,7 +43,7 @@ Then, mount the gem wherever you like!
 Also make sure to include adminpanel assets in your application.rb if you need to precompile them:
 
     config.assets.precompile += ['application-admin.js', 'application-admin.css']
-Feel free to use it, any doubts, errors or requests you can open a new issue!
+Feel free to use it, any doubts, errors or suggestions are welcome in the issues!
 
 ## Dependencies
 
@@ -84,4 +84,4 @@ For more information about using the Google API visit
 
 ## To Do:
 
-# Check the issues if you'd like to help or request a new feature.
+#### Check the issues if you'd like to help or request a new feature.
