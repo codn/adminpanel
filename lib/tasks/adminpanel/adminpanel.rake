@@ -90,6 +90,7 @@ namespace :adminpanel do
   end
 
   task :populate, [:times, :model, :attributes] => :environment do |t, args|
+    require 'faker'
     puts "Generating #{args[:times]} records of #{args[:model]}"
 
     @model = "adminpanel/#{args[:model]}".classify.constantize
@@ -109,11 +110,8 @@ namespace :adminpanel do
           when 'category' || 'category_name' #generate a category name
             value = Faker::Commerce.product_name
 
-          when 'lorem_short'
-            value = generate_lorem([*0..3]) #lorem random short sentence
-
           when 'lorem' || 'description' #large paragraph.
-            value = generate_lorem([*60..80])
+            value = Faker::Lorem.paragraph([*1..10].sample)
 
           when 'number' #generate a number
             value = [*1..7000].sample
@@ -132,12 +130,22 @@ namespace :adminpanel do
           when 'email' #generates a random email
             value = Faker::Internet.email
 
+          when 'lat_mid'
+            value = float_random(21.046929, 20.903954)
+          when 'lng_mid'
+            value = float_random(-89.699819, -89.567296)
+
+          when 'lat'
+            value = Faker::Address.latitude
+          when 'lng'
+            value = Faker::Address.longitude
+
           when 'image' || 'images'
             3.times do
               instance.send("#{@model.name.demodulize.downcase}files").build
             end
           else #no type || not found
-            value = generate_lorem([*0..6])
+            value = Faker::Lorem.words([*1..6].sample).join(' ') #lorem random short sentence
 
         end
 
@@ -174,42 +182,13 @@ private
     ").save\n"
   end
 
-  def generate_lorem(range)
-    value = "#{lorem_words.sample}"
-    range.sample.times do
-      value = "#{value} #{lorem_words.sample}"
-    end
-    "#{value}."
-  end
-
   def change_dates(instance)
     date = rand(Date.parse('2010-01-01')..Date.today)
     instance.update_attribute(:created_at, date)
     instance.update_attribute(:updated_at, date)
   end
 
-  def lorem_words
-    %W[Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum. Sed dapibus condimentum tempor. Curabitur tortor libero,
-      malesuada ac varius at, adipiscing non ante. Ut at neque vitae massa
-      volutpat bibendum a vel purus. Cras adipiscing accumsan placerat. Praesent
-      rhoncus pellentesque felis, vel faucibus ipsum convallis dictum. Donec
-      congue vitae risus quis sagittis. Interdum et malesuada fames ac ante
-      ipsum primis in faucibus. Suspendisse rhoncus tortor ut urna eleifend
-      molestie. Phasellus in viverra tortor. Pellentesque sagittis tortor tortor,
-      at auctor risus elementum non. Morbi sagittis ante tincidunt congue
-      fermentum. Quisque ac tellus in lacus interdum ultrices. Mauris ornare
-      justo nec sapien tempor, sit amet dapibus massa tincidunt. Interdum et
-      malesuada fames ac ante ipsum primis in faucibus. Nullam sodales ac mauris
-      eget egestas. Maecenas rhoncus ac metus quis condimentum. Vestibulum
-      consequat lacus nulla, eu varius leo consectetur vitae. Pellentesque vitae
-      sem mauris. Suspendisse ornare, dui eget elementum aliquam, augue neque
-      condimentum leo, nec ullamcorper lectus massa quis nibh. Etiam id egestas
-      mauris, eget eleifend enim.
-    ]
-end
+  def float_random(min_number, max_number)
+    width = max_number - min_number
+    return (rand*width)+min_number
+  end

@@ -25,6 +25,9 @@ module Adminpanel
 				)
 			end
 
+			def print_messages
+				puts "don't forget to add :#{pluralized_name} to adminpanel_setup.rb"
+			end
 
 		private
 			def is_a_resource?

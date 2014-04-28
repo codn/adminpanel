@@ -12,6 +12,7 @@ gem 'rails-i18n', '~> 4.0.2'
 gem 'inherited_resources', '~> 1.4.1'
 gem 'google-api-client', '~> 0.7.1'
 gem 'cancancan', '~> 1.7'
+gem 'faker', '>= 1.3.0'
 
 group :test do
 	gem 'factory_girl_rails', '~> 4.4.1'
@@ -20,5 +21,4 @@ group :test do
 	gem 'sqlite3', :platform => [:ruby, :mswin, :mingw]
 	gem 'capybara', '~> 2.2.1'
 	gem 'ammeter', '~> 1.0.0'
-	gem 'faker', '>= 1.3.0'
 end
