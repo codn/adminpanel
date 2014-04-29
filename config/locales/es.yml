@@ -6,6 +6,7 @@ es:
     attributes:
       adminproject_id: "Proyecto"
       brief: "Pequeña descripción"
+      body: "Contenido"
       category_id: "Categoría"
       client_id: "Cliente"
       description: "Descripción"
