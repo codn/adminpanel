@@ -24,6 +24,7 @@ es:
   activerecord:
     errors:
       messages:
+        not_phone: 'no es un teléfono (10 números)'
         blank: "no puede estar vacío"
         confirmation: "Deben ser iguales"
         invalid: "no es un correo"
@@ -86,5 +87,3 @@ es:
     add : "Agregar %{model}"
     choose: "Selecciona %{model} pertenecientes"
     no description: "No tiene descripción aún"
-  key:
-    telephone: 'Teléfono'
