@@ -2,9 +2,9 @@ module Adminpanel
   module Base
     extend ActiveSupport::Concern
     #instance methods
-
     # static(class) methods
     module ClassMethods
+
       def mount_images(relation)
         has_many relation, :dependent => :destroy
         accepts_nested_attributes_for relation, :allow_destroy => true
@@ -113,7 +113,7 @@ module Adminpanel
       def gallery_children
         nil
       end
-    end
 
+    end
   end
 end

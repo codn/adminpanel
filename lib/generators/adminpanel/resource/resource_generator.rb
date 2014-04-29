@@ -101,7 +101,7 @@ module Adminpanel
         			attr_string = "#{attr_string}:#{has_many_field(@attr_field)}, "
         		else
         			model_name = models_in_parameter(@attr_field).first
-        			attr_string = "#{attr_string}:#{has_many_field(model_name)}, "
+        			attr_string = "#{attr_string} {:#{has_many_field(model_name)} => []}, "
         		end
         	else
             	attr_string = attr_string + ":#{@attr_field}, "

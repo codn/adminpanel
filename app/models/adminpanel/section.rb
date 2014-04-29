@@ -12,16 +12,18 @@ module Adminpanel
 	  validates_presence_of :key
 	  validates_presence_of :name
 	  validates_presence_of :page
+		VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+		validates_format_of :description, :with => VALID_EMAIL_REGEX, if: lambda{|section| section.key == 'email'}
 
 	  default_scope { order("page ASC")}
 
 	  scope :of_page, lambda{|page| where(:page => page)}
 
-		def self.form_methods
+		def self.form_attributes
 			[
-				{'description' => {'name' => 'Descripcion'}},
-				{'name' => {'name' => 'name'}},
-				{'key' => {'name' => 'key'}},
+				{'description' => {'name' => 'Descripcion', 'description' => 'label', 'label' => 'Seccion'}},
+				{'name' => {'name' => 'name', 'label' => 'Seccion'}},
+				{'key' => {'name' => 'key', 'label' => 'Llave'}},
 				{'page' => {'name' => 'page'}},
 				# {'key' => {'name' => 'key'}},
 			]
@@ -34,6 +36,14 @@ module Adminpanel
 
 		def self.display_name
 			'Secciones'
+		end
+
+		def description
+			if self.has_description
+				return self.attributes['description'].html_safe
+			else
+				return self.attributes['description']
+			end
 		end
 	end
 end
