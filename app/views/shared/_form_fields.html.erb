@@ -8,7 +8,7 @@
 		<%= f.send(type, attribute, args) %>
 		<%= content_for :scripts do %>
 			<script type="text/javascript">
-			<%= render "shared/init_editor", :field_var => attribute, :label => properties[:label] %>
+				<%= render "shared/init_editor", :field_var => attribute, :label => properties[:label] %>
 			</script>
 		<% end %>
 

@@ -106,7 +106,7 @@ function SwitchCalendars(startCalendar, endCalendar, e) {
 	endCalendar.datepicker('show');
 }
 
-$(document).ready(function() {
+var ready = function() {
 	$('#information-table').dataTable( {
 		"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
 		"sPaginationType": "bootstrap",
@@ -120,7 +120,10 @@ $(document).ready(function() {
 			"oPaginate" : {
 				"sPrevious": "Anterior",
 				"sNext": "Siguiente"
-			} 
+			}
 		}
 	});
-} );
+}
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

@@ -9,7 +9,7 @@
           <td><%= link_to section.name, section_path(section) %></td>
           <td><%= strip_tags section.description %></td>
           <td>
-            <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_section_path(section), :title => "Editar" %>
+            <%= render 'shared/pencil_edit_button', resource: section, resource_name: @model.display_name %>
           </td>
         </tr>
 	<% end %>

@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '>= 4.0.0'
 gem 'carrierwave', '~> 0.10.0'
-gem 'rmagick', '~> 2.13.2', require: false
+gem 'rmagick', '2.13.2', require: false
 gem 'jquery-rails', '~> 3.1.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'rails-i18n', '~> 4.0.2'
@@ -13,6 +13,11 @@ gem 'inherited_resources', '~> 1.4.1'
 gem 'google-api-client', '~> 0.7.1'
 gem 'cancancan', '~> 1.7'
 gem 'faker', '>= 1.3.0'
+gem 'turbolinks', '>= 2.2.2'
+
+group :assets do
+	gem 'sass-rails', '>= 4.0.3', require: true
+end
 
 group :test do
 	gem 'factory_girl_rails', '~> 4.4.1'

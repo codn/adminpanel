@@ -1,4 +1,4 @@
-$(document).ready(function(){
+var ready = function(){
 	$('form').on('click', '.add_fields', function(e) {
 		e.preventDefault();
 		var $collectionContainer = $(this).closest('.file-collection-container');
@@ -17,4 +17,7 @@ $(document).ready(function(){
 		$(this).parent().parent().parent().addClass('hidden');
 		e.preventDefault();
 	});
-});
+}
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

@@ -12,5 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require turbolinks
 //= require adminpanel/bootstrap
 //= require_tree ./adminpanel/.

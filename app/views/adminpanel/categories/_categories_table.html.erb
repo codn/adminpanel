@@ -36,7 +36,8 @@
     <tr>
       <td><%= link_to category.name, category_path(category) %></td>
       <td>
-        <%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_category_path(category), :title => "Editar" %>
+        <%= render 'shared/pencil_edit_button', resource: category, resource_name: @model.display_name %>
+
         <%= link_to content_tag(:i, nil, :class => 'icon-remove'),
           [category],
           :title => "Editar",

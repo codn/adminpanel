@@ -3,12 +3,15 @@
   <%=
     link_to(
       content_tag(:div,
-        content_tag(:i, nil, :class => 'icon-plus-sign icon-2x') + content_tag(:span, I18n.t("action.create") + " #{@model.display_name}", nil),
-        :class => "btn btn-box span2"),
+        content_tag(:i, nil, :class => 'icon-plus-sign icon-2x') +
+          content_tag(:span, I18n.t("action.create") + " #{@model.display_name}"),
+        :class => "btn btn-box span2"
+      ),
       {
         :controller => params[:controller],
         :action => "new"
-      }
+      },
+      data: { no_turbolink: true }
     )
   %>
 </div>
@@ -62,13 +65,8 @@
                   )
                   %>
 
-                  <%=
-                  link_to(
-                    content_tag(:i, nil, :class => 'icon-pencil'),
-                    [:edit, member],
-                    :title => t("action.update") + " #{@model.display_name}"
-                  )
-                  %>
+                  <%= render 'shared/pencil_edit_button', resource: member, resource_name: @model.display_name %>
+
 
                   <%=
                   link_to(
