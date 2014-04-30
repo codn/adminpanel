@@ -6,9 +6,9 @@ module Adminpanel
       @galleries = Gallery.all
     end
 
-    def show
-      @gallery = Gallery.find(params[:id])
-    end
+    # def show
+    #   @gallery = Gallery.find(params[:id])
+    # end
 
     # def edit
     #   @gallery = Gallery.find(params[:id])

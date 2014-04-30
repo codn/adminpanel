@@ -105,6 +105,6 @@ describe 'Gallery pages' do
 			visit adminpanel.gallery_path(gallery)
 		end
 
-		it { page.should have_selector("img[src='#{gallery.file_url}']") }
+		it { page.should have_selector("img[src='#{gallery.file_url(:thumb)}']") }
 	end
 end

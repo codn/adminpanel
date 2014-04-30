@@ -1,7 +1,7 @@
 language: ruby
 rvm:
-  - "2.0.0"
-  - "2.1.0"
+  - 2.0.0-p451
+  - 2.1.0
 env:
   - RAILS=4.0.4
   - RAILS=4.1.0
