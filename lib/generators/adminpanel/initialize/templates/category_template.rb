@@ -35,7 +35,7 @@ module Adminpanel
     end
 
     def self.icon
-        "icon-bookmark"
+        "bookmark" #fa-{icon}
     end
 
     default_scope { order("model ASC")}

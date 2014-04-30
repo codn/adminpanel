@@ -1,0 +1,14 @@
+<%=
+  link_to(
+    content_tag(
+      :i,
+      nil,
+      class: 'fa fa-trash-o'
+    ),
+    [resource],
+    title: 'Eliminar',
+    id: 'resource-delete',
+    method: :delete,
+    data: { confirm: "Eliminar #{resource.name}?"}
+  )
+%>

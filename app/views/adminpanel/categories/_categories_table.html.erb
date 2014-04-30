@@ -5,7 +5,7 @@
         content_tag(
           :i,
           nil,
-          :class => 'icon-plus-sign icon-2x') +
+          :class => 'fa fa-plus-circle fa-2x') +
           content_tag(
             :span,
             I18n.t("action.create") + " #{@model.display_name} para #{model}",
@@ -36,13 +36,9 @@
     <tr>
       <td><%= link_to category.name, category_path(category) %></td>
       <td>
-        <%= render 'shared/pencil_edit_button', resource: category, resource_name: @model.display_name %>
+        <%= render 'shared/edit_icon_button', resource: category, resource_name: @model.display_name %>
 
-        <%= link_to content_tag(:i, nil, :class => 'icon-remove'),
-          [category],
-          :title => "Editar",
-          :method => :delete,
-          :data => { :confirm => "Eliminar #{category.name}?"} %>
+        <%= render 'shared/delete_icon_button', resource: category %>
       </td>
     </tr>
   <% end %>

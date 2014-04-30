@@ -1,24 +1,11 @@
 <% provide(:page_title, @model.display_name) -%>
 <div class="row-fluid">
-  <%=
-    link_to(
-      content_tag(:div,
-        content_tag(:i, nil, :class => 'icon-plus-sign icon-2x') +
-          content_tag(:span, I18n.t("action.create") + " #{@model.display_name}"),
-        :class => "btn btn-box span2"
-      ),
-      {
-        :controller => params[:controller],
-        :action => "new"
-      },
-      data: { no_turbolink: true }
-    )
-  %>
+  <%= render 'shared/add_resource_button' %>
 </div>
 <div class="row-fluid">
   <div class="widget widget-padding span12">
     <div class="widget-header">
-      <%= content_tag(:i, nil, :class => @model.icon) %>
+      <%= content_tag(:i, nil, class: "fa fa-#{@model.icon}") %>
       <h5>
         <%= pluralize_es(@model.display_name) %>
       </h5>
@@ -30,12 +17,12 @@
             <tr>
               <% @model.display_attributes('index').each do |fields| %>
               <% fields.each do |attribute, properties| %>
-                <% if properties["type"] != "adminpanel_file_field" && properties["type"] != "has_many" %>
-                  <th><%= properties["label"] %></th>
+                <% if properties['type'] != 'adminpanel_file_field' && properties['type'] != 'has_many' %>
+                  <th><%= properties['label'] %></th>
                 <% end %>
               <% end %>
               <% end %>
-              <th><%= I18n.t("actions") %></th>
+              <th><%= I18n.t('actions') %></th>
             </tr>
           </thead><!-- Ends model attributes -->
           <tbody>
@@ -57,31 +44,11 @@
               <% end %>
               <% end %>
                 <td>
-                  <%=
-                  link_to(
-                    content_tag(:i, nil, :class => 'icon-zoom-in'),
-                    [member],
-                    :title => t("action.show")
-                  )
-                  %>
+                  <%= render 'shared/show_icon_button', resource: member %>
 
-                  <%= render 'shared/pencil_edit_button', resource: member, resource_name: @model.display_name %>
+                  <%= render 'shared/edit_icon_button', resource: member, resource_name: @model.display_name %>
 
-
-                  <%=
-                  link_to(
-                    content_tag(
-                      :i,
-                      nil,
-                      :class => 'icon-remove'
-                    ),
-                    [member],
-                    :title => I18n.t("action.delete"),
-                    :id => "resource-delete",
-                    :method => :delete,
-                    :data => { :confirm => "Eliminar #{@model.display_name}?" }
-                  )
-                  %>
+                  <%= render 'shared/delete_icon_button', resource: member %>
                 </td>
               </tr>
             <% end %>

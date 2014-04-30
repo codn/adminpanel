@@ -21,9 +21,9 @@
         <ul class="pull-right">
           <li>
             <% if signed_in? %>
-              <%= link_to content_tag('i', nil, :class => 'icon-off') + ' Logout', signout_path, :method => "delete", :escape => true %>
+              <%= link_to content_tag('i', nil, :class => 'fa fa-power-off') + ' Logout', signout_path, :method => "delete", :escape => true %>
             <% else %>
-              <%= link_to content_tag('i', nil, :class => 'icon-off') + ' Login', signin_path, :escape => true %>
+              <%= link_to content_tag('i', nil, :class => 'fa fa-power-off') + ' Login', signin_path, :escape => true %>
             <% end %>
           </li>
         </ul>
@@ -33,7 +33,7 @@
         <ul class="pull-right">
           <li>
             <% if signed_in? %>
-              <%= link_to content_tag('i', nil, :class => 'icon-off'), signout_path, :method => "delete", :title => 'Logout', :id => "signout-button" %>
+              <%= link_to content_tag('i', nil, :class => 'fa fa-power-off'), signout_path, :method => "delete", :title => 'Logout', :id => "signout-button" %>
             <% end %>
           </li>
         </ul>

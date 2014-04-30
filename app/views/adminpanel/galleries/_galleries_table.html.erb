@@ -2,12 +2,12 @@
 	<tr>
 		<td><%= link_to image_tag(gallery.file_url(:thumb)), gallery_path(gallery) %></td>
 		<td>
-			<%= link_to content_tag(:i, nil, :class => "icon-chevron-up"), move_to_better_gallery_path(gallery), :method => :put, :remote => true %>
-			<%= link_to content_tag(:i, nil, :class => "icon-chevron-down"), move_to_worst_gallery_path(gallery), :method => :put, :remote => true %>
+			<%= link_to content_tag(:i, nil, :class => "fa fa-chevron-up"), move_to_better_gallery_path(gallery), :method => :put, :remote => true %>
+			<%= link_to content_tag(:i, nil, :class => "fa fa-chevron-down"), move_to_worst_gallery_path(gallery), :method => :put, :remote => true %>
 		</td>
 		<td>
-			<%= link_to content_tag(:i, nil, :class => 'icon-pencil'), edit_gallery_path(gallery), :title => t("action.update") %>
-			<%= link_to content_tag(:i, nil, :class => 'icon-remove'), gallery_path(gallery), :title => t("action.delete"), :method => :delete,
+			<%= link_to content_tag(:i, nil, :class => 'fa fa-pencil'), edit_gallery_path(gallery), :title => t("action.update") %>
+			<%= link_to content_tag(:i, nil, :class => 'fa fa-remove'), gallery_path(gallery), :title => t("action.delete"), :method => :delete,
 													:data => { :confirm => t("action.delete confirmation") }
 			%>
 		</td>
