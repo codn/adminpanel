@@ -1,4 +1,6 @@
 language: ruby
+before_script:
+  - rvm get latest
 rvm:
   - 2.0.0-p451
   - 2.1.0
