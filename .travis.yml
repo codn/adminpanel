@@ -1,5 +1,5 @@
 language: ruby
-before_script:
+before_install:
   - rvm get latest
 rvm:
   - 2.0.0-p451
