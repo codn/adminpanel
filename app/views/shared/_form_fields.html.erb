@@ -2,13 +2,15 @@
 <% entries.each do |attribute, properties| %>
 
 	<% if properties['type'] == 'wysiwyg_field' %>
-		<% type = properties["type"] %>
-		<% args = properties.except("type") %>
-		<%= f.hidden_field attribute, :id => "#{attribute}-field", :value => resource.send(attribute) %>
+		<% type = properties['type'] %>
+		<% args = properties.except('type') %>
+		<div style="display:none;">
+			<%= f.hidden_field attribute, :id => "#{attribute}-field", :value => resource.send(attribute) %>
+		</div>
 		<%= f.send(type, attribute, args) %>
 		<%= content_for :scripts do %>
 			<script type="text/javascript">
-				<%= render "shared/init_editor", :field_var => attribute, :label => properties[:label] %>
+				<%= render 'shared/init_editor', :field_var => attribute, :label => properties[:label] %>
 			</script>
 		<% end %>
 
@@ -24,7 +26,7 @@
 	<% end %>
   <% elsif properties['type'] == 'belongs_to' %>
 	<% if !defined? remote_request %>
-		<% args = properties.except('type', 'name', 'model') %>
+		<% args = properties.except('type', 'model') %>
 		<% args.symbolize_keys! %>
   	<%= f.select(attribute, (@collections["#{properties["model"]}"].collect{|resource| [resource.name, resource.id]}), args) %>
 

@@ -153,8 +153,8 @@ module Adminpanel
 			options.reverse_merge! :class => "span7"
 
 			options.reverse_merge! :include_blank => "(Seleccione por favor)";
-			label = options[:label]
-			options.delete(:label)
+			label = options['label']
+			options.delete('label')
 
 			@template.content_tag :div, :class => "control-group" do
 				@template.content_tag(:label, label, :class => "control-label") +
@@ -167,8 +167,8 @@ module Adminpanel
 
 			options.reverse_merge! :class => "span5"
 			options.reverse_merge! :label => name
-			label = options[:label]
-			options.delete(:label)
+			label = options['label']
+			options.delete('label')
 
 			@template.content_tag :div, :class => "control-group" do
 				@template.content_tag(:label, label, :class => "control-label") +
@@ -180,7 +180,6 @@ module Adminpanel
 			options = args.extract_options!
 
 			options.reverse_merge! :class => "span7"
-			# options.reverse_merge! :label => name
 			label = options['label']
 			options.delete('label')
 
@@ -196,8 +195,8 @@ module Adminpanel
 			options.reverse_merge! :class => "span7"
 			options.reverse_merge! :rows => "10"
 			options.reverse_merge! :label => name
-			label = options[:label]
-			options.delete(:label)
+			label = options['label']
+			options.delete('label')
 
 			@template.content_tag :div, :class => "control-group" do
 				@template.content_tag(:label, label, :class => "control-label") +
@@ -218,8 +217,8 @@ module Adminpanel
 
 			options.reverse_merge! :value => Time.now.strftime("%d-%m-%Y")
 			options.reverse_merge! :label => name
-			label = options[:label]
-			options.delete(:label)
+			label = options['label']
+			options.delete('label')
 
 			@template.content_tag :div, :class => "control-group" do
 				@template.content_tag(:label, label, :class => "control-label") +
@@ -255,8 +254,8 @@ module Adminpanel
 			options = args.extract_options!
 
 			options.reverse_merge! :label => name
-			label = options[:label]
-			options.delete(:label)
+			label = options['label']
+			options.delete('label')
 
 			options.reverse_merge! :symbol => "#"
 			symbol = options[:symbol]
@@ -282,8 +281,8 @@ module Adminpanel
 			options = args.extract_options!
 
 			options.reverse_merge! :label => name
-			label = options[:label]
-			options.delete(:label)
+			label = options['label']
+			options.delete('label')
 
 			options.reverse_merge! :symbol => "#"
 			symbol = options[:symbol]
