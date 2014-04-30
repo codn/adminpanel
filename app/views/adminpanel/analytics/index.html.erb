@@ -1,10 +1,11 @@
+
 <% content_for :scripts do %>
 	<%#= javascript_include_tag "adminpanel/analytics/analytics" %>
 <% end %>
 <div class="row-fluid">
 	<div class="widget widget-padding span12">
 		<div class="widget-header">
-			<i class="icon-bar-chart"></i><h5>Estadísticas del Sitio</h5>
+			<i class="fa fa-dashboard"></i><h5>Estadísticas del Sitio</h5>
 		</div>
 		<%= content_tag "div", :id => "graphic-container", :class => "widget-body", :data => { :visits => @visits, :dates => @visitDates } do %>
 		<% end %>

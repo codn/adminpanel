@@ -7,7 +7,7 @@
         content_tag(
           :i,
           nil,
-          :class => 'fa fa-plus-sign fa fa-2x'
+          :class => 'fa fa-plus-circle fa-2x'
         ) +
         content_tag(
           :span,
@@ -25,7 +25,7 @@
 <div class="row-fluid">
   <div class="widget widget-padding span12">
     <div class="widget-header">
-          <i class="fa fa-picture"></i>
+          <%= content_tag :i, nil, class: "fa fa-#{@model.icon}" %>
           <h5><%= t("model.Gallery") %></h5>
         </div>
     <div class="widget-body">

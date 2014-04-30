@@ -54,6 +54,10 @@ module Adminpanel
 			'picture-o'
 		end
 
+		def name
+			File.basename(file.path)
+		end
+
 	private
 		def rearrange_positions
 			unarranged_galleries = Gallery.where("position > ?", self.position)
