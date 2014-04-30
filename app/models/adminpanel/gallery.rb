@@ -51,7 +51,7 @@ module Adminpanel
 		end
 
 		def self.icon
-			'icon-picture'
+			'picture-o'
 		end
 
 	private

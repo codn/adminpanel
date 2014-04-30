@@ -107,7 +107,7 @@ module Adminpanel
       end
 
       def icon
-        'icon-truck'
+        'truck'
       end
 
       def gallery_children

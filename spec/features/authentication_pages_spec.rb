@@ -31,7 +31,7 @@ describe "Authentication" do
 	    	end
 
 	    	it { should have_selector('div.alert.alert-success', :text => I18n.t('authentication.signin_success')) }
-	    	it { should have_selector('i.icon-off') }
+	    	it { should have_selector('i.fa-power-off') }
 
 	    	describe 'signing out' do
 	    		before { click_link 'signout-button'}

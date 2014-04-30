@@ -7,7 +7,7 @@ module Adminpanel
     end
 
     def self.icon
-      'icon-dashboard'
+      'dashboard'
     end
   end
 end

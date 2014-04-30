@@ -12,7 +12,7 @@
       <div class="widget-header">
         <%= content_tag(:i, nil, :class => @model.icon) %>
         <h5><%= @model.display_name.humanize %>
-          <%= render 'shared/pencil_edit_button', resource: resource, resource_name: @model.display_name %>
+          <%= render 'shared/edit_icon_button', resource: resource, resource_name: @model.display_name %>
         </h5>
       </div>
       <div class="widget-body">
@@ -59,7 +59,7 @@
       <div class="widget-header">
         <%= content_tag(:i, nil, :class => @model.icon) %>
         <h5><%= I18n.t("Gallery") %>: <%= @model.display_name.humanize %>
-          <%= render 'shared/pencil_edit_button', resource: resource, resource_name: @model.display_name %>
+          <%= render 'shared/edit_icon_button', resource: resource, resource_name: @model.display_name %>
         </h5>
       </div>
       <% if @model.gallery_children.nil? %>

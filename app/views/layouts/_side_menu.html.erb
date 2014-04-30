@@ -22,8 +22,8 @@
 							content_tag(
 								:i,
 								nil,
-								:class => resource_class.icon) +
-								content_tag(:span," #{pluralize_es(resource_class.display_name)}"),
+								class:"fa fa-#{resource_class.icon}"
+							) + content_tag(:span," #{pluralize_es(resource_class.display_name)}"),
 							[route_symbol(resource.to_s)],
 							:class => "accordion-toggle b_99FFCC
 								#{is_current_section?(resource_class.display_name)}"

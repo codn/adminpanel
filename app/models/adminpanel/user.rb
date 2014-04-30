@@ -94,7 +94,7 @@ module Adminpanel
     end
 
     def self.icon
-      'icon-user'
+      'user'
     end
 
     private
