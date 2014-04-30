@@ -1,4 +1,4 @@
-$(document).ready(function(){
+var ready = function(){
     $("#gallery-container").imagesLoaded(function(){
         $('#gallery-container').masonry({
                     itemSelector: '.gallery-item',
@@ -10,4 +10,7 @@ $(document).ready(function(){
                    }
          });
     });
-});
+}
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

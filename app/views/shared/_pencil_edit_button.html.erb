@@ -1,0 +1,12 @@
+<%=
+  link_to(
+    content_tag(
+      :i,
+      nil,
+      :class => 'icon-pencil'
+    ),
+    [:edit, resource],
+    :title => t("action.update") + " #{resource_name}",
+    data: { no_turbolink: true }
+  )
+%>
