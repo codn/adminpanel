@@ -10,7 +10,7 @@ module Adminpanel
     end
 
     def self.display_name
-      '<%= capitalized_resource %>'
+      '<%= capitalized_resource %>' #singular
     end
 
     # def self.icon
