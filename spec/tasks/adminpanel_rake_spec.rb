@@ -32,9 +32,9 @@ describe 'adminpanel rake task' do
     end
   end
 
-  describe 'adminpanel:section[about, mission]' do
+  describe 'adminpanel:section[mission, about]' do
     before do
-      Rake.application.invoke_task "adminpanel:section[about, mission]"
+      Rake.application.invoke_task "adminpanel:section[mission, about]"
     end
 
     it "should create a section with name 'mission' and section 'about'" do
