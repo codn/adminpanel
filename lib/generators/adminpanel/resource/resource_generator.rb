@@ -190,7 +190,7 @@ module Adminpanel
 			end
 
 			def placeholder_type
-				"\n\t\t\t\t\t'placeholder' => '#{@attr_field}'"
+				"\n\t\t\t\t\t'placeholder' => '#{@attr_field}'\n\t\t\t\t"
 			end
 
 			def model_type(type)
