@@ -5,32 +5,31 @@ Adminpanel::Engine.routes.draw do
   Adminpanel.displayable_resources.each do |resource|
     case resource
     when :sections
-      resources :sections, :except => [:new, :create, :destroy]
-    when :users
-      resources :users
+      # sections cannot be created or destroyed
+      resources :sections, resources_parameters(resource).merge({:except => [:new, :create, :destroy] })
     when :galleries
-      resources :galleries do
+      # galleries gallery is different from normal resources galleries
+      resources :galleries, resources_parameters(resource) do
         member do
-          put :move_better, :as => "move_to_better"
-          put :move_worst, :as => "move_to_worst"
+          put :move_better, :as => 'move_to_better'
+          put :move_worst, :as => 'move_to_worst'
         end
       end
-    when :categories
-      resources :categories
     when :analytics
-      resources :analytics, :only => [:index]
+      resources :analytics, resources_parameters(resource).merge({:only => [:index]})
     else
-      if !acts_as_a_gallery?(resource).nil?
-        resources resource
-        resources acts_as_a_gallery?(resource).to_sym, :only => [:index] do
+      if !gallery_children(resource).nil?
+        # make the resources gallery routes
+        resources gallery_children(resource).to_sym, :only => [:index] do
           member do
             put :move_better, :as => 'move_to_better'
             put :move_worst, :as => 'move_to_worst'
           end
         end
-      else
-        resources resource
       end
+
+      # normal resource
+      resources resource, resources_parameters(resource)
     end
   end
 

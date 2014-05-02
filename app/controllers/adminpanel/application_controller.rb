@@ -5,8 +5,8 @@ module Adminpanel
     inherit_resources
 
     include SessionsHelper
-    include Adminpanel::RestActionsController
-    include Adminpanel::GalleryzableActionsController
+    include Adminpanel::RestActions
+    include Adminpanel::GalleryzableActions
 
     layout 'admin'
 

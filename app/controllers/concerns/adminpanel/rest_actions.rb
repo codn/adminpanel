@@ -1,5 +1,5 @@
 module Adminpanel
-  module RestActionsController
+  module RestActions
 
     def index
       index! do |format|

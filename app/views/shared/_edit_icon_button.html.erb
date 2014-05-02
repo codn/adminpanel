@@ -1,12 +1,14 @@
-<%=
-  link_to(
-    content_tag(
-      :i,
-      nil,
-      :class => 'fa fa-pencil'
-    ),
-    [:edit, resource],
-    :title => t("action.update") + " #{resource.name}",
-    data: { no_turbolink: true }
-  )
-%>
+<% if @model.has_route?(:edit) %>
+  <%=
+    link_to(
+      content_tag(
+        :i,
+        nil,
+        :class => 'fa fa-pencil'
+      ),
+      [:edit, resource],
+      :title => t("action.update") + " #{resource.name}",
+      data: { no_turbolink: true }
+    )
+  %>
+<% end %>

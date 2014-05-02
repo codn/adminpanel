@@ -1,14 +1,16 @@
-<%=
-  link_to(
-    content_tag(
-      :i,
-      nil,
-      class: 'fa fa-trash-o'
-    ),
-    [resource],
-    title: 'Eliminar',
-    id: 'resource-delete',
-    method: :delete,
-    data: { confirm: "Eliminar #{resource.name}?"}
-  )
-%>
+<% if @model.has_route?(:destroy) %>
+  <%=
+    link_to(
+      content_tag(
+        :i,
+        nil,
+        class: 'fa fa-trash-o'
+      ),
+      [resource],
+      title: 'Eliminar',
+      id: 'resource-delete',
+      method: :delete,
+      data: { confirm: "Eliminar #{resource.name}?"}
+    )
+  %>
+<% end %>
