@@ -35,7 +35,7 @@ module Adminpanel
 	  end
 
 		def self.display_name
-			'Secciones'
+			'Seccion'
 		end
 
 		def description

@@ -60,7 +60,7 @@
 	<% if !defined? remote_request %>
 		<div class="control-group">
 			<div class="control-label">
-				<%= I18n.t('other.choose', :model => pluralize_es(properties['model'].classify.constantize.display_name)) %>
+				<%= I18n.t('other.choose', :model => properties['model'].classify.constantize.display_name.pluralize) %>
 			</div>
 	  	<%= hidden_field_tag("#{class_name_downcase(f.object)}[#{relationship_ids(properties["model"])}][]", nil) %>
 			<div class="controls" id="<%= properties['model'].demodulize.downcase %>-relation">

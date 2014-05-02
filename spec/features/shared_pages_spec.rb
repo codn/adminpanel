@@ -18,6 +18,18 @@ describe 'Shared pages' do
 	after do
 		Adminpanel::User.delete_all
 	end
+	context 'when has routes exlutions' do
+		describe 'index' do
+			before do
+				visit adminpanel.products_path
+			end
+
+			it { page.should have_link(Adminpanel::Product.display_name, adminpanel.new_product_path)}
+			it { page.should have_link('i', adminpanel.product_path(product)) }
+			it { page.should have_link('i', adminpanel.edit_product_path(product)) }
+		end
+
+	end
 
 	describe 'index' do
 		before do

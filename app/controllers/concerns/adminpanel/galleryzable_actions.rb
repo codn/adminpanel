@@ -1,7 +1,7 @@
 module Adminpanel
-  module GalleryzableActionsController
+  module GalleryzableActions
     extend ActiveSupport::Concern
-    
+
     def move_better
       respond_to do |format|
         format.js do

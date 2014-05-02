@@ -114,6 +114,36 @@ module Adminpanel
         nil
       end
 
+      def routes_options
+        { path: display_name.pluralize(I18n.default_locale).downcase }
+      end
+
+      def has_route?(route)
+        if (!exlude?(route)) && include_route(route)
+          true
+        else
+          false
+        end
+      end
+
+    private
+      def exlude?(route)
+        if routes_options[:except].nil?
+          false
+        elsif routes_options[:except].include?(route)
+          true
+        else
+          false
+        end
+      end
+
+      def include_route(route)
+        if routes_options[:only].nil? || routes_options[:only].include?(route)
+          true
+        else
+          false
+        end
+      end
     end
   end
 end

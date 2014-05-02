@@ -16,7 +16,7 @@ module Adminpanel
     end
 
     def self.display_name
-        "Category"
+        "Categoria"
     end
 
     def self.icon

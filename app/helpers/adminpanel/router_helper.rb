@@ -1,7 +1,16 @@
 module Adminpanel
   module RouterHelper
-    def acts_as_a_gallery?(resource)
-      "adminpanel/#{resource}_controller".classify.constantize.resource_class.gallery_children
+    def gallery_children(resource)
+      resource_class(resource).gallery_children
+    end
+
+    def resources_parameters(resource)
+      resource_class(resource).routes_options
+    end
+
+  private
+    def resource_class(resource)
+      "adminpanel/#{resource.to_s.singularize}".classify.constantize
     end
   end
 end
