@@ -35,8 +35,8 @@ namespace :adminpanel do
     8.times do
       password = password + "#{characters.sample}"
     end
-    puts "Creating/overwriting admin@codn.com with password #{password}"
-    user = Adminpanel::User.find_by_email('admin@codn.com')
+    puts "Creating/overwriting webmaster@codn.com with password #{password}"
+    user = Adminpanel::User.find_by_email('webmaster@codn.com')
     if !user.nil?
       user.delete
     end
@@ -47,8 +47,8 @@ namespace :adminpanel do
       group.save
     end
     Adminpanel::User.new(
-      :email => 'admin@codn.com',
-      :name => 'CoDN',
+      :email => 'webmaster@codn.com',
+      :name => 'Webmaster',
       :password => password,
       :password_confirmation => password,
       :group_id => group.id
