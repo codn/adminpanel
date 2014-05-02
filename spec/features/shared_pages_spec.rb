@@ -8,6 +8,7 @@ describe 'Shared pages' do
 	let!(:product) { FactoryGirl.create(:product) }
 	let!(:category){ FactoryGirl.create(:category) }
 	let!(:photo) { FactoryGirl.create(:photo) }
+	let!(:mug) { FactoryGirl.create(:mug) }
 
 	before do
 		Adminpanel::User.delete_all
@@ -18,27 +19,32 @@ describe 'Shared pages' do
 	after do
 		Adminpanel::User.delete_all
 	end
-	context 'when has routes exlutions' do
-		describe 'index' do
-			before do
-				visit adminpanel.products_path
-			end
 
-			it { page.should have_link(Adminpanel::Product.display_name, adminpanel.new_product_path)}
-			it { page.should have_link('i', adminpanel.product_path(product)) }
-			it { page.should have_link('i', adminpanel.edit_product_path(product)) }
+	describe 'mugs#index excluding every rest action but index' do
+		before do
+			visit adminpanel.mugs_path
 		end
 
+		it 'should not have create mug button' do
+			should_not have_link('a', href:'/adminpanel/tazas/new')
+		end
+		it 'should not have show or destroy button' do
+			should_not have_link('a', href:'/adminpanel/tazas/1')
+		end
+		it 'should not have edit button' do
+			should_not have_link('a', href:'/adminpanel/tazas/1/edit')
+		end
 	end
+
 
 	describe 'index' do
 		before do
 			visit adminpanel.products_path
 		end
 
-		it { page.should have_link(Adminpanel::Product.display_name, adminpanel.new_product_path)}
-		it { page.should have_link('i', adminpanel.product_path(product)) }
-		it { page.should have_link('i', adminpanel.edit_product_path(product)) }
+		it { should have_link(Adminpanel::Product.display_name, adminpanel.new_product_path)}
+		it { should have_link('i', adminpanel.product_path(product)) }
+		it { should have_link('i', adminpanel.edit_product_path(product)) }
 	end
 
 	describe 'new' do

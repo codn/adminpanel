@@ -44,4 +44,9 @@ FactoryGirl.define do
 	factory :photo, :class => Adminpanel::Photo do
 		file { fixture_file_upload(Rails.root.join('app', 'assets', 'images', 'hipster.jpg'), 'image/jpeg') }
 	end
+
+	factory :mug, :class => Adminpanel::Mug do
+		name 'super mug'
+		number 2
+	end
 end
