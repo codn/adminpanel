@@ -1,0 +1,89 @@
+en:
+  model:
+    Analytics: "Google Analytics"
+    Gallery: "Gallery"
+    Categories: "Categories"
+    attributes:
+      adminproject_id: "Proyect"
+      brief: "Brief Description"
+      body: "Body"
+      category_id: "Category"
+      client_id: "Client"
+      description: "Description"
+      email: "Email"
+      file: "File"
+      group_id: "Group"
+      name: "Name"
+      password: "Password"
+      password_confirmation: "Confirm password"
+      password_digest: "Confirm password"
+      username: "Nombre de usuario"
+  errors:
+    one: "%{model} can't be saved, 1 error"
+    other: "%{model} can't be saved, %{count} errors"
+  activerecord:
+    errors:
+      messages:
+        not_phone: "isn't a phone (10 numbers)"
+        blank: "can't be blank"
+        confirmation: "Must be the same"
+        invalid: "isn't an email"
+        not_a_number: "not a number"
+        taken: "alredy in use"
+        too_long: "too long"
+        too_short: "too short, minimum is 6 characters"
+  time:
+    formats:
+      graphic: "%Y-%m-%d %H:%M:%S"
+      long: "%d/%m/%Y %l:%M:%S %p"
+      short: "%d de %B de %Y"
+      estimate: "%Y-%m-%d"
+  Add Image: "Add Image"
+  Write description here: "Write descrition here..."
+  Gallery: "Gallery"
+  Panel title: "Panel Administrativo CoDN"
+  actions: "Actions"
+  action:
+    add: "Add"
+    create: "Create"
+    close: "Close"
+    show: "Show"
+    submitting: "Submitting..."
+    save: "Save"
+    save_success: "Has been saved successfully"
+    update: "Update"
+    delete: "Delete"
+    view: "View"
+    delete confirmation: "Are you sure you wan't to delete?"
+    is_true: 'Yes'
+    is_false: 'No'
+  authentication:
+    welcome: "Welcome! Please, submit your credentials"
+    signin_error: "Email and/or Password wrong."
+    signin_success: "Welcome!"
+    not_authorized: "You don't have access to that"
+  gallery:
+    new: "Add Image"
+    success: "Image has been saved"
+    deleted: "Image has been deleted"
+    moved : "Gallery position has been updated"
+    not-moved: "Image wasn't able to move"
+    image: "Image"
+    position: "Position"
+    action: "Action"
+  user:
+    new: "Add User"
+    success: "User has been saved"
+  section:
+    name: "Name"
+    description: "Description"
+    edit: "Edit Section"
+    default: "Without Section"
+  image: "Image"
+  session:
+    password: "Password"
+    email: "Email"
+  other:
+    add : "Add %{model}"
+    choose: "Chooose related %{model}"
+    no description: "Don't have a description yet"

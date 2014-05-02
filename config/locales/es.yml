@@ -85,5 +85,5 @@ es:
     email: "Correo electrónico"
   other:
     add : "Agregar %{model}"
-    choose: "Selecciona %{model} pertenecientes"
+    choose: "Selecciona las relaciones con %{model}"
     no description: "No tiene descripción aún"
