@@ -14,7 +14,7 @@ gem 'google-api-client', '~> 0.7.1'
 gem 'cancancan', '~> 1.7'
 gem 'faker', '>= 1.3.0'
 gem 'turbolinks', '>= 2.2.2'
-gem 'font-awesome-rails', '>= 4.0.3.2'
+gem 'font-awesome-rails', '>= 4.0.3.1'
 
 group :assets do
 	gem 'sass-rails', '>= 4.0.3', require: true
