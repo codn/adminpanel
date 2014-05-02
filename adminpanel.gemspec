@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'google-api-client', '~> 0.7.1'
   spec.add_dependency 'faker', '>= 1.3.0'
   spec.add_dependency 'sass-rails', '>= 4.0.3'
-  spec.add_dependency 'font-awesome-rails', '>= 4.0.3.2'
+  spec.add_dependency 'font-awesome-rails', '>= 4.0.3.1'
 
 
   spec.add_development_dependency 'sqlite3'
