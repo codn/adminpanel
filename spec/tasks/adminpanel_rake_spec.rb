@@ -52,8 +52,8 @@ describe 'adminpanel rake task' do
     before do
       Rake.application.invoke_task 'adminpanel:user'
     end
-    it 'should create admin@codn user' do
-      Adminpanel::User.last.email.should eq('admin@codn.com')
+    it 'should create webmaster@codn user' do
+      Adminpanel::User.last.email.should eq('webmaster@codn.com')
     end
   end
 end
