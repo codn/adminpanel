@@ -20,7 +20,7 @@ And then execute:
 
 In you application.rb
 
-    config.default_locale = :es
+    config.default_locale = :es # or :en
 
 no other language is currently supported, but pull requests are welcome.
 
@@ -32,13 +32,15 @@ Then run:
     rake db:migrate
 to create the database that the adminpanel it's expecting, this will also seed the database with the default user.
 
+Make sure you read the wiki, there is the descriptions of every relevant part of the gem.
+
 To create a new resource check the [Resource Generator.](https://github.com/joseramonc/adminpanel/wiki/Geneartor-adminpanel:resource)
 
 You can seed the sections with help of the [Section task.](https://github.com/joseramonc/adminpanel/wiki/Rake-task-adminpanel:section)
 
 Then, mount the gem wherever you like!
 
-    mount Adminpanel::Engine => "/CoDN"
+    mount Adminpanel::Engine => "/codn"
 
 Also make sure to include adminpanel assets in your application.rb if you need to precompile them:
 
