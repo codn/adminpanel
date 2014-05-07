@@ -35,7 +35,7 @@ module Adminpanel
           render 'shared/new'
         end
         success.js do
-          flash.now[:success] = I18n.t("action.save_success")
+          flash[:success] = I18n.t("action.save_success")
           if params[:belongs_request]
             render 'shared/create_belongs_to', :locals => {:resource => resource }
           else
@@ -62,7 +62,7 @@ module Adminpanel
     def update
       update! do |success, failure|
         success.html do
-          flash[:success] = I18n.t("action.save_success")
+          flash.now[:success] = I18n.t('action.save_success')
           render 'shared/index'
         end
         failure.html do
