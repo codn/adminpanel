@@ -58,7 +58,7 @@
     <div class="widget widget-padding span6">
       <div class="widget-header">
         <%= content_tag(:i, nil, :class => @model.icon) %>
-        <h5><%= I18n.t("Gallery") %>: <%= @model.display_name.humanize %>
+        <h5><%= I18n.t('gallery.name') %>: <%= @model.display_name.humanize %>
           <%= render 'shared/edit_icon_button', resource: resource, resource_name: @model.display_name %>
         </h5>
       </div>
