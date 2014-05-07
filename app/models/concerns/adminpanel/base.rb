@@ -115,7 +115,7 @@ module Adminpanel
       end
 
       def routes_options
-        { path: display_name.pluralize(I18n.default_locale).downcase }
+        { path: ActiveSupport::Inflector.transliterate(display_name.pluralize(I18n.default_locale).downcase) }
       end
 
       def has_route?(route)

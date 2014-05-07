@@ -18,9 +18,9 @@ Adminpanel::Engine.routes.draw do
     when :analytics
       resources :analytics, resources_parameters(resource).merge({:only => [:index]})
     else
-      if !gallery_children(resource).nil?
+      if !get_gallery_children(resource).nil?
         # make the resources gallery routes
-        resources gallery_children(resource).to_sym, :only => [:index] do
+        resources get_gallery_children(resource).to_sym, :only => [:index] do
           member do
             put :move_better, :as => 'move_to_better'
             put :move_worst, :as => 'move_to_worst'

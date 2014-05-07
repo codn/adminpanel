@@ -1,6 +1,6 @@
 module Adminpanel
   module RouterHelper
-    def gallery_children(resource)
+    def get_gallery_children(resource)
       resource_class(resource).gallery_children
     end
 

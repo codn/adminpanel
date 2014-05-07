@@ -62,7 +62,7 @@ es:
     signin_success: "Bienvenido!"
     not_authorized: 'No tienes permisos para acceder'
   gallery:
-    name: 'Galeria'
+    name: 'Galería'
     new: "Agregar Imagen"
     success: "La imagen ha sido guardada"
     deleted: "La imagen ha sido eliminada"
