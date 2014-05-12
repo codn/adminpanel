@@ -8,6 +8,15 @@ module Adminpanel
       resource_class(resource).routes_options
     end
 
+    def rest_path_names
+      {
+        path_names: {
+          new: I18n.t('routes.new'),
+          edit: I18n.t('routes.edit'),
+          show: I18n.t('routes.show')
+        }
+      }
+    end
   private
     def resource_class(resource)
       "adminpanel/#{resource.to_s.singularize}".classify.constantize

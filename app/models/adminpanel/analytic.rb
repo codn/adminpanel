@@ -3,7 +3,7 @@ module Adminpanel
     include Adminpanel::Base
 
     def self.display_name
-      'Google Analtico'
+      I18n.t('analytics')
     end
 
     def self.icon
