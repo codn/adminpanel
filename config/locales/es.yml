@@ -85,5 +85,11 @@ es:
     email: "Correo electrónico"
   other:
     add : "Agregar %{model}"
-    choose: "Selecciona las relaciones con %{model}"
     no description: "No tiene descripción aún"
+  routes:
+    new: 'nuevo'
+    edit: 'editar'
+    show: 'ver'
+    signout: 'cerrar-sesion'
+    signin: 'iniciar-sesion'
+  analytics: 'Google Analítico'
