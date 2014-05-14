@@ -9,7 +9,7 @@ namespace :adminpanel do
       :name => args[:name].titleize,
       :has_description => false,
       :description => "",
-      :key => (args[:name].tr(' ','_')),
+      :key => (args[:name].downcase.tr(' ','_')),
       :page => args[:section],
       :has_image => false
     )
