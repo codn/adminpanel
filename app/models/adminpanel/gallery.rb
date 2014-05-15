@@ -47,7 +47,7 @@ module Adminpanel
 		end
 
 		def self.display_name
-			I18n.t('gallery.name')
+			I18n.t('model.Gallery')
 		end
 
 		def self.icon

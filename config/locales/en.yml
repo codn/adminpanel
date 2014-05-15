@@ -1,6 +1,6 @@
 en:
   model:
-    Analytics: "Google Analytics"
+    Analytic: "Google Analytics"
     Gallery: "Gallery"
     Categories: "Categories"
     attributes:
@@ -20,7 +20,7 @@ en:
       username: "Nombre de usuario"
   errors:
     one: "%{model} can't be saved, 1 error"
-    other: "%{model} can't be saved, %{count} errors"
+    other: "%{model} can't be saved due %{count} errors"
   activerecord:
     errors:
       messages:
@@ -34,14 +34,11 @@ en:
         too_short: "too short, minimum is 6 characters"
   time:
     formats:
-      graphic: "%Y-%m-%d %H:%M:%S"
-      long: "%d/%m/%Y %l:%M:%S %p"
-      short: "%d de %B de %Y"
+      short: "%B %d, of %Y"
       estimate: "%Y-%m-%d"
   Add Image: "Add Image"
   Write description here: "Write descrition here..."
-  Gallery: "Gallery"
-  Panel title: "Panel Administrativo CoDN"
+  Panel title: "Panel Administrativo"
   actions: "Actions"
   action:
     add: "Add"
@@ -87,3 +84,9 @@ en:
     add : "Add %{model}"
     choose: "Chooose related %{model}"
     no description: "Don't have a description yet"
+  routes:
+    new: 'new'
+    edit: 'edit'
+    show: 'show'
+    signout: 'signout'
+    signin: 'signin'

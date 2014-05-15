@@ -116,7 +116,7 @@ module Adminpanel
 
       def routes_options
         { path: ActiveSupport::Inflector.transliterate(
-            display_name.pluralize(I18n.default_locale).downcase
+            display_name.pluralize(I18n.locale).downcase
           ).tr(' ', '-')
         }
       end

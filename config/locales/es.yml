@@ -1,6 +1,6 @@
 es:
   model:
-    Analytics: "Google Analytics"
+    Analytic: 'Google Analítico'
     Gallery: "Galería de Inicio"
     Categories: "Categorías"
     attributes:
@@ -34,8 +34,6 @@ es:
         too_short: "es muy corta, mínimo 6 caracteres"
   time:
     formats:
-      graphic: "%Y-%m-%d %H:%M:%S"
-      long: "%d/%m/%Y %l:%M:%S %p"
       short: "%d de %B de %Y"
       estimate: "%Y-%m-%d"
   Add Image: "Agregar Imagen"
@@ -62,10 +60,9 @@ es:
     signin_success: "Bienvenido!"
     not_authorized: 'No tienes permisos para acceder'
   gallery:
-    name: 'Galería'
-    new: "Agregar Imagen"
-    success: "La imagen ha sido guardada"
-    deleted: "La imagen ha sido eliminada"
+    new: 'Agregar Imagen'
+    success: 'La imagen ha sido guardada'
+    deleted: 'La imagen ha sido eliminada'
     moved : "Se ha actualizado la posición de la galería"
     not-moved: "No se pudo mover la Imagen"
     image: "Imagen"
@@ -92,4 +89,3 @@ es:
     show: 'ver'
     signout: 'cerrar-sesion'
     signin: 'iniciar-sesion'
-  analytics: 'Google Analítico'

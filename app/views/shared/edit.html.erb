@@ -1,6 +1,6 @@
 <% provide(:page_title,t("action.update") + " #{@model.display_name.capitalize}") -%>
 <% breadcrumb_add(
-  @model.display_name.capitalize.pluralize(I18n.default_locale),
+  @model.display_name.capitalize.pluralize(I18n.locale),
     {
       :controller => params[:controller],
       :action => "index"
