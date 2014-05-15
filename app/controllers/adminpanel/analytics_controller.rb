@@ -1,5 +1,6 @@
 module Adminpanel
-    class AnalyticsController < Adminpanel::ApplicationController
+  class AnalyticsController < Adminpanel::ApplicationController
+    skip_authorization_check
     authorize_resource :class => false
 		skip_before_filter :set_model
 

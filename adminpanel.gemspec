@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 1.9.3'
 
-  spec.add_dependency 'rails', '>= 4.0.0', '<= 4.1.0'
+  spec.add_dependency 'rails', '>= 4.0.0', '<= 4.1.1'
   spec.add_dependency 'carrierwave', '>= 0.10.0', '<= 1.0.0'
   spec.add_dependency 'rmagick', '2.13.2'
   spec.add_dependency 'jquery-rails', '>= 3.1.0', '<= 4.0.0'
