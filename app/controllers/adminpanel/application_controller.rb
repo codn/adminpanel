@@ -9,9 +9,10 @@ module Adminpanel
     include Adminpanel::GalleryzableActions
 
     layout 'admin'
-
     before_filter :signed_in_user, :set_model, :strong_params_for_cancan
 
+
+  private
     def strong_params_for_cancan
       resource = controller_name.singularize.to_sym
       method = "#{resource}_params"
@@ -24,7 +25,7 @@ module Adminpanel
     end
 
     def signed_in_user
-      redirect_to signin_url, :notice => I18n.t("authentication.welcome") unless signed_in?
+      redirect_to signin_url, :notice => I18n.t('authentication.welcome') unless signed_in?
     end
 
     def set_model

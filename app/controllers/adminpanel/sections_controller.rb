@@ -28,7 +28,7 @@ module Adminpanel
       @section = Section.find(params[:id])
 
       if @section.update_attributes(params[:section])
-        redirect_to section_path(@section), :notice => "La seccion se ha actualizado"
+        redirect_to section_path(@section), :notice => 'La seccion se ha actualizado'
       else
         render 'edit'
       end
