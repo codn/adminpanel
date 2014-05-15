@@ -10,7 +10,7 @@
             <li class = "<%= active_tab(index) %>">
               <%=
               link_to(
-                (category.model.capitalize.pluralize(I18n.default_locale)),
+                (category.model.capitalize.pluralize(I18n.locale)),
                 "#tab#{index}",
                 "data-toggle" => "tab"
               )

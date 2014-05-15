@@ -3,7 +3,7 @@ module Adminpanel
     include Adminpanel::Base
 
     def self.display_name
-      I18n.t('analytics')
+      I18n.t('model.Analytic')
     end
 
     def self.icon

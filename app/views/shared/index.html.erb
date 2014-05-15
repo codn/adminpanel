@@ -1,4 +1,4 @@
-<% provide(:page_title, @model.display_name.pluralize(I18n.default_locale)) -%>
+<% provide(:page_title, @model.display_name.pluralize(I18n.locale)) -%>
 <div class="row-fluid">
   <%= render 'shared/new_resource_button' %>
 </div>
@@ -7,7 +7,7 @@
     <div class="widget-header">
       <%= content_tag(:i, nil, class: "fa fa-#{@model.icon}") %>
       <h5>
-        <%= @model.display_name.pluralize(I18n.default_locale) %>
+        <%= @model.display_name.pluralize(I18n.locale) %>
       </h5>
     </div>
     <div class="widget-body">
