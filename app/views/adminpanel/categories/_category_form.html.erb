@@ -1,4 +1,4 @@
-<%= custom_form_for(resource, :url => {:action => :create, :model => params[:model], :model_name => params[:model_name], :currentcontroller => params[:currentcontroller], :belongs_request => params[:belongs_request]}, :remote => true, :html => {:class => "form-horizontal", :id => "new-category-form"}) do |f| -%>
+<%= adminpanel_form_for(resource, :url => {:action => :create, :model => params[:model], :model_name => params[:model_name], :currentcontroller => params[:currentcontroller], :belongs_request => params[:belongs_request]}, :remote => true, :html => {:class => "form-horizontal", :id => "new-category-form"}) do |f| -%>
   <div class="row-fluid">
     <div class="modal-body">
         <%= render 'shared/error_messages', :object => resource %>

@@ -71,6 +71,7 @@ module Adminpanel
         {
           'group_id' => {
             'type' => 'belongs_to',
+            'name' => 'Group',
             'model' => 'Adminpanel::Group',
             'remote_resource' => false,
             'placeholder' => I18n.t('model.attributes.group_id'),

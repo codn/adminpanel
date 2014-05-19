@@ -27,7 +27,7 @@ module Adminpanel
       params.merge({:belongs_request => params[:belongs_request]}) if params[:belongs_request].present?
       create! do |success, failure|
         success.html do
-          flash[:success] = I18n.t("action.save_success")
+          flash[:success] = I18n.t('action.save_success')
           redirect_to resource
         end
         failure.html do
@@ -35,11 +35,10 @@ module Adminpanel
           render 'shared/new'
         end
         success.js do
-          flash[:success] = I18n.t("action.save_success")
           if params[:belongs_request]
-            render 'shared/create_belongs_to', :locals => {:resource => resource }
+            render 'shared/create_belongs_to', :locals => { :resource => resource }
           else
-            render 'shared/create_has_many', :locals => {:resource => resource }
+            render 'shared/create_has_many', :locals => { :resource => resource }
           end
         end
         failure.js do
