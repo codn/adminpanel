@@ -17,9 +17,10 @@
       <div class = "widget-forms clearfix">
         <%=
         custom_form_for(
-          resource, :html => {
-            :class => "form-horizontal",
-            :id => "new_resource"
+          resource,
+          :html => {
+            :class => 'form-horizontal',
+            :id => 'new_resource'
           }
         ) do |f| -%>
           <%= render 'shared/error_messages', :object => resource %>
@@ -28,7 +29,7 @@
     </div>
     <div class = "widget-footer">
       <%=
-      f.submit t("action.add") + " " + @model.display_name,
+      f.submit t('action.add') + " " + @model.display_name,
         data: {:disable_with => t("action.submitting")},
         :id =>"new-#{@model.name.demodulize}-button"
       %>

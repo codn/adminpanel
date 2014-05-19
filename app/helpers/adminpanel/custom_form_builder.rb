@@ -70,25 +70,25 @@ module Adminpanel
 
 		def wysiwyg_field(name, *args)
 			options = args.extract_options!
-			label = options["label"]
-			options.delete("label")
+			label = options['label']
+			options.delete('label')
 
-			@template.content_tag(:div, :class => "control-group") do
-				@template.content_tag(:label, label, :class => "control-label") +
-				@template.content_tag(:div, :class => "controls") do
+			@template.content_tag(:div, :class => 'control-group') do
+				@template.content_tag(:label, label, :class => 'control-label') +
+				@template.content_tag(:div, :class => 'controls') do
 					if self.object.send(name).nil?
-						@template.content_tag(
-							:div,
-							self.object.send(name),
-							:id => name,
-							"data-placeholder" => I18n.t("Write description here")
+						self.text_area(
+							name,
+							class: 'wysihtml5 span10',
+							placeholder: I18n.t('wysiwyg.description'),
+							rows: '6'
 						)
 					else
-						@template.content_tag(
-							:div,
-							self.object.send(name).html_safe,
-							:id => name,
-							"data-placeholder" => I18n.t("Write description here")
+						self.text_area(
+							name,
+							class: 'wysihtml5 span10',
+							placeholder: I18n.t('wysiwyg.description'),
+							rows: '6'
 						)
 					end
 				end
@@ -180,21 +180,6 @@ module Adminpanel
 			options = args.extract_options!
 
 			options.reverse_merge! :class => "span7"
-			label = options['label']
-			options.delete('label')
-
-			@template.content_tag :div, :class => "control-group" do
-				@template.content_tag(:label, label, :class => "control-label") +
-				@template.content_tag(:div, super(name, *args << options), :class => "controls")
-			end
-		end
-
-		def text_area(name, *args)
-			options = args.extract_options!
-
-			options.reverse_merge! :class => "span7"
-			options.reverse_merge! :rows => "10"
-			options.reverse_merge! :label => name
 			label = options['label']
 			options.delete('label')
 
