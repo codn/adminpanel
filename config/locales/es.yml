@@ -37,7 +37,8 @@ es:
       short: "%d de %B de %Y"
       estimate: "%Y-%m-%d"
   Add Image: "Agregar Imagen"
-  Write description here: "Escriba la descripción aquí"
+  wysiwyg:
+    description: "Escriba la descripción aquí"
   Panel title: "Panel Administrativo"
   actions: "Acciones"
   action:
