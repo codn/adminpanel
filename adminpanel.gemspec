@@ -33,8 +33,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'faker', '>= 1.3.0', '<= 2.0.0'
   spec.add_dependency 'sass-rails', '>= 4.0.3', '<= 4.1.0'
   spec.add_dependency 'font-awesome-rails', '>= 4.0.3.1', '<= 4.1.0'
-  spec.add_dependency 'bootstrap-wysihtml5-rails', '>= 0.3.1.24'
-
 
   spec.add_development_dependency 'sqlite3', '~> 0'
   spec.add_development_dependency 'factory_girl_rails', '>= 4.4.1', '<= 5.0.0'

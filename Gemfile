@@ -15,7 +15,6 @@ gem 'cancancan', '>= 1.7.1', '<= 1.8'
 gem 'faker', '>= 1.3.0'
 gem 'turbolinks', '>= 2.2.2'
 gem 'font-awesome-rails', '>= 4.0.3.1'
-gem 'bootstrap-wysihtml5-rails', '>= 0.3.1.24', require: 'bootstrap-wysihtml5-rails'
 
 group :assets do
 	gem 'sass-rails', '>= 4.0.3', require: true
