@@ -1,96 +1,101 @@
-<%= render 'shared/wysihtml5_buttons' %>
 <% @model.form_attributes.each do |entries| %>
 <% entries.each do |attribute, properties| %>
 
-	<% if properties['type'] == 'wysiwyg_field' %>
-		<% type = properties['type'] %>
-		<% args = properties.except('type') %>
+	<% field_type = properties['type'] %>
+	<% properties = properties.except('type') %>
 
-		<%= f.send(type, attribute, args) %>
+	<% if field_type == 'wysiwyg_field' %>
+		<%= f.send(field_type, attribute) %>
 
-	<% elsif properties['type'] == 'adminpanel_file_field' %>
-	<% if !defined? remote_request %>
-		<%= content_tag :div, :class => 'file-collection-container', :data => {:max => properties['max-files'].nil? ? 0 : properties['max-files'] } do %>
-			<%= f.fields_for(attribute) do |builder| %>
-	    	<%= render 'shared/image_fields', :f => builder %>
-	  	<% end -%>
-  		<%= link_to_add_fields t("Add Image"), f, attribute %>
+	<% elsif field_type == 'adminpanel_file_field' %>
+
+		<% if !defined? remote_request %>
+			<!-- if not making resource from other form -->
+			<%= content_tag :div, :class => 'file-collection-container', :data => {:max => properties['max-files'].nil? ? 0 : properties['max-files'] } do %>
+				<%= f.fields_for(attribute) do |builder| %>
+		    	<%= render 'shared/image_fields', :f => builder %>
+		  	<% end -%>
+	  		<%= link_to_add_fields t('Add Image'), f, attribute %>
+			<% end %>
+
 		<% end %>
+  <% elsif field_type == 'belongs_to' %>
+		<% if !defined? remote_request %>
+			<!-- if not making resource from other form
+			so we don't have to manage infinite nested forms
+			-->
+			<% args = properties.except('model') %>
+			<% args.symbolize_keys! %>
+	  	<%= f.select(attribute, (@collections["#{properties["model"]}"].collect{|resource| [resource.name, resource.id]}), args) %>
 
-	<% end %>
-  <% elsif properties['type'] == 'belongs_to' %>
-	<% if !defined? remote_request %>
-		<% args = properties.except('type', 'model') %>
-		<% args.symbolize_keys! %>
-  	<%= f.select(attribute, (@collections["#{properties["model"]}"].collect{|resource| [resource.name, resource.id]}), args) %>
 
-
-		<% if(properties['remote_resource'].nil? || properties['remote_resource']) %>
-			<!-- Button to create a new of this belongs_to resource -->
-			<% model_name = properties['model'].classify.constantize.model_name.to_s.demodulize.downcase %>
-			<%=
-			link_to(
-				I18n.t('other.add',
-					:model => properties['model'].classify.constantize.display_name
-				),
-				polymorphic_path(
-					[:new, :"#{model_name}"],
-					:model => @model.display_name,
-					:model_name => @model.name.demodulize.downcase,
-					:belongs_request => true
-				),
-				:class => 'btn btn-info',
-				:id => "#{model_name}-modal-link",
-				:'data-target' => "#new-modal",
-				:'data-toggle' => 'modal',
-				:remote => true
-			)
-			%>
+			<% if(properties['remote_resource'].nil? || properties['remote_resource']) %>
+				<!--
+				Button to create a new of this belongs_to resource
+				if it's supposed to be created remotely
+				-->
+				<% model_name = properties['model'].classify.constantize.model_name.to_s.demodulize.downcase %>
+				<%=
+				link_to(
+					I18n.t('other.add',
+						:model => properties['model'].classify.constantize.display_name
+					),
+					polymorphic_path(
+						[:new, :"#{model_name}"],
+						:model => @model.display_name,
+						:model_name => @model.name.demodulize.downcase,
+						:belongs_request => true
+					),
+					:class => 'btn btn-info',
+					:id => "#{model_name}-modal-link",
+					:'data-target' => "#new-modal",
+					:'data-toggle' => 'modal',
+					:remote => true
+				)
+				%>
+			<% end %>
 		<% end %>
-
-
-	<% end %>
-  <% elsif properties['type'] == 'has_many' %>
-	<% if !defined? remote_request %>
-		<div class="control-group">
-			<div class="control-label">
-				<%= properties['label'] %>
+  <% elsif field_type == 'has_many' %>
+		<% if !defined? remote_request %>
+			<div class="control-group">
+				<div class="control-label">
+					<%= properties['label'] %>
+				</div>
+		  	<%= hidden_field_tag("#{class_name_downcase(f.object)}[#{relationship_ids(properties["model"])}][]", nil) %>
+				<div class="controls" id="<%= properties['model'].demodulize.downcase %>-relation">
+			  	<% @collections["#{properties['model']}"].each do |resource| %>
+			  		<%= f.checkbox(resource, class_name_downcase(f.object) ,relationship_ids(properties["model"])) %>
+					<% end %>
+				</div>
 			</div>
-	  	<%= hidden_field_tag("#{class_name_downcase(f.object)}[#{relationship_ids(properties["model"])}][]", nil) %>
-			<div class="controls" id="<%= properties['model'].demodulize.downcase %>-relation">
-		  	<% @collections["#{properties['model']}"].each do |resource| %>
-		  		<%= f.checkbox(resource, class_name_downcase(f.object) ,relationship_ids(properties["model"])) %>
-				<% end %>
-			</div>
-		</div>
 
-		<% if properties['remote_resource'].nil? || propeties['remote_resource'] %>
-			<!-- Button to create a new of this has_many resource -->
-			<% model_name = properties['model'].classify.constantize.model_name.to_s.demodulize.downcase %>
-			<%=
-			link_to(
-				I18n.t('other.add',
-					:model => properties['model'].classify.constantize.display_name
-				),
-				polymorphic_path(
-					[:new, :"#{model_name}"],
-					:model => @model.display_name,
-					:model_name => @model.name.demodulize.downcase
-				),
-				:class => 'btn btn-info',
-				:id => "#{model_name}-modal-link",
-				:'data-target' => "#new-modal",
-				:'data-toggle' => 'modal',
-				:remote => true
-			)
-			%>
+			<% if properties['remote_resource'].nil? || propeties['remote_resource'] %>
+				<!-- Button to create a new of this has_many resource
+						if it can be created remotely -->
+				<% model_name = properties['model'].classify.constantize.model_name.to_s.demodulize.downcase %>
+				<%=
+				link_to(
+					I18n.t('other.add',
+						:model => properties['model'].classify.constantize.display_name
+					),
+					polymorphic_path(
+						[:new, :"#{model_name}"],
+						:model => @model.display_name,
+						:model_name => @model.name.demodulize.downcase
+					),
+					:class => 'btn btn-info',
+					:id => "#{model_name}-modal-link",
+					:'data-target' => "#new-modal",
+					:'data-toggle' => 'modal',
+					:remote => true
+				)
+				%>
+			<% end %>
 		<% end %>
-	<% end %>
 
   <% else %>
-		<% type = properties['type'] %>
-		<% args = properties.except('type', 'name') %>
-    <%= f.send(type, attribute, args) %>
+		<% args = properties.except('name') %>
+    <%= f.send(field_type, attribute, args) %>
   <% end %>
 
 <% end %>

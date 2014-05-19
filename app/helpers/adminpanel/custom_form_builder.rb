@@ -76,21 +76,12 @@ module Adminpanel
 			@template.content_tag(:div, :class => 'control-group') do
 				@template.content_tag(:label, label, :class => 'control-label') +
 				@template.content_tag(:div, :class => 'controls') do
-					if self.object.send(name).nil?
-						self.text_area(
-							name,
-							class: 'wysihtml5 span10',
-							placeholder: I18n.t('wysiwyg.description'),
-							rows: '6'
-						)
-					else
-						self.text_area(
-							name,
-							class: 'wysihtml5 span10',
-							placeholder: I18n.t('wysiwyg.description'),
-							rows: '6'
-						)
-					end
+					self.text_area(
+						name,
+						class: 'wysihtml5 span10',
+						placeholder: I18n.t('wysiwyg.description'),
+						rows: '6'
+					)
 				end
 			end
 		end
