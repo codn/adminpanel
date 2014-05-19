@@ -24,7 +24,7 @@ group :test do
 	gem 'factory_girl_rails', '~> 4.4.1'
 	gem 'rspec', '~> 2.14.1'
 	gem 'rspec-rails', '~> 2.14.2'
-	gem 'sqlite3', :platform => [:ruby, :mswin, :mingw]
+	gem 'sqlite3', '>= 1.3.9', '<= 2.0.0', :platform => [:ruby, :mswin, :mingw]
 	gem 'capybara', '~> 2.2.1'
 	gem 'ammeter', '~> 1.0.0'
 end
