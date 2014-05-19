@@ -122,7 +122,7 @@ describe 'Shared pages' do
 		it { page.should have_selector('div', :text => product.name) }
 		it { page.should have_selector('div', :text => product.price) }
 		it { page.should have_selector('div', :text => product.description) }
-		it { should have_content("#{I18n.t("gallery.name")}: #{Adminpanel::Product.display_name}")}
+		it { should have_content("#{I18n.t("gallery.container")}: #{Adminpanel::Product.display_name}")}
 		it { should have_link('i', adminpanel.edit_product_path(product)) }
 	end
 end
