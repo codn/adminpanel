@@ -1,5 +1,5 @@
 module Adminpanel
-	class CustomFormBuilder < ActionView::Helpers::FormBuilder
+	class AdminpanelFormBuilder < ActionView::Helpers::FormBuilder
 
 		alias_method :text_field_original, :text_field
 		alias_method :radio_button_original, :radio_button
@@ -140,12 +140,12 @@ module Adminpanel
 
 		def select(name, select_options, *args)
 			options = args.extract_options!
+			label = options['label']
+			options.delete('label')
 
 			options.reverse_merge! :class => "span7"
 
 			options.reverse_merge! :include_blank => "(Seleccione por favor)";
-			label = options['label']
-			options.delete('label')
 
 			@template.content_tag :div, :class => "control-group" do
 				@template.content_tag(:label, label, :class => "control-label") +

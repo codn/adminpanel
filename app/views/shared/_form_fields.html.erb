@@ -25,7 +25,6 @@
 			so we don't have to manage infinite nested forms
 			-->
 			<% args = properties.except('model') %>
-			<% args.symbolize_keys! %>
 	  	<%= f.select(attribute, (@collections["#{properties["model"]}"].collect{|resource| [resource.name, resource.id]}), args) %>
 
 
@@ -93,7 +92,12 @@
 			<% end %>
 		<% end %>
 
-  <% else %>
+  <% elsif field_type == 'file_field' %>
+		<% if !defined? remote_request %>
+			<% args = properties.except('name') %>
+    	<%= f.send(field_type, attribute, args) %>
+		<% end %>
+	<% else %>
 		<% args = properties.except('name') %>
     <%= f.send(field_type, attribute, args) %>
   <% end %>

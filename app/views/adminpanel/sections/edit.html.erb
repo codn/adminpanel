@@ -6,7 +6,7 @@
     <div class = "widget-header"><i class = "fa fa-tasks"></i><h5><%= @section.name %></h5></div>
     <div class = "widget-body">
       <div class = "widget-forms clearfix">
-        <%= custom_form_for(@section, :url => section_path(@section)) do |f| %>
+        <%= adminpanel_form_for(@section, :url => section_path(@section)) do |f| %>
           <%= render 'shared/error_messages', :object => @section %>
 
           <% if @section.has_description %>

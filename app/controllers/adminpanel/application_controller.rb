@@ -9,8 +9,8 @@ module Adminpanel
     include Adminpanel::GalleryzableActions
 
     layout 'admin'
-    before_filter :signed_in_user, :set_model, :strong_params_for_cancan
 
+    before_filter :signed_in_user, :set_model, :strong_params_for_cancan
 
   private
     def strong_params_for_cancan

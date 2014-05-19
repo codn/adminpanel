@@ -15,7 +15,7 @@
     </div>
     <div class = "widget-body">
       <div class = "widget-forms clearfix">
-        <%= custom_form_for(resource, :html => {:class => "form-horizontal", :id => "edit_resource"}) do |f| -%>
+        <%= adminpanel_form_for(resource, :html => {:class => "form-horizontal", :id => "edit_resource"}) do |f| -%>
           <%= render 'shared/error_messages', :object => resource %>
           <%= render 'shared/form_fields', :f => f %>
       </div>
