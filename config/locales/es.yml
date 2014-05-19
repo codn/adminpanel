@@ -60,6 +60,7 @@ es:
     signin_success: "Bienvenido!"
     not_authorized: 'No tienes permisos para acceder'
   gallery:
+    container: 'Imágenes'
     new: 'Agregar Imagen'
     success: 'La imagen ha sido guardada'
     deleted: 'La imagen ha sido eliminada'
