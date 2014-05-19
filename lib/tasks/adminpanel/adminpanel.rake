@@ -168,7 +168,7 @@ private
     "Adminpanel::Section.new(\n" +
     "\t:name => \"#{section.name}\",\n" +
     "\t:has_description => #{section.has_description},\n" +
-    "\t:description => \"#{section.description}\",\n" +
+    "\t:description => \"#{escape_double_quotes(section.description)}\",\n" +
     "\t:key => \"#{section.key}\",\n" +
     "\t:page => \"#{section.page}\",\n" +
     "\t:has_image => #{section.has_image}\n" +
@@ -177,9 +177,13 @@ private
 
   def creation_command_category(category)
     "Adminpanel::Category.new(\n" +
-    "\t:name => \"#{category.name}\",\n" +
+    "\t:name => \"#{escape_double_quotes(category.name)}\",\n" +
     "\t:model => \"#{category.model}\"\n" +
     ").save\n"
+  end
+
+  def escape_double_quotes(string)
+    string.gsub('"', '\\"')
   end
 
   def change_dates(instance)
