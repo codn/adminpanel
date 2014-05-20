@@ -15,7 +15,6 @@ Adminpanel.setup do |config|
     :analytics,
     :users,
     :galleries,
-    :sections,
-    :categories
+    :sections
   ]
 end
