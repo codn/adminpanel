@@ -1,0 +1,23 @@
+<!--
+Button to create a new of remote resource
+if it's supposed to be created in relation model
+-->
+<% demodulized_remote_model_name = remote_resource_name.classify.constantize.model_name.to_s.demodulize.downcase %>
+<%=
+link_to(
+  I18n.t('other.add',
+    :model => remote_resource_name.classify.constantize.display_name
+  ),
+  polymorphic_path(
+    [:new, :"#{demodulized_remote_model_name}"],
+    :model => @model.display_name,
+    :model_name => @model.name.demodulize.downcase,
+    :belongs_request => defined? belongs_request
+  ),
+  :class => 'btn btn-info',
+  :id => "#{demodulized_remote_model_name}-modal-link",
+  :'data-target' => "#new-modal",
+  :'data-toggle' => 'modal',
+  :remote => true
+)
+%>

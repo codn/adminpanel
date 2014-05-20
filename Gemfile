@@ -20,7 +20,8 @@ group :assets do
 	gem 'sass-rails', '>= 4.0.3', require: true
 end
 
-group :test do
+group :development, :test do
+	gem 'jasmine-rails'
 	gem 'factory_girl_rails', '~> 4.4.1'
 	gem 'rspec', '~> 2.14.1'
 	gem 'rspec-rails', '~> 2.14.2'

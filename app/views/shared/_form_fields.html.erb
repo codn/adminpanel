@@ -4,10 +4,7 @@
 	<% field_type = properties['type'] %>
 	<% properties = properties.except('type') %>
 
-	<% if field_type == 'wysiwyg_field' %>
-		<%= f.send(field_type, attribute) %>
-
-	<% elsif field_type == 'adminpanel_file_field' %>
+	<% if field_type == 'adminpanel_file_field' %>
 
 		<% if !defined? remote_request %>
 			<!-- if not making resource from other form -->
@@ -27,32 +24,10 @@
 			<% args = properties.except('model') %>
 	  	<%= f.select(attribute, (@collections["#{properties["model"]}"].collect{|resource| [resource.name, resource.id]}), args) %>
 
-
 			<% if(properties['remote_resource'].nil? || properties['remote_resource']) %>
-				<!--
-				Button to create a new of this belongs_to resource
-				if it's supposed to be created remotely
-				-->
-				<% model_name = properties['model'].classify.constantize.model_name.to_s.demodulize.downcase %>
-				<%=
-				link_to(
-					I18n.t('other.add',
-						:model => properties['model'].classify.constantize.display_name
-					),
-					polymorphic_path(
-						[:new, :"#{model_name}"],
-						:model => @model.display_name,
-						:model_name => @model.name.demodulize.downcase,
-						:belongs_request => true
-					),
-					:class => 'btn btn-info',
-					:id => "#{model_name}-modal-link",
-					:'data-target' => "#new-modal",
-					:'data-toggle' => 'modal',
-					:remote => true
-				)
-				%>
+				<%= render 'shared/create_remote_resource_button', belongs_request: true, remote_resource_name: properties['model'] %>
 			<% end %>
+
 		<% end %>
   <% elsif field_type == 'has_many' %>
 		<% if !defined? remote_request %>
@@ -63,32 +38,13 @@
 		  	<%= hidden_field_tag("#{class_name_downcase(f.object)}[#{relationship_ids(properties["model"])}][]", nil) %>
 				<div class="controls" id="<%= properties['model'].demodulize.downcase %>-relation">
 			  	<% @collections["#{properties['model']}"].each do |resource| %>
-			  		<%= f.checkbox(resource, class_name_downcase(f.object) ,relationship_ids(properties["model"])) %>
+			  		<%= f.checkbox(resource, class_name_downcase(f.object), relationship_ids(properties['model'])) %>
 					<% end %>
 				</div>
 			</div>
 
-			<% if properties['remote_resource'].nil? || propeties['remote_resource'] %>
-				<!-- Button to create a new of this has_many resource
-						if it can be created remotely -->
-				<% model_name = properties['model'].classify.constantize.model_name.to_s.demodulize.downcase %>
-				<%=
-				link_to(
-					I18n.t('other.add',
-						:model => properties['model'].classify.constantize.display_name
-					),
-					polymorphic_path(
-						[:new, :"#{model_name}"],
-						:model => @model.display_name,
-						:model_name => @model.name.demodulize.downcase
-					),
-					:class => 'btn btn-info',
-					:id => "#{model_name}-modal-link",
-					:'data-target' => "#new-modal",
-					:'data-toggle' => 'modal',
-					:remote => true
-				)
-				%>
+			<% if(properties['remote_resource'].nil? || properties['remote_resource']) %>
+				<%= render 'shared/create_remote_resource_button', remote_resource_name: properties['model'] %>
 			<% end %>
 		<% end %>
 
