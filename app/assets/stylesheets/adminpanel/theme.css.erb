@@ -12,7 +12,7 @@ html, body{
 body{
   padding-top: 45px;
   font-family: 'Open Sans', sans-serif;
-  background-image: url("dotted.png");
+  background-image: url(<%= asset_path 'adminpanel/dotted.png' %>);
   overflow-x: hidden;
 }
 h2{
@@ -307,12 +307,12 @@ table.table thead .sorting_desc_disabled {
   cursor: pointer;
   *cursor: hand;
 }
-table.table thead .sorting { background: url('sort_both.png') no-repeat center right; }
-table.table thead .sorting_asc { background: url('sort_asc.png') no-repeat center right; }
-table.table thead .sorting_desc { background: url('sort_desc.png') no-repeat center right; }
+table.table thead .sorting { background: url(<%= asset_path 'adminpanel/sort_both.png' %>) no-repeat center right; }
+table.table thead .sorting_asc { background: url(<%= asset_path 'adminpanel/sort_asc.png' %>) no-repeat center right; }
+table.table thead .sorting_desc { background: url(<%= asset_path 'adminpanel/sort_desc.png' %>) no-repeat center right; }
 
-table.table thead .sorting_asc_disabled { background: url('sort_asc_disabled.png') no-repeat center right; }
-table.table thead .sorting_desc_disabled { background: url('sort_desc_disabled.png') no-repeat center right; }
+table.table thead .sorting_asc_disabled { background: url(<%= asset_path 'adminpanel/sort_asc_disabled.png' %>) no-repeat center right; }
+table.table thead .sorting_desc_disabled { background: url(<%= asset_path 'adminpanel/sort_desc_disabled.png' %>) no-repeat center right; }
 .dataTables_filter{
   text-align: right;
 }
