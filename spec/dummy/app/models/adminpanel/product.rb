@@ -1,7 +1,7 @@
 module Adminpanel
   class Product < ActiveRecord::Base
     include Adminpanel::Base
-    
+
     has_many :categorizations
     has_many :categories, :through => :categorizations
 		mount_images :photos
@@ -18,7 +18,6 @@ module Adminpanel
 			{
 				'name' => {
 					'type' => 'text_field',
-					'name' => 'name',
 					'label' => 'name',
 					'placeholder' => 'name'}
 			},
@@ -31,22 +30,21 @@ module Adminpanel
 			{
 				'photos' => {
 					'type' => 'adminpanel_file_field',
-					'name' => 'photo',
 					'label' => 'photo',
 					'placeholder' => 'photo'}
 			},
 			{
 				'description' => {
 					'type' => 'wysiwyg_field',
-					'name' => 'description',
 					'label' => 'description',
-					'placeholder' => 'description'}
+					'placeholder' => 'description'
+        }
 			},
       ]
     end
 
     def self.display_name
-      "Product"
+      "Producto"
     end
 
     def self.icon

@@ -1,8 +1,9 @@
 module Adminpanel
-  class Mug < ActiveRecord::Base
+  class Salesman < ActiveRecord::Base
     include Adminpanel::Base
-    validates_presence_of :name
-    
+
+    belongs_to :product
+
     def self.form_attributes
       [
 			{
@@ -13,25 +14,22 @@ module Adminpanel
 				}
 			},
 			{
-				'number' => {
-					'type' => 'number_field',
-					'label' => 'number',
-					'placeholder' => 'number'
+				'product_id' => {
+					'type' => 'belongs_to',
+					'model' => 'Adminpanel::Product',
+					'label' => 'product',
+					'placeholder' => 'product'
 				}
 			},
       ]
     end
 
     def self.display_name
-      'Taza' #singular
+      'Agente' #singular
     end
 
     # def self.icon
     #     "truck" # fa-{icon}
     # end
-
-    def self.routes_options
-      { except:[:new, :create, :edit, :update, :destroy, :show], path:'tazas'}
-    end
   end
 end

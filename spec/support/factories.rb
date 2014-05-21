@@ -15,7 +15,7 @@ FactoryGirl.define do
 
 	factory :product, :class => Adminpanel::Product do
 		price "12392.2"
-		name "very little description"
+		name 'product name'
 		description "this is a little longer description, can be very long"
 	end
 

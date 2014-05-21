@@ -21,7 +21,8 @@ group :assets do
 end
 
 group :development, :test do
-	gem 'jasmine-rails'
+	gem 'selenium-webdriver', '2.41.0'
+	gem 'capybara-webkit', '1.1.0'
 	gem 'factory_girl_rails', '~> 4.4.1'
 	gem 'rspec', '~> 2.14.1'
 	gem 'rspec-rails', '~> 2.14.2'
