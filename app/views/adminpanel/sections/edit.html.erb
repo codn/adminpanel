@@ -14,11 +14,6 @@
               <%= f.hidden_field 'description', :id => "description-field", :value => @section.description %>
             </div>
             <%= f.wysiwyg_field 'description', 'label' => I18n.t('section.description'), :name => 'description' %>
-            <%= content_for :scripts do %>
-              <script type="text/javascript">
-              <%= render "shared/init_editor", :field_var => 'description', :label => 'description' %>
-              </script>
-            <% end %>
           <% else %>
             <%= f.text_field 'description', :label => t("section.description") %>
           <% end %>
