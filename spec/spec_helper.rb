@@ -20,10 +20,10 @@ Dir["./spec/support/**/*.rb"].sort.each { |f| require f }
 Capybara.javascript_driver = :webkit
 
 # don't run on the local machine (since we don't have xvfb running locally)
-if Rails.env.production?
-    headless = Headless.new
-    headless.start
-end
+# if Rails.env.production?
+#     headless = Headless.new
+#     headless.start
+# end
 
 RSpec.configure do |config|
 	config.treat_symbols_as_metadata_keys_with_true_values = true
