@@ -18,6 +18,7 @@ Adminpanel.setup do |config|
     :categories,
     :products,
     :users,
-    :mugs
+    :mugs,
+    :salesmen
   ]
 end

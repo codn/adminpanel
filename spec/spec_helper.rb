@@ -5,35 +5,48 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../dummy/config/environment", __FILE__)
-require "rspec/rails"
-require "capybara/rspec"
-require "factory_girl_rails"
+ENV['RAILS_ENV'] ||= 'test'
+require File.expand_path('../dummy/config/environment', __FILE__)
+require 'rspec/rails'
+require 'capybara/rspec'
+require 'factory_girl_rails'
 require 'carrierwave/orm/activerecord'
-require "carrierwave/test/matchers"
-require "active_record"
-require "rake"
-
+require 'carrierwave/test/matchers'
+require 'active_record'
+require 'rake'
 
 Dir["./spec/support/**/*.rb"].sort.each { |f| require f }
 
-# FactoryGirl.find_definitions
+
+class ActiveRecord::Base
+  mattr_accessor :shared_connection
+  @@shared_connection = nil
+
+  def self.connection
+    @@shared_connection || retrieve_connection
+  end
+end
+
+# Forces all threads to share the same connection. This works on
+# Capybara because it starts the web server in a thread.
+
 RSpec.configure do |config|
+	Capybara.javascript_driver = :webkit
 	config.treat_symbols_as_metadata_keys_with_true_values = true
 	config.run_all_when_everything_filtered = true
 	config.filter_run :focus
 
-	# root = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 	ActiveRecord::Base.establish_connection(
 	  :adapter => 'sqlite3',
 	  :database => ':memory:'
 	)
 
-	config.include ActionDispatch::TestProcess
-
 	puts "creating sqlite in memory database"
 	load "#{Rails.root}/db/schema.rb"
+
+	ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+	
+	# config.include ActionDispatch::TestProcess
 
 	config.use_transactional_fixtures = false
 

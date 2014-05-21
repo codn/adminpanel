@@ -2,6 +2,7 @@ module Adminpanel
   class Category < ActiveRecord::Base
     include Adminpanel::Base
     validates_presence_of :model
+    validates_presence_of :name
 
     has_many :categorizations
     has_many :products, :through => :categorizations, :dependent => :destroy
