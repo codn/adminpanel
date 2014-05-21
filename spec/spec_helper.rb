@@ -26,12 +26,22 @@ class ActiveRecord::Base
     @@shared_connection || retrieve_connection
   end
 end
-
 # Forces all threads to share the same connection. This works on
 # Capybara because it starts the web server in a thread.
 
+Capybara.register_driver :webkit do |app|
+  Capybara::Driver::Webkit.new(app, :ignore_ssl_errors => true)
+end
+
+Capybara.javascript_driver = :webkit
+
+# don't run on the local machine (since we don't have xvfb running locally)
+if Rails.env.production?
+    headless = Headless.new
+    headless.start
+end
+
 RSpec.configure do |config|
-	Capybara.javascript_driver = :webkit
 	config.treat_symbols_as_metadata_keys_with_true_values = true
 	config.run_all_when_everything_filtered = true
 	config.filter_run :focus
@@ -45,7 +55,7 @@ RSpec.configure do |config|
 	load "#{Rails.root}/db/schema.rb"
 
 	ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
-	
+
 	# config.include ActionDispatch::TestProcess
 
 	config.use_transactional_fixtures = false

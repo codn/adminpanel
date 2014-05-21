@@ -142,7 +142,7 @@ describe 'Shared pages', js: true do
 						click_button 'Agregar Producto'
 					end
 
-					it 'should have the created product in the select options', focus: true do
+					it 'should have the created product in the select options' do
 						should have_xpath "//option[contains(text(), 'remote product' )]"
 					end
 				end
