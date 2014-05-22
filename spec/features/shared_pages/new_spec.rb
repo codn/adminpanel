@@ -52,7 +52,7 @@ describe 'Shared new', js: true do
     end
 
     it 'the modal should have the correct title' do
-      find('#modal-title').text.should == 'Agregar Categoria'
+      find('#modal-title').text.should eq('Agregar Categoria')
     end
 
     it 'should show the cateogry form in a modal' do
@@ -91,10 +91,11 @@ describe 'Shared new', js: true do
     describe 'when clicking the create remote product link (belongs_to)' do
       before do
         click_link 'Agregar Producto'
+        sleep 1
       end
 
       it 'the modal should have the correct title' do
-        find('#modal-title').text.should == 'Agregar Producto'
+        find('#modal-title').text.should eq('Agregar Producto')
       end
 
       context 'submitting the remote (select) product form' do
