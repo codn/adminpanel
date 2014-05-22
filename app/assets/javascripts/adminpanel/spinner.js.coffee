@@ -5,7 +5,7 @@ $(document).on 'page:fetch', ->
   $('a.accordion-toggle[data-clicked="true"]').children('i:first').toggleClass('hidden')
   $('a.accordion-toggle[data-clicked="true"]').prepend('<i class="fa fa-spinner fa-spin"></i>')
 
-$(document).on 'page:load', ->
+$(document).on 'page:restore', ->
   $('a.accordion-toggle[data-clicked="true"]').children('i:first').remove()
-  $('a.accordion-toggle[data-clicked="true"]').children('i:first').toggleClass('hidden')
-  $('a.accordion-toggle[data-clicked="true"]').attr('data-clicked', false)
+  $('a.accordion-toggle[data-clicked="true"]').children('i:first').toggleClass 'hidden'
+  $('a.accordion-toggle[data-clicked="true"]').attr 'data-clicked', false

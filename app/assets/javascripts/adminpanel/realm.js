@@ -1,9 +1,9 @@
 
-$(function() {
+var ready = function(){
 
-  // toggle arrow on menu items 
+  // toggle arrow on menu items
   $('.accordion-heading .accordion-toggle').click(function(){
-    $('.accordion-heading .accordion-toggle').not($(this)[0], '.accordion-heading .accordion-toggle.collapse').addClass('collapsed'); 
+    $('.accordion-heading .accordion-toggle').not($(this)[0], '.accordion-heading .accordion-toggle.collapse').addClass('collapsed');
   });
 
 
@@ -26,7 +26,7 @@ $(function() {
   });
 
 
-  // funtion to slide menu out from the left 
+  // funtion to slide menu out from the left
   $('.slide_menu_left').click(function(e){
 
     e.preventDefault();
@@ -43,7 +43,7 @@ $(function() {
      //  $(window).bind('resize', handler);
     }
   });
-  
+
 
   // collapse function for the widget
   $('.widget-buttons a.collapse').click(function(){
@@ -57,10 +57,14 @@ $(function() {
   });
 
   $('.datepicker-basic').datepicker();
-}); // end document reday
+
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
 
 
-//-----  Side menu functions -----//
+//-----  Side menu functions -----
 
   // slide menu out of view
   function sidemenu_close(){
@@ -84,4 +88,4 @@ $(function() {
       $(".nav-collapse.collapse").stop().animate({
           'left': '0'
       }, 250, 'swing').addClass('open_left');
-  } 
+  }
