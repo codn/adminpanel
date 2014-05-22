@@ -1,7 +1,7 @@
 es:
   model:
-    Analytic: 'Google Analítico'
-    Gallery: "Galería de Inicio"
+    Analytic: 'Google Analytics'
+    Gallery: 'Galería de Inicio'
     Categories: "Categorías"
     attributes:
       adminproject_id: "Proyecto"

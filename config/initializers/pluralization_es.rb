@@ -13,4 +13,7 @@ ActiveSupport::Inflector.inflections(:es) do |inflect|
   inflect.singular(/es$/, '')
 
   inflect.irregular('el', 'los')
+
+  inflect.irregular('Galería de Inicio', 'Galería de Inicio')
+  inflect.irregular('Google Analytics', 'Google Analytics')
 end

@@ -11,7 +11,7 @@
 		)
 		%>
 	</div>
-	<div class="accordion" id="accordion2">
+	<div class="accordion">
 		<% Adminpanel.displayable_resources.each do |resource| %>
 			<% resource_class = symbol_class(resource) %>
 			<% if can? :read, resource_class %>
@@ -23,7 +23,8 @@
 								:i,
 								nil,
 								class:"fa fa-#{resource_class.icon}"
-							) + content_tag(:span," " + resource_class.display_name.pluralize(I18n.default_locale)),
+							) + content_tag(:span," " + resource_class.display_name.pluralize(I18n.default_locale)
+							),
 							[route_symbol(resource.to_s)],
 							:class => "accordion-toggle b_99FFCC
 								#{is_current_section?(resource_class.display_name)}"
