@@ -2,63 +2,63 @@ es:
   model:
     Analytic: 'Google Analytics'
     Gallery: 'Galería de Inicio'
-    Categories: "Categorías"
+    Categories: 'Categorías'
     attributes:
-      adminproject_id: "Proyecto"
-      brief: "Pequeña descripción"
-      body: "Contenido"
-      category_id: "Categoría"
-      client_id: "Cliente"
-      description: "Descripción"
-      email: "Correo electrónico"
-      file: "Imagen"
-      group_id: "Rol de usuario"
-      name: "Nombre"
-      password: "Contraseña"
-      password_confirmation: "Confirmar contraseña"
-      password_digest: "Confirmar contraseña"
-      username: "Nombre de usuario"
+      adminproject_id: 'Proyecto'
+      brief: 'Pequeña descripción'
+      body: 'Contenido'
+      category_id: 'Categoría'
+      client_id: 'Cliente'
+      description: 'Descripción'
+      email: 'Correo electrónico'
+      file: 'Imagen'
+      group_id: 'Rol de usuario'
+      name: 'Nombre'
+      password: 'Contraseña'
+      password_confirmation: 'Confirmar contraseña'
+      password_digest: 'Confirmar contraseña'
+      username: 'Nombre de usuario'
   errors:
-    one: "%{model} no pudo guardarse debido a 1 error"
-    other: "%{model} no pudo guardarse debido a %{count} errores"
+    one: '%{model} no pudo guardarse debido a 1 error'
+    other: '%{model} no pudo guardarse debido a %{count} errores'
   activerecord:
     errors:
       messages:
         not_phone: 'no es un teléfono (10 números)'
         blank: "no puede estar vacío"
-        confirmation: "Deben ser iguales"
-        invalid: "no es un correo"
-        not_a_number: "tienen que ser sólo números"
-        taken: "ya está en uso"
-        too_long: "es muy larga"
-        too_short: "es muy corta, mínimo 6 caracteres"
+        confirmation: 'Deben ser iguales'
+        invalid: 'no es un correo'
+        not_a_number: 'tienen que ser sólo números'
+        taken: 'ya está en uso'
+        too_long: 'es muy larga'
+        too_short: 'es muy corta, mínimo 6 caracteres'
   time:
     formats:
-      short: "%d de %B de %Y"
-      estimate: "%Y-%m-%d"
-  Add Image: "Agregar Imagen"
+      short: '%d de %B de %Y'
+      estimate: '%Y-%m-%d'
+  Add Image: 'Agregar Imagen'
   wysiwyg:
-    description: "Escriba la descripción aquí"
-  Panel title: "Panel Administrativo"
-  actions: "Acciones"
+    description: 'Escriba la descripción aquí'
+  Panel title: 'Panel Administrativo'
+  actions: 'Acciones'
   action:
-    add: "Agregar"
-    create: "Crear"
-    close: "Cerrar"
-    show: "Ver"
-    submitting: "Enviando..."
-    save: "Guardar"
-    save_success: "Se ha guardado con éxito"
-    update: "Actualizar"
-    delete: "Eliminar"
-    view: "Ver"
-    delete confirmation: "Estás seguro que desea eliminar?"
+    add: 'Agregar'
+    create: 'Crear'
+    close: 'Cerrar'
+    show: 'Ver'
+    submitting: 'Enviando...'
+    save: 'Guardar'
+    save_success: 'Se ha guardado con éxito'
+    update: 'Actualizar'
+    delete: 'Eliminar'
+    view: 'Ver'
+    delete confirmation: 'Estás seguro que desea eliminar?'
     is_true: 'Sí'
     is_false: 'No'
   authentication:
-    welcome: "Bienvenido! Inicia Sesión"
-    signin_error: "Correo y/o Contraseña incorrecta."
-    signin_success: "Bienvenido!"
+    welcome: 'Bienvenido! Inicia Sesión'
+    signin_error: 'Correo y/o Contraseña incorrecta.'
+    signin_success: 'Bienvenido!'
     not_authorized: 'No tienes permisos para acceder'
   gallery:
     container: 'Imágenes'
@@ -66,25 +66,25 @@ es:
     success: 'La imagen ha sido guardada'
     deleted: 'La imagen ha sido eliminada'
     moved : "Se ha actualizado la posición de la galería"
-    not-moved: "No se pudo mover la Imagen"
-    image: "Imagen"
-    position: "Posición"
-    action: "Acción"
+    not-moved: 'No se pudo mover la Imagen'
+    image: 'Imagen'
+    position: 'Posición'
+    action: 'Acción'
   user:
-    new: "Agregar Usuario"
-    success: "El usuario ha sido guardado"
+    new: 'Agregar Usuario'
+    success: 'El usuario ha sido guardado'
   section:
-    name: "Nombre"
-    description: "Descripción"
-    edit: "Editar Sección"
-    default: "Sin Sección"
-  image: "Imagen"
+    name: 'Nombre'
+    description: 'Descripción'
+    edit: 'Editar Sección'
+    default: 'Sin Sección'
+  image: 'Imagen'
   session:
-    password: "Contraseña"
-    email: "Correo electrónico"
+    password: 'Contraseña'
+    email: 'Correo electrónico'
   other:
-    add : "Agregar %{model}"
-    no description: "No tiene descripción aún"
+    add : 'Agregar %{model}'
+    no description: 'No tiene descripción aún'
   routes:
     new: 'nuevo'
     edit: 'editar'
