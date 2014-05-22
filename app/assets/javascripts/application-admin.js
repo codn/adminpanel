@@ -15,3 +15,4 @@
 //= require turbolinks
 //= require adminpanel/bootstrap
 //= require_tree ./adminpanel/.
+Turbolinks.enableTransitionCache();
