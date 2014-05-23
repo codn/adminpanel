@@ -5,8 +5,24 @@ module Adminpanel
 		class ResourceGenerator < ActiveRecord::Generators::Base
   		source_root File.expand_path("../templates", __FILE__)
 			desc "Generate the resource files necessary to use a model"
+			class_option :'include-gallery',
+				:type => :boolean,
+				:aliases => '-g',
+				:default => true,
+				:desc => 'Creates the gallery for this resource'
 
-  		argument :fields, :type => :array, :default => "name:string"
+  		argument :fields, :type => :array, :default => [], :banner => "field[:type][:index] field[:type][:index]"
+
+			def change_fields_aliases
+				fields.each do |attribute|
+					type = attribute.split(':').second
+					case type
+					when 'wysiwyg'
+						fields.delete(attribute)
+						fields << attribute.split(':').first + ':' + 'text'
+					end
+				end
+			end
 
 			def generate_model
     		template 'resource.rb', "app/models/adminpanel/#{lower_singularized_name}.rb"
@@ -19,10 +35,7 @@ module Adminpanel
 			end
 
 			def generate_migrations
-				migration_template(
-					'migration.rb',
-					"db/migrate/create_#{pluralized_name}_table.rb"
-				)
+				invoke :migration, ["create_adminpanel_#{pluralized_name}", fields]
 			end
 
 			def print_messages
@@ -30,14 +43,19 @@ module Adminpanel
 			end
 
 		private
+
 			def is_a_resource?
 				fields.each do |attribute|
 					assign_attributes_variables(attribute)
-					if @attr_type != "belongs_to"
+					if @attr_type != 'belongs_to'
 						return true
 					end
 				end
 				false
+			end
+
+			def has_gallery?
+				options[:'include-gallery']
 			end
 
 			def gallery_name
@@ -87,128 +105,121 @@ module Adminpanel
 			end
 
 			def symbolized_attributes
-        attr_string = ''
-        fields.each do |attribute|
-
+				fields.map do |attribute|
 					assign_attributes_variables(attribute)
-
-        	if @attr_type == 'images'
-            	attr_string = attr_string + "{:#{gallery_name.pluralize}_attributes => [:id, :file, :_destroy]}, "
-        	elsif @attr_type == 'belongs_to'
-        		attr_string = "#{attr_string}:#{belongs_to_field(@attr_field)}, "
-        	elsif @attr_type == 'has_many' || @attr_type == 'has_many_through'
-        		if @attr_field.split(',').second == nil
-        			attr_string = "#{attr_string}:#{has_many_field(@attr_field)}, "
-        		else
-        			model_name = models_in_parameter(@attr_field).first
-        			attr_string = "#{attr_string} {:#{has_many_field(model_name)} => []}, "
-        		end
-        	else
-            	attr_string = attr_string + ":#{@attr_field}, "
-        	end
-        end
-        2.times do
-        	attr_string.chop! #to remove the last white space and the last ","
-        end
-        attr_string
+					case @attr_type
+						when 'belongs_to'
+	        		':' + belongs_to_field(@attr_field)
+						when 'has_many'
+							':' + has_many_field(@attr_field)
+						else
+						":#{attribute.split(':').first}"
+					end
+				end.join(",\n")
 			end
 
-			def adminpanel_form_attributes
-				form_hash = ""
-				fields.each do |attribute|
-
+			def get_attribute_hash
+				fields.map do |attribute|
 					assign_attributes_variables(attribute)
-					case(@attr_type)
-					when 'string', 'float'
-						form_hash = form_hash + "#{attribute_hash('text_field')}"
-					when 'text', 'wysiwyg'
-						form_hash = form_hash + "#{attribute_hash('wysiwyg_field')}"
-					when 'integer'
-						form_hash = form_hash + "#{attribute_hash('number_field')}"
-					when 'boolean'
-						form_hash = form_hash + "#{attribute_hash('boolean')}"
-					when 'datepicker'
-						form_hash = form_hash + "#{attribute_hash('datepicker')}"
-					when 'images'
-						form_hash = form_hash + "#{file_field_hash}"
-					when 'belongs_to'
-						form_hash = form_hash + "#{belongs_to_attribute_hash(belongs_to_field(@attr_field))}"
-					when 'has_many', 'has_many_through'
-						if models_in_parameter(@attr_field).second.nil?
-							through_model = @attr_field
-						else
-							through_model = models_in_parameter(@attr_field).first
-						end
-						through_model = resource_class_name(through_model)
-						# form_hash = form_hash + "#{relational_attribute_hash('belongs_to')}"
-						form_hash = form_hash + has_many_attribute_hash(has_many_field(through_model), through_model)
-					end
-				end
-				form_hash
+					send(@attr_type + '_form_hash')
+				end.join(", \n")
+			end
+
+			def string_form_hash
+				attribute_hash('text_field')
+			end
+
+			def float_form_hash
+				attribute_hash('text_field')
+			end
+
+			def text_form_hash
+				attribute_hash('wysiwyg_field')
+			end
+
+			def integer_form_hash
+				attribute_hash('number_field')
+			end
+
+			def boolean_form_hash
+				attribute_hash('boolean')
+			end
+
+			def datepicker_form_hash
+				attribute_hash('datepicker')
+			end
+
+			def file_field_form_hash
+				file_field_hash
+			end
+
+			def belongs_to_form_hash
+				belongs_to_attribute_hash(belongs_to_field(@attr_field))
+			end
+
+			def has_many_form_hash
+				has_many_attribute_hash(has_many_field(resource_class_name(@attr_field)), 'through_model')
 			end
 
 			def attribute_hash(type)
-				"#{attribute_name} => {#{form_type(type)}," +
-				"#{label_type}," +
-				"#{placeholder_type}}\n\t\t\t},"
+				"{\n" +
+					indent("'#{@attr_field}'" + " => {\n", 2) +
+						"#{indent(form_type(type), 4)},\n" +
+						"#{indent(label_type, 4)},\n" +
+						"#{indent(placeholder_type, 4)}\n" +
+					indent("}\n", 2) +
+				'}'
+
 			end
 
 			def file_field_hash
-				"#{starting_hash(gallery_name.pluralize)} => {#{form_type('adminpanel_file_field')}," +
-				"#{label_type}," +
-				"#{placeholder_type}}\n\t\t\t},"
+				"{\n" +
+					indent("'#{gallery_name.pluralize}'", 2) + "=> {\n" +
+						"#{indent(form_type('adminpanel_file_field'), 4)},\n" +
+						"#{indent(label_type, 4)},\n" +
+						"#{indent(placeholder_type, 4)}\n" +
+					indent("}\n", 2) +
+				'}'
 			end
 
 			def belongs_to_attribute_hash(name)
-				"#{starting_hash(name)} => {#{form_type('belongs_to')}," +
-				"#{model_type(resource_class_name(@attr_field))}," +
-				"#{label_type}," +
-				"#{placeholder_type}}\n\t\t\t},"
+				"{\n" +
+				 	indent("'#{name}'", 2) + "=> {\n" +
+						indent(model_type(resource_class_name(@attr_field)), 4) + ",\n" +
+						indent(label_type, 4) + "\n" +
+						indent(placeholder_type, 4) + "\n" +
+					indent("}\n", 2) +
+				"}"
 			end
 
 			def has_many_attribute_hash(name, through_model)
-				"#{starting_hash(name)} => {#{form_type('has_many')}," +
-				"#{model_type(through_model)}," +
-				"#{label_type}," +
-				"#{placeholder_type}}\n\t\t\t},"
-			end
-
-			def attribute_name
-				"\n\t\t\t{\n\t\t\t\t'#{@attr_field}'"
+				"{\n" +
+				 	indent("'#{name}'", 2) + "=> {\n" +
+						indent(model_type(through_model), 4) + ",\n" +
+						indent(label_type, 4) + "\n" +
+						indent(placeholder_type, 4) + "\n" +
+					indent("}\n", 2) +
+				"}"
 			end
 
 			def starting_hash(name)
-				"\n\t\t\t{\n\t\t\t\t'#{name}'"
+				"\n{\n'#{name}'"
 			end
 
 			def form_type(type)
-				"\n\t\t\t\t\t'type' => '#{type}'"
+				"'type' => '#{type}'"
 			end
 
 			def label_type
-				"\n\t\t\t\t\t'label' => '#{@attr_field}'"
+				"'label' => '#{@attr_field}'"
 			end
 
 			def placeholder_type
-				"\n\t\t\t\t\t'placeholder' => '#{@attr_field}'\n\t\t\t\t"
+				"'placeholder' => '#{@attr_field}'"
 			end
 
 			def model_type(type)
-				"\n\t\t\t\t\t'model' => 'Adminpanel::#{type}'"
-			end
-
-			def migration_string(field, type)
-				if type == "datepicker"
-					"t.string :#{field}"
-				elsif type == "wysiwyg"
-					"t.text :#{field}"
-				elsif type == "belongs_to"
-					"t.integer :#{belongs_to_field(field)}"
-				elsif type == "images" || type == "has_many" || type == "has_many_through"
-					""# no need for an association here.
-				else
-					"t.#{type} :#{field}"
-				end
+				"'model' => 'Adminpanel::#{type}'"
 			end
 
 			def has_associations?
@@ -227,8 +238,6 @@ module Adminpanel
 					assign_attributes_variables(attribute)
 					if @attr_type == "belongs_to"
 						association = "#{association}#{belongs_to_association(@attr_field)}"
-					elsif @attr_type == "images"
-						association = "#{association}#{image_association}"
 					elsif @attr_type == "has_many" || @attr_type == "has_many_through"
 						association = "#{association}#{has_many_association(@attr_field)}"
 					end
@@ -243,16 +252,14 @@ module Adminpanel
 
 			def has_many_association(field)
 				if models_in_parameter(field).second.nil?
-					return "has_many :#{models_in_parameter(field).first}\n\t\t" +
-					"has_many :#{models_in_parameter(field).first}, " +
-					":through => :#{models_in_parameter(field).first}ation, " +
-					":dependent => :destroy\n\t\t"
+					has_many_name = models_in_parameter(field).first
 				else
-					return "has_many :#{models_in_parameter(field).second}\n\t\t" +
-					"has_many :#{models_in_parameter(field).first}, " +
-					":through => :#{models_in_parameter(field).second}, " +
-					":dependent => :destroy\n\t\t"
+					has_many_name = models_in_parameter(field).second
 				end
+				return "# has_many :categorizations\n\t\t" +
+				"# has_many :#{@attr_field}, " +
+				":through => :categorizations, " +
+				":dependent => :destroy\n\t\t"
 			end
 
 			def image_association
@@ -261,7 +268,7 @@ module Adminpanel
 			end
 
 			def generate_gallery
-				generate 'adminpanel:gallery', lower_singularized_name
+				invoke 'adminpanel:gallery', [lower_singularized_name]
 			end
 
 		end

@@ -45,7 +45,6 @@ module Adminpanel
 
 			def create_categories
 				if !options[:'skip-category']
-					# puts "including category files"
 					copy_file "category_template.rb", 'app/models/adminpanel/category.rb'
     			migration_template 'create_adminpanel_categories_table.rb', 'db/migrate/create_adminpanel_categories_table.rb'
 				end

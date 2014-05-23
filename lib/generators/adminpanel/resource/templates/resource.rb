@@ -3,9 +3,12 @@ module Adminpanel
     include Adminpanel::Base
 
     <%= associations if has_associations? -%>
+    <%= image_association if has_gallery? -%>
 
     def self.form_attributes
-      [<%= adminpanel_form_attributes %>
+      [
+<%= indent(get_attribute_hash, 8) + ',' %>
+<%= indent(file_field_form_hash, 8) if has_gallery? -%>
       ]
     end
 
