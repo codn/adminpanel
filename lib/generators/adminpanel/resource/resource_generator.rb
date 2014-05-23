@@ -126,50 +126,49 @@ module Adminpanel
 			end
 
 			def string_form_hash
-				attribute_hash('text_field')
+				attribute_hash(@attr_field, 'text_field')
 			end
 
 			def float_form_hash
-				attribute_hash('text_field')
+				attribute_hash(@attr_field, 'text_field')
 			end
 
 			def text_form_hash
-				attribute_hash('wysiwyg_field')
+				attribute_hash(@attr_field ,'wysiwyg_field')
 			end
 
 			def integer_form_hash
-				attribute_hash('number_field')
+				attribute_hash(@attr_field, 'number_field')
 			end
 
 			def boolean_form_hash
-				attribute_hash('boolean')
+				attribute_hash(@attr_field, 'boolean')
 			end
 
 			def datepicker_form_hash
-				attribute_hash('datepicker')
-			end
-
-			def file_field_form_hash
-				file_field_hash
+				attribute_hash(@attr_field, 'datepicker')
 			end
 
 			def belongs_to_form_hash
-				belongs_to_attribute_hash(belongs_to_field(@attr_field))
+				attribute_hash(belongs_to_field(@attr_field), 'belongs_to', resource_class_name(@attr_field))
 			end
 
 			def has_many_form_hash
-				has_many_attribute_hash(has_many_field(resource_class_name(@attr_field)), 'through_model')
+				attribute_hash(has_many_field(resource_class_name(@attr_field)), 'has_many', 'has_many model')
 			end
 
-			def attribute_hash(type)
+			def attribute_hash(name, type, model = '')
+				if model != ''
+					model = indent(model_type(model), 4) + ",\n"
+				end
 				"{\n" +
-					indent("'#{@attr_field}'" + " => {\n", 2) +
-						"#{indent(form_type(type), 4)},\n" +
-						"#{indent(label_type, 4)},\n" +
-						"#{indent(placeholder_type, 4)}\n" +
+					indent("'#{name}'" + " => {\n", 2) +
+						indent(form_type(type), 4) + ",\n" +
+						model + 
+						indent(label_type, 4) + ",\n" +
+						indent(placeholder_type, 4) + ",\n" +
 					indent("}\n", 2) +
 				'}'
-
 			end
 
 			def file_field_hash
@@ -182,25 +181,15 @@ module Adminpanel
 				'}'
 			end
 
-			def belongs_to_attribute_hash(name)
-				"{\n" +
-				 	indent("'#{name}'", 2) + "=> {\n" +
-						indent(model_type(resource_class_name(@attr_field)), 4) + ",\n" +
-						indent(label_type, 4) + "\n" +
-						indent(placeholder_type, 4) + "\n" +
-					indent("}\n", 2) +
-				"}"
-			end
-
-			def has_many_attribute_hash(name, through_model)
-				"{\n" +
-				 	indent("'#{name}'", 2) + "=> {\n" +
-						indent(model_type(through_model), 4) + ",\n" +
-						indent(label_type, 4) + "\n" +
-						indent(placeholder_type, 4) + "\n" +
-					indent("}\n", 2) +
-				"}"
-			end
+			# def relation_attribute_hash(name, model = nil)
+			# 	"{\n" +
+			# 	 	indent("'#{name}'", 2) + "=> {\n" +
+			# 			indent(form_type(type), 4) + ",\n" +
+			# 			indent(label_type, 4) + ",\n" +
+			# 			indent(placeholder_type, 4) + ",\n" +
+			# 		indent("}\n", 2) +
+			# 	"}"
+			# end
 
 			def starting_hash(name)
 				"\n{\n'#{name}'"

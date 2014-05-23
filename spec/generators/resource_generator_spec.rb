@@ -25,7 +25,7 @@ describe Adminpanel::Generators::ResourceGenerator do
 			)
 		end
 
-		it "shouldn't generate the gallery ", focus: true do
+		it "shouldn't generate the gallery " do
 			file('app/models/adminpanel/postfile.rb').should_not exist
 		end
 	end
