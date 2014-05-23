@@ -13,8 +13,25 @@ describe Adminpanel::Generators::ResourceGenerator do
 		prepare_destination
 	end
 
+	describe 'with some arguments and option -g false' do
+
+    before do
+			run_generator %w(
+				post
+				name
+				description:wysiwyg
+				number:float
+				-g=false
+			)
+		end
+
+		it "shouldn't generate the gallery ", focus: true do
+			file('app/models/adminpanel/postfile.rb').should_not exist
+		end
+	end
+
 	describe 'with arguments %w(post name description:wysiwyg number:float
-		quantity:integer date:datepicker photo:images)' do
+		quantity:integer date:datepicker)' do
 
     before do
 			run_generator %w(
@@ -25,17 +42,16 @@ describe Adminpanel::Generators::ResourceGenerator do
 				flag:boolean
 				quantity:integer
 				date:datepicker
-				photo:images
 			)
 		end
 
     it 'should generate the posts migration' do
-			migration_file('db/migrate/create_posts_table.rb').should be_a_migration
+			migration_file('db/migrate/create_adminpanel_posts.rb').should be_a_migration
 		end
 
 		context 'the migration' do
 			it 'should have the correct fields' do
-				migration_file('db/migrate/create_posts_table.rb').should(
+				migration_file('db/migrate/create_adminpanel_posts.rb').should(
 					contain(/t.string :name/) &&
 					contain(/t.float :number/) &&
 					contain(/t.boolean :flag/) &&
@@ -60,10 +76,9 @@ describe Adminpanel::Generators::ResourceGenerator do
 					contain(/:flag/) &&
 					contain(/:quantity/) &&
 					contain(/:date/) &&
-					contain(/{:postfiles_attributes => \[:id, :file, :_destroy\]}/)
+					contain(/{ postfiles_attributes: \[:id, :file, :_destroy\] }/)
 				)
 			end
-
 		end
 
 
@@ -113,7 +128,7 @@ describe Adminpanel::Generators::ResourceGenerator do
 			)
 		end
 
-		it 'shouldn\'t generate categorizations controller' do
+		it "shouldn't generate categorizations controller" do
 			file('app/controllers/adminpanel/categorizations_controller').should_not exist
 		end
 
@@ -125,19 +140,19 @@ describe Adminpanel::Generators::ResourceGenerator do
 		end
 	end
 
-	describe 'with arguments post name products,categorizations:has_many_through' do
+	describe 'with arguments post name products:has_many' do
 		before do
 			run_generator %w(
 				post
 				name
-				products,categorizations:has_many_through
+				products:has_many
 			)
 		end
 
 		it 'should generate the model with has_many :categorizations' do
 			file('app/models/adminpanel/post.rb').should(
-				contain(/has_many :categorizations/) &&
-				contain(/has_many :products, :through => :categorizations/)
+				contain(/# has_many :categorizations/) &&
+				contain(/# has_many :products, :through => :categorizations/)
 			)
 		end
 	end
