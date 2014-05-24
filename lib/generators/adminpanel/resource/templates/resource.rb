@@ -8,7 +8,7 @@ module Adminpanel
     def self.form_attributes
       [
 <%= indent(get_attribute_hash, 8) + ',' %>
-<%= indent(file_field_hash, 8) if has_gallery? -%>
+<%= indent(file_field_form_hash, 8) if has_gallery? -%>
       ]
     end
 
