@@ -11,12 +11,7 @@ module Adminpanel
       end
 
       def form_attributes
-        [{
-          'name' => {
-            'type' => 'text_field',
-            'label' => 'name'
-          }
-        }]
+        []
       end
 
       def display_name
@@ -32,17 +27,6 @@ module Adminpanel
           end
         end
         return "field #{field} 'label' property not found :("
-      end
-
-      def get_attribute_placeholder(field)
-        form_attributes.each do |attribute|
-          attribute.each do |name, properties|
-            if name == field
-              return properties['placeholder']
-            end
-          end
-        end
-        return "field #{field} 'placeholder' property not found :("
       end
 
       def display_attributes(type)
@@ -82,28 +66,16 @@ module Adminpanel
         return false
       end
 
-      def belongs_to_relationships
-        belongs_to_classes = []
+      def relationships_of(type_property)
+        classes_of_relation = []
         form_attributes.each do |fields|
         fields.each do |attribute, properties|
-          if properties['type'] == 'belongs_to'
-            belongs_to_classes << properties['model'].classify.constantize
+          if properties['type'] == type_property
+            classes_of_relation << properties['model'].classify.constantize
           end
         end
         end
-        return belongs_to_classes
-      end
-
-      def has_many_relationships
-        has_many_classes = []
-        form_attributes.each do |fields|
-        fields.each do |attribute, properties|
-          if properties['type'] == 'has_many'
-            has_many_classes << properties['model'].classify.constantize
-          end
-        end
-        end
-        return has_many_classes
+        return classes_of_relation
       end
 
       def icon

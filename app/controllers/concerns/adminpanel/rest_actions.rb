@@ -86,13 +86,13 @@ module Adminpanel
     end
 
     def set_belongs_to_collections
-      @model.belongs_to_relationships.each do |class_variable|
+      @model.relationships_of('belongs_to').each do |class_variable|
         set_relationship(class_variable)
       end
     end
 
     def set_has_many_collections
-      @model.has_many_relationships.each do |class_variable|
+      @model.relationships_of('has_many').each do |class_variable|
         set_relationship(class_variable)
       end
     end

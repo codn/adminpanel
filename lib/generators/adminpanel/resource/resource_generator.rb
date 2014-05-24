@@ -160,14 +160,14 @@ module Adminpanel
 
 			def attribute_hash(name, type, model = '')
 				if model != ''
-					model = indent(model_type(model), 4) + ",\n"
+					model = model_type(model) + ",\n"
 				end
 				"{\n" +
 					indent("'#{name}'" + " => {\n", 2) +
 						indent(form_type(type), 4) + ",\n" +
-						model +
 						indent(label_type, 4) + ",\n" +
 						indent(placeholder_type, 4) + ",\n" +
+						indent(model, 4) +
 					indent("}\n", 2) +
 				'}'
 			end
