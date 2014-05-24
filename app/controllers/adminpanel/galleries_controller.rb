@@ -26,11 +26,7 @@ module Adminpanel
 
     def move_better
       @gallery = Gallery.find(params[:id])
-      if @gallery.move_to_better_position
-        flash[:success] = t("gallery.moved")
-      else
-        flash[:warning] = t("gallery.not-moved")
-      end
+      @gallery.move_to_better_position
       respond_to do |format|
         format.html do
           redirect_to galleries_path
@@ -44,11 +40,7 @@ module Adminpanel
 
     def move_worst
       @gallery = Gallery.find(params[:id])
-      if @gallery.move_to_worst_position
-        flash[:success] = t("gallery.moved")
-      else
-        flash[:warning] = t("gallery.not-moved")
-      end
+      @gallery.move_to_worst_position
       respond_to do |format|
         format.html do
           redirect_to galleries_path

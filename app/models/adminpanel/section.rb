@@ -41,7 +41,6 @@ module Adminpanel
 				{'name' => {'name' => 'name', 'label' => 'Seccion'}},
 				{'key' => {'name' => 'key', 'label' => 'Llave'}},
 				{'page' => {'name' => 'page'}},
-				# {'key' => {'name' => 'key'}},
 			]
 
 		end
