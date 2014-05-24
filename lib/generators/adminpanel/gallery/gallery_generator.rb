@@ -16,7 +16,7 @@ module Adminpanel
       def generate_migration
         migration_template(
           'gallery_migration.rb',
-          "db/migrate/create_adminpanel_#{lower_name.pluralize}_table.rb"
+          "db/migrate/create_adminpanel_#{lower_name.pluralize}.rb"
         )
         puts "don't forget to add the form_field, the relationship and #{lower_name}s_attributes it to the permited params"
       end
@@ -29,7 +29,7 @@ module Adminpanel
       def lower_name
         "#{reference_name}file"
       end
-      
+
       def class_name
         "#{lower_name.capitalize}"
       end

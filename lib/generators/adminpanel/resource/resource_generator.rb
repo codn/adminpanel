@@ -35,7 +35,9 @@ module Adminpanel
 			end
 
 			def generate_migrations
-				invoke :migration, ["create_adminpanel_#{pluralized_name}", fields]
+				parameters = fields
+				parameters.delete_if{ |pair| pair.split(':').second == 'has_many' }
+				invoke :migration, ["create_adminpanel_#{pluralized_name}", parameters]
 			end
 
 			def generate_gallery
