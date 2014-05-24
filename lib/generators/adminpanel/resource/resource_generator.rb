@@ -38,6 +38,12 @@ module Adminpanel
 				invoke :migration, ["create_adminpanel_#{pluralized_name}", fields]
 			end
 
+			def generate_gallery
+				if has_gallery?
+					invoke 'adminpanel:gallery', [lower_singularized_name]
+				end
+			end
+
 			def print_messages
 				puts "don't forget to add :#{pluralized_name} to adminpanel_setup.rb"
 			end
@@ -86,20 +92,11 @@ module Adminpanel
 				"#{resource.singularize.capitalize}"
 			end
 
-			def models_in_parameter(field)
-				models = []
-				field.split(",").each do |member|
-					models << member.downcase.pluralize
-				end
-				models
-			end
-
 			def assign_attributes_variables(attribute)
+				@attr_field = attribute.split(":").first
 				if attribute.split(":").second.nil?
-					@attr_field = attribute
 					@attr_type = "string"
 				else
-					@attr_field = attribute.split(":").first
 					@attr_type = attribute.split(":").second
 				end
 			end
@@ -149,6 +146,10 @@ module Adminpanel
 				attribute_hash(@attr_field, 'datepicker')
 			end
 
+			def file_field_form_hash
+				attribute_hash(gallery_name.pluralize, 'adminpanel_file_field')
+			end
+
 			def belongs_to_form_hash
 				attribute_hash(belongs_to_field(@attr_field), 'belongs_to', resource_class_name(@attr_field))
 			end
@@ -164,35 +165,11 @@ module Adminpanel
 				"{\n" +
 					indent("'#{name}'" + " => {\n", 2) +
 						indent(form_type(type), 4) + ",\n" +
-						model + 
+						model +
 						indent(label_type, 4) + ",\n" +
 						indent(placeholder_type, 4) + ",\n" +
 					indent("}\n", 2) +
 				'}'
-			end
-
-			def file_field_hash
-				"{\n" +
-					indent("'#{gallery_name.pluralize}'", 2) + "=> {\n" +
-						"#{indent(form_type('adminpanel_file_field'), 4)},\n" +
-						"#{indent(label_type, 4)},\n" +
-						"#{indent(placeholder_type, 4)}\n" +
-					indent("}\n", 2) +
-				'}'
-			end
-
-			# def relation_attribute_hash(name, model = nil)
-			# 	"{\n" +
-			# 	 	indent("'#{name}'", 2) + "=> {\n" +
-			# 			indent(form_type(type), 4) + ",\n" +
-			# 			indent(label_type, 4) + ",\n" +
-			# 			indent(placeholder_type, 4) + ",\n" +
-			# 		indent("}\n", 2) +
-			# 	"}"
-			# end
-
-			def starting_hash(name)
-				"\n{\n'#{name}'"
 			end
 
 			def form_type(type)
@@ -240,24 +217,14 @@ module Adminpanel
 			end
 
 			def has_many_association(field)
-				if models_in_parameter(field).second.nil?
-					has_many_name = models_in_parameter(field).first
-				else
-					has_many_name = models_in_parameter(field).second
-				end
 				return "# has_many :categorizations\n\t\t" +
 				"# has_many :#{@attr_field}, " +
 				":through => :categorizations, " +
 				":dependent => :destroy\n\t\t"
 			end
 
-			def image_association
-				generate_gallery
+			def get_gallery
 				return "\n\t\tmount_images :#{gallery_name.pluralize}\n"
-			end
-
-			def generate_gallery
-				invoke 'adminpanel:gallery', [lower_singularized_name]
 			end
 
 		end

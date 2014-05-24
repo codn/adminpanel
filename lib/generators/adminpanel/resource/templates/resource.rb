@@ -3,7 +3,7 @@ module Adminpanel
     include Adminpanel::Base
 
     <%= associations if has_associations? -%>
-    <%= image_association if has_gallery? -%>
+    <%= get_gallery if has_gallery? -%>
 
     def self.form_attributes
       [
