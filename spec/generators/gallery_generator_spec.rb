@@ -25,7 +25,7 @@ describe Adminpanel::Generators::GalleryGenerator do
 
 
     it 'should migrate the correct fields' do
-      migration_file('db/migrate/create_adminpanel_productfiles_table.rb').should(
+      migration_file('db/migrate/create_adminpanel_productfiles.rb').should(
         contain(/t.integer :product_id/) &&
         contain(/create_table :adminpanel_productfiles/)
       )
