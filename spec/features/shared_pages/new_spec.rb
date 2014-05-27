@@ -52,6 +52,7 @@ describe 'Shared new', js: true do
     end
 
     it 'the modal should have the correct title' do
+      sleep 1
       find('#modal-title').text.should eq('Agregar Categoria')
     end
 
