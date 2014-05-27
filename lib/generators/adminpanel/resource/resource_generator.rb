@@ -46,11 +46,28 @@ module Adminpanel
 				end
 			end
 
+			def add_resource_to_config
+				if setup_is_found?
+					inject_into_file 'config/initializers/adminpanel_setup.rb',
+						after: 'config.displayable_resources = [' do
+						indent "\n:#{pluralized_name},", 4
+					end
+				end
+			end
+
 			def print_messages
-				puts "don't forget to add :#{pluralized_name} to adminpanel_setup.rb"
+				puts "don't forget to restart your server"
 			end
 
 		private
+
+			def setup_is_found?
+				if Dir.exists?('config') && Dir.exists?('config/initializers') && File.exists?('config/initializers/adminpanel_setup.rb')
+					true
+				else
+					false
+				end
+			end
 
 			def is_a_resource?
 				fields.each do |attribute|

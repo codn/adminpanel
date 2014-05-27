@@ -24,8 +24,6 @@ In you application.rb
 
 no other language is currently supported, but pull requests are welcome.
 
-The create a directory called `adminpanel` under `app/controllers` this is the directory where your admin resources will go.
-
 Then run:
 
     rails g adminpanel:initialize
@@ -34,7 +32,7 @@ to create the database that the adminpanel it's expecting, this will also seed t
 
 Make sure you read the wiki, there is the descriptions of every relevant part of the gem.
 
-To create a new resource check the [Resource Generator.](https://github.com/joseramonc/adminpanel/wiki/Geneartor-adminpanel:resource)
+To create a new resource check the [Resource Generator.](https://github.com/joseramonc/adminpanel/wiki/Generator-adminpanel:resource)
 
 You can seed the sections with help of the [Section task.](https://github.com/joseramonc/adminpanel/wiki/Rake-task-adminpanel:section)
 
