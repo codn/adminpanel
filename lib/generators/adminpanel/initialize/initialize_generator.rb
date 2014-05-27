@@ -31,7 +31,7 @@ module Adminpanel
 				:default => false,
 				:desc => 'Skip cancan\'s ability.rb'
 
-			def create_initializers
+			def create_initializer
 				if !options[:'skip-setup']
 					copy_file 'adminpanel_setup.rb', 'config/initializers/adminpanel_setup.rb'
 				end
@@ -43,7 +43,7 @@ module Adminpanel
 				end
 			end
 
-			def create_categories
+			def create_category
 				if !options[:'skip-category']
 					copy_file "category_template.rb", 'app/models/adminpanel/category.rb'
     			migration_template 'create_adminpanel_categories_table.rb', 'db/migrate/create_adminpanel_categories_table.rb'

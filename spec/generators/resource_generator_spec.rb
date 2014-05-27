@@ -13,9 +13,13 @@ describe Adminpanel::Generators::ResourceGenerator do
 		prepare_destination
 	end
 
-	describe 'with some arguments and option -g false' do
+	describe 'with args and option -g false' do
 
     before do
+			# File.new "#{Rails.root}/tmp/config/initializers/adminpanel_setup.rb", 'w+' do |f|
+			# 	create config/initializers/adminpanel_setup.rb file under generator
+			# 	f.puts 'hi'
+			# end
 			run_generator %w(
 				post
 				name
@@ -28,6 +32,12 @@ describe Adminpanel::Generators::ResourceGenerator do
 		it "shouldn't generate the gallery " do
 			file('app/models/adminpanel/postfile.rb').should_not exist
 		end
+
+		# it "should add ':posts,' to file adminpanel_setup.rb" do
+		# 	file('config/initializers/adminpanel_setup.rb').should(
+		# 		contain(/:posts,/)
+		# 	)
+		# end
 	end
 
 	describe 'with arguments %w(post name description:wysiwyg number:float
