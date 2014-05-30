@@ -2,6 +2,11 @@ module Adminpanel
   module FacebookActions
     extend ActiveSupport::Concern
     include ActionView::Helpers::TextHelper
+
+    included do
+      before_filter :set_auths_count, only:[:index, :show, :destroy]
+    end
+
     def fb_choose_page
       access_token = Koala::Facebook::OAuth.new(
         Adminpanel.fb_app_id,
@@ -18,29 +23,42 @@ module Adminpanel
       user_object = user.get_object('me')
       @name = user_object['name']
       user_hash = { 'name' => @name, 'access_token' => access_token }
-      @pages << user_hash
+      @pages << user_hash # to permit post on own profile
       render 'shared/fb_choose_page'
     end
 
-    def fb_publish
-      if params[@model.name.demodulize.downcase][:fb_page_access_key].present? &&
-        params[@model.name.demodulize.downcase][:fb_message].present?
-        page_graph = Koala::Facebook::API.new(params[@model.name.demodulize.downcase][:fb_page_access_key])
-        page_graph.put_wall_post(
-          strip_tags(params[@model.name.demodulize.downcase][:fb_message]),
-          {
-            link: resource.fb_link,
-            name: resource.name
-          }
+    def fb_save_token
+      page_selected = Koala::Facebook::API.new(params[@model.name.demodulize.downcase][:fb_page_access_key])
+      @auths = Auth.where(key: 'facebook', name: page_selected.get_object('me')['name'])
+      if @auths.count == 0
+        Auth.create(
+          key: 'facebook',
+          name: page_selected.get_object('me')['name'],
+          value: params[@model.name.demodulize.downcase][:fb_page_access_key]
         )
-        flash[:success] = I18n.t('fb.posted', user: page_graph.get_object('me')['name'])
-        redirect_to resource
       else
-        flash[:error] = I18n.t('fb.not-posted')
-        redirect_to resource
+        @auths.first.update_attribute(:value, params[@mode.name.demodulize.downcase][:fb_page_access_key])
       end
+      flash[:success] = I18n.t('fb.saved-token')
+      redirect_to resource
+    end
+
+    def fb_publish
+      page_graph = Koala::Facebook::API.new(Auth.find_by_key('facebook').value)
+      page_graph.put_wall_post(
+        strip_tags(params[@model.name.demodulize.downcase][:fb_message]),
+        {
+          link: resource.fb_link,
+          name: resource.name
+        }
+      )
+      flash[:success] = I18n.t('fb.posted', user: page_graph.get_object('me')['name'])
+      redirect_to resource
     end
 
   private
+    def set_auths_count
+      @fb_auths_count = Auth.where(key: 'facebook').count
+    end
   end
 end

@@ -4,6 +4,7 @@ module Adminpanel
 		alias_method :text_field_original, :text_field
 		alias_method :radio_button_original, :radio_button
 		alias_method :parent_file_field, :file_field
+		alias_method :text_area_original, :text_area
 
 		def text_field(name, *args)
 			options = args.extract_options!
@@ -76,11 +77,29 @@ module Adminpanel
 			@template.content_tag(:div, :class => 'control-group') do
 				@template.content_tag(:label, label, :class => 'control-label') +
 				@template.content_tag(:div, :class => 'controls') do
-					self.text_area(
+					text_area_original(
 						name,
 						class: 'wysihtml5 span10',
 						placeholder: I18n.t('wysiwyg.description'),
 						rows: '6'
+					)
+				end
+			end
+		end
+
+		def text_area(name, *args)
+			options = args.extract_options!
+			label = options['label']
+			options.delete('label')
+
+			@template.content_tag(:div, :class => 'control-group') do
+				@template.content_tag(:label, label, :class => 'control-label') +
+				@template.content_tag(:div, :class => 'controls') do
+					super(
+						name,
+						class: 'span10',
+						placeholder: I18n.t('wysiwyg.description'),
+						rows: '4'
 					)
 				end
 			end
