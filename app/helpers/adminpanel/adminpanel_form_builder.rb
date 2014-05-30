@@ -87,7 +87,6 @@ module Adminpanel
 		end
 
 		def radio_button_group(name, buttons, options)
-
 			options.reverse_merge! :label => name
 			options.reverse_merge! :html => {}
 			output = ""

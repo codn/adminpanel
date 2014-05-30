@@ -53,5 +53,6 @@ class CreateAdminpanelTables < ActiveRecord::Migration
 	    end
 
 	    add_index :adminpanel_sections, [:key]
+	    add_index :adminpanel_sections, [:page]
 	end
 end

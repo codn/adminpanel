@@ -1,0 +1,14 @@
+<% if @model.fb_share? %>
+  <%=
+    link_to(
+      content_tag(
+        :i,
+        nil,
+        class: 'fa fa-facebook'
+      ),
+      get_oauth_link(resource),
+      title: 'Compartir en Facebook',
+      id: 'resource-publish'
+    )
+  %>
+<% end %>

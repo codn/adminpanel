@@ -21,6 +21,7 @@ Adminpanel::Engine.routes.draw do
       resources :analytics, resources_parameters(resource).merge(
         { only: [:index] }.merge(rest_path_names)
       )
+      get :save_fb_access, to:'analytics#save_fb_access', as: 'fb_callback'
     else
       if !get_gallery_children(resource).nil?
         # make the resources gallery routes
@@ -33,7 +34,12 @@ Adminpanel::Engine.routes.draw do
       end
 
       # normal resource
-      resources resource, resources_parameters(resource).merge(rest_path_names)
+      resources resource, resources_parameters(resource).merge(rest_path_names) do
+        member do
+          get :fb_choose_page, as: 'fb_choose_page', path: 'publicar-a-pagina-en-fb'
+          post :fb_publish, as: 'fb_publish', path: 'publicar-a-facebook'
+        end
+      end
     end
   end
 

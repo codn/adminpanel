@@ -82,8 +82,7 @@ module Adminpanel
     end
 
     def self.display_name
-      "Usuario"
-
+      'Usuario'
     end
 
     def User.new_remember_token

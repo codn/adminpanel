@@ -5,7 +5,10 @@ module Adminpanel
 
   class << self
   	mattr_accessor :analytics_profile_id, :analytics_key_path, :analytics_key_filename,
-    :displayable_resources
+    :displayable_resources, :fb_app_id, :fb_app_secret
+
+    self.fb_app_id = nil
+    self.fb_app_secret = nil
   	self.analytics_profile_id = nil
   	self.analytics_key_path = "config/analytics"
   	self.analytics_key_filename = nil

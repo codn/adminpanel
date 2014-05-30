@@ -45,6 +45,7 @@ es:
     add: 'Agregar'
     create: 'Crear'
     close: 'Cerrar'
+    share: 'Compartir %{model} en Facebook'
     show: 'Ver'
     submitting: 'Enviando...'
     save: 'Guardar'
@@ -91,3 +92,9 @@ es:
     show: 'ver'
     signout: 'cerrar-sesion'
     signin: 'iniciar-sesion'
+  fb:
+    posted: 'Publicado en el muro de %{user}'
+    not-posted: 'Hubo un error, no fue publicado en ningún muro, por favor intenta otra vez.'
+    pages: 'Publiar como %{name}'
+    page-select: 'Selecciona una cuenta para la publicación'
+    message: 'Mensaje de la publicación'
