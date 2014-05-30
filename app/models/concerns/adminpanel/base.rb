@@ -100,6 +100,10 @@ module Adminpanel
           false
         end
       end
+      
+      def fb_share?
+        false
+      end
 
     private
       def exlude?(route)

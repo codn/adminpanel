@@ -1,12 +1,13 @@
 module Adminpanel
   class ApplicationController < ActionController::Base
-    protect_from_forgery
+    # protect_from_forgery
 
     inherit_resources
 
     include SessionsHelper
     include Adminpanel::RestActions
     include Adminpanel::GalleryzableActions
+    include Adminpanel::FacebookActions
 
     layout 'admin'
 

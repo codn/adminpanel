@@ -36,5 +36,18 @@ module Adminpanel
 			end
 		end
 
+		def get_oauth_link(resource)
+			Koala::Facebook::OAuth.new(
+				Adminpanel.fb_app_id,
+				Adminpanel.fb_app_secret,
+				url_for({
+					controller: params[:controller],
+					action: 'fb_choose_page',
+					id: resource,
+					host: request.host
+				})
+			).url_for_oauth_code
+		end
+
 	end
 end

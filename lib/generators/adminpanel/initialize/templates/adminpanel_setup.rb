@@ -10,6 +10,12 @@ Adminpanel.setup do |config|
   # # Path to the key file, defaults to config/analytics
   # config.analytics_key_path = "config/analytics"
 
+  # # Facebook app id
+  # config.fb_app_id = '1234'
+
+  # # Facebook app secret *MAKE SURE TO DON'T SHARE THIS SECRET*
+  # config.fb_app_secret = '1234'
+
   # # This are the modules that are going to be displayed and order that are going to be displayed
   config.displayable_resources = [
     :analytics,

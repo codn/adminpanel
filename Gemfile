@@ -15,6 +15,7 @@ gem 'cancancan', '>= 1.7.1', '<= 1.8'
 gem 'faker', '>= 1.3.0'
 gem 'turbolinks', '>= 2.2.2'
 gem 'font-awesome-rails', '>= 4.0.3.1'
+gem 'koala', '>= 1.9.0', '<= 2.0.0'
 
 group :assets do
 	gem 'sass-rails', '>= 4.0.3', require: true
