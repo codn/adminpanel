@@ -7,7 +7,6 @@
     }
   )
 %>
-
 <div class="row-fluid">
   <div class = "widget widget-padding span12">
     <div class = "widget-header">
@@ -20,7 +19,7 @@
               resource,
               url: url_for({
                   controller: params[:controller],
-                  action: :fb_publish,
+                  action: :fb_save_token,
                   id: resource,
                   host: request.host
               }),
@@ -34,7 +33,6 @@
           )
           %>
 
-          <%= f.wysiwyg_field :fb_message, { 'label' => I18n.t('fb.message') } %>
       </div>
     </div>
     <div class = "widget-footer">

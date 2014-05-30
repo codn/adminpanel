@@ -51,6 +51,13 @@ ActiveRecord::Schema.define do
       t.datetime :created_at,      :null => false
       t.datetime :updated_at,      :null => false
   end
+  create_table :adminpanel_auths do |t|
+      t.string   :name
+      t.string   :key
+      t.string   :value
+      t.datetime :created_at,      :null => false
+      t.datetime :updated_at,      :null => false
+  end
   create_table :adminpanel_categorizations do |t|
       t.integer  :product_id
       t.integer  :category_id

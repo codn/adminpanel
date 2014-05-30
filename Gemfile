@@ -22,12 +22,12 @@ group :assets do
 end
 
 group :development, :test do
-	gem 'selenium-webdriver', '2.41.0'
-	gem 'capybara-webkit', '1.1.0'
+	gem 'selenium-webdriver', '2.42.0'
+	gem 'capybara-webkit', '1.1.1'
 	gem 'factory_girl_rails', '~> 4.4.1'
 	gem 'rspec', '~> 2.14.1'
 	gem 'rspec-rails', '~> 2.14.2'
 	gem 'sqlite3', '>= 1.3.9', '<= 2.0.0', :platform => [:ruby, :mswin, :mingw]
-	gem 'capybara', '~> 2.2.1'
+	gem 'capybara', '>= 2.1.0', '<= 3.0.0'
 	gem 'ammeter', '~> 1.0.0'
 end
