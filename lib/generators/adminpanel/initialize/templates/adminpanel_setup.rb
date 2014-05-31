@@ -12,7 +12,6 @@ Adminpanel.setup do |config|
 
   # # Facebook app id
   # config.fb_app_id = '1234'
-
   # # Facebook app secret *MAKE SURE TO DON'T SHARE THIS SECRET*
   # config.fb_app_secret = '1234'
 
