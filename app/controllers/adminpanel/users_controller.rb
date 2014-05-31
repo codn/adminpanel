@@ -1,7 +1,7 @@
 module Adminpanel
   class UsersController < Adminpanel::ApplicationController
     # authorize_resource :class => false
-    load_and_authorize_resource
+    authorize_resource
 
   private
     def user_params

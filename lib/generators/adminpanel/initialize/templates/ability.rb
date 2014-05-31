@@ -3,7 +3,7 @@ class Ability
 
   def initialize(user)
 
-    if user.group.name == "Admin"
+    if user.group.name == 'Admin'
       can :manage, :all
     else
       # cannot :manage, Adminpanel::User
