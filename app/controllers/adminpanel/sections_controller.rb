@@ -1,19 +1,10 @@
 module Adminpanel
   class SectionsController < Adminpanel::ApplicationController
-    load_and_authorize_resource
-
-    def new
-      @section = Section.new
-    end
-
-    # def create
-    #   @section = Section.new(params[:section])
-
-    #   if @section.save
-    #     redirect_to section_path(@section), :notice => 'La seccion ha sido creada'
-    #   else
-    #     render 'new'
-    #   end
+    # authorize_resource
+    authorize_resource
+    # def new
+    #   @section = Section.new
+    #   authorize! :create, @section
     # end
 
     def edit
