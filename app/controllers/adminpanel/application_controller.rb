@@ -7,6 +7,7 @@ module Adminpanel
     include SessionsHelper
     include Adminpanel::RestActions
     include Adminpanel::GalleryzableActions
+    include Adminpanel::FacebookActions
 
     layout 'admin'
 

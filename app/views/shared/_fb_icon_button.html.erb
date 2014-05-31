@@ -1,0 +1,26 @@
+<%
+if @model.fb_share?
+  if @fb_auths_count > 0
+    link = '#'
+    options = { target: "#fb-#{resource.id}", toggle: 'modal' }
+  else
+    link = get_oauth_link(resource)
+    options = {}
+  end
+%>
+  <%=
+    link_to(
+      content_tag(
+        :i,
+        nil,
+        class: 'fa fa-facebook'
+      ),
+      link,
+      title: 'Compartir en Facebook',
+      id: 'resource-publish',
+      data: options
+    )
+  %>
+  <!-- the modal that it's going to toggle if exist the fb acces token -->
+  <%= render 'shared/fb_publish_modal', resource: resource %>
+<% end %>

@@ -46,7 +46,7 @@ module Adminpanel
 		end
 
 	  def self.icon
-	  	"tasks"
+	  	'tasks'
 	  end
 
 		def self.display_name

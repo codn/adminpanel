@@ -1,0 +1,47 @@
+<% provide(:page_title, I18n.t('fb.pages', name: @name)) %>
+<% breadcrumb_add(
+  @model.display_name.capitalize.pluralize(I18n.default_locale),
+    {
+      :controller => params[:controller],
+      :action => "index"
+    }
+  )
+%>
+<div class="row-fluid">
+  <div class = "widget widget-padding span12">
+    <div class = "widget-header">
+      <%= content_tag(:i, nil, :class => "fa fa-#{@model.icon}") %>
+      <h5><%= t("action.share", model: @model.display_name) %></h5>
+    </div>
+    <div class = "widget-body">
+      <div class = "widget-forms clearfix">
+        <%= adminpanel_form_for(
+              resource,
+              url: url_for({
+                  controller: params[:controller],
+                  action: :fb_save_token,
+                  id: resource,
+                  host: request.host
+              }),
+              method: :post
+            ) do |f| %>
+
+          <%= f.select(
+            :fb_page_access_key,
+            options_for_select(@pages.map{ |p| [ p['name'], p['access_token'] ] }),
+            { 'label' => I18n.t('fb.page-select') }
+          )
+          %>
+
+      </div>
+    </div>
+    <div class = "widget-footer">
+      <%=
+      f.submit t('action.add') + " " + @model.display_name,
+        data: {:disable_with => t("action.submitting")},
+        :id =>"new-#{@model.name.demodulize}-button"
+      %>
+    </div>
+  <% end -%>
+  </div>
+</div>

@@ -62,7 +62,7 @@ module Adminpanel
         )
 
 				@visits = @visitCount.data.rows.collect do |r|
-				  	r[2]
+			  	r[2]
 				end
 
 				@visitDates = @visitCount.data.rows.collect { |r| "#{r[0]}/#{r[1]}" }
@@ -73,5 +73,6 @@ module Adminpanel
         format.json {render :json => {:visit_count => @visitCount, :visits => @visits, :visit_dates => @visitDates }}
       end
 		end
+
 	end
 end
