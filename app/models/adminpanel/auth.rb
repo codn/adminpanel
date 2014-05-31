@@ -1,31 +1,34 @@
 module Adminpanel
   class Auth < ActiveRecord::Base
     include Adminpanel::Base
-    include Adminpanel::Facebook
 
     def self.form_attributes
       [
         {
           'name' => {
             'type' => 'text_field',
+            'label' => 'Cuenta:'
           }
         },
         {
           'value' => {
             'type' => 'wysiwyg_field',
-            'show' => 'show'
+            'show' => 'show',
+            'label' => 'Access Key'
           }
         },
         {
           'key' => {
             'type' => 'text_field',
+            'show' => 'show',
+            'label' => 'Llave'
           }
         }
       ]
     end
 
     def self.display_name
-      'Auth'
+      'Cuenta'
     end
   end
 end

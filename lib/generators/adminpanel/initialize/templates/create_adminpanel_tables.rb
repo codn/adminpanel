@@ -43,11 +43,11 @@ class CreateAdminpanelTables < ActiveRecord::Migration
 	    end
 
 			create_table :adminpanel_auths do |t|
-					t.string   :name
-					t.string   :key
-					t.string   :value
-					t.datetime :created_at,      :null => false
-					t.datetime :updated_at,      :null => false
+				t.string   :name
+				t.string   :key
+				t.string   :value
+				t.datetime :created_at,      :null => false
+				t.datetime :updated_at,      :null => false
 			end
 	    add_index :adminpanel_auths, [:name]
 	    add_index :adminpanel_auths, [:key]
