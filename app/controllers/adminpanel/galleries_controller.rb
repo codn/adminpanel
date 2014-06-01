@@ -27,29 +27,13 @@ module Adminpanel
     def move_better
       @gallery = Gallery.find(params[:id])
       @gallery.move_to_better_position
-      respond_to do |format|
-        format.html do
-          redirect_to galleries_path
-        end
-        format.js do
-          @galleries = Gallery.all
-          render :locals => { :galleries => @galleries }
-        end
-      end
+      respond
     end
 
     def move_worst
       @gallery = Gallery.find(params[:id])
       @gallery.move_to_worst_position
-      respond_to do |format|
-        format.html do
-          redirect_to galleries_path
-        end
-        format.js do
-          @galleries = Gallery.all
-          render :locals => { :galleries => @galleries }
-        end
-      end
+      respond
     end
 
     def destroy
@@ -75,7 +59,18 @@ module Adminpanel
     private
     def gallery_params
       params.require(:gallery).permit(:file)
+    end
 
+    def respond
+      respond_to do |format|
+        format.html do
+          redirect_to galleries_path
+        end
+        format.js do
+          @galleries = Gallery.all
+          render :locals => { :galleries => @galleries }
+        end
+      end
     end
   end
 end
