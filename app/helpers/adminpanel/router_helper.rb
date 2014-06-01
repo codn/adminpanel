@@ -8,6 +8,10 @@ module Adminpanel
       resource_class(resource).routes_options
     end
 
+    def has_fb_share?(resource)
+      resource_class(resource).fb_share?
+    end
+
     def rest_path_names
       {
         path_names: {

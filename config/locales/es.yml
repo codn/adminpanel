@@ -96,6 +96,7 @@ es:
     signin: 'iniciar-sesion'
   fb:
     posted: 'Publicado en el muro de %{user}'
+    confirm_page: 'Seleccionar Cuenta'
     # not-posted: 'Hubo un error, no fue publicado en ningún muro, por favor intenta otra vez.'
     pages: 'Publiar como %{name}'
     page_select: 'Selecciona una cuenta para la publicación'
