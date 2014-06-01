@@ -34,11 +34,16 @@ Adminpanel::Engine.routes.draw do
       end
 
       # normal resource
+      resources resource, resources_parameters(resource).merge(rest_path_names)
+
+      # if resource is going to be shared on facebook
       resources resource, resources_parameters(resource).merge(rest_path_names) do
         member do
-          get :fb_choose_page, as: 'fb_choose_page', path: 'publicar-a-pagina-en-fb'
-          post :fb_save_token, as: 'fb_save_token', path: 'guardar-token'
-          post 'fb_publish/:configuration_id', to: "#{resource}#fb_publish", as: 'fb_publish', path: 'publicar-a-facebook'
+          if has_fb_share?(resource)
+            get :fb_choose_page, as: 'fb_choose_page', path: 'publicar-a-pagina-en-fb'
+            post :fb_save_token, as: 'fb_save_token', path: 'guardar-token'
+            post 'fb_publish/:configuration_id', to: "#{resource}#fb_publish", as: 'fb_publish', path: 'publicar-a-facebook'
+          end
         end
       end
     end
