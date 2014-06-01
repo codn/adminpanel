@@ -18,11 +18,7 @@ module Adminpanel
 
 
     def create
-      params.merge({:model_name => params[:model_name]}) if params[:model_name].present?
-      params.merge({:model => params[:model]}) if params[:model].present?
-      params.merge({:currentcontroller => params[:currentcontroller]}) if params[:currentcontroller].present?
-      params.merge({:belongs_request => params[:belongs_request]}) if params[:belongs_request].present?
-
+      merge_params
       create! do |success, failure|
         success.html do
           flash[:success] = I18n.t("action.save_success")

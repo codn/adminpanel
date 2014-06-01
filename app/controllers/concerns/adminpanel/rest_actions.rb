@@ -22,9 +22,7 @@ module Adminpanel
     end
 
     def create
-      params.merge({:model => params[:model]}) if params[:model].present?
-      params.merge({:model_name => params[:model_name]}) if params[:model_name].present?
-      params.merge({:belongs_request => params[:belongs_request]}) if params[:belongs_request].present?
+      merge_params
       create! do |success, failure|
         success.html do
           flash[:success] = I18n.t('action.save_success')
@@ -103,6 +101,13 @@ module Adminpanel
       else
         @collections.merge!({"#{class_variable}" => class_variable.all})
       end
+    end
+
+    def merge_params
+      params.merge({:model => params[:model]}) if params[:model].present?
+      params.merge({:model_name => params[:model_name]}) if params[:model_name].present?
+      params.merge({:belongs_request => params[:belongs_request]}) if params[:belongs_request].present?
+      params.merge({:currentcontroller => params[:currentcontroller]}) if params[:currentcontroller].present?
     end
   end
 end
