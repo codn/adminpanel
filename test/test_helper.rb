@@ -4,20 +4,67 @@ require File.expand_path('../dummy/config/environment', __FILE__)
 require 'rails/test_help'
 require 'minitest/autorun'
 require 'minitest/emoji' #emoji output
+require 'capybara/rails'
+require 'minitest/unit'
+require 'mocha/mini_test'
 # require 'minitest/debugger' if ENV['DEBUG'] # for deubgging
 
 
+Capybara.current_driver = Capybara.javascript_driver
+
 load Rails.root.join('db', 'schema.rb')
 
+
+
+
+class ActiveRecord::Base
+  mattr_accessor :shared_connection
+  @@shared_connection = nil
+
+  def self.connection
+    @@shared_connection || retrieve_connection
+  end
+end
+
+# Forces all threads to share the same connection. This works on
+# Capybara because it starts the web server in a thread.
+ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+
+
 class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-  #
-  # Note: You'll currently still have to declare fixtures explicitly in integration tests
-  # -- they do not yet inherit this setting
 
   #fixtures live inside the dummy app
-
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
 end
+class ViewCase < ActionView::TestCase
+  include Capybara::DSL
+  include Capybara::Assertions
+  include Rails.application.routes.url_helpers
+
+  def teardown
+    Capybara.reset_session!
+  end
+
+  protected
+  def login(password = 'foobar')
+    fill_in 'inputEmail', with: adminpanel_users(:valid).email
+    fill_in 'inputPassword', with: password #pass is foobar
+    click_button I18n.t('authentication.new-session')
+  end
+end
+
+# class SharedTestCase < ViewCase
+#   # include Capybara::DSL
+#   # include Capybara::Assertions
+#   # include Rails.application.routes.url_helpers
+#   def before_setup
+#     sign_in
+#   end
+#   protected
+#   def sign_in
+#     visit adminpanel.signin_path
+#     login
+#   end
+# end
