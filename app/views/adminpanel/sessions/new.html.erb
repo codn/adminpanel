@@ -20,7 +20,7 @@
 					<%= f.password_field :password, :class => "btn-block", :id => "inputPassword", :placeholder => t("session.password") %>
 				</div>
 			</div>
-			<%= f.submit "Iniciar Sesión", :class => "btn pull-right", :id => "signin-button" %>
+			<%= f.submit I18n.t('authentication.new-session'), :class => "btn pull-right", :id => "signin-button" %>
 		<% end %>
 	</div>
 </div>

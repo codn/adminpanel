@@ -25,5 +25,8 @@ gem 'minitest'
 group :development, :test do
 	gem 'sqlite3', '>= 1.3.9', '<= 2.0.0', :platform => [:ruby, :mswin, :mingw]
 	gem 'minitest-emoji'
+	gem 'minitest-capybara'
+	gem 'mocha'
+	gem 'selenium-webdriver'
 	# gem 'minitest-debugger'
 end
