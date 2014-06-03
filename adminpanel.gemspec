@@ -36,11 +36,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'koala', '>= 1.9.0', '<= 2.0.0'
 
   spec.add_development_dependency 'sqlite3', '>= 1.3.9', '<= 2.0.0'
-  spec.add_development_dependency 'factory_girl_rails', '>= 4.4.1', '<= 5.0.0'
-  spec.add_development_dependency 'rspec', '>= 2.14.1', ' <= 3.0.0'
-  spec.add_development_dependency 'rspec-rails', '>= 2.14.1', '<= 3.0.0'
-  spec.add_development_dependency 'capybara', '>= 2.1.0', '<= 3.0.0'
-  spec.add_development_dependency 'ammeter', '1.0.0'
-  spec.add_development_dependency 'selenium-webdriver', '2.42.0'
-  spec.add_development_dependency 'capybara-webkit', '1.1.1'
+  spec.add_dependency 'minitest'
+  spec.add_development_dependency 'minitest-emoji'
+  # spec.add_development_dependency 'minitest-debugger'
 end

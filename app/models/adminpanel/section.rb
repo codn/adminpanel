@@ -10,7 +10,7 @@ module Adminpanel
 				minimum: 10,
 				maximum: 10,
 				on: :update,
-				if: :is_invalid_phone?,
+				if: :is_a_phone?,
 				message: I18n.t('activerecord.errors.messages.not_phone')
 	  validates_presence_of :description,
 				minimum: 9,
@@ -19,7 +19,7 @@ module Adminpanel
 	  validates :description,
 				numericality: { only_integer: true },
 				on: :update,
-				if: :is_invalid_phone?
+				if: :is_a_phone?
 	  validates_presence_of :key
 	  validates_presence_of :name
 	  validates_presence_of :page
@@ -62,7 +62,7 @@ module Adminpanel
 		end
 
 		private
-		def is_invalid_phone?
+		def is_a_phone?
 			key == 'phone' && description != ''
 		end
 	end
