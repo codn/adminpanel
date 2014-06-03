@@ -1,4 +1,4 @@
-class CreateAdminpanel<%= class_name.pluralize %>Table < ActiveRecord::Migration
+class CreateAdminpanel<%= class_name.pluralize %> < ActiveRecord::Migration
 	def change
 	  create_table :adminpanel_<%= lower_name.pluralize %> do |t|
 
