@@ -1,0 +1,12 @@
+one:
+  name: 'John Doe'
+  created_at: <%= Date.today %>
+  updated_at: <%= Date.today %>
+two:
+  name: 'Bar Baz'
+  created_at: <%= Date.today %>
+  updated_at: <%= Date.today %>
+three:
+  name: 'Katy Lopez'
+  created_at: <%= Date.today %>
+  updated_at: <%= Date.today %>

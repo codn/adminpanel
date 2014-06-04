@@ -28,6 +28,5 @@ group :development, :test do
 	gem 'minitest-capybara'
 	gem 'mocha'
 	gem 'poltergeist'
-  gem 'parallel_tests'
 	# gem 'minitest-debugger'
 end

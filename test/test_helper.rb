@@ -46,6 +46,7 @@ class ViewCase < ActionView::TestCase
 
   def teardown
     Capybara.reset_session!
+    Capybara.current_driver = :poltergeist
   end
 
   protected

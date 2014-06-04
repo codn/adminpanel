@@ -2,8 +2,8 @@ require 'test_helper'
 
 class NewTest < ViewCase
 
-  setup :visit_new_product
-  # teardown :teardown
+  setup :visit_adminpanel_new_product_path
+  teardown :teardown
 
   def test_shared_new_page_messages
     assert_button("#{I18n.t('action.add')} #{Adminpanel::Product.display_name}")
@@ -11,6 +11,7 @@ class NewTest < ViewCase
 
   def test_submitting_with_invalid_information
     click_button('Agregar Producto')
+    sleep 1
     assert_content('Producto no pudo guardarse debido a 3 errores')
   end
 
@@ -23,6 +24,7 @@ class NewTest < ViewCase
       )
     ) # to fill the wysiwyg editor
     click_button('Agregar Producto')
+    sleep 1
     assert_content(I18n.t('action.save_success'))
     saved_product = Adminpanel::Product.last
     assert_equal 'product name', saved_product.name
@@ -31,7 +33,7 @@ class NewTest < ViewCase
   end
 
   protected
-  def visit_new_product
+  def visit_adminpanel_new_product_path
     visit adminpanel.signin_path
     login
     visit adminpanel.new_product_path
