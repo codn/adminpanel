@@ -25,6 +25,7 @@ class NewTest < ViewCase
     click_button('Agregar Producto')
     assert_content(I18n.t('action.save_success'))
     assert_equal 'product name', Adminpanel::Product.last.name
+    assert_equal '855.5', Adminpanel::Product.last.name
   end
 
   protected
