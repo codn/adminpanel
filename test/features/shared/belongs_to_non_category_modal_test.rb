@@ -13,6 +13,7 @@ class BelongsToNonCategoryModalTest < ViewCase
 
   def test_adding_a_remote_product_with_invalid_information
     trigger_modal
+
     assert_equal  'Agregar Producto', find('#modal-title').text
     submit_modal
     assert_content( I18n.t('errors', model: 'Producto', count: 3) )
@@ -24,7 +25,6 @@ class BelongsToNonCategoryModalTest < ViewCase
     fill_in 'product_description', with: 'remote description lorem'
     fill_in 'product_price', with: '12.3'
     submit_modal
-    sleep 1
     # remote_product = Adminpanel::Product.last
     # assert_equal 'remote_product', remote_product.name
     # assert_equal 'remote descrpition lorem', remote_product.description
@@ -36,10 +36,12 @@ class BelongsToNonCategoryModalTest < ViewCase
 
   def submit_modal
     click_button 'Agregar Producto' #the modal is the button
+    sleep 1
   end
 
   def trigger_modal
     click_link 'Agregar Producto'
+    sleep 1
   end
 
   def visit_adminpanel_new_salesman_path
