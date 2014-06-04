@@ -31,12 +31,12 @@ class HasManyThroughNonCategoryModalTest < ViewCase
 
   def submit_modal
     click_button 'Agregar Producto' #the modal is the button
-    sleep 1
+    wait_for_ajax
   end
 
   def trigger_modal
     click_link 'Agregar Producto'
-    sleep 1
+    wait_for_ajax
   end
 
   def visit_adminpanel_new_department_path

@@ -29,12 +29,12 @@ class HasManyThroughCategoryModalTest < ViewCase
 
   def submit_modal
     click_button 'Agregar Categoria' #the modal is the button
-    sleep 1
+    wait_for_ajax
   end
 
   def trigger_modal
     click_link 'Agregar Categoria'
-    sleep 1
+    wait_for_ajax
   end
 
   def visit_adminpanel_new_product_path
