@@ -15,7 +15,6 @@ class BelongsToCategoryModalTest < ViewCase
     trigger_modal
     assert_equal  'Agregar Categoria', find('#modal-title').text
     submit_modal
-    sleep 1
     assert_content( I18n.t('errors', model: 'Categoria', count: 1) )
   end
 
@@ -23,7 +22,6 @@ class BelongsToCategoryModalTest < ViewCase
     trigger_modal
     fill_in 'category_name', with: 'remote product'
     submit_modal
-    sleep 1
     assert_xpath("//option[contains(text(), 'remote product' )]")
   end
 
@@ -31,10 +29,12 @@ class BelongsToCategoryModalTest < ViewCase
 
   def submit_modal
     click_button 'Agregar Categoria' #the modal is the button
+    sleep 1
   end
 
   def trigger_modal
     click_link 'Agregar Categoria'
+    sleep 1
   end
 
   def visit_adminpanel_new_department_path
