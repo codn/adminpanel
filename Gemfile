@@ -19,6 +19,7 @@ gem 'koala', '>= 1.9.0', '<= 2.0.0'
 
 group :assets do
 	gem 'sass-rails', '>= 4.0.3', require: true
+	gem 'coffee-script'
 end
 
 gem 'minitest'
