@@ -5,7 +5,7 @@ module Adminpanel
 		class ResourceGenerator < ActiveRecord::Generators::Base
   		source_root File.expand_path("../templates", __FILE__)
 			desc "Generate the resource files necessary to use a model"
-			class_option :'include-gallery',
+			class_option :'gallery',
 				:type => :boolean,
 				:aliases => '-g',
 				:default => true,
@@ -80,7 +80,7 @@ module Adminpanel
 			end
 
 			def has_gallery?
-				options[:'include-gallery']
+				options[:'gallery']
 			end
 
 			def gallery_name
