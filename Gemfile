@@ -27,6 +27,7 @@ group :development, :test do
 	gem 'minitest-emoji'
 	gem 'minitest-capybara'
 	gem 'mocha'
-	gem 'selenium-webdriver'
+	gem 'poltergeist'
+  gem 'parallel_tests'
 	# gem 'minitest-debugger'
 end
