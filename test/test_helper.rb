@@ -5,18 +5,14 @@ require 'rails/test_help'
 require 'minitest/autorun'
 require 'minitest/emoji' #emoji output
 require 'capybara/rails'
-require 'minitest/unit'
-require 'mocha/mini_test'
+require 'minitest/unit' #mocha
+require 'mocha/mini_test' #mocha
 require 'capybara/poltergeist'
-# require 'minitest/debugger' if ENV['DEBUG'] # for deubgging
 
 
 Capybara.current_driver = :poltergeist
 
 load Rails.root.join('db', 'schema.rb')
-
-
-
 
 class ActiveRecord::Base
   mattr_accessor :shared_connection
@@ -26,19 +22,18 @@ class ActiveRecord::Base
     @@shared_connection || retrieve_connection
   end
 end
-
 # Forces all threads to share the same connection. This works on
 # Capybara because it starts the web server in a thread.
 ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
 
 
 class ActiveSupport::TestCase
-
   #fixtures live inside the dummy app
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
 end
+
 class ViewCase < ActionView::TestCase
   include Capybara::DSL
   include Capybara::Assertions
@@ -56,17 +51,3 @@ class ViewCase < ActionView::TestCase
     click_button I18n.t('authentication.new-session')
   end
 end
-
-# class SharedTestCase < ViewCase
-#   # include Capybara::DSL
-#   # include Capybara::Assertions
-#   # include Rails.application.routes.url_helpers
-#   def before_setup
-#     sign_in
-#   end
-#   protected
-#   def sign_in
-#     visit adminpanel.signin_path
-#     login
-#   end
-# end
