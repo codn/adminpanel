@@ -24,6 +24,7 @@ class BelongsToNonCategoryModalTest < ViewCase
     fill_in 'product_description', with: 'remote description lorem'
     fill_in 'product_price', with: '12.3'
     submit_modal
+    sleep 1
     # remote_product = Adminpanel::Product.last
     # assert_equal 'remote_product', remote_product.name
     # assert_equal 'remote descrpition lorem', remote_product.description

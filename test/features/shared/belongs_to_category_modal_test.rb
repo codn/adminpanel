@@ -15,6 +15,7 @@ class BelongsToCategoryModalTest < ViewCase
     trigger_modal
     assert_equal  'Agregar Categoria', find('#modal-title').text
     submit_modal
+    sleep 1
     assert_content( I18n.t('errors', model: 'Categoria', count: 1) )
   end
 
@@ -22,6 +23,7 @@ class BelongsToCategoryModalTest < ViewCase
     trigger_modal
     fill_in 'category_name', with: 'remote product'
     submit_modal
+    sleep 1
     assert_xpath("//option[contains(text(), 'remote product' )]")
   end
 
