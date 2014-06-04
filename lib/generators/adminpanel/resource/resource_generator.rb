@@ -41,13 +41,13 @@ module Adminpanel
 			end
 
 			def generate_gallery
-				if has_gallery?
+				if has_gallery? && is_a_resource?
 					invoke 'adminpanel:gallery', [lower_singularized_name]
 				end
 			end
 
 			def add_resource_to_config
-				if setup_is_found?
+				if setup_is_found? && is_a_resource?
 					inject_into_file 'config/initializers/adminpanel_setup.rb',
 						after: 'config.displayable_resources = [' do
 						indent "\n:#{pluralized_name},", 4
