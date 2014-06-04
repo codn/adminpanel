@@ -12,7 +12,7 @@ class EditTest < ViewCase
 
   def test_submitting_with_same_information
     click_button('Guardar Producto')
-    sleep 1
+    wait_for_ajax
     assert_content( I18n.t('action.save_success') )
   end
 
@@ -20,7 +20,7 @@ class EditTest < ViewCase
     fill_in 'product_name', :with => ''
     fill_in 'product_price', :with => ''
     click_button('Guardar Producto')
-    sleep 1
+    wait_for_ajax
     assert_content('Producto no pudo guardarse debido a 2 errores')
     saved_product = Adminpanel::Product.last
   end

@@ -18,8 +18,8 @@ gem 'font-awesome-rails', '>= 4.0.3.1'
 gem 'koala', '>= 1.9.0', '<= 2.0.0'
 
 group :assets do
+	gem 'coffee-script', require: true
 	gem 'sass-rails', '>= 4.0.3', require: true
-	gem 'coffee-script'
 end
 
 gem 'minitest'
