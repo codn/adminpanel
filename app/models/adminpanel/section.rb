@@ -54,7 +54,7 @@ module Adminpanel
 		end
 
 		def description
-			if self.has_description
+			if self.has_description && !self.attributes['description'].nil?
 				return self.attributes['description'].html_safe
 			else
 				return self.attributes['description']
