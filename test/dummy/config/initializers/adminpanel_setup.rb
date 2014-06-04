@@ -12,6 +12,7 @@ Adminpanel.setup do |config|
 
   # # This are the modules that are going to be displayed and order that are going to be displayed
   config.displayable_resources = [
+    :departments,
     :analytics,
     :galleries,
     :sections,

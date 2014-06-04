@@ -11,10 +11,11 @@ Rake::TestTask.new do |t|
   t.warning = false
 end
 
-# namespace :test do
-#   task :isolated do
-#     Dir.glob("test/**/*_test.rb").all? do |file|
-#       sh(Gem.ruby, '-w', '-Ilib:test', file)
-#     end or raise "Failures"
-#   end
-# end
+#to run isolated tests...
+namespace :test do
+  task :isolated do
+    Dir.glob("test/**/*_test.rb").all? do |file|
+      sh(Gem.ruby, '-w', '-Ilib:test', file)
+    end or raise "Failures"
+  end
+end

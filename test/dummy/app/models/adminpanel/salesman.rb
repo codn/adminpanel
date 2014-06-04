@@ -1,6 +1,7 @@
 module Adminpanel
   class Salesman < ActiveRecord::Base
     include Adminpanel::Base
+    include Adminpanel::Facebook
 
     belongs_to :product
 
