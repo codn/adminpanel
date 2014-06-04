@@ -24,8 +24,10 @@ class NewTest < ViewCase
     ) # to fill the wysiwyg editor
     click_button('Agregar Producto')
     assert_content(I18n.t('action.save_success'))
-    assert_equal 'product name', Adminpanel::Product.last.name
-    assert_equal '855.5', Adminpanel::Product.last.name
+    saved_product = Adminpanel::Product.last
+    assert_equal 'product name', saved_product.name
+    assert_equal '855.5', saved_product.price
+    assert_equal 'que pepsi', saved_product.description
   end
 
   protected

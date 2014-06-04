@@ -41,6 +41,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'minitest-capybara'
   spec.add_development_dependency 'mocha'
   spec.add_development_dependency 'minitest-metadata'
-  spec.add_development_dependency 'selenium-webdriver'
+  spec.add_development_dependency 'poltergeist'
   # spec.add_development_dependency 'minitest-debugger'
 end

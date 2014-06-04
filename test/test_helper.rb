@@ -7,10 +7,11 @@ require 'minitest/emoji' #emoji output
 require 'capybara/rails'
 require 'minitest/unit'
 require 'mocha/mini_test'
+require 'capybara/poltergeist'
 # require 'minitest/debugger' if ENV['DEBUG'] # for deubgging
 
 
-Capybara.current_driver = Capybara.javascript_driver
+Capybara.current_driver = :poltergeist
 
 load Rails.root.join('db', 'schema.rb')
 
