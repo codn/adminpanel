@@ -13,7 +13,7 @@ module Adminpanel
     #   )
     # end
     def fb_link
-      'www.google.com'
+      'www.overwrite.fb_link.com'
     end
 
     # static(class) methods
