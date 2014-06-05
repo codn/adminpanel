@@ -3,7 +3,7 @@ module Adminpanel
     extend ActiveSupport::Concern
 
     included do
-      before_filter :set_auths_count, only:[:index, :show, :destroy]
+      before_filter :set_auths_count
     end
 
     def fb_choose_page

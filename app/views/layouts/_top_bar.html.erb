@@ -21,9 +21,31 @@
         <ul class="pull-right">
           <li>
             <% if signed_in? %>
-              <%= link_to content_tag('i', nil, :class => 'fa fa-power-off') + ' Logout', signout_path, :method => "delete", :escape => true %>
+              <%=
+              link_to(
+                content_tag(
+                  'i',
+                  nil,
+                  class: 'fa fa-power-off'
+                  ) + " #{I18n.t('authentication.logout')}",
+                signout_path,
+                method: :delete,
+                escape: true,
+                id: 'signout-button'
+              )
+              %>
             <% else %>
-              <%= link_to content_tag('i', nil, :class => 'fa fa-power-off') + ' Login', signin_path, :escape => true %>
+              <%=
+              link_to(
+                content_tag(
+                  'i',
+                  nil,
+                  class: 'fa fa-power-off'
+                  ) + " #{I18n.t('authentication.login')}",
+                signin_path,
+                escape: true
+              )
+              %>
             <% end %>
           </li>
         </ul>

@@ -62,7 +62,10 @@ es:
     welcome: 'Bienvenido! Inicia Sesión'
     signin_error: 'Correo y/o Contraseña incorrecta.'
     signin_success: 'Bienvenido!'
+    new-session: 'Iniciar Sesión'
     not_authorized: 'No tienes permisos para acceder'
+    logout: 'Logout'
+    login: 'Log in'
   gallery:
     container: 'Imágenes'
     new: 'Agregar Imagen'

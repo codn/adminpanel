@@ -18,16 +18,15 @@ gem 'font-awesome-rails', '>= 4.0.3.1'
 gem 'koala', '>= 1.9.0', '<= 2.0.0'
 
 group :assets do
+	gem 'coffee-script', require: true
 	gem 'sass-rails', '>= 4.0.3', require: true
 end
 
 group :development, :test do
-	gem 'selenium-webdriver', '2.42.0'
-	gem 'capybara-webkit', '1.1.1'
-	gem 'factory_girl_rails', '~> 4.4.1'
-	gem 'rspec', '~> 2.14.1'
-	gem 'rspec-rails', '~> 2.14.2'
+	gem 'minitest', '>= 5.3.4', '<= 6.0.0'
 	gem 'sqlite3', '>= 1.3.9', '<= 2.0.0', :platform => [:ruby, :mswin, :mingw]
-	gem 'capybara', '>= 2.1.0', '<= 3.0.0'
-	gem 'ammeter', '~> 1.0.0'
+	gem 'minitest-emoji', '2.0.0'
+	gem 'minitest-capybara', '>= 0.6.1', '<= 1.0.0'
+	# gem 'mocha'
+	gem 'poltergeist', '>= 1.5.1', '<= 2.0.0'
 end
