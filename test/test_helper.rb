@@ -44,19 +44,21 @@ class ViewCase < ActionView::TestCase
     Capybara.current_driver = :poltergeist
   end
 
-  protected
+  private
   def login(password = 'foobar')
     fill_in 'inputEmail', with: adminpanel_users(:valid).email
     fill_in 'inputPassword', with: password #pass is foobar
     click_button I18n.t('authentication.new-session')
   end
 
-  def wait_for_ajax
-    counter = 0
-    while page.execute_script("return $.active").to_i > 0
-      counter += 1
-      sleep(0.1)
-      raise "AJAX request took longer than 5 seconds." if counter >= 50
-    end
+  def submit_modal(button)
+    click_button button #the modal is the button
+    sleep 0.5
   end
+
+  def trigger_modal(link)
+    click_link link
+    sleep 0.5
+  end
+
 end
