@@ -11,7 +11,6 @@ class NewTest < ViewCase
 
   def test_submitting_with_invalid_information
     click_button('Agregar Producto')
-    wait_for_ajax
     assert_content('Producto no pudo guardarse debido a 3 errores')
   end
 
@@ -24,7 +23,6 @@ class NewTest < ViewCase
       )
     ) # to fill the wysiwyg editor
     click_button('Agregar Producto')
-    wait_for_ajax
     assert_content(I18n.t('action.save_success'))
     saved_product = Adminpanel::Product.last
     assert_equal 'product name', saved_product.name

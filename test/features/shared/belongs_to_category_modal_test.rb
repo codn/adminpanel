@@ -12,30 +12,20 @@ class BelongsToCategoryModalTest < ViewCase
   end
 
   def test_adding_a_remote_category_with_invalid_information
-    trigger_modal
-    assert_equal  'Agregar Categoria', find('#modal-title').text
-    submit_modal
+    trigger_modal 'Agregar Categoria'
+    assert_equal 'Agregar Categoria', find('#modal-title').text
+    submit_modal 'Agregar Categoria'
     assert_content( I18n.t('errors', model: 'Categoria', count: 1) )
   end
 
   def test_adding_a_remote_category_with_valid_information
-    trigger_modal
+    trigger_modal 'Agregar Categoria'
     fill_in 'category_name', with: 'remote product'
-    submit_modal
+    submit_modal 'Agregar Categoria'
     assert_xpath("//option[contains(text(), 'remote product' )]")
   end
 
-  protected
-
-  def submit_modal
-    click_button 'Agregar Categoria' #the modal is the button
-    wait_for_ajax
-  end
-
-  def trigger_modal
-    click_link 'Agregar Categoria'
-    wait_for_ajax
-  end
+  private
 
   def visit_adminpanel_new_department_path
     visit adminpanel.signin_path
