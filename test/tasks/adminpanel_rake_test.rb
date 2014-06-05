@@ -1,9 +1,9 @@
 require 'test_helper'
-include Rake
-Rake.application.rake_require 'tasks/adminpanel/adminpanel'
-Rake::Task.define_task(:environment)
 
 class AdminpanelRakeTest < ActiveSupport::TestCase
+  include Rake
+  Rake.application.rake_require 'tasks/adminpanel/adminpanel'
+  Rake::Task.define_task(:environment)
 
   def test_populate_task
     products_count = Adminpanel::Product.count
