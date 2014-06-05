@@ -10,7 +10,7 @@ namespace :adminpanel do
       :has_description => false,
       :description => "",
       :key => (args[:name].downcase.tr(' ','_')),
-      :page => args[:section],
+      :page => args[:section].capitalize,
       :has_image => false
     )
 
@@ -57,7 +57,7 @@ namespace :adminpanel do
 
   task :dump => :environment do |t|
     puts "Dumping adminpanel_sections and adminpanel_categories into db/seeds.rb"
-    File.open("db/seeds.rb", "w") do |f|
+    File.open("#{Rails.root.join('db', 'seeds.rb')}", "w+") do |f|
         f << "Adminpanel::Section.delete_all\n"
         f << "Adminpanel::Category.delete_all\n"
       Adminpanel::Section.all.each do |section|
@@ -71,7 +71,7 @@ namespace :adminpanel do
 
   task :dump_sections => :environment do |t|
     puts "Dumping adminpanel_sections table into db/seeds.rb"
-    File.open("db/seeds.rb", "w") do |f|
+    File.open("#{Rails.root.join('db', 'seeds.rb')}", "w") do |f|
         f << "Adminpanel::Section.delete_all\n"
       Adminpanel::Section.all.each do |section|
         f << "#{creation_command_section(section)}"
@@ -81,7 +81,7 @@ namespace :adminpanel do
 
   task :dump_categories => :environment do |t|
     puts "Dumping adminpanel_categories table into db/seeds.rb"
-    File.open("db/seeds.rb", "w") do |f|
+    File.open("#{Rails.root.join('db', 'seeds.rb')}", "w") do |f|
         f << "Adminpanel::Section.delete_all\n"
       Adminpanel::Section.all.each do |section|
         f << "#{creation_command_categories(section)}"
