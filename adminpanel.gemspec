@@ -37,10 +37,10 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'coffee-script'
 
   spec.add_development_dependency 'sqlite3', '>= 1.3.9', '<= 2.0.0'
-  spec.add_dependency 'minitest'
-  spec.add_development_dependency 'minitest-emoji'
-  spec.add_development_dependency 'minitest-capybara'
-  spec.add_development_dependency 'mocha'
-  spec.add_development_dependency 'poltergeist'
+  spec.add_development_dependency 'minitest', '>= 5.3.4', '<= 6.0.0'
+  spec.add_development_dependency 'minitest-emoji', '2.0.0'
+  spec.add_development_dependency 'minitest-capybara', '>= 0.6.1', '<= 1.0.0'
+  # spec.add_development_dependency 'mocha'
+  spec.add_development_dependency 'poltergeist', '>= 1.5.1', '<= 2.0.0'
   # spec.add_development_dependency 'minitest-debugger'
 end

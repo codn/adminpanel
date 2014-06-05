@@ -22,12 +22,11 @@ group :assets do
 	gem 'sass-rails', '>= 4.0.3', require: true
 end
 
-gem 'minitest'
 group :development, :test do
+	gem 'minitest', '>= 5.3.4', '<= 6.0.0'
 	gem 'sqlite3', '>= 1.3.9', '<= 2.0.0', :platform => [:ruby, :mswin, :mingw]
-	gem 'minitest-emoji'
-	gem 'minitest-capybara'
-	gem 'mocha'
-	gem 'poltergeist'
-	# gem 'minitest-debugger'
+	gem 'minitest-emoji', '2.0.0'
+	gem 'minitest-capybara', '>= 0.6.1', '<= 1.0.0'
+	# gem 'mocha'
+	gem 'poltergeist', '>= 1.5.1', '<= 2.0.0'
 end

@@ -5,8 +5,8 @@ require 'rails/test_help'
 require 'minitest/autorun'
 require 'minitest/emoji' #emoji output
 require 'capybara/rails'
-require 'minitest/unit' #mocha
-require 'mocha/mini_test' #mocha
+# require 'minitest/unit' #mocha
+# require 'mocha/mini_test' #mocha
 require 'capybara/poltergeist'
 
 
