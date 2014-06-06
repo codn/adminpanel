@@ -15,7 +15,7 @@ module Adminpanel
 	  validates_presence_of :description,
 				minimum: 9,
 				on: :update,
-				if: lambda{|section| section.has_description == true }
+				if: lambda{ |section| section.has_description == true }
 	  validates :description,
 				numericality: { only_integer: true },
 				on: :update,
@@ -25,7 +25,7 @@ module Adminpanel
 	  validates_presence_of :page
 
 		VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-		validates_format_of :description, with: VALID_EMAIL_REGEX, if: lambda{|section| section.key == 'email'}
+		validates_format_of :description, with: VALID_EMAIL_REGEX, if: :is_email?
 
 	  default_scope { order("page ASC") }
 
@@ -61,7 +61,15 @@ module Adminpanel
 			end
 		end
 
-		private
+		protected
+		def has_description?
+			!self.has_description.nil? || self.has_description
+		end
+
+		def is_email?
+			key == 'phone' && description != ''
+		end
+
 		def is_a_phone?
 			key == 'phone' && description != ''
 		end
