@@ -21,7 +21,7 @@ module Adminpanel
 
 			image = @template.content_tag :div, :class => "control-group" do
 				@template.content_tag(:label, label, :class => "control-label") +
-				@template.content_tag(:div, super(name, *args << options), :class => "controls")
+				@template.content_tag(:div, super( name, *args << options ), :class => "controls")
 			end
 
 			if object.nil? || object.new_record?

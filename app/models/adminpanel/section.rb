@@ -15,7 +15,7 @@ module Adminpanel
 	  validates_presence_of :description,
 				minimum: 9,
 				on: :update,
-				if: lambda{ |section| section.has_description == true }
+				if: :has_description
 	  validates :description,
 				numericality: { only_integer: true },
 				on: :update,
@@ -67,7 +67,7 @@ module Adminpanel
 		end
 
 		def is_email?
-			key == 'phone' && description != ''
+			key == 'email' && description != ''
 		end
 
 		def is_a_phone?
