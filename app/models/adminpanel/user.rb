@@ -37,15 +37,13 @@ module Adminpanel
         {
           'name' => {
             'type' => 'text_field',
-            'name' => 'Nombre',
             'label' => 'Nombre',
             'placeholder' => 'Nombre'
             }
         },
         {
           'email' => {
-            'type' => 'text_field',
-            'name' => 'Correo',
+            'type' => 'email_field',
             'label' => 'Correo',
             'placeholder' => 'Correo'
           }
@@ -53,7 +51,6 @@ module Adminpanel
         {
           'password' => {
             'type' => 'password_field',
-            'name' => 'Contrasena',
             'label' => I18n.t('model.attributes.password'),
             'placeholder' => I18n.t('model.attributes.password'),
             'show' => 'false'
@@ -62,7 +59,6 @@ module Adminpanel
         {
           'password_confirmation' => {
             'type' => 'password_field',
-            'name' => 'Confirmacion de contrasena',
             'placeholder' => I18n.t('model.attributes.password_confirmation'),
             'label' => I18n.t('model.attributes.password_confirmation'),
             'show' => 'false'
@@ -71,7 +67,6 @@ module Adminpanel
         {
           'group_id' => {
             'type' => 'belongs_to',
-            'name' => 'Group',
             'model' => 'Adminpanel::Group',
             'remote_resource' => false,
             'placeholder' => I18n.t('model.attributes.group_id'),
