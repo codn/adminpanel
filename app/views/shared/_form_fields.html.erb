@@ -18,9 +18,8 @@
 		<% end %>
   <% elsif field_type == 'belongs_to' %>
 		<% if !defined? remote_request %>
-			<!-- if not making resource from other form
-			so we don't have to manage infinite nested forms
-			-->
+			<!-- if not making resource from other form so we don't have to manage
+			infinite nested forms and relations -->
 			<% args = properties.except('model') %>
 	  	<%= f.select(attribute, (@collections["#{properties["model"]}"].collect{|resource| [resource.name, resource.id]}), args) %>
 
@@ -31,6 +30,8 @@
 		<% end %>
   <% elsif field_type == 'has_many' %>
 		<% if !defined? remote_request %>
+			<!-- if not making resource from other form so we don't have to manage
+			infinite nested forms and relations -->
 			<div class="control-group">
 				<div class="control-label">
 					<%= properties['label'] %>
