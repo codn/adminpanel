@@ -39,10 +39,10 @@ module Adminpanel
 
     def self.form_attributes
       [
-        {'file' => {
-          'type' => 'file_field',
-          'name' => 'Archivo'
-          'label'
+        {
+          'file' => {
+            'type' => 'file_field',
+            'label' => I18n.t('model.attributes.file'),
           }
         }
       ]
