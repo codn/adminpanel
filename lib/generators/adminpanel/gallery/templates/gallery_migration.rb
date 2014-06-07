@@ -1,11 +1,11 @@
 class CreateAdminpanel<%= class_name.pluralize %> < ActiveRecord::Migration
-	def change
-	  create_table :adminpanel_<%= lower_name.pluralize %> do |t|
+  def change
+    create_table :adminpanel_<%= lower_name.pluralize %> do |t|
 
-			t.integer :<%= reference_name %>_id
-			t.string :file
+      t.integer :<%= reference_name %>_id
+      t.string :file
 
-			t.timestamps
+      t.timestamps
     end
   end
 end

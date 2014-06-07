@@ -1,6 +1,6 @@
 <ul class="breadcrumb">
-	<% nav.each do |nav| %>
-		<li><%= link_to nav[:title], nav[:url] %><span class="divider"><%= divider %></span></li>
-	<% end %>
-	<li class="active"><%= yield(:page_title) %></li>
+  <% nav.each do |nav| %>
+    <li><%= link_to nav[:title], nav[:url] %><span class="divider"><%= divider %></span></li>
+  <% end %>
+  <li class="active"><%= yield(:page_title) %></li>
 </ul>

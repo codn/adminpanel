@@ -1,17 +1,17 @@
 <% if object.errors.any? %>
-	<div id="error_explanation">
-		<div id="alerts" class="alert alert-error">
-			<%= t( :errors, :count => object.errors.count, :model => @model.display_name) %>:
-			<ul>
-			<% object.errors.messages.keys.each do |field| %>
-				<% object.errors.messages[field].each do |value| %>
-				 <li>
-				  	<%= @model.get_attribute_label(field.to_s) %>
-				  	<%= value %>
-				 </li>
-				<% end %>
-			<% end %>
-			</ul>
-		</div>
-	</div>
+  <div id="error_explanation">
+    <div id="alerts" class="alert alert-error">
+      <%= t( :errors, :count => object.errors.count, :model => @model.display_name) %>:
+      <ul>
+      <% object.errors.messages.keys.each do |field| %>
+        <% object.errors.messages[field].each do |value| %>
+         <li>
+          	<%= @model.get_attribute_label(field.to_s) %>
+          	<%= value %>
+         </li>
+        <% end %>
+      <% end %>
+      </ul>
+    </div>
+  </div>
 <% end %>

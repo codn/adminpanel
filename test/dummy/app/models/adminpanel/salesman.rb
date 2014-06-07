@@ -7,21 +7,21 @@ module Adminpanel
 
     def self.form_attributes
       [
-			{
-				'name' => {
-					'type' => 'text_field',
-					'label' => 'name',
-					'placeholder' => 'name'
-				}
-			},
-			{
-				'product_id' => {
-					'type' => 'belongs_to',
-					'model' => 'Adminpanel::Product',
-					'label' => 'product',
-					'placeholder' => 'product'
-				}
-			},
+      {
+        'name' => {
+          'type' => 'text_field',
+          'label' => 'name',
+          'placeholder' => 'name'
+        }
+      },
+      {
+        'product_id' => {
+          'type' => 'belongs_to',
+          'model' => 'Adminpanel::Product',
+          'label' => 'product',
+          'placeholder' => 'product'
+        }
+      },
       ]
     end
 

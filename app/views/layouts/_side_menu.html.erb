@@ -1,40 +1,40 @@
 <!-- Side menu -->
 <div class="sidebar-nav nav-collapse collapse" id="sidebar-navigation">
-	<div class="user_side clearfix">
-		<h5>
-			<%= current_user.name.humanize %>
-		</h5>
-		<%=
-		link_to(
-			"#{current_user.group.name}",
-			"#"
-		)
-		%>
-	</div>
-	<div class="accordion">
-		<% Adminpanel.displayable_resources.each do |resource| %>
-			<% resource_class = symbol_class(resource) %>
-			<% if can? :read, resource_class %>
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						<%=
-						link_to(
-							content_tag(
-								:i,
-								nil,
-								class:"fa fa-#{resource_class.icon}"
-							) + content_tag(:span," " + resource_class.display_name.pluralize(I18n.default_locale)
-							),
-							[route_symbol(resource.to_s)],
-							data: { no_transition_cache: true },
-							class: "accordion-toggle b_99FFCC #{is_current_section?(resource_class.display_name)}"
-						)
-						%>
-					</div>
-				</div>
-			<% end %>
-		<% end %>
+  <div class="user_side clearfix">
+    <h5>
+      <%= current_user.name.humanize %>
+    </h5>
+    <%=
+    link_to(
+      "#{current_user.group.name}",
+      "#"
+    )
+    %>
+  </div>
+  <div class="accordion">
+    <% Adminpanel.displayable_resources.each do |resource| %>
+      <% resource_class = symbol_class(resource) %>
+      <% if can? :read, resource_class %>
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <%=
+            link_to(
+              content_tag(
+                :i,
+                nil,
+                class:"fa fa-#{resource_class.icon}"
+              ) + content_tag(:span," " + resource_class.display_name.pluralize(I18n.default_locale)
+              ),
+              [route_symbol(resource.to_s)],
+              data: { no_transition_cache: true },
+              class: "accordion-toggle b_99FFCC #{is_current_section?(resource_class.display_name)}"
+            )
+            %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
 
-	</div>
+  </div>
 </div>
 <!-- /Side menu -->

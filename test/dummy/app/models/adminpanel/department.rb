@@ -4,8 +4,8 @@ module Adminpanel
 
     belongs_to :category
 
-		has_many :items
-		has_many :product, :through => :items, :dependent => :destroy
+    has_many :items
+    has_many :product, :through => :items, :dependent => :destroy
 
     def self.form_attributes
       [

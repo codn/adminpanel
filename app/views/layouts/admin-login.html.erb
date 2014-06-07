@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title><%= full_title(yield(:page_title)) %></title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<%= stylesheet_link_tag    "application-admin", :media => "all" %>
-		<%= javascript_include_tag "application-admin" %>
-		<%= csrf_meta_tags %>
-		<%= favicon_link_tag "adminpanel/favicon.ico" %>
-		<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
-		<%= render 'layouts/shim' %>
-	</head>
+  <head>
+    <meta charset="utf-8">
+    <title><%= full_title(yield(:page_title)) %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag    "application-admin", :media => "all" %>
+    <%= javascript_include_tag "application-admin" %>
+    <%= csrf_meta_tags %>
+    <%= favicon_link_tag "adminpanel/favicon.ico" %>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+    <%= render 'layouts/shim' %>
+  </head>
 
-	<body>
-		<div id="wrap">
-			<%= render 'layouts/top_bar' %>
-			<div class="container-fluid">
-				<%= yield %>
-				<%= debug(params) if Rails.env.development? %>
-			</div>
-			<!--/.fluid-container-->
-		</div>
-		<!-- wrap ends-->
-	</body>
+  <body>
+    <div id="wrap">
+      <%= render 'layouts/top_bar' %>
+      <div class="container-fluid">
+        <%= yield %>
+        <%= debug(params) if Rails.env.development? %>
+      </div>
+      <!--/.fluid-container-->
+    </div>
+    <!-- wrap ends-->
+  </body>
 </html>

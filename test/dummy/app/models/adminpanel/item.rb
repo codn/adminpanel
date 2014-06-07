@@ -3,8 +3,8 @@ module Adminpanel
     include Adminpanel::Base
 
     belongs_to :product
-		belongs_to :category
-		    
+    belongs_to :category
+
     def self.form_attributes
       [
         {
@@ -14,7 +14,7 @@ module Adminpanel
             'placeholder' => 'product',
             'model' => 'Adminpanel::Product',
           }
-        }, 
+        },
         {
           'category_id' => {
             'type' => 'belongs_to',
