@@ -10,9 +10,9 @@ module Adminpanel
 
     def self.form_attributes
       [
-				{"name" => {"type" => "text_field", "name" => "name", "label" => "name", "placeholder" => "name"}},
-				# {'model' => {"type" => "text_field", "name" => "name", "label" => "name", "placeholder" => "name", 'show' => 'false'}},
-				{"product_ids" => {"type" => "has_many", "model" => "Adminpanel::Product", "name" => "product_ids"}},
+        {"name" => {"type" => "text_field", "name" => "name", "label" => "name", "placeholder" => "name"}},
+        # {'model' => {"type" => "text_field", "name" => "name", "label" => "name", "placeholder" => "name", 'show' => 'false'}},
+        {"product_ids" => {"type" => "has_many", "model" => "Adminpanel::Product", "name" => "product_ids"}},
       ]
     end
 

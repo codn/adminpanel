@@ -7,8 +7,8 @@ module Adminpanel
 
     def self.form_attributes
         [
-		      {"product_id" => {"type" => "belongs_to", "model" => "Adminpanel::Product", "name" => "product_id"}},
-		      {"category_id" => {"type" => "belongs_to", "model" => "Adminpanel::Category", "name" => "category_id"}},
+          {"product_id" => {"type" => "belongs_to", "model" => "Adminpanel::Product", "name" => "product_id"}},
+          {"category_id" => {"type" => "belongs_to", "model" => "Adminpanel::Category", "name" => "category_id"}},
         ]
     end
 

@@ -1,26 +1,26 @@
 <% provide(:title, 'Inicio') %>
 <% provide(:section, 'login') %>
 <div class="widget container-narrow">
-	<div class="widget-header">
-		<i class="fa fa-user"></i>
-		<h5><%= t("authentication.welcome") %></h5>
-	</div>
-	<div class="widget-body clearfix" style="padding:25px;">
-		<% flash.each do |key, value| %>
-			<div class = "alert alert-<%= key %>"><%= value %></div>
-		<% end %>
-		<%= form_for(:session, :url => sessions_path) do |f| %>
-			<div class="control-group">
-				<div class="controls">
-					<%= f.text_field :email, :class => "btn-block", :id => "inputEmail" , :placeholder => t("session.email") %>
-				</div>
-			</div>
-			<div class="control-group">
-				<div class="controls">
-					<%= f.password_field :password, :class => "btn-block", :id => "inputPassword", :placeholder => t("session.password") %>
-				</div>
-			</div>
-			<%= f.submit I18n.t('authentication.new-session'), :class => "btn pull-right", :id => "signin-button" %>
-		<% end %>
-	</div>
+  <div class="widget-header">
+    <i class="fa fa-user"></i>
+    <h5><%= t("authentication.welcome") %></h5>
+  </div>
+  <div class="widget-body clearfix" style="padding:25px;">
+    <% flash.each do |key, value| %>
+      <div class = "alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+    <%= form_for(:session, :url => sessions_path) do |f| %>
+      <div class="control-group">
+        <div class="controls">
+          <%= f.text_field :email, :class => "btn-block", :id => "inputEmail" , :placeholder => t("session.email") %>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="controls">
+          <%= f.password_field :password, :class => "btn-block", :id => "inputPassword", :placeholder => t("session.password") %>
+        </div>
+      </div>
+      <%= f.submit I18n.t('authentication.new-session'), :class => "btn pull-right", :id => "signin-button" %>
+    <% end %>
+  </div>
 </div>

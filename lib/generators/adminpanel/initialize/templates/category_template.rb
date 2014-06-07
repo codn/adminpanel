@@ -1,7 +1,7 @@
 module Adminpanel
   class Category < ActiveRecord::Base
     include Adminpanel::Base
-    
+
     validates_presence_of :model
     validates_presence_of :name
     validates_uniqueness_of :name

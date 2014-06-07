@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Adminpanel::VERSION
   spec.authors       = ['Jose Ramon Camacho', 'Victor Camacho']
   spec.email         = ['joserracamacho@gmail.com']
-  spec.description   = %q{Gem that makes the administrative panel for a site a breeze!}
-  spec.summary       = %q{Developed with <3 by CoDN}
+  spec.description   = %q{Gem that makes the CMS for a site a breeze!, supports facebook sharing and analytics integration}
+  spec.summary       = %q{Made with <3 by CoDN}
   spec.homepage      = 'https://github.com/joseramonc/adminpanel'
   spec.license       = 'MIT'
 
