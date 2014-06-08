@@ -4,15 +4,15 @@ require 'generators/adminpanel/resource/resource_generator_helper'
 module Adminpanel
   class ResourceGenerator < ActiveRecord::Generators::Base
     include ResourceGeneratorHelper
-    source_root File.expand_path("../templates", __FILE__)
-    desc "Generate the resource files necessary to use a model"
+    source_root File.expand_path('../templates', __FILE__)
+    desc 'Generate the resource files necessary to use a model'
     class_option :'gallery',
       :type => :boolean,
       :aliases => '-g',
       :default => true,
       :desc => 'Creates the gallery for this resource'
 
-    argument :fields, :type => :array, :default => [], :banner => "field[:type][:index] field[:type][:index]"
+    argument :fields, :type => :array, :default => [], :banner => 'field[:type][:index] field[:type][:index]'
 
     def change_fields_aliases
       fields.each do |attribute|
@@ -26,12 +26,12 @@ module Adminpanel
     end
 
     def generate_model
-  		template 'resource.rb', "app/models/adminpanel/#{resource_name}.rb"
+  		template 'adminpanel_resource_template.rb', "app/models/adminpanel/#{resource_name}.rb"
     end
 
     def generate_controller
       if is_a_resource?
-        template 'controller.rb', "app/controllers/adminpanel/#{pluralized_name}_controller.rb"
+        template 'adminpanel_controller_template.rb', "app/controllers/adminpanel/#{pluralized_name}_controller.rb"
       end
     end
 
@@ -39,7 +39,6 @@ module Adminpanel
       parameters = fields
       parameters.delete_if{ |pair| pair.split(':').second == 'has_many' }
       invoke :migration, ["create_adminpanel_#{pluralized_name}", parameters]
-      puts parameters if ENV['RAILS_ENV']
     end
 
     def generate_gallery
