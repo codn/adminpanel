@@ -19,8 +19,7 @@ module Adminpanel
       ).get_access_token(params[:code])
       user = Koala::Facebook::API.new(access_token)
       @pages = user.get_connections('me', 'accounts')
-      user_object = user.get_object('me')
-      @name = user_object['name']
+      @name = user.get_object('me')['name']
       @pages << { 'name' => @name, 'access_token' => access_token } # to permit posts on own wall
       render 'shared/fb_choose_page'
     end
@@ -61,6 +60,7 @@ module Adminpanel
           value: params[model_name][:fb_page_access_key]
         )
       else
+        #only support 1 fb account
         auths.first.update_attribute(:value, params[model_name][:fb_page_access_key])
       end
     end
