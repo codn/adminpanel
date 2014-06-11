@@ -27,6 +27,10 @@ module Adminpanel
       ]
     end
 
+    def self.display_icon
+      'cubes'
+    end
+
     def self.display_name
       'Cuenta'
     end
