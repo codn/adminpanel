@@ -52,7 +52,7 @@ class ViewCase < ActionView::TestCase
   end
 
   def submit_modal(button)
-    click_button button #the modal is the button
+    click_button button #the modal submit is a button actually, not a link
     sleep 0.5
   end
 
