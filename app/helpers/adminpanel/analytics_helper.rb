@@ -24,7 +24,6 @@ module Adminpanel
     end
 
     def divide_metrics(metric_1, metric_2)
-      debugger
       if first_fb_value(metric_2) != 0.0
         return first_fb_value(metric_1) / first_fb_value(metric_2)
       else
