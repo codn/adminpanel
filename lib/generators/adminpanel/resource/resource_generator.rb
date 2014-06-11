@@ -57,7 +57,7 @@ module Adminpanel
     end
 
     def print_messages
-      puts "don't forget to restart your server"
+      puts "don't forget to restart your server and migrate db"
     end
   end
 end

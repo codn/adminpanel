@@ -1,0 +1,98 @@
+<% provide(:page_title, I18n.t('analytics.facebook')) -%>
+<%= form_tag fb_analytics_path, method: :get %>
+<%=
+  select_tag(
+    'insight',
+    options_for_select(
+      [
+        [I18n.t('analytics.now'), 'day'],
+        [I18n.t('analytics.week'), 'week'],
+        [I18n.t('analytics.month'), 'days_28']
+      ],
+      params[:insight]
+    )
+  )
+%>
+<%= button_tag(I18n.t('analytics.search'), type: 'submit', class: 'btn btn-info') %>
+<h3><%= I18n.t('analytics.for') %> <%= I18n.t("analytics.#{insight}") %></h3>
+<% date = Date.parse @new_likes.first['values'].first['end_time'] %>
+<h5><%= date - days_to_substract %> - <%= date %></h5>
+<div class="overview_boxes">
+  <div class="box_row clearfix">
+    <%=
+      render(
+        'widget_task_statistics',
+        inside: @new_likes,
+        outside: @total_likes,
+        placeholder: '+',
+        icon: 'thumbs-up',
+        color: '#98AEEA',
+        label: 'Likes'
+      )
+    %>
+
+    <%=
+      render(
+        'widget_task_statistics',
+        inside: @impressions_unique,
+        outside: @impressions,
+        placeholder: I18n.t('analytics.unique'),
+        icon: 'ticket',
+        color: '#6CD0F7',
+        label: I18n.t('analytics.impressions')
+      )
+    %>
+
+    <%=
+      render(
+        'widget_task_statistics',
+        inside: @views_unique,
+        outside: @views,
+        placeholder: 'únicas',
+        icon: 'eye',
+        color: '#6CD0F7',
+        label: 'Vistas'
+      )
+    %>
+
+    <%=
+      render(
+        'widget_task_statistics',
+        inside: @stories,
+        outside: @stories,
+        placeholder: '',
+        icon: 'bullhorn',
+        color: '#6CD0F7',
+        label: 'Hablando de ti'
+      )
+    %>
+
+    <%=
+      render(
+        'widget_task_statistics',
+        inside: @consumptions_unique,
+        outside: @consumptions,
+        placeholder: 'únicas',
+        icon: 'crosshairs',
+        color: '#6CD0F7',
+        label: 'Consumptions'
+      )
+    %>
+
+    <%=
+      render(
+        'widget_task_statistics',
+        inside: @hidden_unique,
+        outside: @hidden,
+        placeholder: '-',
+        icon: 'thumbs-down',
+        color: '#E28270',
+        label: 'Dislike o Hide'
+      )
+    %>
+
+
+  </div>
+</div>
+
+<%= yield :modals %>

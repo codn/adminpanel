@@ -1,6 +1,6 @@
 es:
   model:
-    Analytic: 'Google Analytics'
+    Analytic: 'Analytics'
     Gallery: 'Galería de Inicio'
     Categories: 'Categorías'
     attributes:
@@ -34,7 +34,7 @@ es:
         too_short: 'es muy corta, mínimo 6 caracteres'
   time:
     formats:
-      short: '%d de %B de %Y'
+      default: '%d/%m/%Y'
       estimate: '%Y-%m-%d'
   Add Image: 'Agregar Imagen'
   wysiwyg:
@@ -97,6 +97,42 @@ es:
     show: 'ver'
     signout: 'cerrar-sesion'
     signin: 'iniciar-sesion'
+  analytics:
+    day: 'Hoy'
+    days_28: 'el mes'
+    now: 'Ahora'
+    week: 'Semana'
+    month: 'Mes'
+    search: 'Buscar'
+    impressions: 'Impresiones'
+    unique: 'Únicas'
+    for: 'Estadísticas para '
+    facebook: 'Estadísticas de Facebook'
+    explanation: 'Explicación de las métricas'
+    description:
+      page_stories: '(Periodo) El número de historias creadas acerca de tu página (Cuenta total)'
+      page_consumptions: '(Periodo) El número de clicks en cualquiera de tus contenidos. Clicks generando historias están incluidos en otros clicks. Historias generadas sin clicks en la página (e.g., Darle like a la página en el `Timeline`) no son incluidos. (Cuenta total)'
+      page_consumptions_unique: '(Periodo) El número de clicks de usuarios diferentes en cualquiera de tus contenidos. Clicks generando historias están incluidos en otros clicks. Historias generadas sin clicks en la página (e.g., Darle like a la página en el `Timeline`) no son incluidos. (Usuarios únicos)'
+      page_views: '(Hoy) El total de vistas a la página (Cuenta total)'
+      page_views_unique: '(Hoy) El total de vistas a la página de usuarios loggeados en Facebook (Usuarios únicos)'
+      page_negative_feedback: '(Periodo) El número de veces que la gente te ha dado retroalimentación negativa (Unlike o Escoder página o post)(Cuenta total)'
+      page_negative_feedback_unique: '(Periodo) El número de personas que te ha dado retroalimentación negativa (Unlike o Escoder página o post)(Usuarios únicos)'
+      page_fans: '(Total) El número total de personas que ha dado like(me gusta) a la página (Usuarios únicos)'
+      page_fan_adds: '(Hoy) El número total de personas nuevas que le ha gustado tu página (Cuenta total)'
+      page_impressions_unique: '(Periodo) El número de personas que han visto cualquier contenido asociado con tu página (Usuarios únicos)'
+      page_impressions: '(Período) El número de impresiones vistas de cualquier contenido asociado con la página. (Cuenta Total)'
+    metrics:
+      page_stories: 'Hablando de esto'
+      page_consumptions: 'Clicks Totales'
+      page_consumptions_unique: 'Clicks de usuarios únicos'
+      page_views: 'Vistas a la página'
+      page_views_unique: 'Vistas de usuarios únicos a la página'
+      page_negative_feedback: 'Acciones negativas'
+      page_negative_feedback_unique: 'Acciones negativas de personas diferentes'
+      page_fans: 'Likes Totales'
+      page_fan_adds: 'Likes Nuevos'
+      page_impressions_unique: 'Impresiones de página de personas diferentes'
+      page_impressions: 'Impresiones de página'
   fb:
     posted: 'Publicado en el muro de %{user}'
     confirm_page: 'Seleccionar Cuenta'
