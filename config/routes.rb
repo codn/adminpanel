@@ -20,6 +20,7 @@ Adminpanel::Engine.routes.draw do
     when :analytics
       resources :analytics, resources_parameters(resource).merge({ only: [:index] }) do
         collection do
+          get :google, to: 'analytics#index', as: 'google', path: 'google'
           get :fb, to:'analytics#fb', as: 'fb', path:'facebook'
         end
       end

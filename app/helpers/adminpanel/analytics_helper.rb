@@ -8,7 +8,7 @@ module Adminpanel
       #   end
       # end
       # return total
-      metric.first['values'].first['value'].to_f
+      metric.first['values'].last['value'].to_f
     end
 
     def days_to_substract

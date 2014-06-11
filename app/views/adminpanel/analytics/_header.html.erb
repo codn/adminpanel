@@ -1,0 +1,10 @@
+<i class="fa fa-dashboard"></i>
+<h5>
+  <%= yield :page_title %>
+  <%= link_to google_analytics_path do %>
+    <i class="fa fa-google"></i>
+  <% end %>
+  <%= link_to fb_analytics_path do %>
+    <i class="fa fa-facebook"></i>
+  <% end %>
+</h5>

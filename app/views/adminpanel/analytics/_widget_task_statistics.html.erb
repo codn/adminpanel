@@ -1,7 +1,7 @@
 <div class="widget-tasks-statistics">
-  <div class="userstats clearfix" style="margin-top: 25px;">
+  <div class="userstats clearfix" style="margin-top: 25px; background-color: none;">
     <%= link_to '#', data: { toggle: 'modal', target: "##{metric(inside)}" } do %>
-      <div class="white">
+      <div class="white facebook-insights">
         <i style="color:<%= color %>" class="fa fa-<%= icon %>"></i>
         <p style="color:<%= color %>" >
           <%= "#{first_fb_value(inside).to_i} #{placeholder}" %>

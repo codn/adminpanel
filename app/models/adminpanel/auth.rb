@@ -27,7 +27,7 @@ module Adminpanel
       ]
     end
 
-    def self.display_icon
+    def self.icon
       'cubes'
     end
 
