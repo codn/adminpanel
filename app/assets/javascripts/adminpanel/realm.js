@@ -9,21 +9,23 @@ var ready = function(){
 
   // show the overview boxes on the dashboard once they are loaded
   $('.overview_boxes .box_row').css('display', 'inline-block');
+  $(".knob").knob();
+
 
   // init tooltips on .tips class elements, text for the tooltip is in the data-title attribute on the element itself
-  $('.tip').tooltip();
+  // $('.tip').tooltip();
 
   // init popover on .pop class elements
-  $('.pop').popover({
-    title:$(this).data('title'),
-    content:$(this).data('content'),
-    placement:'top'
-  });
+  // $('.pop').popover({
+  //   title:$(this).data('title'),
+  //   content:$(this).data('content'),
+  //   placement:'top'
+  // });
 
   // prevent the top menu popover links to make the window scroll up because of href="#"
-  $('.visible-desktop #messages, .visible-desktop #notifications').click(function(e){
-    e.preventDefault();
-  });
+  // $('.visible-desktop #messages, .visible-desktop #notifications').click(function(e){
+  //   e.preventDefault();
+  // });
 
 
   // funtion to slide menu out from the left
@@ -46,15 +48,15 @@ var ready = function(){
 
 
   // collapse function for the widget
-  $('.widget-buttons a.collapse').click(function(){
-    if($(this).attr('data-collapsed') == 'false'){
-      $(this).closest('.widget').find('.widget-body').slideUp();
-      $(this).attr('data-collapsed', 'true').addClass('widget-hidden');
-    }else{
-      $(this).closest('.widget').find('.widget-body').slideDown();
-      $(this).attr('data-collapsed', 'false').removeClass('widget-hidden');
-    }
-  });
+  // $('.widget-buttons a.collapse').click(function(){
+  //   if($(this).attr('data-collapsed') == 'false'){
+  //     $(this).closest('.widget').find('.widget-body').slideUp();
+  //     $(this).attr('data-collapsed', 'true').addClass('widget-hidden');
+  //   }else{
+  //     $(this).closest('.widget').find('.widget-body').slideDown();
+  //     $(this).attr('data-collapsed', 'false').removeClass('widget-hidden');
+  //   }
+  // });
 
   $('.datepicker-basic').datepicker();
 

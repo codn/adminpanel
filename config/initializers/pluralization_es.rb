@@ -15,5 +15,5 @@ ActiveSupport::Inflector.inflections(:es) do |inflect|
   inflect.irregular('el', 'los')
 
   inflect.irregular('Galería de Inicio', 'Galería de Inicio')
-  inflect.irregular('Google Analytics', 'Google Analytics')
+  inflect.irregular('Analytics', 'Analytics')
 end

@@ -9,7 +9,7 @@ module Adminpanel
     end
 
     def store_dir
-      "uploads/image/#{mounted_as}/#{model.id}"
+      "uploads/image/#{model.class.name.demodulize}/#{model.id}"
     end
 
     # Process files as they are uploaded:

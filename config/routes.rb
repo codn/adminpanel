@@ -18,10 +18,11 @@ Adminpanel::Engine.routes.draw do
         end
       end
     when :analytics
-      resources :analytics, resources_parameters(resource).merge(
-        { only: [:index] }.merge(rest_path_names)
-      )
-      get :save_fb_access, to:'analytics#save_fb_access', as: 'fb_callback'
+      resources :analytics, resources_parameters(resource).merge({ only: [:index] }) do
+        collection do
+          get :fb, to:'analytics#fb', as: 'fb', path:'facebook'
+        end
+      end
     else
       if !get_gallery_children(resource).nil?
         # make the resources gallery routes
