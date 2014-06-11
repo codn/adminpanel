@@ -107,7 +107,7 @@ es:
     impressions: 'Impresiones'
     unique: 'Únicas'
     for: 'Estadísticas para '
-    facebook: 'Estadísticas de Facebook'
+    facebook: 'Facebook Insights'
     explanation: 'Explicación de las métricas'
     description:
       page_stories: '(Periodo) El número de historias creadas acerca de tu página (Cuenta total)'
