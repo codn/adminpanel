@@ -4,7 +4,7 @@
   <%= link_to google_analytics_path do %>
     <i class="fa fa-google"></i>
   <% end %>
-  <%= link_to fb_analytics_path do %>
+  <%= link_to fb_analytics_path, data: { no_turbolink: true } do %>
     <i class="fa fa-facebook"></i>
   <% end %>
 </h5>

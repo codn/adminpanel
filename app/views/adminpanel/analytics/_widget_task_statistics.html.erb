@@ -3,7 +3,7 @@
     <%= link_to '#', data: { toggle: 'modal', target: "##{metric(inside)}" } do %>
       <div class="white facebook-insights">
         <i style="color:<%= color %>" class="fa fa-<%= icon %>"></i>
-        <p style="color:<%= color %>" >
+        <p class="insight-value" style="color:<%= color %>" >
           <%= "#{first_fb_value(inside).to_i} #{placeholder}" %>
         </p>
       </div>
