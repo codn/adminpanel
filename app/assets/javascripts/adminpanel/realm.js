@@ -1,4 +1,3 @@
-
 var ready = function(){
 
   // toggle arrow on menu items
