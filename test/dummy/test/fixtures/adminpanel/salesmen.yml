@@ -1,5 +1,6 @@
 one:
   name: 'John Doe'
+  product: first
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
 two:
