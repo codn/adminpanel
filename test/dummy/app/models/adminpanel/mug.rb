@@ -1,7 +1,6 @@
 module Adminpanel
   class Mug < ActiveRecord::Base
     include Adminpanel::Base
-    include Adminpanel::Facebook
     
     validates_presence_of :name
 

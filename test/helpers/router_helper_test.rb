@@ -16,6 +16,6 @@ class RouterHelperTest < ActionView::TestCase
 
   def test_has_fb_share?
     assert_equal false, has_fb_share?(:categories)
-    assert_equal true, has_fb_share?(:mug)
+    assert_equal true, has_fb_share?(:products)
   end
 end
