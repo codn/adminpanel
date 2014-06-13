@@ -34,7 +34,7 @@
                   <td><%= member.send(attribute).html_safe -%></td>
                 <% elsif properties['type'] == 'belongs_to' %>
                   <td>
-                    <%= parent_object_name(member, properties['model']) %>
+                    <%= belong_to_object_name(member, properties['model']) %>
                   </td>
                 <% elsif properties['type'] == 'boolean' %>
                   <td><%= member.send(attribute) ? I18n.t('action.is_true') : I18n.t('action.is_false') %></td>

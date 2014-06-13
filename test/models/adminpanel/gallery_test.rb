@@ -2,8 +2,6 @@ require 'test_helper'
 module Adminpanel
   class GalleryTest < ActiveSupport::TestCase
 
-    # set_fixture_class 'adminpanel/galleries' => Adminpanel::Gallery
-
     def test_moving_up_with_the_best_position
       gallery_1 = adminpanel_galleries(:one)
       gallery_1.move_to_better_position

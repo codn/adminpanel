@@ -28,7 +28,7 @@ module Adminpanel
     end
 
     def self.display_name
-      'Item' #singular
+      'Artículo espacios Mayusculas Y ácento' #singular
     end
 
     # def self.icon

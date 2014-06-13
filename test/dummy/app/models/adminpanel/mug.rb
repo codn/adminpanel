@@ -1,6 +1,8 @@
 module Adminpanel
   class Mug < ActiveRecord::Base
     include Adminpanel::Base
+    include Adminpanel::Facebook
+    
     validates_presence_of :name
 
     def self.form_attributes

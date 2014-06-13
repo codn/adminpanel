@@ -4,5 +4,9 @@ module Adminpanel
     # include Adminpanel::Galleryzation
     mount_uploader :file, PhotoUploader
 
+    def self.relation_method
+      'product_id'
+    end
+
   end
 end
