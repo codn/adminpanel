@@ -2,10 +2,10 @@ module Adminpanel
   class User < ActiveRecord::Base
     include Adminpanel::Base
     has_secure_password
-    belongs_to :group
+    belongs_to :rol
 
-  #group validation
-    validates_presence_of :group_id
+  #rol validation
+    validates_presence_of :rol_id
 
   #name validations
     validates_presence_of :name
@@ -65,12 +65,12 @@ module Adminpanel
           }
         },
         {
-          'group_id' => {
+          'rol_id' => {
             'type' => 'belongs_to',
-            'model' => 'Adminpanel::Group',
+            'model' => 'Adminpanel::Rol',
             'remote_resource' => false,
-            'placeholder' => I18n.t('model.attributes.group_id'),
-            'label' => I18n.t('model.attributes.group_id')
+            'placeholder' => I18n.t('model.attributes.rol_id'),
+            'label' => I18n.t('model.attributes.rol_id')
           }
         },
       ]

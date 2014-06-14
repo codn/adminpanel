@@ -12,7 +12,7 @@ es:
       description: 'Descripción'
       email: 'Correo electrónico'
       file: 'Imagen'
-      group_id: 'Rol de usuario'
+      rol_id: 'Rol de usuario'
       name: 'Nombre'
       password: 'Contraseña'
       password_confirmation: 'Confirmar contraseña'

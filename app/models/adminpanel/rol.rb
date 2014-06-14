@@ -1,5 +1,5 @@
 module Adminpanel
-  class Group < ActiveRecord::Base
+  class Rol < ActiveRecord::Base
     include Adminpanel::Base
 
   end

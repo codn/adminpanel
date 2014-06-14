@@ -4,9 +4,9 @@ class CreateAdminpanelTables < ActiveRecord::Migration
     # Create a default user
     if direction == :up
       if Rails.env.development?
-        group = Adminpanel::Group.new(:name => "Admin")
-        group.save
-        Adminpanel::User.new(:email => 'admin@admin.com', :name => "Admin", :password => 'password', :password_confirmation => 'password', :group_id => group.id).save
+        rol = Adminpanel::Group.new(:name => "Admin")
+        rol.save
+        Adminpanel::User.new(:email => 'admin@admin.com', :name => "Admin", :password => 'password', :password_confirmation => 'password', :rol_id => rol.id).save
         puts "The password for admin@admin.com is: password"
 
       end
@@ -17,7 +17,7 @@ class CreateAdminpanelTables < ActiveRecord::Migration
       create_table :adminpanel_users do |t|
         t.string :name
         t.string :email
-        t.string :group_id
+        t.string :rol_id
         t.string :password_digest
         t.string :remember_token
         t.timestamps
@@ -37,7 +37,7 @@ class CreateAdminpanelTables < ActiveRecord::Migration
         t.timestamps
       end
 
-      create_table :adminpanel_groups do |t|
+      create_table :adminpanel_rols do |t|
         t.string :name
         t.timestamps
       end

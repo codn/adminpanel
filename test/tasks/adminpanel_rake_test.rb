@@ -26,7 +26,7 @@ class AdminpanelRakeTest < ActiveSupport::TestCase
     generated_user = Adminpanel::User.last
     assert_equal 'webmaster@codn.com', generated_user.email
     assert_equal 'Webmaster', generated_user.name
-    assert_equal 'Admin', generated_user.group.name
+    assert_equal 'Admin', generated_user.rol.name
   end
 
 end

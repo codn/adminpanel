@@ -43,7 +43,7 @@ module Adminpanel
         email: "foo@bar.com",
         password: "foobar",
         password_confirmation: "foobar",
-        group_id: adminpanel_groups(:Admin).id
+        rol_id: adminpanel_rols(:Admin).id
       )
     end
 
