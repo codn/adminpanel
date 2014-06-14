@@ -3,6 +3,6 @@ valid:
   email: user@example.com
   password_digest: <%= BCrypt::Password.create('foobar') %>
   remember_token: <%= Digest::SHA1.hexdigest("adminSat Feb 25 17:14:00 GMT 20060.236961325863376") %>
-  rol_id: <%= ActiveRecord::FixtureSet.identify(:Admin) %>
+  rol: Admin
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>

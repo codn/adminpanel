@@ -7,7 +7,7 @@ class SharedPagesHelperTest < ActionView::TestCase
   def test_belong_to_object_name
     @model = Adminpanel::Salesman
     #according to fixtures and dummy app relationships
-    assert_equal 'Product saved', belong_to_object_name(adminpanel_salesmen(:one), 'Adminpanel::Product')
+    assert_equal 'Product saved', belong_to_object_name(adminpanel_salesmen(:one), 'product')
     @model = nil
   end
 

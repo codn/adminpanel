@@ -66,7 +66,7 @@ module Adminpanel
           when 'belongs_to'
             ':' + belongs_to_field(@attr_field)
           when 'has_many'
-            ':' + has_many_field(@attr_field)
+            has_many_field(@attr_field) + ': []'
           else
           ":#{attribute.split(':').first}"
         end

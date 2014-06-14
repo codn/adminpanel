@@ -24,13 +24,13 @@
             <% if properties["type"] != "adminpanel_file_field" %>
             <li class="priority-high">
               <div class="span3">
-                <h6><%= properties["label"] %></h6>
+                <h6><%= properties['label'] %></h6>
               </div>
               <div class="span8">
                 <% if properties['type'] == 'wysiwyg_field' %>
                   <%= resource.send(attribute).html_safe -%>
                 <% elsif properties['type'] == 'belongs_to' %>
-                  <%= belong_to_object_name(resource, properties['model']) %>
+                  <%= belong_to_object_name(resource, attribute.split('_id').first) %>
 
                 <% elsif properties['type'] == 'has_many' %>
                   <ul>
