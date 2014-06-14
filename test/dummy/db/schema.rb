@@ -16,7 +16,7 @@ ActiveRecord::Schema.define do
       t.string   :email
       t.string   :password_digest
       t.string   :remember_token
-      t.integer  :group_id
+      t.integer  :rol_id
       t.datetime :created_at,      :null => false
       t.datetime :updated_at,      :null => false
   end
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define do
       t.datetime :created_at,      :null => false
       t.datetime :updated_at,      :null => false
   end
-  create_table :adminpanel_groups do |t|
+  create_table :adminpanel_rols do |t|
       t.string   :name
       t.datetime :created_at,      :null => false
       t.datetime :updated_at,      :null => false

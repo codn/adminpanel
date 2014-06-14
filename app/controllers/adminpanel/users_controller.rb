@@ -10,7 +10,7 @@ module Adminpanel
         :name,
         :password,
         :password_confirmation,
-        :group_id
+        :rol_id
       )
     end
   end
