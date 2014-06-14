@@ -1,9 +1,9 @@
 module Adminpanel
   module SharedPagesHelper
-    def belong_to_object_name(resource, belong_to_model)
+    def belong_to_object_name(resource, belong_to_assoc_name)
       @model.reflect_on_all_associations.each do |association|
-        if association.klass.to_s == belong_to_model
-          if !resource.send(association.name).nil?
+        if association.name.to_s == belong_to_assoc_name.to_s
+          if !resource.send(association.name.to_s).nil? #if there's something in the association
             return resource.send(association.name).name
           else
             return "N/A #{association.klass.to_s}"

@@ -4,12 +4,14 @@ module Adminpanel
     def index
       index! do |format|
         format.html { render 'shared/index' }
+        format.json { render json: collection }
       end
     end
 
     def show
       show! do |format|
         format.html { render 'shared/show' }
+        format.json { render json: resource }
       end
     end
 
@@ -18,6 +20,7 @@ module Adminpanel
       new! do |format|
         format.html { render 'shared/new' }
         format.js { render 'shared/new', :locals => { :resource => resource }}
+        format.json { render json: resource }
       end
     end
 
@@ -43,6 +46,12 @@ module Adminpanel
           set_collections
           render 'shared/new', :locals => {:resource => resource }
         end
+        success.json do
+          render json: resource
+        end
+        failure.json do
+          render json: resource
+        end
       end
     end
 
@@ -52,6 +61,9 @@ module Adminpanel
         format.html do
           set_collections
           render 'shared/edit'
+        end
+        format.json do
+          render json: resource
         end
       end
     end
@@ -66,12 +78,19 @@ module Adminpanel
           set_collections
           render 'shared/edit'
         end
+        success.json do
+          render json: resource
+        end
+        failure.json do
+          render json: resource
+        end
       end
     end
 
     def destroy
       destroy! do |format|
         format.html { render 'shared/index' }
+        format.json json: resource
       end
     end
 

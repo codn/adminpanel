@@ -30,15 +30,15 @@
               <tr>
               <% @model.display_attributes('index').each do |fields| %>
               <% fields.each do |attribute, properties| %>
-                <% if properties["type"] == "wysiwyg_field" %>
+                <% if properties['type'] == "wysiwyg_field" %>
                   <td><%= member.send(attribute).html_safe -%></td>
                 <% elsif properties['type'] == 'belongs_to' %>
                   <td>
-                    <%= belong_to_object_name(member, properties['model']) %>
+                    <%= belong_to_object_name(member, attribute.split('_id').first) %>
                   </td>
                 <% elsif properties['type'] == 'boolean' %>
                   <td><%= member.send(attribute) ? I18n.t('action.is_true') : I18n.t('action.is_false') %></td>
-                <% elsif properties["type"] != "adminpanel_file_field" && properties["type"] != "has_many" %>
+                <% elsif properties['type'] != 'adminpanel_file_field' && properties['type'] != 'has_many' %>
                   <td><%= member.send(attribute) -%></td>
                 <% end %>
               <% end %>
