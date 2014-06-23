@@ -1,0 +1,26 @@
+<%
+if @model.twitter_share?
+  if @twitter_token.nil? || @twitter_secret.nil?
+    link = '/auth/twitter'
+    options = {}
+  else
+    link = '#'
+    options = { target: "#twitter-#{resource.id}", toggle: 'modal' }
+  end
+%>
+  <%=
+    link_to(
+      content_tag(
+        :i,
+        nil,
+        class: 'fa fa-twitter'
+      ),
+      link,
+      title: 'Compartir en Twitter',
+      id: 'resource-tweet',
+      data: options
+    )
+  %>
+  <!-- the modal that it's going to toggle if exist there's a twitter account -->
+  <%= render 'shared/twitter_publish_modal', resource: resource %>
+<% end %>

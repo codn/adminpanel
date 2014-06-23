@@ -7,6 +7,8 @@ require 'google/api_client'
 require 'cancan'
 require 'font-awesome-rails'
 require 'koala'
+require 'twitter'
+require 'omniauth-twitter'
 
 module Adminpanel
 end

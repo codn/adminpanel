@@ -104,6 +104,10 @@ module Adminpanel
         false
       end
 
+      def twitter_share?
+        false
+      end
+
     private
       def exlude?(route)
         if routes_options[:except].nil?

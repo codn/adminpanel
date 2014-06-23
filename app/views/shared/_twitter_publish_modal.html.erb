@@ -1,0 +1,40 @@
+<div id="twitter-<%= resource.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header" id="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="modal-title"><%= I18n.t('action.publish') %> en Twitter</h3>
+  </div>
+  <div id="modal-container">
+    <%=
+      adminpanel_form_for(
+        resource,
+        url: url_for({
+          controller: params[:controller],
+          action: :twitter_publish,
+          id: resource
+        }),
+        method: :post
+      ) do |f|
+    %>
+      <div class="row-fluid">
+        <div class="modal-body">
+          <%= f.text_area :twitter_message, 'id' => "twitter-message-#{resource.id}", 'label' => I18n.t('twitter.message'), value: resource.share_link, rows: 4, maxlength: 140 %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="modal-button" class="btn" data-dismiss="modal" aria-hidden="true">
+          <%= I18n.t('action.close') %>
+        </button>
+        <%=
+        f.submit(
+          I18n.t('action.publish') + " " + @model.display_name,
+          data: {
+            :disable_with => I18n.t('action.submitting')
+          },
+          :id =>"tweet-#{@model.name.demodulize}-button"
+        )
+        %>
+      </div>
+    <% end %>
+
+  </div>
+</div>

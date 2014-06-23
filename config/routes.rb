@@ -43,8 +43,11 @@ Adminpanel::Engine.routes.draw do
         member do
           if has_fb_share?(resource)
             get :fb_choose_page, as: 'fb_choose_page', path: 'publicar-a-pagina-en-fb'
-            post :fb_save_token, as: 'fb_save_token', path: 'guardar-token'
-            post 'fb_publish/:configuration_id', to: "#{resource}#fb_publish", as: 'fb_publish', path: 'publicar-a-facebook'
+            post :fb_save_token, as: 'fb_save_token', path: 'guardar-token-fb'
+            post :fb_publish, to: "#{resource}#fb_publish", as: 'fb_publish', path: 'publicar-a-facebook'
+          end
+          if has_twitter_share?(resource)
+            post :twitter_publish, to: "#{resource}#twitter_publish", as: 'twitter_publish', path: 'publicar-a-twitter'
           end
         end
       end
@@ -55,4 +58,10 @@ Adminpanel::Engine.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   delete '/signout', to: 'sessions#destroy', as: 'signout', path: I18n.t('routes.signout')
   get '/signin', to: 'sessions#new', as: 'signin', path: I18n.t('routes.signin')
+
+end
+
+Rails.application.routes.draw do
+  #route for oauth2 twitter callback
+  get 'auth/twitter/callback', to: 'adminpanel/sessions#twitter_callback'
 end
