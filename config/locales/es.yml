@@ -143,7 +143,7 @@ es:
     saved_token: 'Log in con Facebook exitoso, ya puedes publicar con la cuenta de Facebook'
   twitter:
     posted: 'Publicado en el twitter de %{user}'
-    # not-posted: 'Hubo un error, no fue publicado en ningún muro, por favor intenta otra vez.'
+    not-posted: 'Hubo un error, no fue publicado, Por favor verifica tus credenciales o vuelve a iniciar sesión en la aplicación'
     page_select: 'Selecciona una cuenta para la publicación'
     message: 'Mensaje de la publicación'
     saved_token: 'Log in con Twitter exitoso, ya puedes publicar con la cuenta de Twitter'
