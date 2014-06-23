@@ -16,17 +16,20 @@ gem 'faker', '>= 1.3.0'
 gem 'turbolinks', '>= 2.2.2'
 gem 'font-awesome-rails', '>= 4.0.3.1'
 gem 'koala', '>= 1.9.0', '<= 2.0.0'
+gem 'twitter', '~> 5.0'
+# gem 'omniauth'
+gem 'omniauth-twitter'
 
 group :assets do
-	gem 'coffee-script', require: true
-	gem 'sass-rails', '>= 4.0.3', require: true
+  gem 'coffee-script', require: true
+  gem 'sass-rails', '>= 4.0.3', require: true
 end
 
 group :development, :test do
-	gem 'minitest', '>= 5.3.4', '<= 6.0.0'
-	gem 'sqlite3', '>= 1.3.9', '<= 2.0.0', :platform => [:ruby, :mswin, :mingw]
-	gem 'minitest-emoji', '2.0.0'
-	gem 'minitest-capybara', '>= 0.6.1', '<= 1.0.0'
-	# gem 'mocha'
-	gem 'poltergeist', '>= 1.5.1', '<= 2.0.0'
+  gem 'minitest', '>= 5.3.4', '<= 6.0.0'
+  gem 'sqlite3', '>= 1.3.9', '<= 2.0.0', :platform => [:ruby, :mswin, :mingw]
+  gem 'minitest-emoji', '2.0.0'
+  gem 'minitest-capybara', '>= 0.6.1', '<= 1.0.0'
+  # gem 'mocha'
+  gem 'poltergeist', '>= 1.5.1', '<= 2.0.0'
 end

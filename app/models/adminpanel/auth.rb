@@ -20,11 +20,14 @@ module Adminpanel
         {
           'key' => {
             'type' => 'text_field',
-            'show' => 'show',
             'label' => 'Llave'
           }
         }
       ]
+    end
+
+    def self.routes_options
+      { except: [:edit, :update ], path: display_name.pluralize(I18n.default_locale).downcase }
     end
 
     def self.icon

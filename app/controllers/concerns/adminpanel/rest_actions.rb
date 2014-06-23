@@ -90,7 +90,7 @@ module Adminpanel
     def destroy
       destroy! do |format|
         format.html { render 'shared/index' }
-        format.json json: resource
+        format.json { render json: resource }
       end
     end
 

@@ -3,7 +3,7 @@ module Adminpanel
     extend ActiveSupport::Concern
 
     included do
-      before_filter :set_auths_count, only:[:index, :create, :update, :destroy, :show]
+      before_filter :set_fb_auths_count, only:[:index, :create, :update, :destroy, :show]
     end
 
     def fb_choose_page
@@ -28,7 +28,7 @@ module Adminpanel
       page_selected = Koala::Facebook::API.new(
         params[model_name][:fb_page_access_key]
       )
-      update_facebook_auth(page_selected.get_object('me')['name'])
+      update_fb_auth(page_selected.get_object('me')['name'])
       flash[:success] = I18n.t('fb.saved_token')
       redirect_to resource
     end
@@ -38,7 +38,7 @@ module Adminpanel
       page_graph.put_wall_post(
         params[model_name][:fb_message],
         {
-          link: resource.fb_link,
+          link: resource.share_link,
           name: resource.name
         }
       )
@@ -47,11 +47,11 @@ module Adminpanel
     end
 
   private
-    def set_auths_count
+    def set_fb_auths_count
       @fb_auths_count = Auth.where(key: 'facebook').count
     end
 
-    def update_facebook_auth(account_selected_name)
+    def update_fb_auth(account_selected_name)
       auths = Auth.where(key: 'facebook', name: account_selected_name)
       if auths.count == 0
         Auth.create(

@@ -12,7 +12,7 @@ module Adminpanel
     #     Adminpanel.fb_app_secret,
     #   )
     # end
-    def fb_link
+    def share_link
       'http://www.google.com'
     end
 

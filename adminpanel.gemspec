@@ -37,6 +37,10 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'font-awesome-rails', '>= 4.0.3.1', '<= 4.1.0'
   spec.add_runtime_dependency 'koala', '>= 1.9.0', '<= 2.0.0'
   spec.add_runtime_dependency 'coffee-script', '>= 2.2.0', '<= 3.0.0'
+  spec.add_runtime_dependency 'twitter', '~> 5.0'
+  # spec.add_runtime_dependency 'omniauth'
+  spec.add_runtime_dependency 'omniauth-twitter'
+
 
   spec.add_development_dependency 'sqlite3', '>= 1.3.9', '<= 2.0.0'
   spec.add_development_dependency 'minitest', '>= 5.3.4', '<= 6.0.0'
@@ -44,5 +48,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'minitest-capybara', '>= 0.6.1', '<= 1.0.0'
   # spec.add_development_dependency 'mocha'
   spec.add_development_dependency 'poltergeist', '>= 1.5.1', '<= 2.0.0'
-  # spec.add_development_dependency 'minitest-debugger'
 end

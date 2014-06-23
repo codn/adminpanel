@@ -8,6 +8,7 @@ module Adminpanel
     include Adminpanel::RestActions
     include Adminpanel::GalleryzableActions
     include Adminpanel::FacebookActions
+    include Adminpanel::TwitterActions
     include Adminpanel::SitemapActions
 
     layout 'admin'

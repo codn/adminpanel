@@ -12,6 +12,10 @@ module Adminpanel
       resource_class(resource).fb_share?
     end
 
+    def has_twitter_share?(resource)
+      resource_class(resource).twitter_share?
+    end
+
     def rest_path_names
       {
         path_names: {
