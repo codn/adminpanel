@@ -20,7 +20,6 @@ module Adminpanel
       new! do |format|
         format.html { render 'shared/new' }
         format.js { render 'shared/new', :locals => { :resource => resource }}
-        format.json { render json: resource }
       end
     end
 
@@ -46,12 +45,7 @@ module Adminpanel
           set_collections
           render 'shared/new', :locals => {:resource => resource }
         end
-        success.json do
-          render json: resource
-        end
-        failure.json do
-          render json: resource
-        end
+        respond_to_json(success, failure)
       end
     end
 
@@ -61,9 +55,6 @@ module Adminpanel
         format.html do
           set_collections
           render 'shared/edit'
-        end
-        format.json do
-          render json: resource
         end
       end
     end
@@ -78,19 +69,13 @@ module Adminpanel
           set_collections
           render 'shared/edit'
         end
-        success.json do
-          render json: resource
-        end
-        failure.json do
-          render json: resource
-        end
+        respond_to_json(success, failure)
       end
     end
 
     def destroy
       destroy! do |format|
         format.html { render 'shared/index' }
-        format.json { render json: resource }
       end
     end
 
@@ -128,5 +113,15 @@ module Adminpanel
       params.merge({:belongs_request => params[:belongs_request]}) if params[:belongs_request].present?
       params.merge({:currentcontroller => params[:currentcontroller]}) if params[:currentcontroller].present?
     end
+
+    def respond_to_json(success, failure)
+      success.json do
+        render json: resource
+      end
+      failure.json do
+        render json: resource
+      end
+    end
+
   end
 end
