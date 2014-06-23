@@ -33,22 +33,16 @@ module Adminpanel
 
     private
       def update_twitter_auth
-        token = Auth.find_by_key 'twitter-token'
-        secret = Auth.find_by_key 'twitter-secret'
-        if token.nil? || secret.nil?
-          token.delete if !token.nil?
-          secret.delete if !secret.nil?
-          Auth.create(
-            key: 'twitter-token',
-            name: "@#{request.env['omniauth.auth']['info']['nickname']}",
-            value: request.env['omniauth.auth']['credentials']['token']
-          )
-          Auth.create(
-            key: 'twitter-secret',
-            name: "@#{request.env['omniauth.auth']['info']['nickname']}",
-            value: request.env['omniauth.auth']['credentials']['secret']
-          )
-        end
+        Auth.create(
+          key: 'twitter-token',
+          name: "@#{request.env['omniauth.auth']['info']['nickname']}",
+          value: request.env['omniauth.auth']['credentials']['token']
+        )
+        Auth.create(
+          key: 'twitter-secret',
+          name: "@#{request.env['omniauth.auth']['info']['nickname']}",
+          value: request.env['omniauth.auth']['credentials']['secret']
+        )
       end
   end
 end
