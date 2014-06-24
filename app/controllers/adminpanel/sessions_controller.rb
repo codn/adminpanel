@@ -25,14 +25,14 @@ module Adminpanel
     end
 
     def twitter_callback
-      update_twitter_auth
+      save_twitter_tokens
       flash[:success] = I18n.t('twitter.saved_token')
       redirect_to root_path
     end
 
 
     private
-      def update_twitter_auth
+      def save_twitter_tokens
         Auth.create(
           key: 'twitter-token',
           name: "@#{request.env['omniauth.auth']['info']['nickname']}",

@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <title><%= full_title(yield(:page_title)) %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%= stylesheet_link_tag    "application-admin", :media => "all" %>
-    <%= javascript_include_tag "application-admin" %>
+    <%= javascript_include_tag "application-admin", "data-turbolinks-track" => true %>
+    <%= stylesheet_link_tag    "application-admin", media: "all", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
     <%= favicon_link_tag "adminpanel/favicon.ico" %>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">

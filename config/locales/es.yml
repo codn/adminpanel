@@ -36,6 +36,7 @@ es:
     formats:
       default: '%d/%m/%Y'
       estimate: '%Y-%m-%d'
+      time: '%H:%M'
   Add Image: 'Agregar Imagen'
   wysiwyg:
     description: 'Escriba la descripción aquí'
@@ -48,6 +49,7 @@ es:
     delete: 'Eliminar'
     delete confirmation: 'Estás seguro que desea eliminar?'
     publish: 'Publicar'
+    reply: 'Responder'
     share: 'Compartir %{model} en Facebook'
     show: 'Ver'
     submitting: 'Enviando...'
@@ -108,6 +110,8 @@ es:
     unique: 'Únicas'
     for: 'Estadísticas para '
     facebook: 'Facebook Insights'
+    twitter: 'Estadísticas de Twitter'
+    said: 'dijo'
     explanation: 'Explicación de las métricas'
     description:
       page_stories: '(Periodo) El número de historias creadas acerca de tu página (Cuenta total)'
