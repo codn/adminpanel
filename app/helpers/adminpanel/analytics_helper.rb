@@ -41,5 +41,9 @@ module Adminpanel
     def metric(metric)
       metric.first['name']
     end
+
+    def tweet_link(tweet)
+      "http://www.twitter.com/#{tweet.user.username}/status/#{tweet.id}"
+    end
   end
 end

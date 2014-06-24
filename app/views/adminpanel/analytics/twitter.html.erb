@@ -1,0 +1,65 @@
+<% provide(:page_title, I18n.t('analytics.twitter')) -%>
+
+<div class="row-fluid">
+  <div class="widget widget-padding span12">
+    <div class="widget-header">
+      <%= render 'header' %>
+    </div>
+    <div class="widget-body">
+
+      <div class="row-fluid">
+
+        <div class="widget span6">
+          <div class="widget-header">
+            <i class="fa fa-bullhorn"></i>
+            <h5>Replies (Menciones):</h5>
+          </div>
+          <div class="widget-body clearfix">
+            <div class="widget-tickets widget-tickets-large clearfix">
+              <ul>
+                <% @client.mentions_timeline.take(5).collect do |tweet| %>
+                  <%= render 'tweet', tweet: tweet %>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="widget span6">
+          <div class="widget-header">
+            <i class="fa fa-bullhorn"></i>
+            <h5>Información de @<%= @twitter_user.username %></h5>
+          </div>
+          <div class="widget-body clearfix">
+            <div class="widget-tickets widget-tickets-large clearfix">
+              <ul>
+                <li>
+                  <h5>Número de personas que siguen a @<%= @twitter_user.username %></h5>
+                  <i class="fa fa-sign-in"></i> <%= @twitter_user.followers_count %>
+                </li>
+                <li>
+                  <h5>Número de personas que @<%= @twitter_user.username %> sigue</h5>
+                  <i class="fa fa-sign-out"></i> <%= @twitter_user.friends_count %>
+                </li>
+                <li>
+                  <h5>Número de listas a las que @<%= @twitter_user.username %> pertenece</h5>
+                  <i class="fa fa-list"></i> <%= @twitter_user.friends_count %>
+                </li>
+                <li>
+                  <h5>Promedio de Favoritos de los últimos 20 tweets:</h5>
+                  <i class="fa fa-bar-chart-o"></i> <%= @favorites %>
+                </li>
+                <li>
+                  <h5>Promedio de Retweets de los últimos 20 tweets:</h5>
+                  <i class="fa fa-bar-chart-o"></i> <%= @retweets %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

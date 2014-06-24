@@ -22,6 +22,10 @@ Adminpanel::Engine.routes.draw do
         collection do
           get :google, to: 'analytics#index', as: 'google', path: 'google'
           get :fb, to:'analytics#fb', as: 'fb', path:'facebook'
+          get :twitter, to:'analytics#twitter', as: 'twitter', path:'twitter'
+          post 'reply_to_tweet/:id', to: 'analytics#reply_to_tweet', as: 'reply_to', path: 'twitter/responder/:id'
+          post 'favorite_tweet/:id', to: 'analytics#favorite_tweet', as: 'favorite', path: 'twitter/favorito/:id'
+          post 'retweet_tweet/:id', to: 'analytics#retweet_tweet', as: 'retweet', path: 'twitter/retweet/:id'
         end
       end
     else
