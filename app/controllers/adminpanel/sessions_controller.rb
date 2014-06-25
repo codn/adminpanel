@@ -33,16 +33,14 @@ module Adminpanel
 
     private
       def save_twitter_tokens
-        Auth.create(
-          key: 'twitter-token',
-          name: "@#{request.env['omniauth.auth']['info']['nickname']}",
-          value: request.env['omniauth.auth']['credentials']['token']
-        )
-        Auth.create(
-          key: 'twitter-secret',
-          name: "@#{request.env['omniauth.auth']['info']['nickname']}",
-          value: request.env['omniauth.auth']['credentials']['secret']
-        )
+        twitter_user = "@#{request.env['omniauth.auth']['info']['nickname']}"
+        ['token', 'secret'].each do |key|
+          Auth.create(
+            key: "twitter-#{key}",
+            name: twitter_user,
+            value: request.env['omniauth.auth']['credentials'][key]
+          )
+        end
       end
   end
 end
