@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
 
   spec.requirements  << 'rmagick, v 2.13.2'
 
-  spec.add_runtime_dependency 'rails', '>= 4.0.0', '<= 4.1.1'
+  spec.add_runtime_dependency 'rails', '>= 4.0.0', '<= 4.1.2'
   spec.add_runtime_dependency 'carrierwave', '>= 0.10.0', '<= 1.0.0'
   spec.add_runtime_dependency 'rmagick', '2.13.2'
   spec.add_runtime_dependency 'jquery-rails', '>= 3.1.0', '<= 4.0.0'
