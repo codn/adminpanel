@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in adminpanel.gemspec
 # gemspec
 
-gem 'rails', '>= 4.0.0', '<= 4.1.1'
+gem 'rails', '>= 4.0.0', '<= 4.1.2'
 gem 'carrierwave', '~> 0.10.0'
 gem 'rmagick', '2.13.2', require: false
 gem 'jquery-rails', '~> 3.1.0'
