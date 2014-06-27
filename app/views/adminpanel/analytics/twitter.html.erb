@@ -12,7 +12,7 @@
         <div class="widget span6">
           <div class="widget-header">
             <i class="fa fa-bullhorn"></i>
-            <h5>Replies (Menciones):</h5>
+            <h5>Replies (Menciones) a @ <%= @twitter_user.screen_name %>:</h5>
           </div>
           <div class="widget-body clearfix">
             <div class="widget-tickets widget-tickets-large clearfix">
@@ -28,21 +28,21 @@
         <div class="widget span6">
           <div class="widget-header">
             <i class="fa fa-bullhorn"></i>
-            <h5>Información de @<%= @twitter_user.username %></h5>
+            <h5>Información de @<%= @twitter_user.screen_name %></h5>
           </div>
           <div class="widget-body clearfix">
             <div class="widget-tickets widget-tickets-large clearfix">
               <ul>
                 <li>
-                  <h5>Número de personas que siguen a @<%= @twitter_user.username %></h5>
+                  <h5>Número de personas que siguen a @<%= @twitter_user.screen_name %></h5>
                   <i class="fa fa-sign-in"></i> <%= @twitter_user.followers_count %>
                 </li>
                 <li>
-                  <h5>Número de personas que @<%= @twitter_user.username %> sigue</h5>
+                  <h5>Número de personas que @<%= @twitter_user.screen_name %> sigue</h5>
                   <i class="fa fa-sign-out"></i> <%= @twitter_user.friends_count %>
                 </li>
                 <li>
-                  <h5>Número de listas a las que @<%= @twitter_user.username %> pertenece</h5>
+                  <h5>Número de listas a las que @<%= @twitter_user.screen_name %> pertenece</h5>
                   <i class="fa fa-list"></i> <%= @twitter_user.listed_count %>
                 </li>
                 <li>
