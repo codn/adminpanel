@@ -1,7 +1,7 @@
 module Adminpanel
   class AnalyticsController < Adminpanel::ApplicationController
-    include Adminpanel::TwitterAnalytics
-    include Adminpanel::InstagramAnalytics
+    include Adminpanel::Analytics::TwitterAnalytics
+    include Adminpanel::Analytics::InstagramAnalytics
 
     skip_authorization_check
     skip_before_filter :set_model
