@@ -6,8 +6,8 @@
       <%= render 'header' %>
         <div class="widget-buttons">
           <% if !exist_twitter_account? %>
-          <%= link_to '/auth/twitter', title: 'Iniciar Sesion en twitter' do %>
-              Iniciar sesión con Twitter <i class="fa fa-twitter"></i>
+          <%= button_to '/auth/twitter', method: :get, class: 'btn btn-success' do %>
+              Iniciar sesión <i class="fa fa-twitter"></i>
             <% end %>
           <% end %>
         </div>

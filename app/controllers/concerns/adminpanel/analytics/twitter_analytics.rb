@@ -1,18 +1,16 @@
 module Adminpanel
-  module TwitterAnalytics
+  module Analytics
+    module TwitterAnalytics
 
     extend ActiveSupport::Concern
 
     included do
-      # before_filter :set_twitter_tokens, only:[:twitter, :reply_to_tweet, :favorite_tweet, :retweet_tweet]
       before_filter :set_twitter_token, only:[:twitter, :reply_to_tweet, :favorite_tweet, :retweet_tweet]
     end
 
     def reply_to_tweet
-
       @twitter_client.update params[:tweet], in_reply_to_status_id: params[:id]
-
-      render 'twitter'
+      redirect_to twitter_analytics_path
     end
 
     def favorite_tweet
@@ -38,5 +36,6 @@ module Adminpanel
       end
     end
 
+    end
   end
 end
