@@ -1,6 +1,6 @@
 module Adminpanel
   module AnalyticsHelper
-  def first_fb_value(metric)
+  def first_fb_value metric
       total = 0.0
       # metric.first['values'].each do |value|
       #   if value['value'] != []
@@ -23,7 +23,7 @@ module Adminpanel
       end
     end
 
-    def divide_metrics(metric_1, metric_2)
+    def divide_metrics metric_1, metric_2
       if first_fb_value(metric_2) != 0.0
         return first_fb_value(metric_1) / first_fb_value(metric_2)
       else
@@ -43,7 +43,23 @@ module Adminpanel
     end
 
     def tweet_link(tweet)
-      "http://www.twitter.com/#{tweet.user.username}/status/#{tweet.id}"
+      "http://www.twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}"
+    end
+
+    def exist_instagram_account?
+      if @instagram_token.nil?
+        false
+      else
+        true
+      end
+    end
+
+    def exist_twitter_account?
+      if @twitter_token.nil? || @twitter_secret.nil?
+        false
+      else
+        true
+      end
     end
   end
 end

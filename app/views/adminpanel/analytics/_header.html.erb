@@ -1,13 +1,16 @@
 <i class="fa fa-dashboard"></i>
 <h5>
   <%= yield :page_title %>
-  <%= link_to google_analytics_path do %>
+  <%= link_to google_analytics_path, class: 'spinner-link' do %>
     <i class="fa fa-google"></i>
   <% end %>
-  <%= link_to fb_analytics_path do %>
+  <%= link_to fb_analytics_path, class: 'spinner-link' do %>
     <i class="fa fa-facebook"></i>
   <% end %>
-  <%= link_to twitter_analytics_path do %>
+  <%= link_to twitter_analytics_path, class: 'spinner-link' do %>
     <i class="fa fa-twitter"></i>
+  <% end %>
+  <%= link_to instagram_analytics_path, class: 'spinner-link' do %>
+    <i class="fa fa-instagram"></i>
   <% end %>
 </h5>

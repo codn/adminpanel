@@ -11,7 +11,9 @@ module Adminpanel
     :fb_app_id,
     :fb_app_secret,
     :twitter_api_key,
-    :twitter_api_secret
+    :twitter_api_secret,
+    :instagram_client_id,
+    :instagram_client_secret
 
   	self.analytics_profile_id = nil
   	self.analytics_key_path = 'config/analytics'
@@ -28,6 +30,8 @@ module Adminpanel
     self.fb_app_secret = nil
     self.twitter_api_key = nil
     self.twitter_api_secret = nil
+    self.instagram_client_id = nil
+    self.instagram_client_secret = nil
   end
 
   def self.setup(&block)

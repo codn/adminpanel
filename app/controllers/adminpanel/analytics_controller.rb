@@ -1,10 +1,9 @@
 module Adminpanel
   class AnalyticsController < Adminpanel::ApplicationController
-    include Adminpanel::TweetActions
-    before_filter :set_twitter_token, only:[:twitter, :reply_to_tweet, :favorite_tweet, :retweet_tweet]
+    include Adminpanel::TwitterAnalytics
+    include Adminpanel::InstagramAnalytics
 
     skip_authorization_check
-    authorize_resource :class => false
     skip_before_filter :set_model
 
     API_VERSION = 'v3'
@@ -123,28 +122,32 @@ module Adminpanel
       end
     end
 
+    # uses @client to fetch replies and tweets, for some statics
+
     def twitter
-      @favorites = 0.0
-      @retweets = 0.0
-      @twitter_user = @client.user
+      if !@twitter_token.nil? && !@twitter_secret.nil?
+        @favorites = 0.0
+        @retweets = 0.0
+        @twitter_user = @twitter_client.user
 
-      @client.user_timeline(@twitter_user.username).take(20).collect do |tweet|
-        @favorites = @favorites + tweet.favorite_count.to_f
-        @retweets = @retweets + tweet.retweet_count.to_f
-      end
-      @favorites = @favorites / 20.0
-      @retweets = @retweets / 20.0
+        # 20 is the number that we're using to measure statics.
+        @twitter_client.user_timeline(@twitter_user.username).take(20).collect do |tweet|
+          @favorites = @favorites + tweet.favorite_count.to_f
+          @retweets = @retweets + tweet.retweet_count.to_f
+        end
 
-    end
+        @tweets = @twitter_client.mentions_timeline.take(5)
 
-    private
-    def set_twitter_token
-      @client ||= ::Twitter::REST::Client.new do |config|
-        config.consumer_key        = Adminpanel.twitter_api_key
-        config.consumer_secret     = Adminpanel.twitter_api_secret
-        config.access_token        = Auth.find_by_key('twitter-token').value
-        config.access_token_secret = Auth.find_by_key('twitter-secret').value
+        @favorites = @favorites / 20.0
+        @retweets = @retweets / 20.0
       end
     end
+
+    def instagram
+      if !@instagram_token.nil?
+        @user = @instagram_client.user
+      end
+    end
+
   end
 end

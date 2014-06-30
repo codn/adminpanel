@@ -16,7 +16,7 @@
       <i class="fa fa-reply"></i>
     <% end %>
 
-    <%= link_to favorite_analytics_path(tweet.id), method: :post, remote: true, class:'green' do %>
+    <%= link_to favorite_analytics_path(tweet.id), method: :post, remote: true do %>
       <i class="fa fa-star"></i> <%= tweet.favorite_count %>
     <% end %>
 

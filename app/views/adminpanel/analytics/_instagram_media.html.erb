@@ -1,0 +1,25 @@
+<li class="priority-high">
+  <%= image_tag media_item.images.thumbnail.url, class: 'avatar thumbnail' %>
+  <i class="fa fa-quote-left"></i>
+    <%= media_item.caption[:text] if !media_item.caption.nil? %>
+  <i class="fa fa-quote-right"></i>
+
+  <div class="date">
+    El <%= I18n.l(Time.at(media_item.created_time.to_i)) %>, a las
+    <%= I18n.l(Time.at(media_item.created_time.to_i), format: :time) %>
+  </div>
+  <div class="settings">
+    <%= link_to '#', data: { target: "#details-#{media_item.id}", toggle: 'modal' } do %>
+      <i class="fa fa-heart"></i> <%= media_item.likes[:count] %>
+    <% end %>
+
+    <%= link_to '#', data: { target: "#details-#{media_item.id}", toggle: 'modal' } do %>
+      <i class="fa fa-comment"></i> <%= media_item.comments[:count] %>
+    <% end %>
+
+    <%= link_to media_item.link, target: '_blank' do %>
+      <i class="fa fa-external-link"></i>
+    <% end %>
+  </div>
+</li>
+<%= render 'instagram_details_modal', media_item: media_item %>

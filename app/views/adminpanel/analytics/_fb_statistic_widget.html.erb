@@ -1,0 +1,63 @@
+<div class="widget-tasks-statistics">
+  <div class="userstats clearfix" style="margin-top: 25px; background-color: none;">
+    <%= link_to '#', data: { toggle: 'modal', target: "##{metric(inside)}" } do %>
+      <div class="white facebook-insights">
+        <i style="color:<%= color %>" class="fa fa-<%= icon %>"></i>
+        <p class="insight-value" style="color:<%= color %>" >
+          <%= "#{first_fb_value(inside).to_i} #{placeholder}" %>
+        </p>
+      </div>
+      <div>
+        <input
+          class="knob"
+          data-width="120"
+          data-height="120"
+          data-displayInput=false
+          data-readOnly=true
+          data-thickness=".12"
+          value="<%= divide_metrics(inside, outside) * 100 %>"
+        >
+      </div>
+      <p>
+        <strong>
+          <%= first_fb_value(outside).to_i %>
+        </strong>
+        <%= label %>
+      </p>
+    <% end %>
+  </div>
+</div>
+
+<!-- modal -->
+<%= content_for :modals do %>
+<div id="<%= metric(inside) %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header" id="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="modal-title">
+      <%= I18n.t("analytics.metrics.#{metric(inside)}") %> /
+      <%= I18n.t("analytics.metrics.#{metric(outside)}") %>
+    </h3>
+  </div>
+  <div id="modal-container">
+    <div class="modal-body">
+      <ul>
+        <li>
+          <%= I18n.t("analytics.metrics.#{metric(inside)}") %>:
+          <%= I18n.t("analytics.description.#{metric(inside)}") %>
+        </li>
+        <br>
+        <li>
+          <%= I18n.t("analytics.metrics.#{metric(outside)}") %>:
+          <%= I18n.t("analytics.description.#{metric(outside)}") %>
+        </li>
+
+      </ul>
+    </div>
+    <div class="modal-footer">
+      <button id="modal-button" class="btn" data-dismiss="modal" aria-hidden="true">
+        <%= I18n.t('action.close') %>
+      </button>
+    </div>
+  </div>
+</div>
+<% end %>
