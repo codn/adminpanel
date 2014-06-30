@@ -35,11 +35,11 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'faker', '>= 1.3.0', '<= 2.0.0'
   spec.add_runtime_dependency 'sass-rails', '>= 4.0.3', '<= 4.1.0'
   spec.add_runtime_dependency 'font-awesome-rails', '>= 4.0.3.1', '<= 4.1.0'
-  spec.add_runtime_dependency 'koala', '>= 1.9.0', '<= 2.0.0'
   spec.add_runtime_dependency 'coffee-script', '>= 2.2.0', '<= 3.0.0'
+  spec.add_runtime_dependency 'koala', '>= 1.9.0', '<= 2.0.0'
   spec.add_runtime_dependency 'twitter', '~> 5.0'
-  # spec.add_runtime_dependency 'omniauth'
   spec.add_runtime_dependency 'omniauth-twitter'
+  spec.add_runtime_dependency 'instagram'
 
 
   spec.add_development_dependency 'sqlite3', '>= 1.3.9', '<= 2.0.0'

@@ -9,6 +9,7 @@ require 'font-awesome-rails'
 require 'koala'
 require 'twitter'
 require 'omniauth-twitter'
+require 'instagram'
 
 module Adminpanel
 end

@@ -1,0 +1,55 @@
+<div id="details-<%= media_item.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header" id="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="modal-title"><%= I18n.t('action.details') %> en Instagram</h3>
+  </div>
+  <div id="modal-container">
+      <div class="row-fluid">
+        <div class="modal-body clearfix">
+
+          <div class="widget-body clearfix">
+            <div class="widget-tickets widget-tickets-large clearfix">
+              <ul>
+                <li class="priority-high">
+                  <i class="fa fa-quote-left"></i>
+                    <%= media_item.caption[:text] if !media_item.caption.nil? %>
+                  <i class="fa fa-quote-right"></i>
+                </li>
+                <% @instagram_client.media_comments(media_item.id).each do |comment| %>
+                  <li class="priority-high">
+                    <%= image_tag comment.from[:profile_picture], class: 'avatar thumbnail' %>
+                    <h5>
+                      @<%= comment.from[:username] %>
+                    </h5>
+                    <i class="fa fa-quote-left"></i>
+                      <%= comment.text %>
+                    <i class="fa fa-quote-right"></i>
+
+                    <div class="date">
+                      El <%= I18n.l(Time.at(comment.created_time.to_i)) %>, a las
+                      <%= I18n.l(Time.at(comment.created_time.to_i), format: :time) %>
+                    </div>
+                  </li>
+                <% end %>
+                <li class="priority-high">
+                  <%= image_tag @user.profile_picture, class: 'avatar thumbnail' %>
+                  <%= form_tag comment_instagram_analytics_path(media_item.id), method: :post do |f| %>
+
+                    <%= text_area_tag 'instagram_text', nil, rows: 4, class: 'span7' %>
+
+                    <%= submit_tag 'Comentar', class: 'btn btn-box span3' %>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="modal-button" class="btn" data-dismiss="modal" aria-hidden="true">
+          <%= I18n.t('action.close') %>
+        </button>
+      </div>
+
+  </div>
+</div>

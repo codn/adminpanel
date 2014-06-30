@@ -4,11 +4,19 @@
   <div class="widget widget-padding span12">
     <div class="widget-header">
       <%= render 'header' %>
+        <div class="widget-buttons">
+          <% if !exist_twitter_account? %>
+          <%= link_to '/auth/twitter', title: 'Iniciar Sesion en twitter' do %>
+              Iniciar sesión con Twitter <i class="fa fa-twitter"></i>
+            <% end %>
+          <% end %>
+        </div>
     </div>
     <div class="widget-body">
 
       <div class="row-fluid">
 
+      <% if exist_twitter_account? %>
         <div class="widget span6">
           <div class="widget-header">
             <i class="fa fa-bullhorn"></i>
@@ -17,7 +25,7 @@
           <div class="widget-body clearfix">
             <div class="widget-tickets widget-tickets-large clearfix">
               <ul>
-                <% @client.mentions_timeline.take(5).collect do |tweet| %>
+                <% @tweets.collect do |tweet| %>
                   <%= render 'tweet', tweet: tweet %>
                 <% end %>
               </ul>
@@ -35,28 +43,44 @@
               <ul>
                 <li>
                   <h5>Número de personas que siguen a @<%= @twitter_user.screen_name %></h5>
-                  <i class="fa fa-sign-in"></i> <%= @twitter_user.followers_count %>
+                  <i class="fa fa-sign-in"></i>
+                  <h4>
+                    <%= @twitter_user.followers_count %>
+                  </h4>
                 </li>
                 <li>
                   <h5>Número de personas que @<%= @twitter_user.screen_name %> sigue</h5>
-                  <i class="fa fa-sign-out"></i> <%= @twitter_user.friends_count %>
+                  <i class="fa fa-sign-out"></i>
+                  <h4>
+                    <%= @twitter_user.friends_count %>
+                  </h4>
                 </li>
                 <li>
                   <h5>Número de listas a las que @<%= @twitter_user.screen_name %> pertenece</h5>
-                  <i class="fa fa-list"></i> <%= @twitter_user.listed_count %>
+                  <i class="fa fa-list"></i>
+                  <h4>
+                    <%= @twitter_user.listed_count %>
+                  </h4>
                 </li>
                 <li>
                   <h5>Promedio de Favoritos de los últimos 20 tweets:</h5>
-                  <i class="fa fa-bar-chart-o"></i> <%= @favorites %>
-                </li>
+                  <i class="fa fa-bar-chart-o"></i>
+                  <h4>
+                    <%= @favorites %>
+                  </h4>
+                  </li>
                 <li>
                   <h5>Promedio de Retweets de los últimos 20 tweets:</h5>
-                  <i class="fa fa-bar-chart-o"></i> <%= @retweets %>
+                  <i class="fa fa-bar-chart-o"></i>
+                  <h4>
+                    <%= @retweets %>
+                  </h4>
                 </li>
               </ul>
             </div>
           </div>
         </div>
+      <% end %><!-- close exist twitter account -->
 
       </div>
 

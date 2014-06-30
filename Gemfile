@@ -15,10 +15,13 @@ gem 'cancancan', '>= 1.7.1', '<= 1.8'
 gem 'faker', '>= 1.3.0'
 gem 'turbolinks', '>= 2.2.2'
 gem 'font-awesome-rails', '>= 4.0.3.1'
+# Facebook api
 gem 'koala', '>= 1.9.0', '<= 2.0.0'
+# Twitter api
 gem 'twitter', '~> 5.0'
-# gem 'omniauth'
-gem 'omniauth-twitter'
+gem 'omniauth-twitter', '>= 0.1.0', '<= 0.2.0'
+#Instagram api
+gem 'instagram', '>= 1.1.1', '<= 1.2.0'
 
 group :assets do
   gem 'coffee-script', require: true
