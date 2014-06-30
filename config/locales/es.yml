@@ -47,6 +47,7 @@ es:
     create: 'Crear'
     close: 'Cerrar'
     delete: 'Eliminar'
+    details: 'Detalles de la foto'
     delete confirmation: 'Estás seguro que desea eliminar?'
     publish: 'Publicar'
     reply: 'Responder'
