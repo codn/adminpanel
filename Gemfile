@@ -19,7 +19,7 @@ gem 'font-awesome-rails', '>= 4.0.3.1'
 gem 'koala', '>= 1.9.0', '<= 2.0.0'
 # Twitter api
 gem 'twitter', '~> 5.0'
-gem 'omniauth-twitter', '>= 0.1.0', '<= 0.2.0'
+gem 'omniauth-twitter', '>= 1.0.1', '<= 2.0.0'
 #Instagram api
 gem 'instagram', '>= 1.1.1', '<= 1.2.0'
 
