@@ -123,7 +123,6 @@ module Adminpanel
     end
 
     # uses @client to fetch replies and tweets, for some statics
-
     def twitter
       if !@twitter_token.nil? && !@twitter_secret.nil?
         @favorites = 0.0
