@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
 
   spec.requirements  << 'rmagick, -v 2.13.2'
 
-  spec.add_runtime_dependency 'rails'
+  spec.add_runtime_dependency 'rails', '>= 4.0.0', '<= 4.1.4'
   spec.add_runtime_dependency 'carrierwave', '~> 0.10.0'
   spec.add_runtime_dependency 'rmagick', '2.13.2'
   spec.add_runtime_dependency 'jquery-rails'
@@ -37,7 +37,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'font-awesome-rails', '~> 4.1.0'
   spec.add_runtime_dependency 'coffee-script'
   spec.add_runtime_dependency 'koala', '1.9.0'
-  spec.add_runtime_dependency 'twitter', '5.0'
+  spec.add_runtime_dependency 'twitter', '5.11.0'
   spec.add_runtime_dependency 'omniauth-twitter', '1.0.1'
   spec.add_runtime_dependency 'instagram', '1.1.1'
 
