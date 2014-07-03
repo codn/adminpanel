@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Adminpanel::VERSION
   spec.authors       = ['Jose Ramon Camacho', 'Victor Camacho']
   spec.email         = ['info@codn.mx']
-  spec.description   = %q{Gem that makes the CMS for a site a breeze!, supports facebook sharing and analytics integration}
+  spec.description   = %q{Gem that makes the CMS for a site a breeze!, supports facebook sharing, twitter, instagram and analytics integration}
   spec.summary       = %q{Made with <3 by CoDN}
   spec.homepage      = 'https://github.com/joseramonc/adminpanel'
   spec.license       = 'MIT'
@@ -20,26 +20,26 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.0.0'
 
-  spec.requirements  << 'rmagick, v 2.13.2'
+  spec.requirements  << 'rmagick, -v 2.13.2'
 
-  spec.add_runtime_dependency 'rails', '>= 4.0.0', '<= 4.1.2'
-  spec.add_runtime_dependency 'carrierwave', '>= 0.10.0', '<= 1.0.0'
+  spec.add_runtime_dependency 'rails'
+  spec.add_runtime_dependency 'carrierwave', '~> 0.10.0'
   spec.add_runtime_dependency 'rmagick', '2.13.2'
-  spec.add_runtime_dependency 'jquery-rails', '>= 3.1.0', '<= 4.0.0'
-  spec.add_runtime_dependency 'turbolinks', '>= 2.2.2', '<= 3.0.0'
-  spec.add_runtime_dependency 'bcrypt', '>= 3.1.7', '<= 4.0.0'
-  spec.add_runtime_dependency 'rails-i18n', '>= 4.0.2', '<= 4.1.0'
-  spec.add_runtime_dependency 'inherited_resources', '>= 1.4.1', '<= 2.0.0'
-  spec.add_runtime_dependency 'cancancan', '>= 1.7', '<= 2.0.0'
-  spec.add_runtime_dependency 'google-api-client', '>= 0.7.1', '<= 1.0.0'
-  spec.add_runtime_dependency 'faker', '>= 1.3.0', '<= 2.0.0'
-  spec.add_runtime_dependency 'sass-rails', '>= 4.0.3', '<= 4.1.0'
-  spec.add_runtime_dependency 'font-awesome-rails', '>= 4.0.3.1', '<= 4.1.0'
-  spec.add_runtime_dependency 'coffee-script', '>= 2.2.0', '<= 3.0.0'
-  spec.add_runtime_dependency 'koala', '>= 1.9.0', '<= 2.0.0'
-  spec.add_runtime_dependency 'twitter', '~> 5.0'
-  spec.add_runtime_dependency 'omniauth-twitter', '>= 1.0.1', '<= 2.0.0'
-  spec.add_runtime_dependency 'instagram', '>= 1.1.1', '<= 1.2.0'
+  spec.add_runtime_dependency 'jquery-rails'
+  spec.add_runtime_dependency 'turbolinks', '~> 2.2.2'
+  spec.add_runtime_dependency 'bcrypt'
+  spec.add_runtime_dependency 'rails-i18n'
+  spec.add_runtime_dependency 'inherited_resources'
+  spec.add_runtime_dependency 'cancancan'
+  spec.add_runtime_dependency 'google-api-client', '0.7.1'
+  spec.add_runtime_dependency 'faker', '~> 1.3.0'
+  spec.add_runtime_dependency 'sass-rails'
+  spec.add_runtime_dependency 'font-awesome-rails', '~> 4.1.0'
+  spec.add_runtime_dependency 'coffee-script'
+  spec.add_runtime_dependency 'koala', '1.9.0'
+  spec.add_runtime_dependency 'twitter', '5.0'
+  spec.add_runtime_dependency 'omniauth-twitter', '1.0.1'
+  spec.add_runtime_dependency 'instagram', '1.1.1'
 
 
   spec.add_development_dependency 'sqlite3', '>= 1.3.9', '<= 2.0.0'
