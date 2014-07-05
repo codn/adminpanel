@@ -1,6 +1,5 @@
 module Adminpanel
   class CategoriesController < ApplicationController
-    authorize_resource
 
     def index
       @categories = Category.all

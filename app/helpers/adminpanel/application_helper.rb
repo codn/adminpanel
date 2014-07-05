@@ -44,8 +44,8 @@ module Adminpanel
       model_name.pluralize.downcase
     end
 
-    def symbol_class(symbol)
-      "adminpanel/#{symbol.to_s}".classify.constantize
+    def symbol_class(symbol_model)
+      "adminpanel/#{symbol_model.to_s.singularize}".classify.constantize
     end
 
     def main_root_path

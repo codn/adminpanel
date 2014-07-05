@@ -34,6 +34,8 @@ module Adminpanel
     end
 
     def fb_publish
+      authorize! :publish, resource
+
       page_graph = Koala::Facebook::API.new(Auth.find_by_key('facebook').value)
       page_graph.put_wall_post(
         params[model_name][:fb_message],

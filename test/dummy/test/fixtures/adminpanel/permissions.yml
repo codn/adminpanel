@@ -1,28 +1,42 @@
-Admin:
-  name: Admin
+publish:
+  rol: Publisher
+  action: 1
+  resource: product
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
-Publisher:
-  name: Publisher
+create:
+  rol: Creator
+  action: 2
+  resource: product
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
-Creator:
-  name: Creator
+update:
+  rol: Updater
+  action: 3
+  resource: product
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
-Updater:
-  name: Updater
+read:
+  rol: Reader
+  action: 0
+  resource: product
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
-Reader:
-  name: Reader
+deleter:
+  rol: Deleter
+  action: 4
+  resource: product
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
-Deleter:
-  name: Deleter
+create_product:
+  rol: Superuser
+  action: 2
+  resource: product
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
-Superuser:
-  name: Superuser
+update_product:
+  rol: Superuser
+  action: 3
+  resource: product
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>

@@ -4,14 +4,12 @@ module Adminpanel
     def index
       index! do |format|
         format.html { render 'shared/index' }
-        format.json { render json: collection }
       end
     end
 
     def show
       show! do |format|
         format.html { render 'shared/show' }
-        format.json { render json: resource }
       end
     end
 

@@ -14,7 +14,7 @@
   <div class="accordion">
     <% Adminpanel.displayable_resources.each do |resource| %>
       <% resource_class = symbol_class(resource) %>
-      <% if can? :read, resource_class %>
+      <% if can?(:read, resource_class) || can?( :publish, resource_class) %>
         <div class="accordion-group">
           <div class="accordion-heading">
             <%=

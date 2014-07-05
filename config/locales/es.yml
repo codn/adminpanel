@@ -153,3 +153,10 @@ es:
     page_select: 'Selecciona una cuenta para la publicación'
     message: 'Mensaje de la publicación'
     saved_token: 'Log in con Twitter exitoso, ya puedes publicar con la cuenta de Twitter'
+  enum:
+    to_read: 'Ver'
+    to_publish: 'Publicar en Redes Sociales'
+    to_create: 'Crear'
+    to_update: 'Actualizar'
+    to_destroy: 'Borrar'
+    to_manage: 'Ver, crear, actualizar y borrar'

@@ -10,6 +10,7 @@ class ActionExclutionTest < ViewCase
     assert_no_selector 'i.fa.fa-pencil'
     assert_no_selector 'i.fa.fa-search-plus'
     assert_no_selector 'i.fa.fa-facebook'
+    assert_no_selector 'i.fa.fa-twitter'
   end
 
   protected

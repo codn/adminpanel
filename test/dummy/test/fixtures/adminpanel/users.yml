@@ -6,3 +6,51 @@ valid:
   rol: Admin
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
+publisher:
+  name: Publisher User
+  email: publisher@example.com
+  password_digest: <%= BCrypt::Password.create('foobar') %>
+  remember_token: <%= Digest::SHA1.hexdigest("adminSat Feb 25 17:14:00 GMT 20060.236961325863376") %>
+  rol: Publisher
+  created_at: <%= Date.today %>
+  updated_at: <%= Date.today %>
+creator:
+  name: Creator User
+  email: creator@example.com
+  password_digest: <%= BCrypt::Password.create('foobar') %>
+  remember_token: <%= Digest::SHA1.hexdigest("adminSat Feb 25 17:14:00 GMT 20060.236961325863376") %>
+  rol: Creator
+  created_at: <%= Date.today %>
+  updated_at: <%= Date.today %>
+updater:
+  name: Updator User
+  email: updator@example.com
+  password_digest: <%= BCrypt::Password.create('foobar') %>
+  remember_token: <%= Digest::SHA1.hexdigest("adminSat Feb 25 17:14:00 GMT 20060.236961325863376") %>
+  rol: Updater
+  created_at: <%= Date.today %>
+  updated_at: <%= Date.today %>
+deleter:
+  name: Deleter User
+  email: deleter@example.com
+  password_digest: <%= BCrypt::Password.create('foobar') %>
+  remember_token: <%= Digest::SHA1.hexdigest("adminSat Feb 25 17:14:00 GMT 20060.236961325863376") %>
+  rol: Deleter
+  created_at: <%= Date.today %>
+  updated_at: <%= Date.today %>
+reader:
+  name: Reader User
+  email: reader@example.com
+  password_digest: <%= BCrypt::Password.create('foobar') %>
+  remember_token: <%= Digest::SHA1.hexdigest("adminSat Feb 25 17:14:00 GMT 20060.236961325863376") %>
+  rol: Reader
+  created_at: <%= Date.today %>
+  updated_at: <%= Date.today %>
+superuser:
+  name: Super User
+  email: superuser@example.com
+  password_digest: <%= BCrypt::Password.create('foobar') %>
+  remember_token: <%= Digest::SHA1.hexdigest("adminSat Feb 25 17:14:00 GMT 20060.236961325863376") %>
+  rol: Superuser
+  created_at: <%= Date.today %>
+  updated_at: <%= Date.today %>

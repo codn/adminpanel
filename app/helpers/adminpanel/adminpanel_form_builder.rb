@@ -1,6 +1,6 @@
 module Adminpanel
   class AdminpanelFormBuilder < ActionView::Helpers::FormBuilder
-
+    include ApplicationHelper
     alias_method :text_field_original, :text_field
     alias_method :radio_button_original, :radio_button
     alias_method :text_area_original, :text_area
@@ -10,11 +10,11 @@ module Adminpanel
     alias_method :file_field_original, :file_field
     # alias_method :select_original, :select
 
-    def text_field(name, *args)
-      base_layout( name, *args, 'text_field_original' )
+    def text_field name, *args
+      base_layout name, *args, 'text_field_original'
     end
 
-    def file_field(name, *args)
+    def file_field name, *args
       image_input = base_layout(name, *args, 'file_field_original')
 
       if !object.nil? && !object.new_record? #if not new record
@@ -24,20 +24,20 @@ module Adminpanel
       end
     end
 
-    def gallery_field(name, *args)
-      base_layout(name, *args, 'gallery_base')
+    def gallery_field name, *args
+      base_layout name, *args, 'gallery_base'
     end
 
-    def wysiwyg_field(name, *args)
+    def wysiwyg_field name, *args
 
       options = args.extract_options!
       options.reverse_merge! class: 'wysihtml5 span7'
 
-      base_layout( name, options, 'text_area_original' )
+      base_layout name, options, 'text_area_original'
     end
 
-    def text_area(name, *args)
-      base_layout( name, *args, 'text_area_original' )
+    def text_area name, *args
+      base_layout name, *args, 'text_area_original'
     end
 
     # def radio_button_group(name, buttons, options)
@@ -55,7 +55,7 @@ module Adminpanel
     # 	end
     # end
 
-    def checkbox(checkbox_object, form_object_name, relationship)
+    def checkbox checkbox_object, form_object_name, relationship
       @template.content_tag(
         :label,
         @template.check_box_tag(
@@ -67,8 +67,16 @@ module Adminpanel
       )
     end
 
-    def boolean(name, *args)
-      base_layout(name, *args, 'boolean_base')
+    def boolean name, *args
+      base_layout name, *args, 'boolean_base'
+    end
+
+    def enum_field name, *args
+      select name, self.object.class.actions.map{|action, value| [I18n.t("enum.#{action}"), action]}, *args
+    end
+
+    def resource_select name, *args
+      select name, Adminpanel.displayable_resources.map{|resource| [symbol_class(resource).display_name, resource.to_s]}, *args
     end
 
     def select(name, select_options, *args)
@@ -102,7 +110,6 @@ module Adminpanel
       options.reverse_merge! :class => "btn btn-primary"
       super(name, *args << options)
     end
-
 
     def datepicker(name, *args)
       base_layout( name, *args, 'datepickerize_base' )

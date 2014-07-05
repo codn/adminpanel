@@ -3,13 +3,14 @@ module Adminpanel
     include Adminpanel::Analytics::TwitterAnalytics
     include Adminpanel::Analytics::InstagramAnalytics
 
-    skip_authorization_check
     skip_before_filter :set_model
 
     API_VERSION = 'v3'
     CACHED_API_FILE = "#{Rails.root}/tmp/cache/analytics-#{API_VERSION}.cache"
 
     def index
+      authorize! :read, Adminpanel::Analytic
+
       unless Adminpanel.analytics_profile_id.nil? || Adminpanel.analytics_key_filename.nil?
         service_account_email = '266789642405-0nppij5ll43bbvhpsn986puulssdoc45@developer.gserviceaccount.com' # Email of service account
         key_file = "#{Rails.root}/#{Adminpanel.analytics_key_path}/#{Adminpanel.analytics_key_filename}" # File containing your private key
@@ -77,6 +78,7 @@ module Adminpanel
     end
 
     def fb
+      authorize! :read, Adminpanel::Analytic
       auth = Adminpanel::Auth.find_by_key('facebook')
       if params[:insight].present?
         period = params[:insight]
@@ -124,6 +126,7 @@ module Adminpanel
 
     # uses @client to fetch replies and tweets, for some statics
     def twitter
+      authorize! :read, Adminpanel::Analytic
       if !@twitter_token.nil? && !@twitter_secret.nil?
         @favorites = 0.0
         @retweets = 0.0
@@ -143,6 +146,7 @@ module Adminpanel
     end
 
     def instagram
+      authorize! :read, Adminpanel::Analytic
       if !@instagram_token.nil?
         @user = @instagram_client.user
       end
