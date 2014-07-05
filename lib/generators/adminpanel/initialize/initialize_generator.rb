@@ -24,21 +24,10 @@ module Adminpanel
       :aliases => '-p',
       :default => false,
       :desc => 'Skip setup if true'
-    class_option :'skip-setup',
-      :type => :boolean,
-      :aliases => '-y',
-      :default => false,
-      :desc => 'Skip cancan\'s ability.rb'
 
     def create_initializer
       if !options[:'skip-setup']
         copy_file 'adminpanel_setup.rb', 'config/initializers/adminpanel_setup.rb'
-      end
-    end
-
-    def create_ability
-      if !options[:'skip-ability']
-        copy_file 'ability.rb', 'app/models/ability.rb'
       end
     end
 

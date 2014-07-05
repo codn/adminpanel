@@ -1,4 +1,4 @@
-<% if @model.has_route?(:edit) %>
+<% if @model.has_route?(:edit) && can?(:update, @model) %>
   <%=
     link_to(
       content_tag(

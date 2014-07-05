@@ -29,6 +29,8 @@ Adminpanel.setup do |config|
   config.displayable_resources = [
     :analytics,
     :users,
+    :rols,
+    :permissions,
     :galleries,
     :sections
   ]

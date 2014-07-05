@@ -1,6 +1,5 @@
 module Adminpanel
   class GalleriesController < Adminpanel::ApplicationController
-    authorize_resource
 
     def index
       @galleries = Gallery.all

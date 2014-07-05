@@ -2,6 +2,7 @@ module Adminpanel
   class Product < ActiveRecord::Base
     include Adminpanel::Base
     include Adminpanel::Facebook
+    include Adminpanel::Twitter
 
     has_many :categorizations
     has_many :categories, :through => :categorizations

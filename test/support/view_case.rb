@@ -15,6 +15,12 @@ class ViewCase < ActionView::TestCase
     click_button I18n.t('authentication.new-session')
   end
 
+  def login_user_with_rol(rol)
+    fill_in 'inputEmail', with: adminpanel_users(rol).email
+    fill_in 'inputPassword', with: 'foobar' #pass is foobar
+    click_button I18n.t('authentication.new-session')
+  end
+
   def submit_modal(button)
     click_button button #the modal submit is a button actually, not a link
     sleep 0.5

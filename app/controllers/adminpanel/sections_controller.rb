@@ -1,7 +1,5 @@
 module Adminpanel
   class SectionsController < Adminpanel::ApplicationController
-    # authorize_resource
-    authorize_resource
     # def new
     #   @section = Section.new
     #   authorize! :create, @section
@@ -9,10 +7,10 @@ module Adminpanel
 
     def edit
       @section = Section.find(params[:id])
-      respond_to do |format|
+      # respond_to do |format|
         format.html
-        format.json {render :json => {:section => @section }}
-      end
+        # format.json {render :json => {:section => @section }}
+      # end
     end
 
     def update

@@ -1,16 +1,27 @@
 class Ability
   include CanCan::Ability
-
+  include Adminpanel::ApplicationHelper
   def initialize(user)
 
-    if user.rol.name == 'Admin'
+    if user.nil?
+    elsif user.rol.name == 'Admin'
       can :manage, :all
     else
-      # cannot :manage, Adminpanel::User
-      # can :manage, Adminpanel::Analytic
-      # can :manage, Adminpanel::Section
-      # can :manage, Adminpanel::Gallery
-      # can :manage, Adminpanel::Category
+      user.rol.permissions.each do |permission|
+        if permission.to_read?
+          can :read, symbol_class(permission.resource)
+        elsif permission.to_publish?
+          can :publish, symbol_class(permission.resource)
+        elsif permission.to_create?
+          can :create, symbol_class(permission.resource)
+        elsif permission.to_update?
+          can :update, symbol_class(permission.resource)
+        elsif permission.to_destroy?
+          can :destroy, symbol_class(permission.resource)
+        elsif permission.to_manage?
+          can :manage, symbol_class(permission.resource)
+        end
+      end
     end
 
     # The first argument to `can` is the action you are giving the user

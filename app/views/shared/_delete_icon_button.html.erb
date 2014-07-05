@@ -1,4 +1,4 @@
-<% if @model.has_route?(:destroy) %>
+<% if @model.has_route?(:destroy) && can?(:destroy, @model) %>
   <%=
     link_to(
       content_tag(

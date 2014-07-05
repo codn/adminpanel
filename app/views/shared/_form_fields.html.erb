@@ -5,8 +5,8 @@
   <% properties = properties.except('type') %>
 
   <% if field_type == 'adminpanel_file_field' %>
-
     <% if !defined? remote_request %>
+
       <!-- if not making resource from other form -->
       <%= content_tag :div, :class => 'file-collection-container', :data => {:max => properties['max-files'].nil? ? 0 : properties['max-files'] } do %>
         <%= f.fields_for(attribute) do |builder| %>

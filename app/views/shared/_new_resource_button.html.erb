@@ -1,5 +1,4 @@
-<% @model.routes_options %>
-<% if @model.has_route?(:new) %>
+<% if @model.has_route?(:new) && can?(:create, @model) %>
   <%=
     link_to(
       content_tag(:div,

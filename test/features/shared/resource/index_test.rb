@@ -10,6 +10,7 @@ class IndexTest < ViewCase
     assert_selector 'i.fa.fa-pencil'
     assert_selector 'i.fa.fa-search-plus'
     assert_selector 'i.fa.fa-facebook'
+    assert_selector 'i.fa.fa-twitter'
   end
 
   protected

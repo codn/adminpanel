@@ -1,8 +1,8 @@
 module Adminpanel
-  class SessionsController < Adminpanel::ApplicationController
-    skip_authorization_check
+  class SessionsController < ActionController::Base
+    include SessionsHelper
+    protect_from_forgery
     layout 'admin-login'
-    skip_before_filter :signed_in_user, :set_model
     before_action :configure_instagram, only:[:instagram_login, :instagram_callback]
 
     def new

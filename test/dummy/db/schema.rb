@@ -81,6 +81,13 @@ ActiveRecord::Schema.define do
       t.datetime :created_at,      :null => false
       t.datetime :updated_at,      :null => false
   end
+  create_table :adminpanel_permissions do |t|
+      t.integer  :rol_id
+      t.integer  :action
+      t.string   :resource
+      t.datetime :created_at,      :null => false
+      t.datetime :updated_at,      :null => false
+  end
   create_table :adminpanel_mugs do |t|
       t.string   :name
       t.integer  :number

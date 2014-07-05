@@ -68,7 +68,7 @@ module Adminpanel
           'rol_id' => {
             'type' => 'belongs_to',
             'model' => 'Adminpanel::Rol',
-            'remote_resource' => false,
+            # 'remote_resource' => false,
             'placeholder' => I18n.t('model.attributes.rol_id'),
             'label' => I18n.t('model.attributes.rol_id')
           }

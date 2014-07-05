@@ -1,8 +1,9 @@
 module Adminpanel
   class ApplicationController < ActionController::Base
     protect_from_forgery
-
     inherit_resources
+    # check_authorization unless: :exceptions
+    authorize_resource
 
     include SessionsHelper
     include Adminpanel::RestActions
@@ -16,6 +17,7 @@ module Adminpanel
     before_filter :signed_in_user, :set_model, :strong_params_for_cancan
 
   private
+
     def strong_params_for_cancan
       resource = controller_name.singularize.to_sym
       method = "#{resource}_params"

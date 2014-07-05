@@ -3,7 +3,6 @@ rvm:
   - 2.1.1
 env:
   - RAILS=4.0.8
-  - RAILS=4.1.0
   - RAILS=4.1.1
   - RAILS=4.1.2
   - RAILS=4.1.3
