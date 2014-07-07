@@ -1,6 +1,12 @@
 language: ruby
+
 rvm:
-  - 2.1.1
+  - 2.1
+
+sudo: false
+
+cache: bundler
+
 env:
   - RAILS=4.0.8
   - RAILS=4.1.1
