@@ -2,8 +2,11 @@ module Adminpanel
   class ApplicationController < ActionController::Base
     protect_from_forgery
     inherit_resources
-    # check_authorization unless: :exceptions
     authorize_resource
+
+    layout 'admin'
+
+    before_filter :signed_in_user, :set_model, :strong_params_for_cancan
 
     include SessionsHelper
     include Adminpanel::RestActions
@@ -11,11 +14,6 @@ module Adminpanel
     include Adminpanel::FacebookActions
     include Adminpanel::TwitterActions
     include Adminpanel::SitemapActions
-
-    layout 'admin'
-
-    before_filter :signed_in_user, :set_model, :strong_params_for_cancan
-
   private
 
     def strong_params_for_cancan
