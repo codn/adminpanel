@@ -1,6 +1,7 @@
 class Ability
   include CanCan::Ability
   include Adminpanel::ApplicationHelper
+
   def initialize(user)
 
     if user.nil?

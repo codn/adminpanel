@@ -8,7 +8,7 @@ module Adminpanel
     def edit
       @section = Section.find(params[:id])
       # respond_to do |format|
-        format.html
+        # format.html
         # format.json {render :json => {:section => @section }}
       # end
     end
@@ -41,15 +41,14 @@ module Adminpanel
     private
     def section_params
       params.require(:section).permit(
-      :description,
-      :has_image,
-      :key,
-      :page,
-      :name,
-      :has_description,
-      :images_attributes => [:id, :file]
+        :has_description,
+        :description,
+        :key,
+        :page,
+        :name,
+        :has_image,
+        images_attribute: [:id, :file]
       )
-
     end
   end
 end
