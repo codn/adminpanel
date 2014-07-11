@@ -63,10 +63,9 @@ class CreateAdminpanelTables < ActiveRecord::Migration
   def create_permissions
     create_table :adminpanel_permissions do |t|
         t.integer  :rol_id
-        t.string   :action
+        t.integer  :action
         t.string   :resource
-        t.datetime :created_at,      :null => false
-        t.datetime :updated_at,      :null => false
+        t.timestamps
     end
   end
 
@@ -75,8 +74,7 @@ class CreateAdminpanelTables < ActiveRecord::Migration
       t.string   :name
       t.string   :key
       t.string   :value
-      t.datetime :created_at,      :null => false
-      t.datetime :updated_at,      :null => false
+      t.timestamps
     end
     add_index :adminpanel_auths, [:name]
     add_index :adminpanel_auths, [:key]
