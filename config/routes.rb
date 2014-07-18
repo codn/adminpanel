@@ -20,7 +20,7 @@ Adminpanel::Engine.routes.draw do
     when :analytics
       resources :analytics, resources_parameters(resource).merge({ only: [:index] }) do
         collection do
-          get :google, to: 'analytics#index', path: 'google'
+          get :google, to: 'analytics#google', path: 'google'
           get :fb, to:'analytics#fb', path:'facebook'
           get :twitter, to:'analytics#twitter', path:'twitter'
           post 'reply_to_tweet/:id', to: 'analytics#reply_to_tweet', as: 'reply_to', path: 'twitter/responder/:id'

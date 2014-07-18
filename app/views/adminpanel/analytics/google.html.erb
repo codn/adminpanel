@@ -1,0 +1,12 @@
+<% provide(:page_title, 'Google Analytics') -%>
+
+<div class="row-fluid">
+  <div class="widget widget-padding span12">
+    <div class="widget-header">
+      <%= render 'header' %>
+    </div>
+    <%= content_tag :div, id: 'google-stats', class: "widget-body", data: { visits: @visits } do %>
+      <svg id="chart"></svg>
+    <% end %>
+  </div>
+</div>
