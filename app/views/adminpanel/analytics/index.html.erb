@@ -1,13 +1,12 @@
-<% provide(:page_title, 'Google Analytics') -%>
-<% content_for :scripts do %>
-  <%#= javascript_include_tag "adminpanel/analytics/analytics" %>
-<% end %>
+<% provide(:page_title, 'Analytics') -%>
+
 <div class="row-fluid">
   <div class="widget widget-padding span12">
     <div class="widget-header">
       <%= render 'header' %>
     </div>
-    <%= content_tag "div", :id => "graphic-container", :class => "widget-body", :data => { :visits => @visits, :dates => @visitDates } do %>
+    <%= content_tag :div, class: "widget-body", data: { visits: @visits } do %>
+      Bienvenido al Centro de Estadísticas del Sitio, para verlas haga click en alguno de los botones de arriba
     <% end %>
   </div>
 </div>
