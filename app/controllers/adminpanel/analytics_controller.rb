@@ -9,6 +9,9 @@ module Adminpanel
     CACHED_API_FILE = "#{Rails.root}/tmp/cache/analytics-#{API_VERSION}.cache"
 
     def index
+    end
+
+    def google
       authorize! :read, Adminpanel::Analytic
 
       unless Adminpanel.analytics_profile_id.nil? || Adminpanel.analytics_key_filename.nil?
@@ -49,27 +52,27 @@ module Adminpanel
         # Request a token for our service account
         client.authorization.fetch_access_token!
 
-        startDate = DateTime.now.prev_month.strftime("%Y-%m-%d")
+        startDate = DateTime.now.prev_day(15).strftime("%Y-%m-%d")
         endDate = DateTime.now.strftime("%Y-%m-%d")
 
-        @visitCount = client.execute(
+        visitCount = client.execute(
           :api_method => analytics.data.ga.get,
           :parameters => {
             'ids' => "ga:#{profileID}",
             'start-date' => startDate,
             'end-date' => endDate,
-            'dimensions' => "ga:day,ga:month",
+            'dimensions' => "ga:day,ga:month, ga:year",
             'metrics' => "ga:visits",
-            'sort' => "ga:month,ga:day"
+            'sort' => "ga:year,ga:month,ga:day"
           }
         )
 
-        @visits = @visitCount.data.rows.collect do |r|
-        	r[2]
+        @visits = visitCount.data.rows.collect do |r|
+        	{
+            date: "#{r[2]}/#{r[1]}/#{r[0]}",
+            visits: r[3]
+          }
         end
-
-        @visitDates = @visitCount.data.rows.collect { |r| "#{r[0]}/#{r[1]}" }
-
       end
       respond_to do |format|
         format.html
@@ -151,6 +154,5 @@ module Adminpanel
         @user = @instagram_client.user
       end
     end
-
   end
 end
