@@ -7,13 +7,14 @@ module Adminpanel
   	mattr_accessor :analytics_profile_id,
     :analytics_key_path,
     :analytics_key_filename,
+    :analytics_account_email,
     :displayable_resources,
     :fb_app_id,
     :fb_app_secret,
     :twitter_api_key,
     :twitter_api_secret,
     :instagram_client_id,
-    :instagram_client_secret
+    :instagram_client_secret,
 
   	self.analytics_profile_id = nil
   	self.analytics_key_path = 'config/analytics'
