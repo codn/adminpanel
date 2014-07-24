@@ -41,6 +41,10 @@ es:
   wysiwyg:
     description: 'Escriba la descripción aquí'
   Panel title: 'Panel Administrativo'
+  permission:
+    rol: 'Rol'
+    action: 'Acción permitida'
+    resource: 'Módulo'
   actions: 'Acciones'
   action:
     add: 'Agregar'
