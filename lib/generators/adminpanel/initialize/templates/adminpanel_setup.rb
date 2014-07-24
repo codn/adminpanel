@@ -13,17 +13,24 @@ Adminpanel.setup do |config|
 
   ### FACEBOOK CONFIGURATIONS ###
   # # Facebook app id
-  # config.fb_app_id = '1234'
+  # config.fb_app_id = 'f4c3b00k'
 
   # # Facebook app secret *MAKE SURE TO DON'T SHARE THIS SECRET*
-  # config.fb_app_secret = '1234'
+  # config.fb_app_secret = 'fbs3cr3t'
 
   ### TWITTER CONFIGURATIONS ###
   # # Twitter consumer key
-  # config.twitter_api_key = '5678'
+  # config.twitter_api_key = 'tw1tt3r'
 
   # # Twitter consumer secret *DON'T SHARE THIS SECRET EITHER*
-  # config.twitter_api_secret = '5678'
+  # config.twitter_api_secret = 'tws3cr3t'
+
+  ### INSTAGRAM CONFIGURATIONS ###
+  # # Instagram consumer key
+  # config.instagram_client_id = '1nst4gr4m'
+
+  # # Instagram consumer secret *YOU SHOULD KNOW BY NOW*
+  # config.instagram_client_secret = '1nst4s3cr3t'
 
   # # This are the modules that are going to be displayed and order that are going to be displayed
   config.displayable_resources = [
@@ -32,6 +39,7 @@ Adminpanel.setup do |config|
     :rols,
     :permissions,
     :galleries,
+    #:categories,
     :sections
   ]
 end

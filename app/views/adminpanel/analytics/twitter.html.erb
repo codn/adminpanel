@@ -5,8 +5,9 @@
     <div class="widget-header">
       <%= render 'header' %>
         <div class="widget-buttons">
-          <% if !exist_twitter_account? %>
-          <%= button_to '/auth/twitter', method: :get, class: 'btn btn-success' do %>
+          <% if !exist_twitter_account? && (Adminpanel.twitter_api_key.nil? || Adminpanel.twitter_api_secret) %>
+            <!-- This is the route created by oauth2 -->
+            <%= button_to '/auth/twitter', method: :get, class: 'btn btn-success' do %>
               Iniciar sesión <i class="fa fa-twitter"></i>
             <% end %>
           <% end %>

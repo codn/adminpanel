@@ -5,8 +5,10 @@
       <%= render 'header' %>
       <% if !exist_instagram_account? %>
         <div class="widget-buttons">
-          <%= button_to instagram_login_sessions_path, method: :get, class: 'btn btn-success' do %>
-            Iniciar sesión <i class="fa fa-instagram"></i>
+          <% if !Adminpanel.instagram_client_id.nil? && !Adminapnel.instagram_client_secret.nil? %>
+            <%= button_to instagram_login_sessions_path, method: :get, class: 'btn btn-success' do %>
+              Iniciar sesión <i class="fa fa-instagram"></i>
+            <% end %>
           <% end %>
         </div>
       <% end %>
