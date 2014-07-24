@@ -14,7 +14,7 @@ module Adminpanel
     :twitter_api_key,
     :twitter_api_secret,
     :instagram_client_id,
-    :instagram_client_secret,
+    :instagram_client_secret
 
   	self.analytics_profile_id = nil
   	self.analytics_key_path = 'config/analytics'
