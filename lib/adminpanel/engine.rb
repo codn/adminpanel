@@ -18,6 +18,7 @@ module Adminpanel
   	self.analytics_profile_id = nil
   	self.analytics_key_path = 'config/analytics'
   	self.analytics_key_filename = nil
+  	self.analytics_account_email = nil
     self.twitter_api_key = nil
     self.twitter_api_secret = nil
     self.displayable_resources = [
