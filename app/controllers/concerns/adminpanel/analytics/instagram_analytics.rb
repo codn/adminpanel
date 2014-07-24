@@ -4,13 +4,11 @@ module Adminpanel
       extend ActiveSupport::Concern
 
       included do
-        before_filter :set_instagram_token, only:[:instagram, :instagram_comment]
+        before_action :set_instagram_token, only:[:instagram, :instagram_comment]
       end
 
       def instagram_comment
-
         response = @instagram_client.create_media_comment params[:id], params[:instagram_text]
-        debugger
         redirect_to instagram_analytics_path
       end
 
@@ -20,12 +18,10 @@ module Adminpanel
 
         if !@instagram_token.nil?
           @instagram_client ||= Instagram.client(
-
             access_token: @instagram_token.value
-            )
+          )
         end
       end
-
     end
   end
 end

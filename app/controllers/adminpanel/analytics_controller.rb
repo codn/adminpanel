@@ -83,13 +83,13 @@ module Adminpanel
     def fb
       authorize! :read, Adminpanel::Analytic
       auth = Adminpanel::Auth.find_by_key('facebook')
-      if params[:insight].present?
-        period = params[:insight]
-      else
-        period = 'day' #default period
-      end
       if !auth.nil? && auth.value != '' # not nil & not void
-        page_graph = Koala::Facebook::API.new(Auth.find_by_key('facebook').value)
+        if params[:insight].present?
+          period = params[:insight]
+        else
+          period = 'day' #default period
+        end
+        page_graph = Koala::Facebook::API.new(auth.value)
         @impressions,
         @impressions_unique,
 
@@ -124,6 +124,8 @@ module Adminpanel
 
           api.get_connections('me', 'insights', metric: 'page_stories', period: period)
         end
+      else
+        redirect_to analytics_path
       end
     end
 

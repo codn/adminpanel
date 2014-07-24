@@ -13,7 +13,7 @@
         <%= content_tag(:i, nil, class: "fa fa-#{@model.icon}") %>
         <h5>
           <%= @model.display_name.humanize %>
-          
+
           <%= render 'shared/edit_icon_button', resource: resource, resource_name: @model.display_name %>
 
           <%= render 'shared/fb_icon_button', resource: resource, resource_name: @model.display_name %>

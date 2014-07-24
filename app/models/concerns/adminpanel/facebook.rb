@@ -5,13 +5,6 @@ module Adminpanel
       attr_accessor :fb_page_access_key, :fb_message
     end
 
-    #instance methods
-    # def get_oauth_link
-    #   Koala::Facebook::OAuth.new(
-    #     Adminpanel.fb_app_id,
-    #     Adminpanel.fb_app_secret,
-    #   )
-    # end
     def share_link
       'http://www.google.com'
     end

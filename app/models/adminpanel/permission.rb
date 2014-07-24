@@ -17,8 +17,7 @@ module Adminpanel
         {
           'rol_id' => {
             'type' => 'belongs_to',
-            'label' => 'rol',
-            'placeholder' => 'rol',
+            'label' => I18n.t('permission.rol'),
             'model' => 'Adminpanel::Rol',
             # 'remote_resource' => false
           }
@@ -26,15 +25,13 @@ module Adminpanel
         {
           'action' => {
             'type' => 'enum_field',
-            'label' => 'action',
-            'placeholder' => 'action',
+            'label' => I18n.t('permission.action'),
           }
         },
         {
           'resource' => {
             'type' => 'resource_select',
-            'label' => 'resource',
-            'placeholder' => 'resource',
+            'label' => I18n.t('permission.resource'),
           }
         },
 
