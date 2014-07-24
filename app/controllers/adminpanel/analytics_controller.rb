@@ -14,8 +14,8 @@ module Adminpanel
     def google
       authorize! :read, Adminpanel::Analytic
 
-      unless Adminpanel.analytics_profile_id.nil? || Adminpanel.analytics_key_filename.nil?
-        service_account_email = '266789642405-0nppij5ll43bbvhpsn986puulssdoc45@developer.gserviceaccount.com' # Email of service account
+      unless Adminpanel.analytics_profile_id.nil? || Adminpanel.analytics_key_filename.nil? || Adminpanel.analytics_account_email.nil?
+        service_account_email = Adminpanel.analytics_account_email # Email of service account
         key_file = "#{Rails.root}/#{Adminpanel.analytics_key_path}/#{Adminpanel.analytics_key_filename}" # File containing your private key
         key_secret = 'notasecret' # Password to unlock private key
         profileID = Adminpanel.analytics_profile_id # Analytics profile ID.
