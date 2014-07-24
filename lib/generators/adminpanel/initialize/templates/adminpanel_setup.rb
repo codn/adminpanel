@@ -1,7 +1,11 @@
 Adminpanel.setup do |config|
   ### GOOGLE ANALYTICS CONFIGURATIONS ####
-  # # You get this from the Google Analytics Dashboard, this configuration is required.
+  ## This is your website Google Analytics Profile ID
   # config.analytics_profile_id = '12341234'
+
+  # # This configuration identifies your app with Google.
+  # # You get this from the Google Analytics Dashboard (https://console.developers.google.com), this configuration is required.
+  # config.analytics_account_email = '12345@developer.gserviceaccount.com'
 
   # # The next configuration is the file used to establish server to server authentication/authorization
   # # you need to download this file from the Google Developers Console
@@ -10,6 +14,12 @@ Adminpanel.setup do |config|
 
   # # Path to the key file, defaults to config/analytics
   # config.analytics_key_path = "config/analytics"
+
+  # # Name of the developers Console Application, defaults to AdminPanel
+  # config.analytics_application_name = 'AdminPanel'
+
+  # # Version of the developers Console Application, defaults to 1.0.0
+  # config.analytics_application_version = '1.0.0'
 
   ### FACEBOOK CONFIGURATIONS ###
   # # Facebook app id

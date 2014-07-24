@@ -22,8 +22,8 @@ module Adminpanel
 
 
         client = Google::APIClient.new(
-          :application_name => 'AdminPanel',
-          :application_version => '1.0.0'
+          :application_name => Adminpanel.analytics_application_name,
+          :application_version => Adminpanel.analytics_application_version
         )
 
         analytics = nil
