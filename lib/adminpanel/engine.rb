@@ -7,6 +7,7 @@ module Adminpanel
   	mattr_accessor :analytics_profile_id,
     :analytics_key_path,
     :analytics_key_filename,
+    :analytics_account_email,
     :displayable_resources,
     :fb_app_id,
     :fb_app_secret,
@@ -18,6 +19,7 @@ module Adminpanel
   	self.analytics_profile_id = nil
   	self.analytics_key_path = 'config/analytics'
   	self.analytics_key_filename = nil
+  	self.analytics_account_email = nil
     self.twitter_api_key = nil
     self.twitter_api_secret = nil
     self.displayable_resources = [
