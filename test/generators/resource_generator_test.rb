@@ -6,16 +6,27 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
   destination Rails.root.join('tmp/generators')
   setup :prepare_destination
 
-  def test_not_generation_of_gallery
+  def test_default_not_generation_of_gallery
     run_generator %w(
       post
       name
       description:wysiwyg
       number:float
-      --no-gallery
     )
     assert_no_file 'app/models/adminpanel/postfile.rb'
-    assert_no_migration('db/migrate/create_adminpanel_productfiles.rb')
+    assert_no_migration 'db/migrate/create_adminpanel_postfiles.rb'
+  end
+
+  def test_generation_of_gallery
+    run_generator %w(
+      post
+      name
+      description:wysiwyg
+      number:float
+      --no-skip-gallery
+    )
+    assert_file 'app/models/adminpanel/postfile.rb'
+    assert_migration 'db/migrate/create_adminpanel_postfiles.rb'
   end
 
   # def test_initializer_update
@@ -42,7 +53,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       quantity:integer
       date:datepicker
     )
-    
+
     # puts generator.generate_migration
 
     # assert_migration(
@@ -65,6 +76,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       flag:boolean
       quantity:integer
       date:datepicker
+      --no-skip-gallery
     )
     assert_file(
       'app/controllers/adminpanel/posts_controller.rb',
@@ -89,6 +101,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       quantity:integer
       date:datepicker
       categories:has_many
+      --no-skip-gallery
     )
     assert_file(
       'app/models/adminpanel/post.rb',
