@@ -24,7 +24,14 @@ module Adminpanel
 
     def generate_migration
       parameters = fields
-      parameters.delete_if{ |pair| pair.split(':').second == 'has_many' }
+      parameters.delete_if do |pair|
+        if pair.split(':').second == 'has_many'
+          puts "migrations aren't supported yet, sorry :(, but you can do a pull request"
+          true
+        else
+          false
+        end
+      end
       invoke :migration, [migration_name, parameters]
     end
 
