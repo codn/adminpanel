@@ -43,30 +43,6 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
   #   )
   # end
 
-  def test_correct_migration_attributes
-    generator = Adminpanel::ResourceGenerator.new %w(
-      post
-      name
-      description:wysiwyg
-      number:float
-      flag:boolean
-      quantity:integer
-      date:datepicker
-    )
-
-    # puts generator.generate_migration
-
-    # assert_migration(
-    #   'db/migrate/create_adminpanel_posts.rb',
-    #   /t.string :name/,
-    #   /t.float :number/,
-    #   /t.boolean :flag/,
-    #   /t.integer :quantity/,
-    #   /t.string :date/,
-    #   /t.text :description/
-    # )
-  end
-
   def test_controller_generation
     run_generator %w(
       post
