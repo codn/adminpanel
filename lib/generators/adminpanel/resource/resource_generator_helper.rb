@@ -40,7 +40,7 @@ module Adminpanel
     end
 
     def has_gallery?
-      options[:'gallery']
+      !options[:'skip-gallery']
     end
 
     def resource_name

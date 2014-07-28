@@ -6,11 +6,10 @@ module Adminpanel
     include ResourceGeneratorHelper
     source_root File.expand_path('../templates', __FILE__)
     desc 'Generate the resource files necessary to use a model'
-    class_option :'gallery',
+    class_option :'skip-gallery',
       :type => :boolean,
-      :aliases => '-g',
       :default => true,
-      :desc => 'Creates the gallery for this resource'
+      :desc => 'Choose if we shoud create the gallery for this resource, default: true (skip gallery )'
 
     argument :fields, :type => :array, :default => [], :banner => 'field[:type][:index] field[:type][:index]'
 
