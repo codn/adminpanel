@@ -47,7 +47,7 @@ module Adminpanel
         :page,
         :name,
         :has_image,
-        images_attributes: [:id, :file]
+        { images_attributes: [:id, :file, :_destroy] }
       )
     end
   end
