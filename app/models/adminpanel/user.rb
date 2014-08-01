@@ -12,12 +12,12 @@ module Adminpanel
     validates_length_of :name, :maximum => 25
 
   #password validations
-    validates_confirmation_of :password
-    validates_presence_of :password
-    validates_length_of :password, :minimum => 6
+    validates_confirmation_of :password, :on => :create
+    validates_presence_of :password, :on => :create
+    validates_length_of :password, :minimum => 6, :on => :create
 
   #password_confirmation validations
-    validates_presence_of :password_confirmation
+    validates_presence_of :password_confirmation, :on => :create
 
   #email validations
     validates_presence_of :email
