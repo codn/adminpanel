@@ -42,7 +42,6 @@ module Adminpanel
         {'key' => {'name' => 'key', 'label' => 'Llave'}},
         {'page' => {'name' => 'page'}},
       ]
-
     end
 
     def self.icon
