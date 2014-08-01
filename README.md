@@ -1,4 +1,4 @@
-# Adminpanel [![CoDN](http://cl.ly/image/130Q0E153d2G/codn180.png)](http://www.codn.mx "CoDN")
+# [![CoDN](http://cl.ly/image/130Q0E153d2G/codn180.png)](http://www.codn.mx "CoDN") Adminpanel
 
 CMS for Rails 4, for rails 3.x check the corresponding branch.
 
