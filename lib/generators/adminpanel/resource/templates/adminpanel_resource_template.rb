@@ -1,5 +1,5 @@
 module Adminpanel
-  class <%= capitalized_resource %> < ActiveRecord::Base
+  class <%= camelized_resource %> < ActiveRecord::Base
     include Adminpanel::Base
 
     <%= associations if has_associations? -%>
@@ -13,7 +13,7 @@ module Adminpanel
     end
 
     def self.display_name
-      '<%= capitalized_resource %>' #singular
+      '<%= camelized_resource %>' #singular
     end
 
     # def self.icon

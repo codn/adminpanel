@@ -51,8 +51,8 @@ module Adminpanel
       "#{resource_name}file" #ex: postfile
     end
 
-    def capitalized_resource
-      resource_name.capitalize
+    def camelized_resource
+      resource_name.camelize
     end
 
     def pluralized_name
