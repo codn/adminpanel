@@ -69,7 +69,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
 
   def test_model_generation
     run_generator %w(
-      post
+      admin_post
       name
       description:wysiwyg
       number:float
@@ -80,9 +80,10 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       --no-skip-gallery
     )
     assert_file(
-      'app/models/adminpanel/post.rb',
+      'app/models/adminpanel/admin_post.rb',
+      /class AdminPost </,
       /include Adminpanel::Base/,
-      /mount_images :postfiles/,
+      /mount_images :admin_postfiles/,
       # form_fields generated correctly
       /'description' => {/,
       /'type' => 'wysiwyg_field',/,
@@ -96,7 +97,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       /'type' => 'number_field',/,
       /'date' => {/,
       /'type' => 'datepicker',/,
-      /'postfiles' => {/,
+      /'admin_postfiles' => {/,
       /'type' => 'adminpanel_file_field',/,
       /'category_ids' => {/,
       /'type' => 'has_many'/,
