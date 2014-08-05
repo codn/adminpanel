@@ -86,10 +86,7 @@ module Adminpanel
       end
 
       def routes_options
-        { path: ActiveSupport::Inflector.transliterate(
-            display_name.pluralize(I18n.default_locale).downcase
-          ).tr(' ', '-')
-        }
+        { path: display_name.pluralize(I18n.default_locale).parameterize }
       end
 
       def has_route?(route)
@@ -106,6 +103,14 @@ module Adminpanel
 
       def twitter_share?
         false
+      end
+
+      def member_routes
+        []
+      end
+
+      def collection_routes
+        []
       end
 
     private
