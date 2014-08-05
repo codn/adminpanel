@@ -83,49 +83,46 @@ module Adminpanel
     def fb
       authorize! :read, Adminpanel::Analytic
       auth = Adminpanel::Auth.find_by_key('facebook')
-      if !auth.nil? && auth.value != '' # not nil & not void
-        if params[:insight].present?
-          period = params[:insight]
-        else
-          period = 'day' #default period
-        end
-        page_graph = Koala::Facebook::API.new(auth.value)
-        @impressions,
-        @impressions_unique,
-
-        @new_likes,
-        @total_likes,
-
-        @hidden,
-        @hidden_unique,
-
-        @consumptions,
-        @consumptions_unique,
-
-        @views,
-        @views_unique,
-
-        @stories = page_graph.batch do |api|
-          #all information on same request
-          api.get_connections('me', 'insights', metric: 'page_impressions', period: period) #eye
-          api.get_connections('me', 'insights', metric: 'page_impressions_unique', period: period) #eye
-
-          api.get_connections('me', 'insights', metric: 'page_fan_adds') #fb-thumb
-          api.get_connections('me', 'insights', metric: 'page_fans') #fb-thumb
-
-          api.get_connections('me', 'insights', metric: 'page_negative_feedback', period: period)
-          api.get_connections('me', 'insights', metric: 'page_negative_feedback_unique', period: period)
-
-          api.get_connections('me', 'insights', metric: 'page_consumptions', period: period)
-          api.get_connections('me', 'insights', metric: 'page_consumptions_unique', period: period)
-
-          api.get_connections('me', 'insights', metric: 'page_views')
-          api.get_connections('me', 'insights', metric: 'page_views_unique')
-
-          api.get_connections('me', 'insights', metric: 'page_stories', period: period)
-        end
+      redirect_via_turbolinks_to analytics_path if !auth.nil? && auth.value != '' # not nil & not void
+      if params[:insight].present?
+        period = params[:insight]
       else
-        redirect_to analytics_path
+        period = 'day' #default period
+      end
+      page_graph = Koala::Facebook::API.new(auth.value)
+      @impressions,
+      @impressions_unique,
+
+      @new_likes,
+      @total_likes,
+
+      @hidden,
+      @hidden_unique,
+
+      @consumptions,
+      @consumptions_unique,
+
+      @views,
+      @views_unique,
+
+      @stories = page_graph.batch do |api|
+        #all information on same request
+        api.get_connections('me', 'insights', metric: 'page_impressions', period: period) #eye
+        api.get_connections('me', 'insights', metric: 'page_impressions_unique', period: period) #eye
+
+        api.get_connections('me', 'insights', metric: 'page_fan_adds') #fb-thumb
+        api.get_connections('me', 'insights', metric: 'page_fans') #fb-thumb
+
+        api.get_connections('me', 'insights', metric: 'page_negative_feedback', period: period)
+        api.get_connections('me', 'insights', metric: 'page_negative_feedback_unique', period: period)
+
+        api.get_connections('me', 'insights', metric: 'page_consumptions', period: period)
+        api.get_connections('me', 'insights', metric: 'page_consumptions_unique', period: period)
+
+        api.get_connections('me', 'insights', metric: 'page_views')
+        api.get_connections('me', 'insights', metric: 'page_views_unique')
+
+        api.get_connections('me', 'insights', metric: 'page_stories', period: period)
       end
     end
 
