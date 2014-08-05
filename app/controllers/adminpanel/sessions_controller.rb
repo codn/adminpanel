@@ -1,6 +1,8 @@
 module Adminpanel
   class SessionsController < ActionController::Base
     include SessionsHelper
+    include ApplicationHelper
+
     protect_from_forgery
     layout 'admin-login'
     before_action :configure_instagram, only:[:instagram_login, :instagram_callback]
@@ -13,8 +15,12 @@ module Adminpanel
       if user && user.authenticate(params[:session][:password])
         sign_in user
         flash[:success] = I18n.t('authentication.signin_success')
-        # user.permissions.first.url
-        redirect_to root_url
+        permission = user.rol.permissions.first
+        if permission.nil?
+          redirect_to root_url
+        else
+          redirect_to [route_symbol(permission.resource)]
+        end
       else
         flash.now[:error] = I18n.t('authentication.signin_error')
         render 'new'
