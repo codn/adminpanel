@@ -12,11 +12,11 @@ module Adminpanel
       "#{action} #{symbol_class(self['resource']).display_name}"
     end
 
-    def action
-      Permission.actions.each do |key, value|
-        return I18n.t("permission.#{key}") if value == self['action']
-      end
-    end
+    # def action
+    #   Permission.actions.each do |key, value|
+    #     return I18n.t("permission.#{key}") if value == self['action']
+    #   end
+    # end
 
     # def resource
     #   symbol_class(self['resource']).display_name.to_s.pluralize(I18n.default_locale)
