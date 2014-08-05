@@ -41,19 +41,30 @@ Adminpanel::Engine.routes.draw do
         end
       end
 
-      # normal resource
-      resources resource, resources_parameters(resource).merge(rest_path_names)
-
-      # if resource is going to be shared on facebook
       resources resource, resources_parameters(resource).merge(rest_path_names) do
         member do
+          # adds custom member routes of the resource
+          member_routes(resource).each do |route|
+            route.each do |request_type, args|
+              send(request_type, args['path'].to_sym, args['args'])
+            end
+          end
           if has_fb_share?(resource)
+            # if resource is going to be shared on facebook
             get :fb_choose_page, as: 'fb_choose_page', path: 'publicar-a-pagina-en-fb'
             post :fb_save_token, as: 'fb_save_token', path: 'guardar-token-fb'
             post :fb_publish, to: "#{resource}#fb_publish", as: 'fb_publish', path: 'publicar-a-facebook'
           end
           if has_twitter_share?(resource)
             post :twitter_publish, to: "#{resource}#twitter_publish", as: 'twitter_publish', path: 'publicar-a-twitter'
+          end
+        end
+        collection do
+          # add custom collection routes of the resource
+          collection_routes(resource).each do |route|
+            route.each do |request_type, args|
+              send(request_type, args['path'].to_sym, args['args'])
+            end
           end
         end
       end

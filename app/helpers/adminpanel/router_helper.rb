@@ -16,6 +16,14 @@ module Adminpanel
       resource_class(resource).twitter_share?
     end
 
+    def member_routes(resource)
+      resource_class(resource).member_routes
+    end
+
+    def collection_routes(resource)
+      resource_class(resource).collection_routes
+    end
+
     def rest_path_names
       {
         path_names: {
