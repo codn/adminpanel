@@ -9,8 +9,18 @@ module Adminpanel
     belongs_to :rol
 
     def name
-      "#{I18n.t('enum.' + action.to_s)} #{symbol_class(self.resource).display_name}"
+      "#{action} #{symbol_class(self['resource']).display_name}"
     end
+
+    def action
+      Permission.actions.each do |key, value|
+        return I18n.t("permission.#{key}") if value == self['action']
+      end
+    end
+
+    # def resource
+    #   symbol_class(self['resource']).display_name.to_s.pluralize(I18n.default_locale)
+    # end
 
     def self.form_attributes
       [
@@ -34,7 +44,6 @@ module Adminpanel
             'label' => I18n.t('permission.resource'),
           }
         },
-
       ]
     end
 
