@@ -4,6 +4,7 @@ module Adminpanel
     include Adminpanel::Analytics::InstagramAnalytics
 
     skip_before_filter :set_model
+    before_action :check_if_fb_account, only:[:fb]
 
     API_VERSION = 'v3'
     CACHED_API_FILE = "#{Rails.root}/tmp/cache/analytics-#{API_VERSION}.cache"
@@ -82,14 +83,12 @@ module Adminpanel
 
     def fb
       authorize! :read, Adminpanel::Analytic
-      auth = Adminpanel::Auth.find_by_key('facebook')
-      redirect_via_turbolinks_to analytics_path if !auth.nil? && auth.value != '' # not nil & not void
       if params[:insight].present?
         period = params[:insight]
       else
         period = 'day' #default period
       end
-      page_graph = Koala::Facebook::API.new(auth.value)
+      page_graph = Koala::Facebook::API.new(@auth.value)
       @impressions,
       @impressions_unique,
 
@@ -151,6 +150,14 @@ module Adminpanel
       authorize! :read, Adminpanel::Analytic
       if !@instagram_token.nil?
         @user = @instagram_client.user
+      end
+    end
+
+  private
+    def check_if_fb_account
+      @auth = Adminpanel::Auth.find_by_key('facebook')
+      if @auth.nil? || auth.value == ''
+        redirect_to analytics_path
       end
     end
   end
