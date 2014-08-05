@@ -17,8 +17,8 @@ drawGraphic = ->
       .range [0, width]
 
     y = d3.scale.linear()
-      .domain d3.extent data, (d) -> d.visits
-      .range [height, 0]
+      .domain(d3.extent(data, (d) -> +d.visits))
+      .range([height, 0])
 
     xAxis = d3.svg.axis()
       .scale x
