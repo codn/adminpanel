@@ -14,8 +14,8 @@ module Adminpanel
     include Adminpanel::FacebookActions
     include Adminpanel::TwitterActions
     include Adminpanel::SitemapActions
-  private
 
+  private
     def strong_params_for_cancan
       resource = controller_name.singularize.to_sym
       method = "#{resource}_params"
