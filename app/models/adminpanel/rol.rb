@@ -15,7 +15,7 @@ module Adminpanel
           }
         },
         {
-          'permissions' => {
+          'permission_ids' => {
             'type' => 'has_many',
             'model' => "Adminpanel::Permission",
             'label' => 'Permisos'

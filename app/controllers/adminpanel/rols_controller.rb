@@ -3,7 +3,7 @@ module Adminpanel
 
     private
     def rol_params
-      params.require(:rol).permit(:name)
+      params.require(:rol).permit(:name, {permission_ids: []})
 
     end
   end
