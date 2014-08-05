@@ -76,6 +76,10 @@ module Adminpanel
       ]
     end
 
+    def root_url
+      self.rol.permissions.first
+    end
+
     def self.display_name
       'Usuario'
     end

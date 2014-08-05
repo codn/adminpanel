@@ -72,11 +72,13 @@ module Adminpanel
     end
 
     def enum_field name, *args
-      select name, self.object.class.actions.map{|action, value| [I18n.t("enum.#{action}"), action]}, *args
+      select name, self.object.class.actions.map{|action, value| [I18n.t("#{self.object.class.name.demodulize.downcase}.#{action}"), action]}, *args
     end
 
     def resource_select name, *args
       select name, Adminpanel.displayable_resources.map{|resource| [symbol_class(resource).display_name, resource.to_s]}, *args
+      # select name, Adminpanel.displayable_resources.map{|resource| ['resource', 'resource']}, *args
+
     end
 
     def select(name, select_options, *args)
