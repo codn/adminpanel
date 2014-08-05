@@ -17,7 +17,7 @@ module Adminpanel
     end
 
     # def self.icon
-    #   "truck" # fa-{icon}
+    #   'truck' # fa-{icon}
     # end
   end
 end
