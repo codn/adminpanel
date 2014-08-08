@@ -1,6 +1,6 @@
 module Adminpanel
   class SectionUploader < CarrierWave::Uploader::Base
-    include CarrierWave::RMagick
+    include CarrierWave::MiniMagick
 
     storage :file
 
