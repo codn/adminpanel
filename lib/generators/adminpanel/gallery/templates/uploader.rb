@@ -1,6 +1,6 @@
 module Adminpanel
   class <%= class_name %>Uploader < CarrierWave::Uploader::Base
-    include CarrierWave::RMagick
+    include CarrierWave::MiniMagick
 
     storage :file
 

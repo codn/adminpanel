@@ -47,7 +47,7 @@ Feel free to use it, any doubts, errors or suggestions are welcome in the issues
 
 ## Dependencies
 
-Please make sure that you have (rmagick) ImageMagick -v 2.13.2 installed before trying to use the gem.
+Please make sure that you have ImageMagick -v 2.13.2 installed before trying to use the gem.
 
 ## Integrated APIs
 
