@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.requirements  << 'rmagick, -v 2.13.2'
 
   spec.add_runtime_dependency 'rails',                '>= 4.0.0','<= 4.1.4'
-  spec.add_runtime_dependency 'rmagick',              '2.13.2'
+  spec.add_runtime_dependency 'mini_magick',          '3.8.0'
   spec.add_runtime_dependency 'bcrypt',               '~> 3.1',  '>= 3.1.7'
   spec.add_runtime_dependency 'carrierwave',          '~> 0.10', '>= 0.10.0'
   spec.add_runtime_dependency 'rails-i18n',           '~> 4.0'
@@ -45,6 +45,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'minitest',         '5.3.5'
   spec.add_development_dependency 'minitest-emoji',   '2.0.0'
   spec.add_development_dependency 'minitest-capybara','~> 0.7',   '>= 0.7.1'
-  # spec.add_development_dependency 'mocha'
   spec.add_development_dependency 'poltergeist',      '~> 1.5',   '>= 1.5.1'
 end
