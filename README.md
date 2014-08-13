@@ -55,6 +55,8 @@ Currently the integrations working are:
 
 * [Google Analytics Service](https://github.com/joseramonc/adminpanel/wiki/include-Google-Analytics)
 * [Facebook Share Link to Wall](https://github.com/joseramonc/adminpanel/wiki/include-Adminpanel::Facebook)
+* [Twitter API](https://github.com/joseramonc/adminpanel/wiki/include-Adminpanel::Twitter)
+* [Instagra API](https://github.com/joseramonc/adminpanel/wiki/include-Adminpanel::Instagram)
 
 ## Contributing
 
@@ -66,4 +68,4 @@ Currently the integrations working are:
 
 ## To Do:
 
-#### Check the issues if you'd like to help or request a new feature.
+### Check the issues if you'd like to help or request a new feature.

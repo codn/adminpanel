@@ -66,7 +66,7 @@ module Adminpanel
           when 'belongs_to'
             ':' + belongs_to_field(@attr_field)
           when 'has_many'
-            has_many_field(@attr_field) + ': []'
+            "{ #{has_many_field(@attr_field)}: [] }"
           else
           ":#{attribute.split(':').first}"
         end
@@ -113,13 +113,11 @@ module Adminpanel
     end
 
     def has_many_form_hash
-      attribute_hash(has_many_field(resource_class_name(@attr_field)), 'has_many', 'has_many model')
+      attribute_hash(has_many_field(resource_class_name(@attr_field.pluralize)), 'has_many', @attr_field.capitalize)
     end
 
     def attribute_hash(name, type, model = '')
-      if model != ''
-        model = model_type(model) + ",\n"
-      end
+      model = model_type(model) + ",\n" if model != ''
       "{\n" +
         indent("'#{name}'" + " => {\n", 2) +
           indent(form_type(type), 4) + ",\n" +
@@ -175,9 +173,9 @@ module Adminpanel
     end
 
     def has_many_association(field)
-      return "# has_many :categorizations\n\t\t" +
-      "# has_many :#{@attr_field}, " +
-      ":through => :categorizations, " +
+      return "# has_many :#{@attr_field.downcase}zations\n\t\t" +
+      "# has_many :#{@attr_field.pluralize.downcase}, " +
+      ":through => :#{@attr_field.downcase}zations, " +
       ":dependent => :destroy\n\t\t"
     end
 

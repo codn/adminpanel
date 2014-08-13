@@ -9,7 +9,7 @@ module Adminpanel
     class_option :'skip-gallery',
       :type => :boolean,
       :default => true,
-      :desc => 'Choose if we shoud create the gallery for this resource, default: true (skip gallery )'
+      :desc => 'Choose if we shoud create the gallery for this resource, default: true (skip gallery)'
 
     argument :fields, :type => :array, :default => [], :banner => 'field[:type][:index] field[:type][:index]'
 
