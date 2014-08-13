@@ -67,7 +67,32 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
     )
   end
 
+  def test_controller_with_underscore
+    run_generator %w(
+      a_underscored_resource
+      name
+    )
+    assert_file(
+      'app/controllers/adminpanel/a_underscored_resources_controller.rb',
+      /class AUnderscoredResourcesController </
+    )
+  end
+
   def test_model_generation
+    run_generator %w(
+      post
+      name
+      other_field:integer
+      --no-skip-gallery
+    )
+    assert_file(
+      'app/models/adminpanel/post.rb',
+      /class Post </,
+      /mount_images :postfiles/
+    )
+  end
+
+  def test_model_with_undercore
     run_generator %w(
       admin_post
       name
@@ -104,6 +129,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       /'model' => 'Adminpanel::/
     )
   end
+
 
   def test_creating_a_categorization_resource
     run_generator %w(

@@ -1,5 +1,5 @@
 module Adminpanel
-  class <%= pluralized_name.capitalize %>Controller < Adminpanel::ApplicationController
+  class <%= camelized_resource.pluralize %>Controller < Adminpanel::ApplicationController
 
     private
       def <%= resource_name %>_params
