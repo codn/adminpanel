@@ -52,6 +52,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       flag:boolean
       quantity:integer
       date:datepicker
+      other_resource:has_many
       --no-skip-gallery
     )
     assert_file(
@@ -63,6 +64,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       /:flag/,
       /:quantity/,
       /:date/,
+      /{ other_resource_ids: \[\] }/,
       /{ postfiles_attributes: \[:id, :file, :_destroy\] }/
     )
   end
@@ -126,10 +128,9 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       /'type' => 'adminpanel_file_field',/,
       /'category_ids' => {/,
       /'type' => 'has_many'/,
-      /'model' => 'Adminpanel::/
+      /'model' => 'Adminpanel::Category/
     )
   end
-
 
   def test_creating_a_categorization_resource
     run_generator %w(
@@ -143,6 +144,24 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       'app/models/adminpanel/categorization.rb',
       /belongs_to :product/,
       /belongs_to :category/
+    )
+  end
+
+  def test_generating_has_many_resource
+    run_generator %w(
+      blog
+      name
+      post:has_many
+      categories:has_many
+    )
+    assert_file(
+      'app/models/adminpanel/blog.rb',
+      /'post_ids' => {/,
+      /'type' => 'has_many'/,
+      /'model' => 'Adminpanel::Post'/,
+      /'category_ids' => {/,
+      /'type' => 'has_many'/,
+      /'model' => 'Adminpanel::Category'/
     )
   end
 

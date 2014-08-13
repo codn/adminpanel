@@ -113,7 +113,7 @@ module Adminpanel
     end
 
     def has_many_form_hash
-      attribute_hash(has_many_field(resource_class_name(@attr_field.pluralize)), 'has_many', @attr_field.capitalize)
+      attribute_hash(has_many_field(resource_class_name(@attr_field.downcase.singularize + 's')), 'has_many', @attr_field.capitalize.singularize)
     end
 
     def attribute_hash(name, type, model = '')
