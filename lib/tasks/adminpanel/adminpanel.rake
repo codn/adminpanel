@@ -55,20 +55,6 @@ namespace :adminpanel do
     ).save
   end
 
-  task :dump => :environment do |t|
-    puts "Dumping adminpanel_sections and adminpanel_categories into db/seeds.rb"
-    File.open("#{Rails.root.join('db', 'seeds.rb')}", "w+") do |f|
-        f << "Adminpanel::Section.delete_all\n"
-        f << "Adminpanel::Category.delete_all\n"
-      Adminpanel::Section.all.each do |section|
-        f << "#{creation_command_section(section)}"
-      end
-      Adminpanel::Category.all.each do |category|
-        f << "#{creation_command_category(category)}"
-      end
-    end
-  end
-
   task :dump_sections => :environment do |t|
     puts "Dumping adminpanel_sections table into db/seeds.rb"
     File.open("#{Rails.root.join('db', 'seeds.rb')}", "w") do |f|
@@ -89,8 +75,29 @@ namespace :adminpanel do
     end
   end
 
+  task :dump, [:resource] => :environment do |t, args|
+    resource = args[:resource].demodulize.camelize.singularize
+    resource = "Adminpanel::#{resource}".classify.constantize
+    file_name = resource.to_s.pluralize.demodulize.downcase + '.yml'
+    puts "dumping #{resource.display_name.pluralize(I18n.default_locale)} into db/#{file_name}"
+    File.open("#{Rails.root.join('db', file_name)}", "w") do |f|
+      YAML::dump(resource.all.to_a, f)
+      # resource.all.each do |object|
+      #   f << object.to_yaml
+      # end
+    end
+
+    # haven't been able to make inject_into_file work :(
+    puts "insert this into: #{Rails.root.join('db', 'seeds.rb')}"
+    puts "seeded = YAML::load_file(File.join(Rails.root, 'db', '#{file_name}'))"
+    puts "seeded.each do |record|"
+    puts "  #{resource}.create record.attributes"
+    puts "end"
+  end
+
   task :populate, [:times, :model, :attributes] => :environment do |t, args|
     require 'faker'
+    I18n.reload!
     puts "Generating #{args[:times]} records of #{args[:model]}"
 
     @model = "adminpanel/#{args[:model]}".classify.constantize
@@ -130,9 +137,9 @@ namespace :adminpanel do
           when 'email' #generates a random email
             value = Faker::Internet.email
 
-          when 'lat_mid'
+          when 'lat_mid' #latitude for merida, yucatan, mx.
             value = float_random(21.046929, 20.903954)
-          when 'lng_mid'
+          when 'lng_mid' #longitude for merida, yucatan, mx.
             value = float_random(-89.699819, -89.567296)
 
           when 'lat'
