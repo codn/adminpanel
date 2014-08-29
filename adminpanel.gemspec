@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
 
   spec.requirements  << 'rmagick, -v 2.13.2'
 
-  spec.add_runtime_dependency 'rails',                '>= 4.0.0','<= 4.1.4'
+  spec.add_runtime_dependency 'rails',                '>= 4.1.0','<= 4.1.5'
   spec.add_runtime_dependency 'mini_magick',          '3.8.0'
   spec.add_runtime_dependency 'bcrypt',               '~> 3.1',  '>= 3.1.7'
   spec.add_runtime_dependency 'carrierwave',          '~> 0.10', '>= 0.10.0'
