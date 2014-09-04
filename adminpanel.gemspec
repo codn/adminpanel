@@ -23,12 +23,11 @@ Gem::Specification.new do |spec|
 
   spec.requirements  << 'rmagick, -v 2.13.2'
 
-  spec.add_runtime_dependency 'rails',                '>= 4.1.0','<= 4.1.5'
+  spec.add_runtime_dependency 'rails',                '>= 4.1.0','<= 4.2.0.beta1'
   spec.add_runtime_dependency 'mini_magick',          '3.8.0'
   spec.add_runtime_dependency 'bcrypt',               '~> 3.1',  '>= 3.1.7'
   spec.add_runtime_dependency 'carrierwave',          '~> 0.10', '>= 0.10.0'
   spec.add_runtime_dependency 'rails-i18n',           '~> 4.0'
-  spec.add_runtime_dependency 'inherited_resources',  '~> 1.5'
   spec.add_runtime_dependency 'cancancan',            '~> 1.8'
   spec.add_runtime_dependency 'google-api-client',    '0.7.1'
   spec.add_runtime_dependency 'faker',                '~> 1.3',   '>= 1.3.0'

@@ -1,7 +1,7 @@
 module Adminpanel
   class ApplicationController < ActionController::Base
     protect_from_forgery
-    inherit_resources
+    # inherit_resources
     authorize_resource
 
     layout 'admin'

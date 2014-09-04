@@ -1,11 +1,11 @@
-<% provide(:page_title, t("action.view") + " #{@model.display_name.capitalize}") -%>
+<% provide(:page_title, t("action.view", resource: @model.display_name.capitalize)) -%>
 <% breadcrumb_add(
   @model.display_name.capitalize.pluralize(I18n.default_locale),
   {
     :controller => params[:controller],
     :action => "index"
   }
-  ) %>
+) %>
 
   <div class="row-fluid">
     <div class="widget span6">
@@ -14,11 +14,11 @@
         <h5>
           <%= @model.display_name.humanize %>
 
-          <%= render 'shared/edit_icon_button', resource: resource, resource_name: @model.display_name %>
+          <%= render 'shared/edit_icon_button', resource: @resource_instance, resource_name: @model.display_name %>
 
-          <%= render 'shared/fb_icon_button', resource: resource, resource_name: @model.display_name %>
+          <%= render 'shared/fb_icon_button', resource: @resource_instance, resource_name: @model.display_name %>
 
-          <%= render 'shared/twitter_icon_button', resource: resource, resource_name: @model.display_name %>
+          <%= render 'shared/twitter_icon_button', resource: @resource_instance, resource_name: @model.display_name %>
         </h5>
       </div>
       <div class="widget-body">
@@ -47,9 +47,9 @@
                     <%= image_tag(resource.send("#{attribute}_url", :thumb)) %>
                   </ul>
                 <% elsif properties["type"] == "boolean" %>
-                  <td><%= resource.send(attribute) ? I18n.t('action.is_true') : I18n.t('action.is_false') %></td>
+                  <td><%= @resource_instance.send(attribute) ? I18n.t('action.is_true') : I18n.t('action.is_false') %></td>
                 <% else %>
-                  <%= resource.send(attribute) -%>
+                  <%= @resource_instance.send(attribute) -%>
                 <% end %>
               </div>
             </li>
@@ -61,32 +61,32 @@
     </div>
 
     <% if @model.has_images? %>
-    <div class="widget widget-padding span6">
-      <div class="widget-header">
-        <%= content_tag(:i, nil, :class => "fa fa-#{@model.icon}") %>
-        <h5><%= I18n.t('gallery.container') %>: <%= @model.display_name.humanize %>
-          <%= render 'shared/edit_icon_button', resource: resource, resource_name: @model.display_name %>
-        </h5>
-      </div>
-      <% if @model.gallery_children.nil? %>
-        <div class="widget-body row-fluid">
-          <div id="gallery-container" class="js-masonry"
-          data-masonry-options='{ "columnWidth": 3, "itemSelector": ".gallery-item" }'>
-          <% resource.send(@model.get_image_relationship).each do |image|%>
-            <div class="gallery-item">
-              <%= link_to (image_tag image.file_url(:thumb)), image.file_url(:thumb).to_s, :rel  => "group", :name => @model.display_name %>
-            </div>
-          <% end %>
-          </div>
+      <div class="widget widget-padding span6">
+        <div class="widget-header">
+          <%= content_tag(:i, nil, :class => "fa fa-#{@model.icon}") %>
+          <h5><%= I18n.t('gallery.container') %>: <%= @model.display_name.humanize %>
+            <%= render 'shared/edit_icon_button', resource: resource, resource_name: @model.display_name %>
+          </h5>
         </div>
-      <% else %>
-      <div class="widget-body widget-tasks-assigned clearfix">
-        <ul id="gallery-entries">
-          <%= render 'shared/gallery_entries', :images => resource.send(@model.get_image_relationship) %>
-        </ul>
+        <% if @model.gallery_children.nil? %>
+          <div class="widget-body row-fluid">
+            <div id="gallery-container" class="js-masonry"
+            data-masonry-options='{ "columnWidth": 3, "itemSelector": ".gallery-item" }'>
+            <% resource.send(@model.get_image_relationship).each do |image|%>
+              <div class="gallery-item">
+                <%= link_to (image_tag image.file_url(:thumb)), image.file_url(:thumb).to_s, :rel  => "group", :name => @model.display_name %>
+              </div>
+            <% end %>
+            </div>
+          </div>
+        <% else %>
+        <div class="widget-body widget-tasks-assigned clearfix">
+          <ul id="gallery-entries">
+            <%= render 'shared/gallery_entries', :images => resource.send(@model.get_image_relationship) %>
+          </ul>
+        </div>
+        <% end %>
       </div>
-      <% end %>
-    </div>
   </div>
   <% end %>
 </div>

@@ -26,7 +26,7 @@
             </tr>
           </thead><!-- Ends model attributes -->
           <tbody>
-            <% collection.each do |member| %>
+            <% @collection.each do |member| %>
               <tr>
               <% @model.display_attributes('index').each do |fields| %>
               <% fields.each do |attribute, properties| %>

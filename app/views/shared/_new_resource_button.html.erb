@@ -1,17 +1,18 @@
 <% if @model.has_route?(:new) && can?(:create, @model) %>
-  <%=
-    link_to(
-      content_tag(:div,
-        content_tag(:i, nil, :class => 'fa fa-plus-circle fa-2x') +
-          content_tag(:span, I18n.t("action.create") + " #{@model.display_name}"),
-        :class => 'btn btn-box span2'
+  <%= link_to(
+    content_tag(:div,
+      content_tag(:i, nil, :class => 'fa fa-plus-circle fa-2x') +
+      content_tag(
+        :span,
+        I18n.t("action.create", resource: @model.display_name)
       ),
-      {
-        :controller => params[:controller],
-        :action => 'new'
-      },
-      data: { no_turbolink: true },
-      id: 'new-resource-button'
-    )
-  %>
+      class: 'btn btn-box span2'
+    ),
+    {
+      controller: params[:controller],
+      action: 'new'
+    },
+    data: { no_turbolink: true },
+    id: 'new-resource-button'
+  ) %>
 <% end %>
