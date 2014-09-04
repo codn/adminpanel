@@ -1,78 +1,46 @@
 module Adminpanel
   class CategoriesController < ApplicationController
+    skip_before_action :set_resource_collection
 
     def index
       @categories = Category.all
     end
 
     def new
+      @resource_instance = @model.new
       set_collections
-      new! do |format|
+      respond_to do |format|
         format.html { render "shared/new" }
-        format.js do
-          render
-        end
+        format.js { render }
       end
     end
-
 
     def create
       merge_params
-      create! do |success, failure|
-        success.html do
-          flash[:success] = I18n.t("action.save_success")
-          redirect_to categories_path
-        end
-        failure.html do
-          set_collections
-          render 'shared/new'
-        end
-        success.js do
-          if params[:currentcontroller].to_s == 'adminpanel/categories'
-            render 'create', :locals => {:category => resource}
-          elsif params[:belongs_request].present?
-            render 'shared/create_belongs_to'
-          else
-            render 'shared/create_has_many'
+      @resource_instance = @model.new(send(whitelisted_params))
+      respond_to do |format|
+        if @resource_instance.save
+          format.html { redirect_to categories_path, flash: { success: I18n.t('action.save_success') } }
+          format.js do
+            if params[:currentcontroller].to_s == 'adminpanel/categories'
+              render 'create', :locals => {:category => resource}
+            elsif params[:belongs_request].present?
+              render 'shared/create_belongs_to'
+            else
+              render 'shared/create_has_many'
+            end
           end
-        end
-        failure.js do
+        else
           set_collections
-          render "new"
-
-        end
-      end
-    end
-
-    def edit
-      edit! do |format|
-        format.html do
-          set_collections
-          render "shared/edit"
-        end
-      end
-    end
-
-    def update
-      update! do |success, failure|
-        success.html do
-          flash[:success] = I18n.t("action.save_success")
-          # render "shared/index"
-          redirect_to categories_path
-        end
-        failure.html do
-          set_collections
-          render "shared/edit"
+          format.html { render 'shared/new' }
+          format.js { render 'new' }
         end
       end
     end
 
     def destroy
-      destroy! do |format|
-        format.html do
-          redirect_to categories_path
-        end
-      end
+      @resource_instance.destroy
+      redirect_to categories_path
     end
 
     private

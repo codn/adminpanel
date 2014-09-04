@@ -28,7 +28,7 @@ module Adminpanel
       @resource_instance = @model.new(send(whitelisted_params))
       respond_to do |format|
         if @resource_instance.save
-          format.html { redirect_to @resource_instance }
+          format.html { redirect_to @resource_instance, flash: { success: I18n.t('action.save_success') } }
           format.js do
             if params[:belongs_request]
               render 'shared/create_belongs_to', locals: { resource: @resource_instance }
