@@ -36,10 +36,10 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'koala',                '1.9.0'
   spec.add_runtime_dependency 'twitter',              '5.11.0'
   spec.add_runtime_dependency 'omniauth-twitter',     '1.0.1'
-  spec.add_runtime_dependency 'instagram',            '1.1.1'
+  spec.add_runtime_dependency 'instagram',            '1.1.3'
 
-  spec.add_development_dependency 'jquery-rails',     '~> 3.0.0', '>= 3.0.0'
-  spec.add_development_dependency 'turbolinks',       '~> 2.2.2', '>= 2.2.2'
+  spec.add_development_dependency 'jquery-rails',     '~> 3.1.2', '>= 3.1.2'
+  spec.add_development_dependency 'turbolinks',       '~> 2.3.0', '>= 2.3.0'
 
   spec.add_development_dependency 'sqlite3',          '~> 1.3',   '1.3.9'
   spec.add_development_dependency 'minitest',         '5.3.5'
