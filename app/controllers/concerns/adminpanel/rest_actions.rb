@@ -19,7 +19,7 @@ module Adminpanel
       set_collections
       respond_to do |format|
         format.html { render 'shared/new' }
-        format.js { render 'shared/new', locals: { resource: resource }}
+        format.js { render 'shared/new', locals: { resource: @resource_instance } }
       end
     end
 
@@ -54,7 +54,7 @@ module Adminpanel
 
     def update
       if @resource_instance.update(send(whitelisted_params))
-        flash.now[:success] = I18n.t('action.save_success')
+        flash[:success] = I18n.t('action.save_success')
         redirect_to @resource_instance
       else
         set_collections

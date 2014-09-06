@@ -23,11 +23,11 @@ module Adminpanel
           format.html { redirect_to categories_path, flash: { success: I18n.t('action.save_success') } }
           format.js do
             if params[:currentcontroller].to_s == 'adminpanel/categories'
-              render 'create', :locals => {:category => resource}
+              render 'create', :locals => { :category => resource }
             elsif params[:belongs_request].present?
-              render 'shared/create_belongs_to'
+              render 'shared/create_belongs_to', locals: { resource: @resource_instance }
             else
-              render 'shared/create_has_many'
+              render 'shared/create_has_many', locals: { resource: @resource_instance }
             end
           end
         else

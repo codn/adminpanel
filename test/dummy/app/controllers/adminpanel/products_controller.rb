@@ -4,11 +4,11 @@ module Adminpanel
     private
     def product_params
       params.require(:product).permit(
-      :price,
-      :name,
-      :category_ids,
-      :description,
-      :photos_attributes => [:product_id, :file]
+        :price,
+        :name,
+        :category_ids,
+        :description,
+        :photos_attributes => [:product_id, :file]
       )
     end
 

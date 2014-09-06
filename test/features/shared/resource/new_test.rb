@@ -6,7 +6,7 @@ class NewTest < ViewCase
   teardown :teardown
 
   def test_shared_new_page_messages
-    assert_button("#{I18n.t('action.add')} #{Adminpanel::Product.display_name}")
+    assert_button(I18n.t('action.add', resource: Adminpanel::Product.display_name))
   end
 
   def test_submitting_with_invalid_information
