@@ -102,15 +102,6 @@ module Adminpanel
       params.merge({:currentcontroller => params[:currentcontroller]}) if params[:currentcontroller].present?
     end
 
-    def respond_to_json(success, failure)
-      success.json do
-        render json: resource
-      end
-      failure.json do
-        render json: resource
-      end
-    end
-
     def whitelisted_params
       resource = controller_name.singularize.to_sym
       "#{resource}_params"
