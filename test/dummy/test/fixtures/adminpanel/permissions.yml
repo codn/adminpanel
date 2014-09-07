@@ -1,41 +1,41 @@
 publish:
-  rol: Publisher
+  role: Publisher
   action: 1
   resource: product
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
 create:
-  rol: Creator
+  role: Creator
   action: 2
   resource: product
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
 update:
-  rol: Updater
+  role: Updater
   action: 3
   resource: product
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
 read:
-  rol: Reader
+  role: Reader
   action: 0
   resource: product
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
 deleter:
-  rol: Deleter
+  role: Deleter
   action: 4
   resource: product
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
 create_product:
-  rol: Superuser
+  role: Superuser
   action: 2
   resource: product
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
 update_product:
-  rol: Superuser
+  role: Superuser
   action: 3
   resource: product
   created_at: <%= Date.today %>
