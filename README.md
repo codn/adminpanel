@@ -1,6 +1,6 @@
 # [![CoDN](http://cl.ly/image/130Q0E153d2G/codn180.png)](http://www.codn.mx "CoDN") Adminpanel
 
-CMS for Rails 4, for rails 3.x check the corresponding branch.
+Thank you for considering this gem, we are going to use the lastest Rails version of Rails. make sure you can use it before trying this gem out.
 
 [![Gem Version](https://badge.fury.io/rb/adminpanel.svg)](http://badge.fury.io/rb/adminpanel)
 [![Build Status](https://travis-ci.org/joseramonc/adminpanel.svg?branch=master)](https://travis-ci.org/joseramonc/adminpanel)
@@ -10,7 +10,7 @@ CMS for Rails 4, for rails 3.x check the corresponding branch.
 
 Add this line to your application's Gemfile:
 
-    gem 'adminpanel'
+    gem "adminpanel"
 
 And then execute:
 
@@ -40,10 +40,9 @@ Then, mount the gem wherever you like!
 
     mount Adminpanel::Engine => "/codn"
 
-Also make sure to include adminpanel assets in your application.rb if you need to precompile them:
+Also make sure to include adminpanel assets in your `application.rb` (before Rails tells you to do so) if you need to precompile them:
 
     config.assets.precompile += ['application-admin.js', 'application-admin.css']
-Feel free to use it, any doubts, errors or suggestions are welcome in the issues!
 
 ## Dependencies
 
@@ -56,7 +55,7 @@ Currently the integrations working are:
 * [Google Analytics Service](https://github.com/joseramonc/adminpanel/wiki/include-Google-Analytics)
 * [Facebook Share Link to Wall](https://github.com/joseramonc/adminpanel/wiki/include-Adminpanel::Facebook)
 * [Twitter API](https://github.com/joseramonc/adminpanel/wiki/include-Adminpanel::Twitter)
-* [Instagra API](https://github.com/joseramonc/adminpanel/wiki/include-Adminpanel::Instagram)
+* [Instagram API](https://github.com/joseramonc/adminpanel/wiki/include-Adminpanel::Instagram)
 
 ## Contributing
 
@@ -66,6 +65,4 @@ Currently the integrations working are:
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-## To Do:
-
-### Check the issues if you'd like to help or request a new feature.
+Any questions, errors or feature suggestions [are welcome in the issues](https://github.com/joseramonc/adminpanel/issues/new)
