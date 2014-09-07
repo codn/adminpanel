@@ -2,8 +2,8 @@
 <% breadcrumb_add(
   @model.display_name.capitalize.pluralize(I18n.default_locale),
   {
-    :controller => params[:controller],
-    :action => "index"
+    controller: params[:controller],
+    action: "index"
   }
 ) %>
 
@@ -14,40 +14,40 @@
         <h5>
           <%= @model.display_name.humanize %>
 
-          <%= render 'shared/edit_icon_button', resource: @resource_instance, resource_name: @model.display_name %>
+          <%= render "shared/edit_icon_button", resource: @resource_instance, resource_name: @model.display_name %>
 
-          <%= render 'shared/fb_icon_button', resource: @resource_instance, resource_name: @model.display_name %>
+          <%= render "shared/fb_icon_button", resource: @resource_instance, resource_name: @model.display_name %>
 
-          <%= render 'shared/twitter_icon_button', resource: @resource_instance, resource_name: @model.display_name %>
+          <%= render "shared/twitter_icon_button", resource: @resource_instance, resource_name: @model.display_name %>
         </h5>
       </div>
       <div class="widget-body">
         <div class="widget-tickets widget-tickets-large clearfix"><ul>
-          <% @model.display_attributes('show').each do |fields| %>
+          <% @model.display_attributes("show").each do |fields| %>
            <% fields.each do |attribute, properties| %>
             <% if properties["type"] != "adminpanel_file_field" %>
             <li class="priority-high">
               <div class="span3">
-                <h6><%= properties['label'] %></h6>
+                <h6><%= properties["label"] %></h6>
               </div>
               <div class="span8">
-                <% if properties['type'] == 'wysiwyg_field' %>
+                <% if properties["type"] == "wysiwyg_field" %>
                   <%= @resource_instance.send(attribute).html_safe -%>
-                <% elsif properties['type'] == 'belongs_to' %>
-                  <%= belong_to_object_name(@resource_instance, attribute.split('_id').first) %>
+                <% elsif properties["type"] == "belongs_to" %>
 
-                <% elsif properties['type'] == 'has_many' %>
+                  <%= belong_to_object_name(@resource_instance, attribute.split("_id").first) %>
+                <% elsif properties["type"] == "has_many" %>
                   <ul>
                     <% @resource_instance.send("#{pluralize_model(properties['model'])}").each do |member| %>
                       <li class="priority-low"><%= member.name %></li>
                     <% end %>
                   </ul>
-                <% elsif properties['type'] == 'file_field' %>
+                <% elsif properties["type"] == "file_field" %>
                   <ul>
                     <%= image_tag(@resource_instance.send("#{attribute}_url", :thumb)) %>
                   </ul>
                 <% elsif properties["type"] == "boolean" %>
-                  <td><%= @resource_instance.send(attribute) ? I18n.t('action.is_true') : I18n.t('action.is_false') %></td>
+                  <td><%= @resource_instance.send(attribute) ? I18n.t("action.is_true") : I18n.t("action.is_false") %></td>
                 <% else %>
                   <%= @resource_instance.send(attribute) -%>
                 <% end %>
@@ -63,9 +63,9 @@
     <% if @model.has_images? %>
       <div class="widget widget-padding span6">
         <div class="widget-header">
-          <%= content_tag(:i, nil, :class => "fa fa-#{@model.icon}") %>
-          <h5><%= I18n.t('gallery.container') %>: <%= @model.display_name.humanize %>
-            <%= render 'shared/edit_icon_button', resource: @resource_instance, resource_name: @model.display_name %>
+          <%= content_tag(:i, nil, class: "fa fa-#{@model.icon}") %>
+          <h5><%= I18n.t("gallery.container") %>: <%= @model.display_name.humanize %>
+            <%= render "shared/edit_icon_button", resource: @resource_instance, resource_name: @model.display_name %>
           </h5>
         </div>
         <% if @model.gallery_children.nil? %>
@@ -86,7 +86,7 @@
         <% else %>
         <div class="widget-body widget-tasks-assigned clearfix">
           <ul id="gallery-entries">
-            <%= render 'shared/gallery_entries', :images => @resource_instance.send(@model.get_image_relationship) %>
+            <%= render "shared/gallery_entries", images: @resource_instance.send(@model.get_image_relationship) %>
           </ul>
         </div>
         <% end %>
