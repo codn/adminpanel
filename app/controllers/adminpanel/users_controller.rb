@@ -1,6 +1,6 @@
 module Adminpanel
   class UsersController < Adminpanel::ApplicationController
-    
+
   private
     def user_params
       params.require(:user).permit(
@@ -8,7 +8,7 @@ module Adminpanel
         :name,
         :password,
         :password_confirmation,
-        :rol_id
+        :role_id
       )
     end
   end

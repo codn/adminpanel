@@ -12,7 +12,7 @@ en:
       description: "Description"
       email: "Email"
       file: "File"
-      rol_id: "Rol"
+      role_id: "Role"
       name: "Name"
       password: "Password"
       password_confirmation: "Confirm password"

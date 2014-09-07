@@ -1,5 +1,5 @@
 module Adminpanel
-  class Rol < ActiveRecord::Base
+  class Role < ActiveRecord::Base
     include Adminpanel::Base
     has_many :permissions
     validates_presence_of :name
@@ -25,7 +25,7 @@ module Adminpanel
     end
 
     def self.display_name
-      'Rol'
+      'Role'
     end
 
     def self.icon

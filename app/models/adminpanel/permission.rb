@@ -6,7 +6,7 @@ module Adminpanel
     enum action: [ :to_read, :to_publish, :to_create, :to_update,
       :to_destroy, :to_manage ]
 
-    belongs_to :rol
+    belongs_to :role
 
     def name
       "#{action} #{symbol_class(self['resource']).display_name}"
@@ -25,10 +25,10 @@ module Adminpanel
     def self.form_attributes
       [
         {
-          'rol_id' => {
+          'role_id' => {
             'type' => 'belongs_to',
-            'label' => I18n.t('permission.rol'),
-            'model' => 'Adminpanel::Rol',
+            'label' => I18n.t('permission.role'),
+            'model' => 'Adminpanel::Role',
             # 'remote_resource' => false
           }
         },

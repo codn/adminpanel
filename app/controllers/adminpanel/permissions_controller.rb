@@ -5,7 +5,7 @@ module Adminpanel
       def permission_params
         params.require(:permission).permit(
 
-          :rol_id,
+          :role_id,
           :action,
           :resource
         )

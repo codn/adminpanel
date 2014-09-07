@@ -2,10 +2,10 @@ module Adminpanel
   class User < ActiveRecord::Base
     include Adminpanel::Base
     has_secure_password
-    belongs_to :rol
+    belongs_to :role
 
-  #rol validation
-    validates_presence_of :rol_id
+  #role validation
+    validates_presence_of :role_id
 
   #name validations
     validates_presence_of :name
@@ -65,19 +65,19 @@ module Adminpanel
           }
         },
         {
-          'rol_id' => {
+          'role_id' => {
             'type' => 'belongs_to',
-            'model' => 'Adminpanel::Rol',
+            'model' => 'Adminpanel::Role',
             # 'remote_resource' => false,
-            'placeholder' => I18n.t('model.attributes.rol_id'),
-            'label' => I18n.t('model.attributes.rol_id')
+            'placeholder' => I18n.t('model.attributes.role_id'),
+            'label' => I18n.t('model.attributes.role_id')
           }
         },
       ]
     end
 
     def root_url
-      self.rol.permissions.first
+      self.role.permissions.first
     end
 
     def self.display_name
@@ -93,7 +93,7 @@ module Adminpanel
     end
 
     def self.icon
-      'user'
+      "user"
     end
 
     private

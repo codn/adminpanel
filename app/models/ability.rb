@@ -5,10 +5,10 @@ class Ability
   def initialize(user)
 
     if user.nil?
-    elsif user.rol.name == 'Admin'
+    elsif user.role.name == 'Admin'
       can :manage, :all
     else
-      user.rol.permissions.each do |permission|
+      user.role.permissions.each do |permission|
         if permission.to_read?
           can :read, symbol_class(permission.resource)
         elsif permission.to_publish?

@@ -41,17 +41,17 @@ namespace :adminpanel do
       user.delete
     end
 
-    rol = Adminpanel::Rol.find_by_name("Admin")
-    if rol.nil?
-      rol = Adminpanel::Rol.new(:name => "Admin")
-      rol.save
+    role = Adminpanel::Role.find_by_name("Admin")
+    if role.nil?
+      role = Adminpanel::Role.new(:name => "Admin")
+      role.save
     end
     Adminpanel::User.new(
       :email => 'webmaster@codn.com',
       :name => 'Webmaster',
       :password => password,
       :password_confirmation => password,
-      :rol_id => rol.id
+      :role_id => role.id
     ).save
   end
 

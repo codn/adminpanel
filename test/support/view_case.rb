@@ -15,8 +15,8 @@ class ViewCase < ActionView::TestCase
     click_button I18n.t('authentication.new-session')
   end
 
-  def login_user_with_rol(rol)
-    fill_in 'inputEmail', with: adminpanel_users(rol).email
+  def login_user_with_role(role)
+    fill_in 'inputEmail', with: adminpanel_users(role).email
     fill_in 'inputPassword', with: 'foobar' #pass is foobar
     click_button I18n.t('authentication.new-session')
   end
