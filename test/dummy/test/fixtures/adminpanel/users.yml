@@ -3,7 +3,7 @@ valid:
   email: user@example.com
   password_digest: <%= BCrypt::Password.create('foobar') %>
   remember_token: <%= Digest::SHA1.hexdigest("adminSat Feb 25 17:14:00 GMT 20060.236961325863376") %>
-  rol: Admin
+  role: Admin
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
 publisher:
@@ -11,7 +11,7 @@ publisher:
   email: publisher@example.com
   password_digest: <%= BCrypt::Password.create('foobar') %>
   remember_token: <%= Digest::SHA1.hexdigest("adminSat Feb 25 17:14:00 GMT 20060.236961325863376") %>
-  rol: Publisher
+  role: Publisher
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
 creator:
@@ -19,7 +19,7 @@ creator:
   email: creator@example.com
   password_digest: <%= BCrypt::Password.create('foobar') %>
   remember_token: <%= Digest::SHA1.hexdigest("adminSat Feb 25 17:14:00 GMT 20060.236961325863376") %>
-  rol: Creator
+  role: Creator
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
 updater:
@@ -27,7 +27,7 @@ updater:
   email: updator@example.com
   password_digest: <%= BCrypt::Password.create('foobar') %>
   remember_token: <%= Digest::SHA1.hexdigest("adminSat Feb 25 17:14:00 GMT 20060.236961325863376") %>
-  rol: Updater
+  role: Updater
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
 deleter:
@@ -35,7 +35,7 @@ deleter:
   email: deleter@example.com
   password_digest: <%= BCrypt::Password.create('foobar') %>
   remember_token: <%= Digest::SHA1.hexdigest("adminSat Feb 25 17:14:00 GMT 20060.236961325863376") %>
-  rol: Deleter
+  role: Deleter
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
 reader:
@@ -43,7 +43,7 @@ reader:
   email: reader@example.com
   password_digest: <%= BCrypt::Password.create('foobar') %>
   remember_token: <%= Digest::SHA1.hexdigest("adminSat Feb 25 17:14:00 GMT 20060.236961325863376") %>
-  rol: Reader
+  role: Reader
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
 superuser:
@@ -51,6 +51,6 @@ superuser:
   email: superuser@example.com
   password_digest: <%= BCrypt::Password.create('foobar') %>
   remember_token: <%= Digest::SHA1.hexdigest("adminSat Feb 25 17:14:00 GMT 20060.236961325863376") %>
-  rol: Superuser
+  role: Superuser
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
