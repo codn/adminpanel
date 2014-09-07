@@ -15,7 +15,7 @@ module Adminpanel
       if user && user.authenticate(params[:session][:password])
         sign_in user
         flash[:success] = I18n.t('authentication.signin_success')
-        permission = user.rol.permissions.first
+        permission = user.role.permissions.first
         if permission.nil?
           redirect_to root_url
         else

@@ -2,14 +2,11 @@ class CreateAdminpanelTables < ActiveRecord::Migration
   def migrate(direction)
     super
     # Create a default user
-    if direction == :up
-      if Rails.env.development?
-        rol = Adminpanel::Rol.new(:name => "Admin")
-        rol.save
-        Adminpanel::User.new(:email => 'admin@admin.com', :name => "Admin", :password => 'password', :password_confirmation => 'password', :rol_id => rol.id).save
-        puts "The password for admin@admin.com is: password"
-
-      end
+    if direction == :up && Rails.env.development?
+      role = Adminpanel::Role.new(:name => "Admin")
+      role.save
+      Adminpanel::User.new(:email => 'admin@admin.com', :name => "Admin", :password => 'password', :password_confirmation => 'password', :role_id => role.id).save
+      puts "The password for admin@admin.com is: password"
     end
   end
 
@@ -17,7 +14,7 @@ class CreateAdminpanelTables < ActiveRecord::Migration
     create_users
     create_galleries
     create_images
-    create_rols
+    create_roles
     create_permissions
     create_auths
     create_sections
@@ -28,7 +25,7 @@ class CreateAdminpanelTables < ActiveRecord::Migration
     create_table :adminpanel_users do |t|
       t.string :name
       t.string :email
-      t.string :rol_id
+      t.string :role_id
       t.string :password_digest
       t.string :remember_token
       t.timestamps
@@ -53,8 +50,8 @@ class CreateAdminpanelTables < ActiveRecord::Migration
     end
   end
 
-  def create_rols
-    create_table :adminpanel_rols do |t|
+  def create_roles
+    create_table :adminpanel_roles do |t|
       t.string :name
       t.timestamps
     end
@@ -62,7 +59,7 @@ class CreateAdminpanelTables < ActiveRecord::Migration
 
   def create_permissions
     create_table :adminpanel_permissions do |t|
-        t.integer  :rol_id
+        t.integer  :role_id
         t.integer  :action
         t.string   :resource
         t.timestamps

@@ -4,12 +4,10 @@
     <h5>
       <%= current_user.name.humanize %>
     </h5>
-    <%=
-    link_to(
-      "#{current_user.rol.name}",
+    <%= link_to(
+      current_user.role.name,
       "#"
-    )
-    %>
+    ) %>
   </div>
   <div class="accordion">
     <% Adminpanel.displayable_resources.each do |resource| %>
