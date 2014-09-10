@@ -1,6 +1,6 @@
 <%
 if @model.fb_share? && can?(:publish, @model)
-  if @fb_auths_count > 0
+  if !@fb_auths_count.nil?
     link = '#'
     options = { target: "#fb-#{resource.id}", toggle: 'modal' }
   else

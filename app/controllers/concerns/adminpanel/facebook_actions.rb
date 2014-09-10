@@ -3,7 +3,7 @@ module Adminpanel
     extend ActiveSupport::Concern
 
     included do
-      before_filter :set_fb_auths_count, only:[:index, :create, :update, :destroy, :show]
+      before_filter :set_fb_auths_count, only: [:index, :create, :update, :destroy, :show]
     end
 
     def fb_choose_page
@@ -50,12 +50,12 @@ module Adminpanel
 
   private
     def set_fb_auths_count
-      @fb_auths_count = Auth.where(key: 'facebook').count
+      @fb_auths_count = Auth.find_by_key('facebook')
     end
 
     def update_fb_auth(account_selected_name)
-      auths = Auth.where(key: 'facebook', name: account_selected_name)
-      if auths.count == 0
+      auth = Auth.find_by(key: 'facebook', name: account_selected_name)
+      if auth.nil?
         Auth.create(
           key: 'facebook',
           name: account_selected_name,
@@ -63,7 +63,7 @@ module Adminpanel
         )
       else
         #only support 1 fb account
-        auths.first.update_attribute(:value, params[model_name][:fb_page_access_key])
+        auth.update_attribute(:value, params[model_name][:fb_page_access_key])
       end
     end
 
