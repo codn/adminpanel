@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'bcrypt',               '~> 3.1',  '>= 3.1.7'
   spec.add_runtime_dependency 'carrierwave',          '~> 0.10', '>= 0.10.0'
   spec.add_runtime_dependency 'rails-i18n',           '~> 4.0'
-  spec.add_runtime_dependency 'cancancan',            '~> 1.8'
+  spec.add_runtime_dependency 'cancancan',            '~> 1.9.2', '>= 1.9.2'
   spec.add_runtime_dependency 'google-api-client',    '0.7.1'
   spec.add_runtime_dependency 'faker',                '~> 1.3',   '>= 1.3.0'
   spec.add_runtime_dependency 'font-awesome-rails',   '~> 4.1',   '>= 4.1.0'
@@ -41,7 +41,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'turbolinks',       '~> 2.3.0', '>= 2.3.0'
 
   spec.add_development_dependency 'sqlite3',          '~> 1.3',   '1.3.9'
-  spec.add_development_dependency 'minitest',         '5.3.5'
+  spec.add_development_dependency 'minitest',         '>= 5.3.5', '<= 6.0.0' ## this dependency is with something of cancancan, let's hope it gets 'fixed'
   spec.add_development_dependency 'minitest-emoji',   '2.0.0'
   spec.add_development_dependency 'minitest-capybara','~> 0.7',   '>= 0.7.1'
   spec.add_development_dependency 'poltergeist',      '~> 1.5',   '>= 1.5.1'
