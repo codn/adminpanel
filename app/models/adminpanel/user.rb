@@ -2,7 +2,7 @@ module Adminpanel
   class User < ActiveRecord::Base
     include Adminpanel::Base
     has_secure_password
-    belongs_to :role
+    belongs_to :role, touch: true
 
     default_scope do
       includes(:role)
@@ -13,7 +13,7 @@ module Adminpanel
 
     #name validations
     validates_presence_of :name
-    validates_length_of :name, :maximum => 25
+    validates_length_of :name, maximum: 25
 
     #password validations
     validates_confirmation_of :password, on: :create
@@ -27,7 +27,7 @@ module Adminpanel
     validates_presence_of :email
     validates_uniqueness_of :email
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-    validates_format_of :email, :with => VALID_EMAIL_REGEX
+    validates_format_of :email, with: VALID_EMAIL_REGEX
 
     before_save{ email.downcase! }
     before_save :create_remember_token
@@ -88,13 +88,13 @@ module Adminpanel
     def User.digest(token)
       Digest::SHA1.hexdigest(token.to_s)
     end
-    
+
     def self.display_name
-      'Usuario'
+      I18n.t('model.User')
     end
 
     def self.icon
-      "user"
+      'user'
     end
 
     private

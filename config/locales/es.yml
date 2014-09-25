@@ -4,6 +4,7 @@ es:
     Gallery: 'Galería de Inicio'
     Categories: 'Categorías'
     Role: 'Rol'
+    User: 'Usuario'
     attributes:
       adminproject_id: 'Proyecto'
       brief: 'Pequeña descripción'

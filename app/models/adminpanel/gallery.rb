@@ -3,11 +3,11 @@ require "carrierwave/orm/activerecord"
 module Adminpanel
   class Gallery < ActiveRecord::Base
     include Adminpanel::Base
+    include Adminpanel::Galleryzation
 
     mount_uploader :file, Adminpanel::GalleryUploader
-    validates_presence_of :file
 
-    include Adminpanel::Galleryzation
+    validates_presence_of :file
 
     def move_to_better_position
       if self.position > 1

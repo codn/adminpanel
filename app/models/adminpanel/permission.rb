@@ -12,7 +12,7 @@ module Adminpanel
                   :to_manage
                 ]
 
-    belongs_to :role
+    belongs_to :role, touch: true
 
     # validates_presence_of :action
     validates_presence_of :role_id

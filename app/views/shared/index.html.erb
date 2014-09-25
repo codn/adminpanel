@@ -25,38 +25,47 @@
               <th><%= I18n.t('actions') %></th>
             </tr>
           </thead><!-- Ends model attributes -->
-          <tbody>
-            <% @collection.each do |member| %>
-              <tr>
-              <% @model.display_attributes('index').each do |fields| %>
-              <% fields.each do |attribute, properties| %>
-                <% if properties['type'] == "wysiwyg_field" %>
-                  <td><%= member.send(attribute).html_safe -%></td>
-                <% elsif properties['type'] == 'belongs_to' %>
-                  <td>
-                    <%= belong_to_object_name(member, attribute.split('_id').first) %>
-                  </td>
-                <% elsif properties['type'] == 'boolean' %>
-                  <td><%= member.send(attribute) ? I18n.t('action.is_true') : I18n.t('action.is_false') %></td>
-                <% elsif properties['type'] != 'adminpanel_file_field' && properties['type'] != 'has_many' %>
-                  <td><%= member.send(attribute) -%></td>
+          <% cache ["#{@model.name}-collection", @collection] do %>
+
+            <tbody>
+              <% @collection.each do |member| %>
+                <% cache ["#{member.class}-member", member] do %>
+                  <tr>
+                    <% @model.display_attributes('index').each do |fields| %>
+                    <% fields.each do |attribute, properties| %>
+                      <% if properties['type'] == "wysiwyg_field" %>
+                        <td><%= member.send(attribute).html_safe -%></td>
+                      <% elsif properties['type'] == 'belongs_to' %>
+                        <td>
+                          <%= belong_to_object_name(member, attribute.split('_id').first) %>
+                        </td>
+                      <% elsif properties['type'] == 'boolean' %>
+                        <td>
+                          <%= member.send(attribute) ? I18n.t('action.is_true') : I18n.t('action.is_false') %>
+                        </td>
+                      <% elsif properties['type'] != 'adminpanel_file_field' && properties['type'] != 'has_many' %>
+                        <td>
+                          <%= member.send(attribute) -%>
+                        </td>
+                      <% end %>
+                    <% end %>
+                    <% end %>
+                    <td>
+                      <%= render 'shared/show_icon_button', resource: member %>
+
+                      <%= render 'shared/edit_icon_button', resource: member %>
+
+                      <%= render 'shared/delete_icon_button', resource: member %>
+
+                      <%= render 'shared/fb_icon_button', resource: member %>
+
+                      <%= render 'shared/twitter_icon_button', resource: member %>
+                    </td>
+                  </tr>
                 <% end %>
               <% end %>
-              <% end %>
-                <td>
-                  <%= render 'shared/show_icon_button', resource: member %>
-
-                  <%= render 'shared/edit_icon_button', resource: member %>
-
-                  <%= render 'shared/delete_icon_button', resource: member %>
-
-                  <%= render 'shared/fb_icon_button', resource: member %>
-
-                  <%= render 'shared/twitter_icon_button', resource: member %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
+            </tbody>
+          <% end %>
         </table>
         <div class="row-fluid">
           <div class="span6"></div>
