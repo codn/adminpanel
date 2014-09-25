@@ -7,7 +7,7 @@ module Adminpanel
     end
 
     def index
-       render "shared/index"
+      render 'shared/index'
     end
 
     def show

@@ -3,24 +3,24 @@ module Adminpanel
     include Adminpanel::Base
     include ApplicationHelper
 
-    enum action: [ :to_read, :to_publish, :to_create, :to_update,
-      :to_destroy, :to_manage ]
+    enum action: [
+                  :to_read,
+                  :to_publish,
+                  :to_create,
+                  :to_update,
+                  :to_destroy,
+                  :to_manage
+                ]
 
     belongs_to :role
+
+    # validates_presence_of :action
+    validates_presence_of :role_id
+    validates_presence_of :resource
 
     def name
       "#{action} #{symbol_class(self['resource']).display_name}"
     end
-
-    # def action
-    #   Permission.actions.each do |key, value|
-    #     return I18n.t("permission.#{key}") if value == self['action']
-    #   end
-    # end
-
-    # def resource
-    #   symbol_class(self['resource']).display_name.to_s.pluralize(I18n.default_locale)
-    # end
 
     def self.form_attributes
       [
@@ -48,11 +48,11 @@ module Adminpanel
     end
 
     def self.display_name
-      'Permiso' #singular
+      'Permiso' # singular
     end
 
     def self.icon
-      "gavel" # fa-{icon}
+      'gavel' # fa-{icon}
     end
   end
 end

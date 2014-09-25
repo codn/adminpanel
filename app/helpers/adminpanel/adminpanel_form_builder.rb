@@ -72,7 +72,13 @@ module Adminpanel
     end
 
     def enum_field name, *args
-      select name, self.object.class.actions.map{|action, value| [I18n.t("#{self.object.class.name.demodulize.downcase}.#{action}"), action]}, *args
+      select(
+        name,
+        self.object.class.actions.map{|action, value|
+          [I18n.t("#{self.object.class.name.demodulize.downcase}.#{action}"), action]
+        },
+        *args
+      )
     end
 
     def resource_select name, *args
