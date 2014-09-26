@@ -3,6 +3,7 @@ es:
     Analytic: 'Analytics'
     Gallery: 'Galería de Inicio'
     Categories: 'Categorías'
+    Role: 'Rol'
     attributes:
       adminproject_id: 'Proyecto'
       brief: 'Pequeña descripción'

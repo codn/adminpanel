@@ -1,7 +1,10 @@
 module Adminpanel
   class Role < ActiveRecord::Base
     include Adminpanel::Base
+
     has_many :permissions
+    has_many :users
+
     validates_presence_of :name
     validates_uniqueness_of :name
 
@@ -25,7 +28,7 @@ module Adminpanel
     end
 
     def self.display_name
-      'Role'
+      I18n.t('model.Role')
     end
 
     def self.icon

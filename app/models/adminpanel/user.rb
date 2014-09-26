@@ -4,22 +4,26 @@ module Adminpanel
     has_secure_password
     belongs_to :role
 
-  #role validation
+    default_scope do
+      includes(:role)
+    end
+
+    #role validation
     validates_presence_of :role_id
 
-  #name validations
+    #name validations
     validates_presence_of :name
     validates_length_of :name, :maximum => 25
 
-  #password validations
-    validates_confirmation_of :password, :on => :create
-    validates_presence_of :password, :on => :create
-    validates_length_of :password, :minimum => 6, :on => :create
+    #password validations
+    validates_confirmation_of :password, on: :create
+    validates_presence_of :password, on: :create
+    validates_length_of :password, minimum: 6, on: :create
 
-  #password_confirmation validations
-    validates_presence_of :password_confirmation, :on => :create
+    #password_confirmation validations
+    validates_presence_of :password_confirmation, on: :create
 
-  #email validations
+    #email validations
     validates_presence_of :email
     validates_uniqueness_of :email
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -27,10 +31,6 @@ module Adminpanel
 
     before_save{ email.downcase! }
     before_save :create_remember_token
-
-    def has_role?(role_sym)
-      roles.any? { |r| r.name.underscore.to_sym == role_sym }
-    end
 
     def self.form_attributes
       [
@@ -80,9 +80,6 @@ module Adminpanel
       self.role.permissions.first
     end
 
-    def self.display_name
-      'Usuario'
-    end
 
     def User.new_remember_token
       SecureRandom.urlsafe_base64
@@ -90,6 +87,10 @@ module Adminpanel
 
     def User.digest(token)
       Digest::SHA1.hexdigest(token.to_s)
+    end
+    
+    def self.display_name
+      'Usuario'
     end
 
     def self.icon
