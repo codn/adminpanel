@@ -1,9 +1,9 @@
-<% provide(:page_title, t("action.view", resource: @model.display_name.capitalize)) -%>
+<% provide(:page_title, I18n.t('action.view', resource: @model.display_name.capitalize)) -%>
 <% breadcrumb_add(
   @model.display_name.capitalize.pluralize(I18n.default_locale),
   {
     controller: params[:controller],
-    action: "index"
+    action: 'index'
   }
 ) %>
 
@@ -14,43 +14,24 @@
         <h5>
           <%= @model.display_name.humanize %>
 
-          <%= render "shared/edit_icon_button", resource: @resource_instance, resource_name: @model.display_name %>
+          <%= render 'shared/edit_icon_button', resource: @resource_instance, resource_name: @model.display_name %>
 
-          <%= render "shared/fb_icon_button", resource: @resource_instance, resource_name: @model.display_name %>
+          <%= render 'shared/fb_icon_button', resource: @resource_instance, resource_name: @model.display_name %>
 
-          <%= render "shared/twitter_icon_button", resource: @resource_instance, resource_name: @model.display_name %>
+          <%= render 'shared/twitter_icon_button', resource: @resource_instance, resource_name: @model.display_name %>
         </h5>
       </div>
       <div class="widget-body">
         <div class="widget-tickets widget-tickets-large clearfix"><ul>
-          <% @model.display_attributes("show").each do |fields| %>
+          <% @model.display_attributes('show').each do |fields| %>
            <% fields.each do |attribute, properties| %>
-            <% if properties["type"] != "adminpanel_file_field" %>
+            <% if properties['type'] != 'adminpanel_file_field' %>
             <li class="priority-high">
               <div class="span3">
-                <h6><%= properties["label"] %></h6>
+                <h6><%= properties['label'] %></h6>
               </div>
               <div class="span8">
-                <% if properties["type"] == "wysiwyg_field" %>
-                  <%= @resource_instance.send(attribute).html_safe -%>
-                <% elsif properties["type"] == "belongs_to" %>
-
-                  <%= belong_to_object_name(@resource_instance, attribute.split("_id").first) %>
-                <% elsif properties["type"] == "has_many" %>
-                  <ul>
-                    <% @resource_instance.send("#{pluralize_model(properties['model'])}").each do |member| %>
-                      <li class="priority-low"><%= member.name %></li>
-                    <% end %>
-                  </ul>
-                <% elsif properties["type"] == "file_field" %>
-                  <ul>
-                    <%= image_tag(@resource_instance.send("#{attribute}_url", :thumb)) %>
-                  </ul>
-                <% elsif properties["type"] == "boolean" %>
-                  <td><%= @resource_instance.send(attribute) ? I18n.t("action.is_true") : I18n.t("action.is_false") %></td>
-                <% else %>
-                  <%= @resource_instance.send(attribute) -%>
-                <% end %>
+                <%= property_value(properties['type'], attribute) %>
               </div>
             </li>
             <% end %>

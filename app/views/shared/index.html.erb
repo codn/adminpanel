@@ -28,7 +28,7 @@
           <% if @collection != [] %>
             <% last_update = @collection.max_by(&:updated_at).updated_at %>
           <% end %>
-          <% cache ["#{@model.name}-collection", last_update] do %>
+          <% cache ["#{@model.name}-collection", last_update], skip_digest: true do %>
             <tbody>
               <% @collection.each do |member| %>
                 <% cache ["#{member.class}-member", member] do %>

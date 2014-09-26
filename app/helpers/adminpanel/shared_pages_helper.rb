@@ -30,9 +30,9 @@ module Adminpanel
 
     def active_tab(index)
       if index == 0
-        return "active"
+        return 'active'
       else
-        return ""
+        return ''
       end
     end
 
@@ -47,6 +47,38 @@ module Adminpanel
           host: request.host
         })
       ).url_for_oauth_code
+    end
+
+    def property_value properties, attribute
+      case properties['type']
+      when 'wysiwyg_field'
+        @resource_instance.send(attribute)
+      when 'belongs_to'
+        belong_to_object_name(@resource_instance, attribute.split('_id').first)
+      when 'has_many'
+        logger.info "hasmany"
+        content_tag :ul do
+          @resource_instance.send("#{pluralize_model(properties['model'])}").each do |member|
+            content_tag :li, class: 'priority-low' do
+              member.name
+            end
+          end
+        end
+      when 'file_field'
+        content_tag :ul do
+          image_tag(@resource_instance.send("#{attribute}_url", :thumb))
+        end
+      when 'boolean'
+        content_tag :td do
+          if @resource_instance.send(attribute)
+            I18n.t('action.is_true')
+          else
+            I18n.t('action.is_false')
+          end
+        end
+      else
+        @resource_instance.send(attribute)
+      end
     end
 
   end
