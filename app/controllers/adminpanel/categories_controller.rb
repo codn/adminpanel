@@ -8,7 +8,6 @@ module Adminpanel
 
     def new
       @resource_instance = @model.new
-      set_collections
       respond_to do |format|
         format.html { render "shared/new" }
         format.js { render }
@@ -23,15 +22,14 @@ module Adminpanel
           format.html { redirect_to categories_path, flash: { success: I18n.t('action.save_success') } }
           format.js do
             if params[:currentcontroller].to_s == 'adminpanel/categories'
-              render 'create', :locals => { :category => resource }
+              render 'create', locals: { category: resource } # we are in categories controller
             elsif params[:belongs_request].present?
-              render 'shared/create_belongs_to', locals: { resource: @resource_instance }
+              render 'shared/create_belongs_to', locals: { resource: @resource_instance } # we are in other controller as a belongs_to, add option to select
             else
-              render 'shared/create_has_many', locals: { resource: @resource_instance }
+              render 'shared/create_has_many', locals: { resource: @resource_instance } # we are in other controller as a has_many, add checkbox
             end
           end
         else
-          set_collections
           format.html { render 'shared/new' }
           format.js { render 'new' }
         end
@@ -46,9 +44,6 @@ module Adminpanel
     private
       def category_params
         params.require(:category).permit(:name, :model)
-        # permitted.permit(:currentcontroller)
-        # params.require(:currentcontroller)
-
       end
   end
 end
