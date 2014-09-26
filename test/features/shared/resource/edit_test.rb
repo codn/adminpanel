@@ -12,12 +12,13 @@ class EditTest < ViewCase
 
   def test_submitting_with_same_information
     click_button('Guardar Producto')
-    assert_content( I18n.t('action.save_success') )
+    assert_content( adminpanel_products(:first).name )
+    assert_content( adminpanel_products(:first).price )
   end
 
   def test_submitting_with_invalid_information
-    fill_in 'product_name', :with => ''
-    fill_in 'product_price', :with => ''
+    fill_in 'product_name', with: ''
+    fill_in 'product_price', with: ''
     click_button('Guardar Producto')
     assert_content('Producto no pudo guardarse debido a 2 errores')
     saved_product = Adminpanel::Product.last
