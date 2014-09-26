@@ -25,8 +25,10 @@
               <th><%= I18n.t('actions') %></th>
             </tr>
           </thead><!-- Ends model attributes -->
-          <% cache ["#{@model.name}-collection", @collection] do %>
-
+          <% if @collection != [] %>
+            <% last_update = @collection.max_by(&:updated_at).updated_at %>
+          <% end %>
+          <% cache ["#{@model.name}-collection", last_update] do %>
             <tbody>
               <% @collection.each do |member| %>
                 <% cache ["#{member.class}-member", member] do %>
@@ -62,10 +64,10 @@
                       <%= render 'shared/twitter_icon_button', resource: member %>
                     </td>
                   </tr>
-                <% end %>
-              <% end %>
+                <% end %> <!-- end member cache -->
+              <% end %> <!-- end loop -->
             </tbody>
-          <% end %>
+          <% end %><!-- end collection cache -->
         </table>
         <div class="row-fluid">
           <div class="span6"></div>

@@ -4,6 +4,7 @@ module Adminpanel
     included do
       before_action :set_resource_instance, only:[:show, :edit, :update, :destroy]
       before_action :set_resource_collection, only:[:index, :destroy]
+      before_action :set_relationship_collections, :only => [:new, :create, :edit, :update]
     end
 
     def index
@@ -11,14 +12,11 @@ module Adminpanel
     end
 
     def show
-      if stale?(last_modified: @resource_instance.updated_at.utc, etag: @resource_instance.cache_key)
-        render 'shared/show'
-      end
+      render 'shared/show' if stale?(last_modified: @resource_instance.updated_at.utc, etag: @resource_instance.cache_key)
     end
 
     def new
       @resource_instance = @model.new
-      set_collections
       respond_to do |format|
         format.html { render 'shared/new' }
         format.js { render 'shared/new', locals: { resource: @resource_instance } }
@@ -39,7 +37,6 @@ module Adminpanel
             end
           end
         else
-          set_collections
           format.html { render 'shared/new' }
           format.js do
             render 'shared/new', locals: { resource: @resource_instance }
@@ -50,7 +47,6 @@ module Adminpanel
 
 
     def edit
-      set_collections
       render 'shared/edit'
     end
 
@@ -59,7 +55,6 @@ module Adminpanel
         flash[:success] = I18n.t('action.save_success')
         redirect_to @resource_instance
       else
-        set_collections
         render 'shared/edit'
       end
     end
@@ -71,7 +66,7 @@ module Adminpanel
 
     private
 
-    def set_collections
+    def set_relationship_collections
       @collections = {}
       set_belongs_to_collections
       set_has_many_collections
