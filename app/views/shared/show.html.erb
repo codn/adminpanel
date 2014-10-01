@@ -25,16 +25,14 @@
         <div class="widget-tickets widget-tickets-large clearfix"><ul>
           <% @model.display_attributes('show').each do |fields| %>
            <% fields.each do |attribute, properties| %>
-            <% if properties['type'] != 'adminpanel_file_field' %>
             <li class="priority-high">
               <div class="span3">
                 <h6><%= properties['label'] %></h6>
               </div>
               <div class="span8">
-                <%= property_value(properties['type'], attribute) %>
+                <%= field_value(properties, attribute, @resource_instance) %>
               </div>
             </li>
-            <% end %>
           <% end %>
           <% end %>
         </ul></div>

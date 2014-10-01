@@ -16,11 +16,9 @@
           <thead><!-- model attributes -->
             <tr>
               <% @model.display_attributes('index').each do |fields| %>
-              <% fields.each do |attribute, properties| %>
-                <% if properties['type'] != 'adminpanel_file_field' && properties['type'] != 'has_many' %>
+                <% fields.each do |attribute, properties| %>
                   <th><%= properties['label'] %></th>
                 <% end %>
-              <% end %>
               <% end %>
               <th><%= I18n.t('actions') %></th>
             </tr>
@@ -34,23 +32,11 @@
                 <% cache ["#{member.class}-member", member] do %>
                   <tr>
                     <% @model.display_attributes('index').each do |fields| %>
-                    <% fields.each do |attribute, properties| %>
-                      <% if properties['type'] == "wysiwyg_field" %>
-                        <td><%= member.send(attribute).html_safe -%></td>
-                      <% elsif properties['type'] == 'belongs_to' %>
+                      <% fields.each do |attribute, properties| %>
                         <td>
-                          <%= belong_to_object_name(member, attribute.split('_id').first) %>
-                        </td>
-                      <% elsif properties['type'] == 'boolean' %>
-                        <td>
-                          <%= member.send(attribute) ? I18n.t('action.is_true') : I18n.t('action.is_false') %>
-                        </td>
-                      <% elsif properties['type'] != 'adminpanel_file_field' && properties['type'] != 'has_many' %>
-                        <td>
-                          <%= member.send(attribute) -%>
+                          <%= field_value(properties, attribute, member) %>
                         </td>
                       <% end %>
-                    <% end %>
                     <% end %>
                     <td>
                       <%= render 'shared/show_icon_button', resource: member %>
@@ -69,10 +55,6 @@
             </tbody>
           <% end %><!-- end collection cache -->
         </table>
-        <div class="row-fluid">
-          <div class="span6"></div>
-          <div class="span6"></div>
-        </div>
       </div>
     </div>
   </div>

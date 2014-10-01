@@ -5,8 +5,8 @@ module Adminpanel
     # static(class) methods
     module ClassMethods
       def mount_images(relation)
-        has_many relation, :dependent => :destroy
-        accepts_nested_attributes_for relation, :allow_destroy => true
+        has_many relation, dependent: :destroy
+        accepts_nested_attributes_for relation, allow_destroy: true
       end
 
       def form_attributes
@@ -21,7 +21,7 @@ module Adminpanel
         form_attributes.each do |attribute|
           attribute.each do |name, properties|
             if name == field
-              return properties["label"]
+              return properties['label']
             end
           end
         end
@@ -32,9 +32,14 @@ module Adminpanel
         display_attributes = []
         form_attributes.each do |attribute|
           attribute.each do |name, properties|
-            if properties['show'].nil? ||
+            if (
+              properties['show'].nil? ||
               properties['show'] == 'true' ||
-              properties['show'] == type
+              (
+                properties['show'] == type &&
+                properties['type'] != 'adminpanel_file_field' #file fields get only displayed in form
+              )
+            )
               display_attributes << attribute
             end
           end
@@ -45,22 +50,22 @@ module Adminpanel
 
       def has_images?
         form_attributes.each do |fields|
-        fields.each do |attribute, properties|
-          if properties['type'] == 'adminpanel_file_field'
-            return true
+          fields.each do |attribute, properties|
+            if properties['type'] == 'adminpanel_file_field'
+              return true
+            end
           end
-        end
         end
         return false
       end
 
       def get_image_relationship
         form_attributes.each do |fields|
-        fields.each do |attribute, properties|
-          if properties['type'] == 'adminpanel_file_field'
-            return attribute
+          fields.each do |attribute, properties|
+            if properties['type'] == 'adminpanel_file_field'
+              return attribute
+            end
           end
-        end
         end
         return false
       end
@@ -68,11 +73,11 @@ module Adminpanel
       def relationships_of(type_property)
         classes_of_relation = []
         form_attributes.each do |fields|
-        fields.each do |attribute, properties|
-          if properties['type'] == type_property
-            classes_of_relation << properties['model'].classify.constantize
+          fields.each do |attribute, properties|
+            if properties['type'] == type_property
+              classes_of_relation << properties['model'].classify.constantize
+            end
           end
-        end
         end
         return classes_of_relation
       end
