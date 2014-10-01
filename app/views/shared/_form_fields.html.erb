@@ -1,63 +1,20 @@
 <% @model.form_attributes.each do |entries| %>
-<% entries.each do |attribute, properties| %>
+  <% entries.each do |attribute, properties| %>
 
-  <% field_type = properties['type'] %>
-  <% properties = properties.except('type') %>
+    <% field_type = properties['type'] %>
 
-  <% if field_type == 'adminpanel_file_field' %>
-    <% if !defined? remote_request %>
+    <% properties = properties.except('type') %>
 
-      <!-- if not making resource from other form -->
-      <%= content_tag :div, :class => 'file-collection-container', :data => {:max => properties['max-files'].nil? ? 0 : properties['max-files'] } do %>
-        <%= f.fields_for(attribute) do |builder| %>
-        	<%= render 'shared/image_fields', :f => builder %>
-      	<% end -%>
-    		<%= link_to_add_fields t('Add Image'), f, attribute %>
-      <% end %>
-
-    <% end %>
-  <% elsif field_type == 'belongs_to' %>
-    <% if !defined? remote_request %>
-      <!-- if not making resource from other form so we don't have to manage
-      infinite nested forms and relations -->
-      <% args = properties.except('model') %>
-    	<%= f.select(attribute, (@collections["#{properties["model"]}"].collect{|resource| [resource.name, resource.id]}), args) %>
-
-      <% if(properties['remote_resource'].nil? || properties['remote_resource']) %>
-        <%= render 'shared/create_remote_resource_button', belongs_request: true, remote_resource_name: properties['model'] %>
-      <% end %>
-
-    <% end %>
-  <% elsif field_type == 'has_many' %>
-    <% if !defined? remote_request %>
-      <!-- if not making resource from other form so we don't have to manage
-      infinite nested forms and relations -->
-      <div class="control-group">
-        <div class="control-label">
-          <%= properties['label'] %>
-        </div>
-      	<%= hidden_field_tag("#{class_name_downcase(f.object)}[#{relationship_ids(properties["model"])}][]", nil) %>
-        <div class="controls" id="<%= properties['model'].demodulize.downcase %>-relation">
-        	<% @collections["#{properties['model']}"].each do |resource| %>
-        		<%= f.checkbox(resource, class_name_downcase(f.object), relationship_ids(properties['model'])) %>
-          <% end %>
-        </div>
-      </div>
-
-      <% if(properties['remote_resource'].nil? || properties['remote_resource']) %>
-        <%= render 'shared/create_remote_resource_button', remote_resource_name: properties['model'] %>
-      <% end %>
-    <% end %>
-
-  <% elsif field_type == 'file_field' %>
-    <% if !defined? remote_request %>
+    <% if is_customized_field?(field_type) %><!-- SharedPagesHelper -->
+      <%= render "form/#{field_type}",
+          f: f,
+          properties: properties,
+          attribute: attribute %>
+    <% else %>
+      <!-- field without extra logic -->
       <% args = properties.except('name') %>
       <%= f.send(field_type, attribute, args) %>
     <% end %>
-  <% else %>
-    <% args = properties.except('name') %>
-    <%= f.send(field_type, attribute, args) %>
-  <% end %>
 
-<% end %>
+  <% end %>
 <% end %>

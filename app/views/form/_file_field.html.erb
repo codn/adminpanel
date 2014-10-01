@@ -1,0 +1,4 @@
+<% if !defined? remote_request %>
+  <% args = properties.except('name') %>
+  <%= f.send(field_type, attribute, args) %>
+<% end %>

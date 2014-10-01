@@ -18,8 +18,7 @@ module Adminpanel
     def new
       @resource_instance = @model.new
       respond_to do |format|
-        format.html { render 'shared/new' }
-        format.js { render 'shared/new', locals: { resource: @resource_instance } }
+        render_new(format)
       end
     end
 
@@ -30,6 +29,7 @@ module Adminpanel
         if @resource_instance.save
           format.html { redirect_to @resource_instance }
           format.js do
+            # if format js, request is from another controller's form
             if params[:belongs_request]
               render 'shared/create_belongs_to', locals: { resource: @resource_instance }
             else
@@ -37,10 +37,7 @@ module Adminpanel
             end
           end
         else
-          format.html { render 'shared/new' }
-          format.js do
-            render 'shared/new', locals: { resource: @resource_instance }
-          end
+          render_new(format)
         end
       end
     end
@@ -109,6 +106,15 @@ module Adminpanel
 
     def set_resource_collection
       @collection = @model.all
+    end
+
+    def render_new format
+      format.html do
+        render 'shared/new'
+      end
+      format.js do
+        render 'shared/new', locals: { resource: @resource_instance }
+      end
     end
   end
 end

@@ -56,7 +56,6 @@ module Adminpanel
       when 'belongs_to'
         belong_to_object_name(@resource_instance, attribute.split('_id').first)
       when 'has_many'
-        logger.info "hasmany"
         content_tag :ul do
           @resource_instance.send("#{pluralize_model(properties['model'])}").each do |member|
             content_tag :li, class: 'priority-low' do
@@ -79,6 +78,14 @@ module Adminpanel
       else
         @resource_instance.send(attribute)
       end
+    end
+
+    def is_customized_field? field_name
+      field_name = field_name.to_sym
+      return (field_name == :adminpanel_file_field ||
+        field_name == :belongs_to ||
+        field_name == :file_field ||
+        field_name == :has_many)
     end
 
   end

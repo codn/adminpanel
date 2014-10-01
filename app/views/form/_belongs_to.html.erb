@@ -1,0 +1,19 @@
+<% if !defined? remote_request %>
+<!-- if not making resource from other form so we don't have to manage
+infinite nested forms and relations -->
+  <% args = properties.except('model') %>
+  <%= f.select(
+    attribute,
+    (
+      @collections["#{properties["model"]}"].collect do |resource|
+        [resource.name, resource.id]
+      end
+    ),
+    args
+  ) %>
+
+  <% if(properties['remote_resource'].nil? || properties['remote_resource']) %>
+    <%= render 'shared/create_remote_resource_button', belongs_request: true, remote_resource_name: properties['model'] %>
+  <% end %>
+
+<% end %>
