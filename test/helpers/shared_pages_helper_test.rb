@@ -32,4 +32,17 @@ class SharedPagesHelperTest < ActionView::TestCase
     assert_equal '', active_tab([*1..15].sample)
   end
 
+  def test_is_customized_field?
+    assert_equal true, is_customized_field?('adminpanel_file_field')
+    assert_equal true, is_customized_field?('belongs_to')
+    assert_equal true, is_customized_field?('file_field')
+    assert_equal true, is_customized_field?('has_many')
+    assert_equal true, is_customized_field?('has_many')
+    # some example false values (not everyone)
+    assert_equal false, is_customized_field?('text_field')
+    assert_equal false, is_customized_field?('number_field')
+    assert_equal false, is_customized_field?('text_area')
+    assert_equal false, is_customized_field?('wysiwyg_field')
+  end
+
 end
