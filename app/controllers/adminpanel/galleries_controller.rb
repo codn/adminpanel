@@ -14,7 +14,7 @@ module Adminpanel
     # end
 
     def create
-      @gallery = Gallery.new(params[:gallery])
+      @gallery = Gallery.new(gallery_params)
 
       if @gallery.save
         redirect_to gallery_path(@gallery), :notice => t("gallery.success")
@@ -44,7 +44,7 @@ module Adminpanel
 
     def update
       @gallery = Gallery.find(params[:id])
-      if @gallery.update_attributes(params[:gallery])
+      if @gallery.update_attributes(gallery_params)
         redirect_to gallery_path(@gallery)
       else
         render 'edit'
