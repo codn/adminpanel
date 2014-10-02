@@ -1,14 +1,15 @@
 module Adminpanel
   module SharedPagesHelper
-    def belong_to_object_name(resource, belong_to_assoc_name)
-      @model.reflect_on_all_associations.each do |association|
-        if association.name.to_s == belong_to_assoc_name.to_s
-          if !resource.send(association.name.to_s).nil? #if there's something in the association
-            return resource.send(association.name).name
-          else
-            return "N/A #{association.klass.to_s}"
-          end
-        end
+    ### Searches for current controller's Class (@model) associaciations
+    # and execute the association method on the model, It's going
+    # to return 'name' of the related object if it exists.
+    # E.x. Given a Prodcuct that belongs_to category, this method
+    # is going to search for a relationship named 'category'
+    def belong_to_object_name(resource, belongs_to_assoc_name)
+      if !resource.send(belongs_to_assoc_name).nil? #if there's something in the association
+        return resource.send(belongs_to_assoc_name).name
+      else
+        return "#{belongs_to_assoc_name} N/A"
       end
     end
 
@@ -51,33 +52,31 @@ module Adminpanel
 
     def field_value properties, attribute, object
       case properties['type']
-      when 'wysiwyg_field'
-        object.send(attribute)
-      when 'belongs_to'
-        belong_to_object_name(object, attribute.split('_id').first)
-      when 'has_many'
-        content_tag :ul do
-          object.send("#{pluralize_model(properties['model'])}").each do |member|
-            content_tag :li, class: 'priority-low' do
-              member.name
+        when 'belongs_to'
+          belong_to_object_name(object, attribute.split('_id').first)
+        when 'has_many'
+          li_tags = ""
+          content_tag :ul do
+            object.send("#{pluralize_model(properties['model'])}").each do |member|
+              li_tags << content_tag(:li, class: 'priority-low') do
+                member.name
+              end
             end
+            li_tags.html_safe
           end
-        end
-      when 'file_field'
-        content_tag :ul do
-          image_tag(object.send("#{attribute}_url", :thumb))
-        end
-      when 'boolean'
-        content_tag :td do
+        when 'file_field'
+          content_tag :ul do
+            image_tag(object.send("#{attribute}_url", :thumb))
+          end
+        when 'boolean'
           if object.send(attribute)
             I18n.t('action.is_true')
           else
             I18n.t('action.is_false')
           end
+        else
+          object.send(attribute)
         end
-      else
-        object.send(attribute)
-      end
     end
 
     def is_customized_field? field_name

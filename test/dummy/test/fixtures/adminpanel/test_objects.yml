@@ -1,0 +1,7 @@
+first:
+  boolean: 1
+  name: John Doe
+  text: <p>lorem ipsum</p>
+  price: 282.3
+  quantity: 15
+  categories: nice, pretty

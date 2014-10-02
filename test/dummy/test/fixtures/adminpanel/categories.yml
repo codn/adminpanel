@@ -1,0 +1,7 @@
+nice:
+  name: Nice
+  model: test_object
+
+pretty:
+  name: Pretty
+  model: test_object

@@ -110,4 +110,18 @@ ActiveRecord::Schema.define do
       t.datetime :updated_at,      :null => false
       t.boolean  :has_description
   end
+  create_table :adminpanel_test_objects do |t|
+      t.boolean  :boolean
+      t.string   :name
+      t.text     :text
+      t.integer  :quantity
+      t.float    :price
+      t.datetime :created_at,      :null => false
+      t.datetime :updated_at,      :null => false
+      t.boolean  :has_description
+  end
+  create_table :adminpanel_test_object_category do |t|
+      t.integer  :test_object_id
+      t.integer  :category_id
+  end
 end

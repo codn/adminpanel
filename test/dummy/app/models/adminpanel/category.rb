@@ -7,6 +7,8 @@ module Adminpanel
     has_many :categorizations
     has_many :products, :through => :categorizations, :dependent => :destroy
 
+    has_and_belongs_to_many :test_objects,
+        join_table: "adminpanel_test_object_category"
 
     def self.form_attributes
       [

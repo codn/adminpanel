@@ -32,6 +32,114 @@ class SharedPagesHelperTest < ActionView::TestCase
     assert_equal '', active_tab([*1..15].sample)
   end
 
+  def test_string_in_field_value
+    test_object = adminpanel_test_objects(:first)
+    attribute = 'name'
+    properties = {
+      'type' => 'text_field',
+      'label' => 'name'
+    }
+    assert_equal(
+      'John Doe',
+      field_value(
+        properties,
+        attribute,
+        test_object
+      ),
+      'didn\'t matched :('
+    )
+  end
+
+  def test_boolean_in_field_value
+    test_object = adminpanel_test_objects(:first)
+    attribute = 'boolean'
+    properties = {
+      'type' => 'boolean',
+      'label' => 'boolean'
+    }
+    assert_equal(
+      I18n.t('action.is_true'),
+      field_value(
+        properties,
+        attribute,
+        test_object
+      ),
+      'didn\'t matched boolean :('
+    )
+  end
+
+  def test_belongs_to_in_field_value
+    @model = Adminpanel::Salesman # simulating salesman controller
+    test_object = adminpanel_salesmen(:one)
+    attribute = 'product_id'
+    properties = {
+      'type' => 'belongs_to',
+      'model' => 'Adminpanel::Product',
+      'label' => 'product',
+    }
+    assert_equal(
+      'Product saved',
+      field_value(
+        properties,
+        attribute,
+        test_object
+      ),
+      'didn\'t matched belongs_to :('
+    )
+  end
+
+  def test_has_many_in_field_value
+    test_object = adminpanel_test_objects(:first)
+    attribute = 'category_ids'
+    properties = {
+      'type' => 'has_many',
+      'model' => 'Adminpanel::Category',
+      'label' => 'hasmany'
+    }
+    # puts test_object.categories.inspect
+    assert_equal(
+      content_tag(:ul, nil) do
+        content_tag(:li, nil, class: 'priority-low') do
+          adminpanel_categories(:nice).name
+        end +
+        content_tag(:li, nil, class: 'priority-low') do
+          adminpanel_categories(:pretty).name
+        end
+      end,
+      field_value(
+        properties,
+        attribute,
+        test_object
+      ),
+      'didn\'t matched has_many fields :('
+    )
+  end
+
+  def test_file_field_in_field_value
+    test_object = adminpanel_galleries(:one)
+    attribute = 'file'
+    properties = {
+      'type' => 'file_field',
+      'label' => 'file'
+    }
+    assert_equal(
+      content_tag(:ul) do
+        image_tag(
+          test_object.send(
+            "#{attribute}_url",
+            :thumb
+          )
+        )
+      end,
+      field_value(
+        properties,
+        attribute,
+        test_object
+      ),
+      'regex didn\'t matched :('
+    )
+  end
+
   def test_is_customized_field?
     assert_equal true, is_customized_field?('adminpanel_file_field')
     assert_equal true, is_customized_field?('belongs_to')
