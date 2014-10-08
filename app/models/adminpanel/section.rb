@@ -27,13 +27,17 @@ module Adminpanel
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
     validates_format_of :description, with: VALID_EMAIL_REGEX, if: :is_email?
 
-    default_scope { order("page ASC") }
+    default_scope do
+      order("page ASC")
+    end
 
-    scope :of_page, lambda{ |page|
+    scope :of_page, -> (page) do
       where(page: page)
-    }
+    end
 
-    scope :with_description, -> { where.not( description: '') }
+    scope :with_description, -> do
+      where.not( description: '')
+    end
 
     def self.form_attributes
       [
