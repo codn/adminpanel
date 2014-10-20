@@ -16,13 +16,13 @@
           <% end %>
 
           <% if @section.has_image %>
-              <%= content_tag :div, :class => 'file-collection-container', :data => {:max => 1} do %>
-                <%= f.fields_for :images do |builder| %>
-                  <%= render 'shared/image_fields', :f => builder %>
-                <% end -%>
+            <%= content_tag :div, :class => 'file-collection-container', :data => {:max => 1} do %>
+              <%= f.fields_for :images do |builder| %>
+                <%= render 'shared/image_fields', :f => builder %>
+              <% end -%>
 
-                <%= link_to_add_fields "Agregar Imagen", f, :images %>
-              <% end %>
+              <%= link_to_add_fields "Agregar Imagen", f, :images %>
+            <% end %>
           <% end %>
       </div>
     </div>
