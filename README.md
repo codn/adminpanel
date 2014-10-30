@@ -20,7 +20,7 @@ And then execute:
 
 In you application.rb
 
-    config.default_locale = :es # or :en
+    config.i18n.default_locale = :es # or :en
 
 no other language is currently supported, but pull requests are welcome.
 
