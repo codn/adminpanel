@@ -1,6 +1,6 @@
 module Adminpanel
   class SectionUploader < CarrierWave::Uploader::Base
-    include CarrierWave::RMagick
+    include CarrierWave::MiniMagick
 
     storage :file
 
@@ -25,6 +25,8 @@ module Adminpanel
     #   process :reside_and_pad => [120, 900]
     # end
 
+    # More info at http://www.rubydoc.info/github/jnicklas/carrierwave/CarrierWave/MiniMagick
+
     # resize_and_pad(width, height, background=:transparent, gravity=::Magick::CenterGravity)
     #
     # Resize the image to fit within the specified dimensions while retaining
@@ -42,11 +44,9 @@ module Adminpanel
 
     # resize_to_fill(width, height)
     #
-    # From the RMagick documentation: “Resize the image to fit within the
+    # Resize the image to fit within the
     # specified dimensions while retaining the aspect ratio of the original image.
-    # If necessary, crop the image in the larger dimension.“
-    #
-    # See even www.imagemagick.org/RMagick/doc/image3.html#resize_to_fill
+    # If necessary, crop the image in the larger dimension.
     #
     # width (Integer)
     # the width to scale the image to
@@ -55,12 +55,10 @@ module Adminpanel
 
     # resize_to_fit(width, height)
     #
-    # From the RMagick documentation: “Resize the image to fit within the
+    # Resize the image to fit within the
     # specified dimensions while retaining the original aspect ratio. The image
     # may be shorter or narrower than specified in the smaller dimension but
     # will not be larger than the specified values.“
-    #
-    # See even www.imagemagick.org/RMagick/doc/image3.html#resize_to_fit
     #
     # width (Integer)
     # the width to scale the image to
