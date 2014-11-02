@@ -4,3 +4,10 @@ first:
   description: lorem ipsum dolor sit amec
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
+
+limit_images:
+  name: Product with limit
+  price: 123.45
+  description: lorem ipsum dolor sit amec
+  created_at: <%= Date.today %>
+  updated_at: <%= Date.today %>

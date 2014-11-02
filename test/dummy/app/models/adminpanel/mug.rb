@@ -6,20 +6,20 @@ module Adminpanel
 
     def self.form_attributes
       [
-      {
-        'name' => {
-          'type' => 'text_field',
-          'label' => 'name',
-          'placeholder' => 'name'
-        }
-      },
-      {
-        'number' => {
-          'type' => 'number_field',
-          'label' => 'number',
-          'placeholder' => 'number'
-        }
-      },
+        {
+          'name' => {
+            'type' => 'text_field',
+            'label' => 'name',
+            'placeholder' => 'name'
+          }
+        },
+        {
+          'number' => {
+            'type' => 'number_field',
+            'label' => 'number',
+            'placeholder' => 'number'
+          }
+        },
       ]
     end
 

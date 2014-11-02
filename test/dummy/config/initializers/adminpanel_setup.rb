@@ -20,6 +20,7 @@ Adminpanel.setup do |config|
     :products,
     :users,
     :mugs,
-    :salesmen
+    :salesmen,
+    :file_resources
   ]
 end

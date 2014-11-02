@@ -5,7 +5,7 @@ module Adminpanel
     include Adminpanel::Twitter
 
     has_many :categorizations
-    has_many :categories, :through => :categorizations
+    has_many :categories, through: :categorizations
     mount_images :photos
 
     validates_presence_of :name
@@ -13,8 +13,6 @@ module Adminpanel
     validates_presence_of :description
 
     def self.form_attributes
-
-
       [
       {"category_ids" => {"type" => "has_many", "model" => "Adminpanel::Category", "name" => "category_ids"}},
       {
@@ -33,7 +31,9 @@ module Adminpanel
         'photos' => {
           'type' => 'adminpanel_file_field',
           'label' => 'photo',
-          'placeholder' => 'photo'}
+          'placeholder' => 'photo',
+          'max-files' => 2
+        }
       },
       {
         'description' => {
