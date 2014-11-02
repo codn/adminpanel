@@ -13,21 +13,21 @@ class CreateAdminpanelTables < ActiveRecord::Migration
   def change
     create_users
     create_galleries
-    create_images
     create_roles
     create_permissions
     create_auths
     create_sections
+    create_sectionfiles
   end
 
   private
   def create_users
     create_table :adminpanel_users do |t|
-      t.string :name
-      t.string :email
-      t.string :role_id
-      t.string :password_digest
-      t.string :remember_token
+      t.string  :name
+      t.string  :email
+      t.integer :role_id
+      t.string  :password_digest
+      t.string  :remember_token
       t.timestamps
     end
     add_index :adminpanel_users, [:email]
@@ -36,15 +36,15 @@ class CreateAdminpanelTables < ActiveRecord::Migration
 
   def create_galleries
     create_table :adminpanel_galleries do |t|
-      t.string :file
+      t.string  :file
       t.integer :position
       t.timestamps
     end
   end
 
-  def create_images
-    create_table :adminpanel_images do |t|
-      t.string :file
+  def create_sectionfiles
+    create_table :adminpanel_sectionfiles do |t|
+      t.string  :file
       t.integer :section_id
       t.timestamps
     end
@@ -79,12 +79,13 @@ class CreateAdminpanelTables < ActiveRecord::Migration
 
   def create_sections
     create_table :adminpanel_sections do |t|
-      t.string :name
+      t.string  :name
       t.boolean :has_description
-      t.text :description
-      t.string :key
-      t.string :page
+      t.text    :description
+      t.string  :key
+      t.string  :page
       t.boolean :has_image
+      t.integer :max_files
       t.timestamps
     end
     add_index :adminpanel_sections, [:key]
