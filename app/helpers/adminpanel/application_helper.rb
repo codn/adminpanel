@@ -39,6 +39,7 @@ module Adminpanel
         add_another_image_button,
         '#',
         class: "add-fields #{hidden}",
+        id: 'add-image-link',
         data: {
           id: id,
           fields: fields.gsub("\n", "")

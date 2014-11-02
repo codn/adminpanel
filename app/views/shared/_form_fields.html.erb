@@ -11,7 +11,6 @@
           properties: properties,
           attribute: attribute %>
     <% else %>
-      <!-- field without extra logic -->
       <% args = properties.except('name') %>
       <%= f.send(field_type, attribute, args) %>
     <% end %>
