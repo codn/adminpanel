@@ -24,7 +24,7 @@
                 <%= render 'shared/image_fields', f: builder %>
               <% end -%>
 
-              <% if @section.max_files == 0 || @section.max_files < @section.sectionfiles.count %>
+              <% if @section.max_files != 0 && @section.max_files < @section.sectionfiles.count %>
                 <% hidden = 'hidden' %>
               <% else %>
                 <% hidden = 'not-hidden' %>
