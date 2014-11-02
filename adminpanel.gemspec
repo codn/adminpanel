@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.0.0'
 
-  spec.requirements  << 'rmagick, -v 2.13.2'
+  spec.requirements  << 'mini_magick, -v 3.8.1'
 
   spec.add_runtime_dependency 'rails',                '>= 4.1.4', '<= 4.2.0.beta3'
   spec.add_runtime_dependency 'mini_magick',          '3.8.1'

@@ -63,7 +63,7 @@ module Adminpanel
           checkbox_object.id,
           self.object.send(relationship).include?(checkbox_object.id)
           ) + checkbox_object.name,
-        :class => "checkbox"
+        class: "checkbox"
       )
     end
 
@@ -92,11 +92,11 @@ module Adminpanel
       label = options['label']
       options.delete('label')
 
-      options.reverse_merge! :class => 'span7', :include_blank => '(Seleccione por favor)';
+      options.reverse_merge! class: 'span7', include_blank: '(Seleccione por favor)';
 
-      @template.content_tag :div, :class => "control-group" do
-        @template.content_tag(:label, label, :class => "control-label") +
-        @template.content_tag(:div, super(name, select_options, options), :class => "controls")
+      @template.content_tag :div, class: "control-group" do
+        @template.content_tag(:label, label, class: "control-label") +
+        @template.content_tag(:div, super(name, select_options, options), class: "controls")
       end
     end
 
@@ -115,7 +115,7 @@ module Adminpanel
     def submit(name, *args)
       options = args.extract_options!
 
-      options.reverse_merge! :class => "btn btn-primary"
+      options.reverse_merge! class: "btn btn-primary"
       super(name, *args << options)
     end
 
@@ -185,9 +185,9 @@ module Adminpanel
       label = options['label']
       options.delete('label')
 
-      @template.content_tag :div, :class => 'control-group' do
-        @template.content_tag(:label, label, :class => 'control-label') +
-        @template.content_tag(:div, :class => 'controls') do
+      @template.content_tag :div, class: 'control-group' do
+        @template.content_tag(:label, label, class: 'control-label') +
+        @template.content_tag(:div, class: 'controls') do
           self.send(input_type, name, options)
         end
       end
@@ -221,7 +221,7 @@ module Adminpanel
     def gallery_base(name, options)
       file_field_input = file_field_original(name, options)
       hidden_input = hidden_field(:_destroy)
-      delete_button = @template.content_tag(:button, I18n.t("action.delete"), :class => "btn btn-danger remove_fields")
+      delete_button = @template.content_tag(:button, I18n.t("action.delete"), class: "btn btn-danger remove-fields")
 
       if object.nil? || object.new_record?
         "#{file_field_input}#{hidden_input}#{delete_button}".html_safe
@@ -231,8 +231,8 @@ module Adminpanel
     end
 
     def thumbnail_layout(attribute)
-      @template.content_tag :div, :class => 'control-group' do
-        @template.content_tag :div, :class => 'controls' do
+      @template.content_tag :div, class: 'control-group' do
+        @template.content_tag :div, class: 'controls' do
           @template.image_tag self.object.send("#{attribute}_url", :thumb)
         end
       end

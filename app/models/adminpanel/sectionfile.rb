@@ -1,5 +1,5 @@
 module Adminpanel
-  class Image < ActiveRecord::Base
+  class Sectionfile < ActiveRecord::Base
     include Adminpanel::Base
 
     validates_presence_of :file

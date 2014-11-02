@@ -1,5 +1,9 @@
 module Adminpanel
   class SectionsController < Adminpanel::ApplicationController
+    def index
+      @sections = Section.all
+    end
+
     # def new
     #   @section = Section.new
     #   authorize! :create, @section
@@ -16,8 +20,8 @@ module Adminpanel
     def update
       @section = Section.find(params[:id])
 
-      if @section.update_attributes(params[:section])
-        redirect_to section_path(@section), :notice => 'La seccion se ha actualizado'
+      if @section.update(section_params)
+        redirect_to section_path(@section), notice: 'La seccion se ha actualizado'
       else
         render 'edit'
       end
@@ -25,17 +29,6 @@ module Adminpanel
 
     def show
       @section = Section.find(params[:id])
-    end
-
-    # def destroy
-    #   @section = Section.find(params[:id])
-    #   @section.destroy
-
-    #   redirect_to sections_path
-    # end
-
-    def index
-      @sections = Section.all
     end
 
     private
@@ -46,8 +39,15 @@ module Adminpanel
         :key,
         :page,
         :name,
+        :max_files,
         :has_image,
-        { images_attributes: [:id, :file, :_destroy] }
+        {
+          sectionfiles_attributes: [
+            :id,
+            :file,
+            :_destroy
+          ]
+        }
       )
     end
   end

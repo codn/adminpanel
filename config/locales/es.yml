@@ -103,7 +103,7 @@ es:
   section:
     name: 'Nombre'
     description: 'Descripción'
-    edit: 'Editar Sección'
+    edit: 'Editar Sección: %{title}'
     default: 'Sin Sección'
   image: 'Imagen'
   session:

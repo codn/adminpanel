@@ -24,20 +24,21 @@ module Adminpanel
       display_name == params[:controller].classify.constantize.display_name ? 'active' : nil
     end
 
-    def link_to_add_fields(name, f, association)
+    def link_to_add_fields(name, f, association, hidden='not-hidden')
       new_object = f.object.send(association).klass.new
       id = new_object.object_id
       fields = f.fields_for(association, new_object, child_index: id) do |builder|
-        render("shared/image_fields", f: builder)
+        render('shared/image_fields', f: builder)
+      end
+      add_another_image_button = content_tag(:div, id: 'new-image-button') do
+        content_tag(:button, class: 'btn btn-success btn-mini') do
+          content_tag(:h6, name)
+        end
       end
       link_to(
-        content_tag(:div, class: "mws-form-row") do
-          content_tag(:button, class: "btn btn-success btn-mini") do
-            content_tag(:h6, name, id: "add-image-button")
-          end
-        end,
+        add_another_image_button,
         '#',
-        class: "add_fields",
+        class: "add-fields #{hidden}",
         data: {
           id: id,
           fields: fields.gsub("\n", "")

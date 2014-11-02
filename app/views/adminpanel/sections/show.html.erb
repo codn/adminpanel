@@ -22,7 +22,7 @@
             <% end %>
       </div>
       <div class="span12">
-        <% @section.images.each do |image|-%>
+        <% @section.sectionfiles.each do |image|-%>
           <%= image_tag(image.file_url :thumb) %>
         <% end %>
       </div>

@@ -4,7 +4,7 @@ module Adminpanel
   class Section < ActiveRecord::Base
     include Adminpanel::Base
 
-    mount_images :images
+    mount_images :sectionfiles
 
     validates_length_of :description,
         minimum: 10,
