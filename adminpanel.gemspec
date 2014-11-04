@@ -23,23 +23,26 @@ Gem::Specification.new do |spec|
 
   spec.requirements  << 'mini_magick, -v 3.8.1'
 
-  spec.add_runtime_dependency 'rails',                '>= 4.1.4', '<= 4.2.0.beta3'
-  spec.add_runtime_dependency 'mini_magick',          '3.8.1'
-  spec.add_runtime_dependency 'bcrypt',               '~> 3.1',   '>= 3.1.7'
-  spec.add_runtime_dependency 'carrierwave',          '~> 0.10',  '>= 0.10.0'
-  spec.add_runtime_dependency 'rails-i18n',           '~> 4.0'
-  spec.add_runtime_dependency 'cancancan',            '~> 1.9.2', '>= 1.9.2'
-  spec.add_runtime_dependency 'google-api-client',    '0.7.1'
-  spec.add_runtime_dependency 'faker',                '~> 1.3',   '>= 1.3.0'
-  spec.add_runtime_dependency 'font-awesome-rails',   '~> 4.1',   '>= 4.1.0'
-  spec.add_runtime_dependency 'koala',                '1.10.1' # Facebook
-  spec.add_runtime_dependency 'twitter',              '5.11.0'
-  spec.add_runtime_dependency 'omniauth-twitter',     '1.0.1'
-  spec.add_runtime_dependency 'instagram',            '1.1.3'
+  spec.add_runtime_dependency 'rails',             '>= 4.1.4', '<= 4.2.0.beta4'
+  spec.add_runtime_dependency 'mini_magick',       '3.8.1'
+  spec.add_runtime_dependency 'bcrypt',            '~> 3.1',   '>= 3.1.7'
+  spec.add_runtime_dependency 'carrierwave',       '~> 0.10',  '>= 0.10.0'
+  spec.add_runtime_dependency 'cancancan',         '~> 1.9.2', '>= 1.9.2'
+  spec.add_runtime_dependency 'faker',             '~> 1.3',   '>= 1.3.0'
+  spec.add_runtime_dependency 'google-api-client', '0.7.1'
+  spec.add_runtime_dependency 'koala',             '1.10.1' # Facebook
+  spec.add_runtime_dependency 'twitter',           '5.11.0'
+  spec.add_runtime_dependency 'omniauth-twitter',  '1.0.1'
+  spec.add_runtime_dependency 'instagram',         '1.1.3'
 
+  # Asset dependencies
+  spec.add_runtime_dependency 'font-awesome-rails',   '~> 4.1',   '>= 4.1.0'
+  spec.add_development_dependency 'sass-rails',       '~> 5.0.0.beta1'
+  spec.add_development_dependency 'coffee-rails',     '~> 4.0.1',   '>= 4.0.1'
   spec.add_development_dependency 'jquery-rails',     '~> 3.1.2', '>= 3.1.2'
   spec.add_development_dependency 'turbolinks',       '~> 2.3.0', '>= 2.3.0'
 
+  # test dependencies
   spec.add_development_dependency 'sqlite3',          '~> 1.3',   '1.3.9'
   spec.add_development_dependency 'minitest',         '>= 5.3.6', '<= 6.0.0'
   spec.add_development_dependency 'minitest-emoji',   '2.0.0'
