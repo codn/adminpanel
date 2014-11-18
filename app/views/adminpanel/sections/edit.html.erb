@@ -24,12 +24,12 @@
                 <%= render 'shared/image_fields', f: builder %>
               <% end -%>
 
-              <% if @section.max_files != 0 && @section.max_files < @section.sectionfiles.count %>
-                <% hidden = 'hidden' %>
+              <% if @section.max_files != 0 && @section.max_files <= @section.sectionfiles.count %>
+                <% visibility = 'hidden' %>
               <% else %>
-                <% hidden = 'not-hidden' %>
+                <% visibility = 'not-hidden' %>
               <% end %>
-                <%= link_to_add_fields 'Agregar Imagen', f, :sectionfiles, hidden %>
+                <%= link_to_add_fields 'Agregar Imagen', f, :sectionfiles, visibility %>
             <% end %>
           <% end %>
         </div>
