@@ -16,8 +16,8 @@ module Adminpanel
       file_name = resource.to_s.pluralize.demodulize.downcase + '.json'
       puts "dumping #{resource.display_name.pluralize(I18n.default_locale)} into db/#{file_name}"
 
-      File.open("#{Rails.root.join('db', file_name)}", 'w') do |f|
-        f << resource.all.to_a.to_json
+      create_file "db/#{file_name}" do
+        resource.all.to_a.to_json
       end
       inject_into_seeds(resource, file_name)
     end
@@ -25,7 +25,7 @@ module Adminpanel
   private
     def inject_into_seeds(resource, file_name)
       if options[:'inject-into-seeds']
-        inject_into_file "#{Rails.root.join('db', 'seeds.rb')}", after: /^end/ do
+        inject_into_file 'db/seeds.rb', after: /^end/ do
           "\nobjects = JSON.parse(open(\"\#{Rails.root}/db/#{file_name}\").read)\n" +
           "objects.each do |element|\n" +
             indent("#{resource}.create element\n", 2) +
