@@ -75,25 +75,6 @@ namespace :adminpanel do
     end
   end
 
-  task :dump, [:resource] => :environment do |t, args|
-    resource = args[:resource].demodulize.camelize.singularize
-    resource = "Adminpanel::#{resource}".classify.constantize
-    file_name = resource.to_s.pluralize.demodulize.downcase + '.json'
-    puts "dumping #{resource.display_name.pluralize(I18n.default_locale)} into db/#{file_name}"
-    File.open("#{Rails.root.join('db', file_name)}", 'w') do |f|
-      # resource.all.each do |object|
-        f << resource.all.to_a.to_json
-      # end
-    end
-
-    # haven't been able to make inject_into_file work :(
-    puts "** dump finished, INSERT THE FOLLOWING CODE INTO FILE #{Rails.root.join('db', 'seeds.rb')} **"
-    puts "objects = JSON.parse(open(\"#{Rails.root}/db/#{file_name}.json\").read)"
-    puts "objects.each do |element|"
-    puts "  #{resource}.create element"
-    puts "end"
-  end
-
   task :populate, [:times, :model, :attributes] => :environment do |t, args|
     require 'faker'
     I18n.reload!
