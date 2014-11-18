@@ -4,10 +4,10 @@ module Adminpanel
     desc "Generate a dump for a given resource"
     # source_root File.expand_path("../templates", __FILE__)
     argument :name, type: :string, require: true
-    class_option :'skip-inject-into-seeds',
+    class_option :'inject-into-seeds',
       :type => :boolean,
-      :aliases => '-c',
-      :default => false,
+      :aliases => '-i',
+      :default => true,
       :desc => "Skip injection into seeds.rb"
 
     def create_json_file
@@ -15,6 +15,7 @@ module Adminpanel
       resource = "Adminpanel::#{resource}".classify.constantize
       file_name = resource.to_s.pluralize.demodulize.downcase + '.json'
       puts "dumping #{resource.display_name.pluralize(I18n.default_locale)} into db/#{file_name}"
+
       File.open("#{Rails.root.join('db', file_name)}", 'w') do |f|
         f << resource.all.to_a.to_json
       end
@@ -23,7 +24,7 @@ module Adminpanel
 
   private
     def inject_into_seeds(resource, file_name)
-      if !options[:'skip-injection-into-seeds']
+      if options[:'inject-into-seeds']
         inject_into_file "#{Rails.root.join('db', 'seeds.rb')}", after: /^end/ do
           "\nobjects = JSON.parse(open(\"\#{Rails.root}/db/#{file_name}\").read)\n" +
           "objects.each do |element|\n" +

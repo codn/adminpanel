@@ -34,22 +34,4 @@ class AdminpanelRakeTest < ActiveSupport::TestCase
     assert_equal 'Admin', generated_user.role.name
   end
 
-  def test_dump_task
-    ensure_theres_no_dump
-    assert( !File.exist?("#{Rails.root}/db/users.json") )
-    assert( Adminpanel::User.count > 0 ) #ensure there's something in adminpanel_users
-
-    Rake.application.invoke_task 'adminpanel:dump[user]'
-    assert( File.exist?("#{Rails.root}/db/users.json") )
-    assert_file( "#{Rails.root}/db/users.json" )
-    # assert_content()
-  end
-
-  private
-    def ensure_theres_no_dump
-      if File.exist?("#{Rails.root}/db/users.json")
-        File.delete("#{Rails.root}/db/users.json")
-      end
-    end
-
 end
