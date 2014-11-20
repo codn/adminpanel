@@ -24,6 +24,16 @@ module Adminpanel
       end
     end
 
+    def non_image_file_field name, *args
+      file_input = base_layout(name, *args, 'file_field_original')
+
+      if !object.nil? && !object.new_record? #if not new record
+        "#{title_layout(name)}#{file_input}".html_safe
+      else
+        image_input
+      end
+    end
+
     def gallery_field name, *args
       base_layout name, *args, 'gallery_base'
     end
@@ -234,6 +244,14 @@ module Adminpanel
       @template.content_tag :div, class: 'control-group' do
         @template.content_tag :div, class: 'controls' do
           @template.image_tag self.object.send("#{attribute}_url", :thumb)
+        end
+      end
+    end
+
+    def title_layout(attribute)
+      @template.content_tag :div, class: 'control-group' do
+        @template.content_tag :div, class: 'controls' do
+          @template.content_tag(:i, I18n.t('adminpanel.form.server_file', file: self.object["#{attribute}"]))
         end
       end
     end

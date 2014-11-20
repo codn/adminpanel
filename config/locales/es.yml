@@ -1,4 +1,7 @@
 es:
+  adminpanel:
+    form:
+      server_file: 'El archivo en el servidor es: %{file}'
   model:
     Analytic: 'Analytics'
     Gallery: 'Galería de Inicio'
