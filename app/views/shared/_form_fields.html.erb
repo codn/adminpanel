@@ -4,12 +4,14 @@
     <% field_type = properties['type'] %>
 
     <% properties = properties.except('type') %>
-
+    <% logger.info attribute %>
     <% if is_customized_field?(field_type) %><!-- SharedPagesHelper -->
-      <%= render "form/#{field_type}",
+      <%= render(
+          "form/#{field_type}",
           f: f,
           properties: properties,
-          attribute: attribute %>
+          attribute: attribute
+      ) %>
     <% else %>
       <% args = properties.except('name') %>
       <%= f.send(field_type, attribute, args) %>
