@@ -30,7 +30,7 @@ module Adminpanel
       if !object.nil? && !object.new_record? #if not new record
         "#{title_layout(name)}#{file_input}".html_safe
       else
-        image_input
+        file_input
       end
     end
 
