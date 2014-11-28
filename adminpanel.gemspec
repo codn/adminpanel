@@ -24,6 +24,7 @@ Gem::Specification.new do |spec|
   spec.requirements  << 'mini_magick, -v 3.8.1'
 
   spec.add_runtime_dependency 'rails',             '>= 4.1.4', '<= 4.2.0.beta4'
+  spec.add_runtime_dependency 'arel',             '6.0.0.beta2' # temporary, arel@6.0.0 breaks 4.2.0.beta4
   spec.add_runtime_dependency 'mini_magick',       '3.8.1'
   spec.add_runtime_dependency 'bcrypt',            '~> 3.1',   '>= 3.1.7'
   spec.add_runtime_dependency 'carrierwave',       '~> 0.10',  '>= 0.10.0'

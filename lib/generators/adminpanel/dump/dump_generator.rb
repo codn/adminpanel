@@ -25,7 +25,7 @@ module Adminpanel
   private
     def inject_into_seeds(resource, file_name)
       if options[:'inject-into-seeds']
-        inject_into_file 'db/seeds.rb', after: /^end/ do
+        append_to_file 'db/seeds.rb' do
           "\nobjects = JSON.parse(open(\"\#{Rails.root}/db/#{file_name}\").read)\n" +
           "objects.each do |element|\n" +
             indent("#{resource}.create element\n", 2) +
