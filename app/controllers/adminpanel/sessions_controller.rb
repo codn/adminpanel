@@ -39,7 +39,7 @@ module Adminpanel
     end
 
     def instagram_login
-      redirect_to Instagram.authorize_url(:redirect_uri => instagram_callback_sessions_url, :scope => 'comments')
+      redirect_to Instagram.authorize_url(redirect_uri: instagram_callback_sessions_url, scope: 'comments')
     end
 
     def instagram_callback
