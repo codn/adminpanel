@@ -30,6 +30,7 @@ module Adminpanel
       )
       update_fb_auth(page_selected.get_object('me')['name'])
       flash[:success] = I18n.t('fb.saved_token')
+      Rails.cache.clear
       redirect_to resource
     end
 

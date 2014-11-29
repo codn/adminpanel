@@ -34,6 +34,7 @@ module Adminpanel
 
     def twitter_callback
       save_twitter_tokens
+      Rails.cache.clear
       flash[:success] = I18n.t('twitter.saved_token')
       redirect_to twitter_analytics_path
     end
