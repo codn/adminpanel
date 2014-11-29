@@ -95,7 +95,7 @@ module Adminpanel
       end
 
       def has_route?(route)
-        if (!exlude?(route)) && include_route(route)
+        if (!exclude?(route)) && include_route(route)
           true
         else
           false
@@ -119,7 +119,7 @@ module Adminpanel
       end
 
     private
-      def exlude?(route)
+      def exclude?(route)
         if routes_options[:except].nil?
           false
         elsif routes_options[:except].include?(route)
