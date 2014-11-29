@@ -19,7 +19,7 @@
             <%= link_to(
               [route_symbol(resource.to_s)],
               data: { no_transition_cache: true },
-              class: "accordion-toggle b_99FFCC #{is_current_section?(resource_class.display_name)} spinner-link"
+              class: "accordion-toggle b_EF5493 #{is_current_section?(resource_class.display_name)} spinner-link"
             ) do %>
               <%= content_tag :i, nil, class: "fa fa-#{resource_class.icon}" %>
               <%= resource_class.display_name.pluralize(I18n.default_locale) %>

@@ -4,11 +4,11 @@
       content_tag(
         :i,
         nil,
-        :class => 'fa fa-pencil'
+        class: 'fa fa-pencil'
       ),
       [:edit, resource],
-      :title => t("action.update") + " #{resource.name}",
-      data: { no_turbolink: true }
+      title: I18n.t("action.update") + " #{resource.name}",
+      class: 'spinner-link'
     )
   %>
 <% end %>
