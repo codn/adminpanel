@@ -107,7 +107,7 @@ function SwitchCalendars(startCalendar, endCalendar, e) {
 }
 
 var ready = function() {
-	$('#information-table').dataTable( {
+	$('#information-table').dataTable({
 		"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
 		"sPaginationType": "bootstrap",
 		"oLanguage": {
@@ -121,7 +121,8 @@ var ready = function() {
 				"sPrevious": "Anterior",
 				"sNext": "Siguiente"
 			}
-		}
+		},
+		"bDestroy": true
 	});
 }
 

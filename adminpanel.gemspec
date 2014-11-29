@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.0.0'
 
-  spec.requirements  << 'mini_magick, -v 3.8.1'
+  spec.requirements  << 'imagemagick installed'
 
   spec.add_runtime_dependency 'rails',             '>= 4.2.0.beta1', '<= 4.2.0.rc1'
   spec.add_runtime_dependency 'mini_magick',       '4.0.1'
@@ -36,11 +36,11 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'instagram',         '1.1.3'
 
   # Asset dependencies
-  spec.add_runtime_dependency 'font-awesome-rails',   '~> 4.1',   '>= 4.1.0'
-  spec.add_development_dependency 'sass-rails',       '~> 5.0.0.beta1'
-  spec.add_development_dependency 'coffee-rails',     '~> 4.1.0', '>= 4.1.0'
-  spec.add_development_dependency 'jquery-rails',     '~> 4.0.0', '>= 4.0.0'
-  spec.add_development_dependency 'turbolinks',       '~> 2.3.0', '>= 2.3.0'
+  spec.add_runtime_dependency 'font-awesome-rails', '~> 4.1',   '>= 4.1.0'
+  spec.add_runtime_dependency 'sass-rails',         '~> 5.0.0.beta1'
+  spec.add_runtime_dependency 'coffee-rails',       '~> 4.1.0', '>= 4.1.0'
+  spec.add_runtime_dependency 'jquery-rails',       '4.0.0.beta2'
+  spec.add_runtime_dependency 'turbolinks',         '~> 2.5.0', '>= 2.5.2'
 
   # test dependencies
   spec.add_development_dependency 'sqlite3',          '~> 1.3',   '1.3.10'

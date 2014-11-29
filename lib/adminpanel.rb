@@ -9,6 +9,9 @@ require "koala"
 require "twitter"
 require "omniauth-twitter"
 require "instagram"
+require "jquery-rails"
+require "turbolinks"
+require "coffee-rails"
 
 module Adminpanel
 end
