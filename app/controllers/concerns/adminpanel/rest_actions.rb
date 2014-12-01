@@ -2,9 +2,9 @@ module Adminpanel
   module RestActions
     extend ActiveSupport::Concern
     included do
-      before_action :set_resource_instance, only:[:show, :edit, :update, :destroy]
-      before_action :set_resource_collection, only:[:index, :destroy]
-      before_action :set_relationship_collections, :only => [:new, :create, :edit, :update]
+      before_action :set_resource_instance,        only: [:show, :edit, :update, :destroy]
+      before_action :set_resource_collection,      only: [:index, :destroy]
+      before_action :set_relationship_collections, only: [:new, :create, :edit, :update]
     end
 
     def index
@@ -89,10 +89,10 @@ module Adminpanel
     end
 
     def merge_params
-      params.merge({:model => params[:model]}) if params[:model].present?
-      params.merge({:model_name => params[:model_name]}) if params[:model_name].present?
-      params.merge({:belongs_request => params[:belongs_request]}) if params[:belongs_request].present?
-      params.merge({:currentcontroller => params[:currentcontroller]}) if params[:currentcontroller].present?
+      params.merge({model:             params[:model]})             if params[:model].present?
+      params.merge({model_name:        params[:model_name]})        if params[:model_name].present?
+      params.merge({belongs_request:   params[:belongs_request]})   if params[:belongs_request].present?
+      params.merge({currentcontroller: params[:currentcontroller]}) if params[:currentcontroller].present?
     end
 
     def whitelisted_params
