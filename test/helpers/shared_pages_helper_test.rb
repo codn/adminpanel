@@ -96,7 +96,6 @@ class SharedPagesHelperTest < ActionView::TestCase
       'model' => 'Adminpanel::Category',
       'label' => 'hasmany'
     }
-    # puts test_object.categories.inspect
     assert_equal(
       content_tag(:ul, nil) do
         content_tag(:li, nil, class: 'priority-low') do

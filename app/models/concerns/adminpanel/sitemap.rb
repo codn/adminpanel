@@ -23,7 +23,7 @@ module Adminpanel
         request = url % CGI.escape("#{root_url}/sitemap.xml")
         logger.info root_url
         logger.info "  Pinging #{name} with #{request}"
-        if Rails.env != "development"
+        if !Rails.env.development?
           response = Net::HTTP.get_response(URI.parse(request))
           logger.info "    #{response.code}: #{response.message}"
           logger.info "    Body: #{response.body}"
