@@ -177,4 +177,4 @@ es:
     message: 'Mensaje de la publicación'
     saved_token: 'Log in con Twitter exitoso, ya puedes publicar con la cuenta de Twitter'
   breadcrumb:
-    index: 'Index'
+    index: 'Inicio'
