@@ -53,7 +53,7 @@ module Adminpanel
     end
 
     def self.display_name
-      'Seccion'
+      I18n.t('model.Section')
     end
 
     def description

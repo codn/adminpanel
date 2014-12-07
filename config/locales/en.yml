@@ -1,23 +1,27 @@
 en:
   model:
-    Analytic: "Google Analytics"
-    Gallery: "Gallery"
-    Categories: "Categories"
+    Analytic: 'Google Analytics'
+    Gallery: 'Gallery'
+    Categories: 'Categories'
+    User: 'User'
+    Role: 'Role'
+    Permission: 'Permission'
+    Section: 'Section'
     attributes:
-      adminproject_id: "Proyect"
-      brief: "Brief Description"
-      body: "Body"
-      category_id: "Category"
-      client_id: "Client"
-      description: "Description"
-      email: "Email"
-      file: "File"
-      role_id: "Role"
-      name: "Name"
-      password: "Password"
-      password_confirmation: "Confirm password"
-      password_digest: "Confirm password"
-      username: "Nombre de usuario"
+      adminproject_id: 'Proyect'
+      brief: 'Brief Description'
+      body: 'Body'
+      category_id: 'Category'
+      client_id: 'Client'
+      description: 'Description'
+      email: 'Email'
+      file: 'File'
+      role_id: 'Role'
+      name: 'Name'
+      password: 'Password'
+      password_confirmation: 'Confirm password'
+      password_digest: 'Confirm password'
+      username: 'Nombre de usuario'
   errors:
     one: "%{model} can't be saved, 1 error"
     other: "%{model} can't be saved due %{count} errors"
@@ -26,64 +30,83 @@ en:
       messages:
         not_phone: "isn't a phone (10 numbers)"
         blank: "can't be blank"
-        confirmation: "Must be the same"
+        confirmation: 'Must be the same'
         invalid: "isn't an email"
-        not_a_number: "not a number"
-        taken: "alredy in use"
-        too_long: "too long"
-        too_short: "too short, minimum is 6 characters"
+        not_a_number: 'not a number'
+        taken: 'alredy in use'
+        too_long: 'too long'
+        too_short: 'too short, minimum is 6 characters'
   time:
     formats:
-      short: "%B %d, of %Y"
-      estimate: "%Y-%m-%d"
-  Add Image: "Add Image"
+      short: '%B %d, of %Y'
+      estimate: '%Y-%m-%d'
+  Add Image: 'Add Image'
   wysiwyg:
-    description: "Write descrition here..."
-  Panel title: "Panel Administrativo"
-  actions: "Actions"
+    description: 'Write descrition here...'
+  Panel title: 'Panel Administrativo'
+  permission:
+    0: 'Read'
+    to_read: 'To see'
+    1: 'Share on Social Networks'
+    to_publish: 'Share on Social Neworkds'
+    2: 'Create'
+    to_create: 'Create'
+    3: 'Update'
+    to_update: 'Update'
+    4: 'Delete'
+    to_destroy: 'Delete'
+    5: 'Administer'
+    to_manage: 'Administer'
+    role: 'Role'
+    action: 'Valid actions'
+    resource: 'Resource'
+  actions: 'Actions'
   action:
-    add: "Add"
-    create: "Create"
-    close: "Close"
-    show: "Show"
-    submitting: "Submitting..."
-    save: "Save"
-    save_success: "Has been saved successfully"
-    update: "Update"
-    delete: "Delete"
-    view: "View"
+    add: 'Add'
+    create: 'Create'
+    close: 'Close'
+    show: 'Show'
+    submitting: 'Submitting...'
+    save: 'Save'
+    save_success: 'Has been saved successfully'
+    update: 'Update'
+    delete: 'Delete'
+    view: 'View'
     delete confirmation: "Are you sure you wan't to delete?"
     is_true: 'Yes'
     is_false: 'No'
   authentication:
-    welcome: "Welcome! Please, submit your credentials"
-    signin_error: "Email and/or Password wrong."
-    signin_success: "Welcome!"
+    logout: 'Log out'
+    login: 'Log in'
+    new-session: 'Sign in'
+    welcome: 'Welcome! Please, submit your credentials'
+    signin_error: 'Email and/or Password wrong.'
+    signin_success: 'Welcome!'
     not_authorized: "You don't have access to that"
   gallery:
-    new: "Add Image"
-    success: "Image has been saved"
-    deleted: "Image has been deleted"
-    moved : "Gallery position has been updated"
+    new: 'Add Image'
+    success: 'Image has been saved'
+    deleted: 'Image has been deleted'
+    moved : 'Gallery position has been updated'
     not-moved: "Image wasn't able to move"
-    image: "Image"
-    position: "Position"
-    action: "Action"
+    image: 'Image'
+    position: 'Position'
+    action: 'Action'
   user:
-    new: "Add User"
-    success: "User has been saved"
+    new: 'Add User'
+    success: 'User has been saved'
   section:
-    name: "Name"
-    description: "Description"
-    edit: "Edit Section"
-    default: "Without Section"
-  image: "Image"
+    name: 'Name'
+    description: 'Description'
+    edit: 'Edit Section'
+    default: 'Without Section'
+  image: 'Image'
   session:
-    password: "Password"
-    email: "Email"
+    password: 'Password'
+    email: 'Email'
   other:
-    add : "Add %{model}"
-    choose: "Chooose related %{model}"
+    add : 'Add %{model}'
+    choose: 'Chooose related %{model}'
     no description: "Don't have a description yet"
   routes:
     new: 'new'
@@ -91,3 +114,5 @@ en:
     show: 'show'
     signout: 'signout'
     signin: 'signin'
+  breadcrumb:
+    index: 'Index'

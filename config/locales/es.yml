@@ -8,6 +8,8 @@ es:
     Categories: 'Categorías'
     Role: 'Rol'
     User: 'Usuario'
+    Permission: 'Permisos'
+    Section: 'Sección'
     attributes:
       adminproject_id: 'Proyecto'
       brief: 'Pequeña descripción'
@@ -174,3 +176,5 @@ es:
     page_select: 'Selecciona una cuenta para la publicación'
     message: 'Mensaje de la publicación'
     saved_token: 'Log in con Twitter exitoso, ya puedes publicar con la cuenta de Twitter'
+  breadcrumb:
+    index: 'Index'

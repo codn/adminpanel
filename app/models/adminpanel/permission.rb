@@ -48,7 +48,7 @@ module Adminpanel
     end
 
     def self.display_name
-      'Permiso' # singular
+      I18n.t('model.Permission') # singular
     end
 
     def self.icon
