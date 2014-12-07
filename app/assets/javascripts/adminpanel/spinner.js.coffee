@@ -7,5 +7,5 @@ $(document).on 'page:fetch', ->
 
 $(document).on 'page:restore', ->
   $('a.spinner-link[data-clicked="true"]').children('i:first').remove()
-  $('a.spinner-link[data-clicked="true"]').children('i:first').toggleClass 'hidden'
+  $('a.spinner-link[data-clicked="true"]').children('i:first').toggleClass('hidden')
   $('a.spinner-link[data-clicked="true"]').attr 'data-clicked', false

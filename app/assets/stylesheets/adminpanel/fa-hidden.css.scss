@@ -1,0 +1,7 @@
+// revert font awesome 4.2 to font awesome 4.1 behavior when hidden, in 4.1 the content
+//was empty so there's no space when it's hidden.
+.fa.hidden {
+  &:before {
+    content: "";
+  }
+}
