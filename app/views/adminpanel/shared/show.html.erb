@@ -14,11 +14,11 @@
         <h5>
           <%= @model.display_name.humanize %>
 
-          <%= render 'shared/edit_icon_button',    resource: @resource_instance %>
+          <%= render 'adminpanel/shared/edit_icon_button',    resource: @resource_instance %>
 
-          <%= render 'shared/fb_icon_button',      resource: @resource_instance %>
+          <%= render 'adminpanel/shared/fb_icon_button',      resource: @resource_instance %>
 
-          <%= render 'shared/twitter_icon_button', resource: @resource_instance %>
+          <%= render 'adminpanel/shared/twitter_icon_button', resource: @resource_instance %>
         </h5>
       </div>
       <div class="widget-body">
@@ -46,7 +46,7 @@
         <div class="widget-header">
           <%= content_tag(:i, nil, class: "fa fa-#{@model.icon}") %>
           <h5><%= I18n.t('gallery.container') %>: <%= @model.display_name.humanize %>
-            <%= render 'shared/edit_icon_button',    resource: @resource_instance %>
+            <%= render 'adminpanel/shared/edit_icon_button',    resource: @resource_instance %>
           </h5>
         </div>
         <% if @model.gallery_children.nil? %>
@@ -62,7 +62,7 @@
         <% else %>
         <div class="widget-body widget-tasks-assigned clearfix">
           <ul id="gallery-entries">
-            <%= render "shared/gallery_entries", images: @resource_instance.send(@model.get_image_relationship) %>
+            <%= render "adminpanel/shared/gallery_entries", images: @resource_instance.send(@model.get_image_relationship) %>
           </ul>
         </div>
         <% end %>

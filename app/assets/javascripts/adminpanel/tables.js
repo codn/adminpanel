@@ -112,7 +112,7 @@ var ready = function() {
 		"sPaginationType": "bootstrap",
 		"oLanguage": {
 			"sLengthMenu": "Registros: _MENU_ ",
-			"sZeroRecords": "No se encontro ningún registro que coincida con su búsqueda",
+			"sZeroRecords": "No se encontró ningún registro que coincida con su búsqueda",
 			"sInfo": "Mostrando registros del _START_ al _END_ (_TOTAL_ registros en total)",
 			"sInfoEmpty": "No hay entradas para mostrar",
 			"sInfoFiltered": "(_MAX_ registros fueron filtrados)",

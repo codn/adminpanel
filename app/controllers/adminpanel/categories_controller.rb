@@ -9,7 +9,7 @@ module Adminpanel
     def new
       @resource_instance = @model.new
       respond_to do |format|
-        format.html { render "shared/new" }
+        format.html { render 'adminpanel/shared/new' }
         format.js { render }
       end
     end
@@ -24,13 +24,13 @@ module Adminpanel
             if params[:currentcontroller].to_s == 'adminpanel/categories'
               render 'create', locals: { category: resource } # we are in categories controller
             elsif params[:belongs_request].present?
-              render 'shared/create_belongs_to', locals: { resource: @resource_instance } # we are in other controller as a belongs_to, add option to select
+              render 'adminpanel/shared/create_belongs_to', locals: { resource: @resource_instance } # we are in other controller as a belongs_to, add option to select
             else
-              render 'shared/create_has_many', locals: { resource: @resource_instance } # we are in other controller as a has_many, add checkbox
+              render 'adminpanel/shared/create_has_many', locals: { resource: @resource_instance } # we are in other controller as a has_many, add checkbox
             end
           end
         else
-          format.html { render 'shared/new' }
+          format.html { render 'adminpanel/shared/new' }
           format.js { render 'new' }
         end
       end

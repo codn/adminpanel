@@ -8,11 +8,11 @@ module Adminpanel
     end
 
     def index
-      render 'shared/index'
+      render 'adminpanel/shared/index'
     end
 
     def show
-      render 'shared/show' if stale?(last_modified: @resource_instance.updated_at.utc, etag: @resource_instance.cache_key)
+      render 'adminpanel/shared/show' if stale?(last_modified: @resource_instance.updated_at.utc, etag: @resource_instance.cache_key)
     end
 
     def new
@@ -31,9 +31,9 @@ module Adminpanel
           format.js do
             # if format js, request is from another controller's form
             if params[:belongs_request]
-              render 'shared/create_belongs_to', locals: { resource: @resource_instance }
+              render 'adminpanel/shared/create_belongs_to', locals: { resource: @resource_instance }
             else
-              render 'shared/create_has_many', locals: { resource: @resource_instance }
+              render 'adminpanel/shared/create_has_many', locals: { resource: @resource_instance }
             end
           end
         else
@@ -44,14 +44,14 @@ module Adminpanel
 
 
     def edit
-      render 'shared/edit'
+      render 'adminpanel/shared/edit'
     end
 
     def update
       if @resource_instance.update(send(whitelisted_params))
         redirect_to @resource_instance
       else
-        render 'shared/edit'
+        render 'adminpanel/shared/edit'
       end
     end
 
@@ -110,10 +110,10 @@ module Adminpanel
 
     def render_new format
       format.html do
-        render 'shared/new'
+        render 'adminpanel/shared/new'
       end
       format.js do
-        render 'shared/new', locals: { resource: @resource_instance }
+        render 'adminpanel/shared/new', locals: { resource: @resource_instance }
       end
     end
   end

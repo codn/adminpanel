@@ -1,6 +1,6 @@
 <% provide(:page_title, @model.display_name.pluralize(I18n.default_locale)) -%>
 <div class="row-fluid">
-  <%= render 'shared/new_resource_button' %>
+  <%= render 'adminpanel/shared/new_resource_button' %>
 </div>
 <div class="row-fluid">
   <div class="widget widget-padding span12">
@@ -39,15 +39,15 @@
                       <% end %>
                     <% end %>
                     <td>
-                      <%= render 'shared/show_icon_button',    resource: member %>
+                      <%= render 'adminpanel/shared/show_icon_button',    resource: member %>
 
-                      <%= render 'shared/edit_icon_button',    resource: member %>
+                      <%= render 'adminpanel/shared/edit_icon_button',    resource: member %>
 
-                      <%= render 'shared/delete_icon_button',  resource: member %>
+                      <%= render 'adminpanel/shared/delete_icon_button',  resource: member %>
 
-                      <%= render 'shared/fb_icon_button',      resource: member %>
+                      <%= render 'adminpanel/shared/fb_icon_button',      resource: member %>
 
-                      <%= render 'shared/twitter_icon_button', resource: member %>
+                      <%= render 'adminpanel/shared/twitter_icon_button', resource: member %>
                     </td>
                   </tr>
                 <% end %> <!-- end member cache -->

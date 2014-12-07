@@ -13,7 +13,7 @@ infinite nested forms and relations -->
   ) %>
 
   <% if(properties['remote_resource'].nil? || properties['remote_resource']) %>
-    <%= render 'shared/create_remote_resource_button', belongs_request: true, remote_resource_name: properties['model'] %>
+    <%= render 'adminpanel/shared/create_remote_resource_button', belongs_request: true, remote_resource_name: properties['model'] %>
   <% end %>
 
 <% end %>

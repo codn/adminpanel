@@ -22,5 +22,5 @@ if @model.fb_share? && can?(:publish, @model)
     )
   %>
   <!-- the modal that it's going to toggle if exist the fb acces token -->
-  <%= render 'shared/fb_publish_modal', resource: resource %>
+  <%= render 'adminpanel/shared/fb_publish_modal', resource: resource %>
 <% end %>

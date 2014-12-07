@@ -19,7 +19,7 @@ module Adminpanel
     def respond
       respond_to do |format|
         format.js do
-          render 'shared/gallery_entries', :locals => {
+          render 'adminpanel/shared/gallery_entries', :locals => {
             :collection => @model.where(
               @model.relation_field.to_sym => resource.send(@model.relation_field)
             )

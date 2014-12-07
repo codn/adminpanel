@@ -21,8 +21,8 @@
     ) do |f| -%>
       <div class = "widget-body">
         <div class = "widget-forms clearfix">
-          <%= render 'shared/error_messages', object: @resource_instance %>
-          <%= render 'shared/form_fields', f: f %>
+          <%= render 'adminpanel/shared/error_messages', object: @resource_instance %>
+          <%= render 'adminpanel/shared/form_fields', f: f %>
         </div>
       </div>
       <div class = "widget-footer">
@@ -38,4 +38,4 @@
     <% end -%>
   </div>
 </div>
-<%= render 'shared/modal' %>
+<%= render 'adminpanel/shared/modal' %>

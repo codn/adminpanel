@@ -6,12 +6,12 @@ module Adminpanel
     end
 
     def render_breadcrumb(divider)
-      render partial: 'shared/breadcrumb', locals: { nav: initialize_breadcrumb, divider: divider }
+      render partial: 'adminpanel/shared/breadcrumb', locals: { nav: initialize_breadcrumb, divider: divider }
     end
 
     private
     def initialize_breadcrumb
-      @breadcrumb ||= [{ title: 'Inicio', url: adminpanel.root_url }, ]
+      @breadcrumb ||= [{ title: I18n.t('breadcrumb.index'), url: adminpanel.root_url }, ]
     end
 
   end

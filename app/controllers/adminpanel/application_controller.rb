@@ -3,7 +3,7 @@ module Adminpanel
     protect_from_forgery
     authorize_resource
 
-    layout 'admin'
+    layout 'adminpanel/application'
 
     before_filter :signed_in_user, :set_model
 

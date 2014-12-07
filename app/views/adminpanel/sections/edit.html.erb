@@ -10,7 +10,7 @@
     <%= adminpanel_form_for @section do |f| %>
       <div class = "widget-body">
         <div class = "widget-forms clearfix">
-          <%= render 'shared/error_messages', :object => @section %>
+          <%= render 'adminpanel/shared/error_messages', :object => @section %>
 
           <% if @section.has_description %>
             <%= f.wysiwyg_field 'description', 'label' => I18n.t('section.description') %>
@@ -21,7 +21,7 @@
           <% if @section.has_image %>
             <%= content_tag :div, class: 'file-collection-container', data: { max: @section.max_files } do %>
               <%= f.fields_for :sectionfiles do |builder| %>
-                <%= render 'shared/image_fields', f: builder %>
+                <%= render 'adminpanel/shared/image_fields', f: builder %>
               <% end -%>
 
               <% if @section.max_files != 0 && @section.max_files <= @section.sectionfiles.count %>

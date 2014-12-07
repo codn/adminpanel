@@ -9,7 +9,7 @@
       }
   ) do %>
     <%= f.fields_for(attribute) do |builder| %>
-      <%= render 'shared/image_fields', f: builder %>
+      <%= render 'adminpanel/shared/image_fields', f: builder %>
     <% end -%>
 
     <% if(

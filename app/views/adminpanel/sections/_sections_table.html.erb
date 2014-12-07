@@ -9,7 +9,7 @@
           <td><%= link_to section.name, section_path(section) %></td>
           <td><%= strip_tags section.description %></td>
           <td>
-            <%= render 'shared/edit_icon_button', resource: section, resource_name: @model.display_name %>
+            <%= render 'adminpanel/shared/edit_icon_button', resource: section, resource_name: @model.display_name %>
           </td>
         </tr>
   <% end %>
