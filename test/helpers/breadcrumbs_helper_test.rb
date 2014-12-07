@@ -15,12 +15,11 @@ class BreadrumbsHelperTest < ActionView::TestCase
   end
 
   def teardown
-    @breadcrumb = nil
+    @breadcrumb = :nil
   end
 
   def test_breadcrumb_add
-
-    assert_equal( { title: 'Inicio', url: adminpanel.root_url }, @breadcrumb.first)
+    assert_equal( { title: 'Index', url: adminpanel.root_url }, @breadcrumb.first)
     assert_equal( { title: 'controller', url: 'http://controller.com' }, @breadcrumb.second)
     assert_equal( { title: 'action', url: 'http://action.com' }, @breadcrumb.third)
   end
@@ -28,7 +27,7 @@ class BreadrumbsHelperTest < ActionView::TestCase
   def test_render_breadcrumb
     assert_equal(
       render_breadcrumb('divider'),
-      render(partial: 'shared/breadcrumb', locals: { nav: @breadcrumb, divider: 'divider' })
+      render(partial: 'adminpanel/shared/breadcrumb', locals: { nav: @breadcrumb, divider: 'divider' })
     )
   end
 end
