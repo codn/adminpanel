@@ -19,7 +19,7 @@ class BreadrumbsHelperTest < ActionView::TestCase
   end
 
   def test_breadcrumb_add
-    assert_equal( { title: 'Index', url: adminpanel.root_url }, @breadcrumb.first)
+    assert_equal( { title: I18n.t('breadcrumb.index'), url: adminpanel.root_url }, @breadcrumb.first)
     assert_equal( { title: 'controller', url: 'http://controller.com' }, @breadcrumb.second)
     assert_equal( { title: 'action', url: 'http://action.com' }, @breadcrumb.third)
   end
