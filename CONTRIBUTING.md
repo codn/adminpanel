@@ -9,6 +9,7 @@ Consider starting the commit message with an applicable emoji:
 * :white_check_mark:`:white_check_mark:` when adding tests
 
 Favor single quotes when not concatenating, double quotes are only prefered when concatenating:
+
 Single Quotes:
 `puts 'hello world'`
 Double Quotes:
