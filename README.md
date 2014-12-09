@@ -28,7 +28,7 @@ Then run:
 
     rails g adminpanel:initialize
     rake db:migrate
-to create the database that the adminpanel it's expecting, this will also seed the database with the default user.
+to create the database that the adminpanel it's expecting, this will also seed the database with the default user (email: 'admin@admin.com', password: 'password').
 
 Make sure you read the wiki, there is the descriptions of every relevant part of the gem.
 
