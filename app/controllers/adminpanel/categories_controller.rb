@@ -1,5 +1,5 @@
 module Adminpanel
-  class CategoriesController < ApplicationController
+  class CategoriesController < Adminpanel::ApplicationController
     skip_before_action :set_resource_collection
 
     def index
