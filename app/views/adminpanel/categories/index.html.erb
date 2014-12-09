@@ -24,24 +24,24 @@
 
     <div class="widget-body">
       <div class="tab-content">
-        <% current_page = "no-page" %>
-        <% @categories.each_with_index do |categories, index| %>
+        <% current_page = 'no-page' %>
+        <% @categories.each_with_index do |category, index| %>
 
-          <% if current_page != categories.model %>
+          <% if current_page != category.model %>
             <% if index == 0 %>
               <div class="tab-pane active" id="tab<%= index %>">
             <% else %>
               <div class="tab-pane" id="tab<%= index %>">
             <% end %>
-              <% current_cateogory_records = @categories.select {|c| c.model == categories.model } %>
+              <% current_cateogory_records = @categories.select {|c| c.model == category.model } %>
               <%=
                 render(
                 'categories_table',
                 categories: current_cateogory_records,
-                model: categories.model
-              %>
+                model: category.model
+              ) %>
             </div>
-            <% current_page = categories.model %>
+            <% current_page = category.model %>
           <% end %>
         <% end %>
       </div>
