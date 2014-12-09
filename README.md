@@ -10,7 +10,7 @@ Thank you for considering this gem, we are going to use the lastest Rails versio
 
 Add this line to your application's Gemfile:
 
-    gem "adminpanel"
+    gem 'adminpanel'
 
 And then execute:
 
@@ -38,11 +38,7 @@ You can seed the sections with help of the [Section task.](https://github.com/jo
 
 Then, mount the gem wherever you like!
 
-    mount Adminpanel::Engine => "/codn"
-
-Also make sure to include adminpanel assets in your `application.rb` (before Rails tells you to do so) if you need to precompile them:
-
-    config.assets.precompile += ['application-admin.js', 'application-admin.css']
+    mount Adminpanel::Engine => '/panel'
 
 ## Dependencies
 
