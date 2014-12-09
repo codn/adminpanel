@@ -3,6 +3,7 @@ module Adminpanel
     include Adminpanel::Base
     has_and_belongs_to_many :categories,
         join_table: "adminpanel_test_object_category"
+
     def self.form_attributes
       [
         {
@@ -44,5 +45,9 @@ module Adminpanel
         },
       ]
     end
+  end
+
+  def self.display_name
+    'objeto'
   end
 end

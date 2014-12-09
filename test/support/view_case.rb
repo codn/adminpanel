@@ -9,26 +9,25 @@ class ViewCase < ActionView::TestCase
   end
 
   private
-  def login(password = 'foobar')
-    fill_in 'inputEmail', with: adminpanel_users(:valid).email
-    fill_in 'inputPassword', with: password #pass is foobar
-    click_button I18n.t('authentication.new-session')
-  end
+    def login(password = 'foobar')
+      fill_in 'inputEmail', with: adminpanel_users(:valid).email
+      fill_in 'inputPassword', with: password #pass is foobar
+      click_button I18n.t('authentication.new-session')
+    end
 
-  def login_user_with_role(role)
-    fill_in 'inputEmail', with: adminpanel_users(role).email
-    fill_in 'inputPassword', with: 'foobar' #pass is foobar
-    click_button I18n.t('authentication.new-session')
-  end
+    def login_user_with_role(role)
+      fill_in 'inputEmail', with: adminpanel_users(role).email
+      fill_in 'inputPassword', with: 'foobar' #pass is foobar
+      click_button I18n.t('authentication.new-session')
+    end
 
-  def submit_modal(button)
-    click_button button #the modal submit is a button actually, not a link
-    sleep 0.5
-  end
+    def submit_modal(button)
+      click_button button #the modal submit is a button actually, not a link
+      sleep 0.5
+    end
 
-  def trigger_modal(link)
-    click_link link
-    sleep 0.5
-  end
-
+    def trigger_modal(link)
+      click_link link
+      sleep 0.5
+    end
 end

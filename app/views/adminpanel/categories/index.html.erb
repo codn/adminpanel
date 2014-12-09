@@ -1,7 +1,7 @@
 <%= provide(:page_title, I18n.t('model.Categories')) %>
 
 <div class="row-fluid">
-  <div class="widget widget-padding span12" id="wizard">
+  <div class="widget widget-padding span12">
     <div class="widget-header">
       <ul class="nav nav-tabs">
         <% current_page = "no-page" %>
@@ -33,8 +33,13 @@
             <% else %>
               <div class="tab-pane" id="tab<%= index %>">
             <% end %>
-              <% current_cateogory_records = Adminpanel::Category.of_model categories.model %>
-              <%= render "categories_table", :categories => current_cateogory_records, :model => categories.model %>
+              <% current_cateogory_records = @categories.select {|c| c.model == categories.model } %>
+              <%=
+                render(
+                'categories_table',
+                categories: current_cateogory_records,
+                model: categories.model
+              %>
             </div>
             <% current_page = categories.model %>
           <% end %>
@@ -45,10 +50,20 @@
   </div>
 </div>
 
-<!-- example modal -->
-<div id="new-category" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- modal -->
+<div  id="new-category"
+      class="modal hide fade"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myModalLabel"
+      aria-hidden="true">
   <div class="modal-header" id="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <button type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-hidden="true">
+            ×
+    </button>
     <h3 id="myModalLabel">Crear Categoría</h3>
   </div>
   <div id="modal-container">

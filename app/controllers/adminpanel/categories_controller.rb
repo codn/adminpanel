@@ -22,11 +22,14 @@ module Adminpanel
           format.html { redirect_to categories_path, flash: { success: I18n.t('action.save_success') } }
           format.js do
             if params[:currentcontroller].to_s == 'adminpanel/categories'
-              render 'create', locals: { category: resource } # we are in categories controller
+              # we are in categories controller
+              render 'create', locals: { category: @resource_instance }
             elsif params[:belongs_request].present?
-              render 'adminpanel/shared/create_belongs_to', locals: { resource: @resource_instance } # we are in other controller as a belongs_to, add option to select
+              # we are in other controller as a belongs_to, add option to select
+              render 'adminpanel/shared/create_belongs_to', locals: { resource: @resource_instance }
             else
-              render 'adminpanel/shared/create_has_many', locals: { resource: @resource_instance } # we are in other controller as a has_many, add checkbox
+              # we are in other controller as a has_many, add checkbox
+              render 'adminpanel/shared/create_has_many', locals: { resource: @resource_instance }
             end
           end
         else
