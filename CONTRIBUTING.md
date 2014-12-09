@@ -7,3 +7,13 @@ Consider starting the commit message with an applicable emoji:
 * :fire:`:fire:` when removing code or files
 * :green_heart:`:green_heart:` when fixing the CI build
 * :white_check_mark:`:white_check_mark:` when adding tests
+
+Favor single quotes when not concatenating, double quotes are only prefered when concatenating:
+Single Quotes:
+`puts 'hello world'`
+Double Quotes:
+```
+h = 'hello'
+w = 'world'
+puts "#{h}, #{w}"
+```
