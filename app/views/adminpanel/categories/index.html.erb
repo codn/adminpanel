@@ -51,21 +51,13 @@
 </div>
 
 <!-- modal -->
-<div  id="new-category"
-      class="modal hide fade"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="myModalLabel"
-      aria-hidden="true">
-  <div class="modal-header" id="modal-header">
-    <button type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-hidden="true">
-            ×
-    </button>
-    <h3 id="myModalLabel">Crear Categoría</h3>
-  </div>
-  <div id="modal-container">
-  </div>
-</div>
+<%= render(
+  'adminpanel/shared/modal',
+  id: 'new-category',
+  title: (
+    I18n.t(
+      'action.create',
+      resource: I18n.t('model.Category')
+    )
+  )
+) %>

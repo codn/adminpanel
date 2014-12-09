@@ -6,6 +6,7 @@ es:
     Analytic: 'Analytics'
     Gallery: 'Galería de Inicio'
     Categories: 'Categorías'
+    Category: 'Categoría'
     Role: 'Rol'
     User: 'Usuario'
     Permission: 'Permisos'

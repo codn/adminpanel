@@ -28,9 +28,9 @@
         f.submit(
           I18n.t('action.publish') + " " + @model.display_name,
           data: {
-            :disable_with => I18n.t('action.submitting')
+            disable_with: I18n.t('action.submitting')
           },
-          :id =>"new-#{@model.name.demodulize}-button"
+          id: "new-#{@model.name.demodulize}-button"
         )
         %>
       </div>

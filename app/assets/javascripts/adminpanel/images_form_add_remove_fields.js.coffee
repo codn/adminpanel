@@ -6,10 +6,6 @@ $(document).on 'click', '.add-fields', (e) ->
 	$(@).before($(@).data('fields').replace(regexp, time))
 
 $(document).on 'click', '.remove-fields', (e) ->
-	# $('.remove-fields').on('click', (e) ->
 	e.preventDefault()
 	$(@).prev('input[type=hidden]').val('1')
 	$(@).parent().parent().parent().addClass('hidden')
-
-# $(document).ready(ready)
-# $(document).on('page:load', ready)

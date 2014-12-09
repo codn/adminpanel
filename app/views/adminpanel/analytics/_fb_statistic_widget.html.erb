@@ -30,34 +30,34 @@
 
 <!-- modal -->
 <%= content_for :modals do %>
-<div id="<%= metric(inside) %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header" id="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="modal-title">
-      <%= I18n.t("analytics.metrics.#{metric(inside)}") %> /
-      <%= I18n.t("analytics.metrics.#{metric(outside)}") %>
-    </h3>
-  </div>
-  <div id="modal-container">
-    <div class="modal-body">
-      <ul>
-        <li>
-          <%= I18n.t("analytics.metrics.#{metric(inside)}") %>:
-          <%= I18n.t("analytics.description.#{metric(inside)}") %>
-        </li>
-        <br>
-        <li>
-          <%= I18n.t("analytics.metrics.#{metric(outside)}") %>:
-          <%= I18n.t("analytics.description.#{metric(outside)}") %>
-        </li>
+  <div id="<%= metric(inside) %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header" id="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="modal-title">
+        <%= I18n.t("analytics.metrics.#{metric(inside)}") %> /
+        <%= I18n.t("analytics.metrics.#{metric(outside)}") %>
+      </h3>
+    </div>
+    <div id="modal-container">
+      <div class="modal-body">
+        <ul>
+          <li>
+            <%= I18n.t("analytics.metrics.#{metric(inside)}") %>:
+            <%= I18n.t("analytics.description.#{metric(inside)}") %>
+          </li>
+          <br>
+          <li>
+            <%= I18n.t("analytics.metrics.#{metric(outside)}") %>:
+            <%= I18n.t("analytics.description.#{metric(outside)}") %>
+          </li>
 
-      </ul>
-    </div>
-    <div class="modal-footer">
-      <button id="modal-button" class="btn" data-dismiss="modal" aria-hidden="true">
-        <%= I18n.t('action.close') %>
-      </button>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button id="modal-button" class="btn" data-dismiss="modal" aria-hidden="true">
+          <%= I18n.t('action.close') %>
+        </button>
+      </div>
     </div>
   </div>
-</div>
 <% end %>

@@ -1,8 +1,20 @@
-<div id="remote-form-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="<%= id %>"
+      class="modal hide fade"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modal-title"
+      aria-hidden="true">
   <div class="modal-header" id="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="modal-title"></h3>
+    <button type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-hidden="true">×
+    </button>
+    <h3 id="modal-title">
+      <%= title if defined?(title) %>
+    </h3>
   </div>
   <div id="modal-container">
+    <%= body if defined?(body) %>
   </div>
 </div>
