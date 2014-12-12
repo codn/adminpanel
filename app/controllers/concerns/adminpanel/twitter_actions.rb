@@ -7,15 +7,15 @@ module Adminpanel
     end
 
     def twitter_publish
-      resource.twitter_message = params[model_name][:twitter_message]
-      if !@twitter_token.nil? && !@twitter_secret.nil? && resource.has_valid_tweet?
+      @resource_instance.twitter_message = params[model_name][:twitter_message]
+      if !@twitter_token.nil? && !@twitter_secret.nil? && @resource_instance.has_valid_tweet?
         client = get_twitter_token
-        client.update(resource.twitter_message)
+        client.update(@resource_instance.twitter_message)
         flash[:success] = I18n.t('twitter.posted', user: @twitter_token.name)
       else
         flash[:error] = I18n.t('twitter.not-posted')
       end
-      redirect_to resource
+      redirect_to @resource_instance
     end
 
   private

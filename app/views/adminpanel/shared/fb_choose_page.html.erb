@@ -16,11 +16,11 @@
     <div class = "widget-body">
       <div class = "widget-forms clearfix">
         <%= adminpanel_form_for(
-              resource,
+              @resource_instance,
               url: url_for({
                   controller: params[:controller],
                   action: :fb_save_token,
-                  id: resource,
+                  id: @resource_instance,
                   host: request.host
               }),
               method: :post

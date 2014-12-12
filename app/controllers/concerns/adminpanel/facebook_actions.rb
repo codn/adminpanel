@@ -13,7 +13,7 @@ module Adminpanel
         url_for({
           controller: params[:controller],
           action: :fb_choose_page,
-          id: resource,
+          id: @resource_instance,
           host: request.host
         })
       ).get_access_token(params[:code])
@@ -31,27 +31,27 @@ module Adminpanel
       update_fb_auth(page_selected.get_object('me')['name'])
       flash[:success] = I18n.t('fb.saved_token')
       Rails.cache.clear
-      redirect_to resource
+      redirect_to @resource_instance
     end
 
     def fb_publish
-      authorize! :publish, resource
+      authorize! :publish, @resource_instance
 
       page_graph = Koala::Facebook::API.new(Auth.find_by_key('facebook').value)
       page_graph.put_wall_post(
         params[model_name][:fb_message],
         {
-          link: resource.share_link,
-          name: resource.name
+          link: @resource_instance.share_link,
+          name: @resource_instance.name
         }
       )
       flash[:success] = I18n.t('fb.posted', user: page_graph.get_object('me')['name'])
-      redirect_to resource
+      redirect_to @resource_instance
     end
 
   private
     def set_fb_auths_count
-      @fb_auths_count = Auth.find_by_key('facebook')
+      @fb_auths_count ||= Auth.find_by_key('facebook')
     end
 
     def update_fb_auth(account_selected_name)

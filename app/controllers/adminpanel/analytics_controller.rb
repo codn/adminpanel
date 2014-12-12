@@ -69,7 +69,7 @@ module Adminpanel
         )
 
         @visits = visitCount.data.rows.collect do |r|
-        	{
+          {
             date: "#{r[2]}/#{r[1]}/#{r[0]}",
             visits: r[3]
           }
@@ -156,7 +156,7 @@ module Adminpanel
   private
     def check_if_fb_account
       @auth = Adminpanel::Auth.find_by_key('facebook')
-      if @auth.nil? || auth.value == ''
+      if @auth.nil? || @auth.value == ''
         redirect_to analytics_path
       end
     end
