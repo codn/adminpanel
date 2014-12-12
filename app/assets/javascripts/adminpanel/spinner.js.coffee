@@ -1,5 +1,5 @@
 $(document).on 'click', 'a.spinner-link', ->
-  $( this ).attr 'data-clicked', true
+  $( @ ).attr 'data-clicked', true
 
 $(document).on 'page:fetch', ->
   $('a.spinner-link[data-clicked="true"]').children('i:first').toggleClass('hidden')
