@@ -2,7 +2,7 @@ module Adminpanel
   module SitemapActions
     extend ActiveSupport::Concern
     included do
-      before_filter :set_default_host, only:[:create, :update, :destroy]
+      before_action :set_default_host, only:[:create, :update, :destroy]
     end
 
     protected

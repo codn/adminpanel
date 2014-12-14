@@ -4,7 +4,7 @@ module Adminpanel
       extend ActiveSupport::Concern
 
       included do
-        before_filter :get_twitter_token, only:[:twitter, :reply_to_tweet, :favorite_tweet, :retweet_tweet]
+        before_action :get_twitter_token, only:[:twitter, :reply_to_tweet, :favorite_tweet, :retweet_tweet]
       end
 
       def reply_to_tweet

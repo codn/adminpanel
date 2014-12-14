@@ -5,7 +5,7 @@ module Adminpanel
 
     layout 'adminpanel/application'
 
-    before_filter :signed_in_user, :set_model
+    before_action :signed_in_user, :set_model
 
     include SessionsHelper
     include Adminpanel::RestActions

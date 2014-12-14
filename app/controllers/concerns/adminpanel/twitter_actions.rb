@@ -3,7 +3,7 @@ module Adminpanel
     extend ActiveSupport::Concern
 
     included do
-      before_filter :get_twitter_token, only:[:index, :create, :update, :destroy, :show, :twitter_publish]
+      before_action :get_twitter_token, only:[:index, :create, :update, :destroy, :show, :twitter_publish]
     end
 
     def twitter_publish

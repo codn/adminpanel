@@ -3,7 +3,7 @@ module Adminpanel
     include Adminpanel::Analytics::TwitterAnalytics
     include Adminpanel::Analytics::InstagramAnalytics
 
-    skip_before_filter :set_resource_collection
+    skip_before_action :set_resource_collection
     before_action :check_if_fb_account, only:[:fb]
 
     API_VERSION = 'v3'
