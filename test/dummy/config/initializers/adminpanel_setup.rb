@@ -17,6 +17,8 @@ Adminpanel.setup do |config|
     :galleries,
     :sections,
     :categories,
+    :roles,
+    :permissions,
     :products,
     :users,
     :mugs,

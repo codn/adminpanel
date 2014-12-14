@@ -7,11 +7,11 @@ class EditTest < ViewCase
   teardown :teardown
 
   def test_shared_new_page_messages
-    assert_button('Guardar Producto')
+    assert_button("Actualizar #{adminpanel_products(:first).name}")
   end
 
   def test_submitting_with_same_information
-    click_button('Guardar Producto')
+    click_button("Actualizar #{adminpanel_products(:first).name}")
     assert_content( adminpanel_products(:first).name )
     assert_content( adminpanel_products(:first).price )
   end
@@ -19,7 +19,7 @@ class EditTest < ViewCase
   def test_submitting_with_invalid_information
     fill_in 'product_name', with: ''
     fill_in 'product_price', with: ''
-    click_button('Guardar Producto')
+    click_button("Actualizar #{adminpanel_products(:first).name}")
     assert_content('Producto no pudo guardarse debido a 2 errores')
     saved_product = Adminpanel::Product.last
   end

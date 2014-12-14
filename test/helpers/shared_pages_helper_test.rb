@@ -143,7 +143,7 @@ class SharedPagesHelperTest < ActionView::TestCase
     assert_equal true, is_customized_field?('adminpanel_file_field')
     assert_equal true, is_customized_field?('belongs_to')
     assert_equal true, is_customized_field?('file_field')
-    assert_equal true, is_customized_field?('has_many')
+    assert_equal true, is_customized_field?('non_image_file_field')
     assert_equal true, is_customized_field?('has_many')
     # some example false values (not everyone)
     assert_equal false, is_customized_field?('text_field')

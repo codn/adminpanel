@@ -16,7 +16,7 @@
   <div class="row-fluid">
     <div class="modal-body">
       <%= render 'adminpanel/shared/error_messages', object: resource %>
-      <%= render 'adminpanel/shared/form_fields', f: f, remote_request: true %>
+      <%= render 'adminpanel/shared/form_fields', f: f %>
       <%= f.hidden_field :model, value: params[:model] %>
     </div>
   </div>
