@@ -25,7 +25,7 @@ module Adminpanel
     end
 
     def generate_model
-  		template 'adminpanel_resource_template.rb', "app/models/adminpanel/#{resource_name}.rb"
+      template 'adminpanel_resource_template.rb', "app/models/adminpanel/#{resource_name}.rb"
     end
 
     def generate_controller

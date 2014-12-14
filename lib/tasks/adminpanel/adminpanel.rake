@@ -3,7 +3,7 @@ namespace :adminpanel do
 
   task :section, [:name, :section, :type] => :environment do |t, args|
     args.with_defaults(:section => "home", :name => "greeting", :type => "")
-    puts "Creating #{args[:name]} in #{args[:section]} section"
+    puts "Creating #{args[:name]} in #{args[:section]} section" unless Rails.env.test?
 
     s = Adminpanel::Section.new(
       :name => args[:name].titleize,
@@ -35,7 +35,7 @@ namespace :adminpanel do
     8.times do
       password = password + "#{characters.sample}"
     end
-    puts "Creating/overwriting webmaster@codn.com with password #{password}"
+    puts "Creating/overwriting webmaster@codn.com with password #{password}" unless Rails.env.test?
     user = Adminpanel::User.find_by_email('webmaster@codn.com')
     if !user.nil?
       user.delete
@@ -78,7 +78,7 @@ namespace :adminpanel do
   task :populate, [:times, :model, :attributes] => :environment do |t, args|
     require 'faker'
     I18n.reload!
-    puts "Generating #{args[:times]} records of #{args[:model]}"
+    puts "Generating #{args[:times]} records of #{args[:model]}" unless Rails.env.test?
 
     @model = "adminpanel/#{args[:model]}".classify.constantize
 
