@@ -19,7 +19,7 @@ module Adminpanel
     validates_presence_of :resource
 
     def name
-      "#{action} #{symbol_class(self['resource']).display_name}"
+      "#{I18n.t("#{self.class.name.demodulize.downcase}.#{self.action}")} #{symbol_class(self['resource']).display_name}"
     end
 
     def self.form_attributes

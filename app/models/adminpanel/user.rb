@@ -76,16 +76,11 @@ module Adminpanel
       ]
     end
 
-    def root_url
-      self.role.permissions.first
-    end
-
-
-    def User.new_remember_token
+    def self.new_remember_token
       SecureRandom.urlsafe_base64
     end
 
-    def User.digest(token)
+    def self.digest(token)
       Digest::SHA1.hexdigest(token.to_s)
     end
 

@@ -52,31 +52,33 @@ module Adminpanel
 
     def field_value properties, attribute, object
       case properties['type']
-        when 'belongs_to'
-          belong_to_object_name(object, attribute.split('_id').first)
-        when 'has_many'
-          li_tags = ""
-          content_tag :ul do
-            object.send("#{pluralize_model(properties['model'])}").each do |member|
-              li_tags << content_tag(:li, class: 'priority-low') do
-                member.name
-              end
+      when 'belongs_to'
+        belong_to_object_name(object, attribute.split('_id').first)
+      when 'has_many'
+        li_tags = ""
+        content_tag :ul do
+          object.send("#{pluralize_model(properties['model'])}").each do |member|
+            li_tags << content_tag(:li, class: 'priority-low') do
+              member.name
             end
-            li_tags.html_safe
           end
-        when 'file_field'
-          content_tag :ul do
-            image_tag(object.send("#{attribute}_url", :thumb))
-          end
-        when 'boolean'
-          if object.send(attribute)
-            I18n.t('action.is_true')
-          else
-            I18n.t('action.is_false')
-          end
-        else
-          object.send(attribute)
+          li_tags.html_safe
         end
+      when 'file_field'
+        content_tag :ul do
+          image_tag(object.send("#{attribute}_url", :thumb))
+        end
+      when 'boolean'
+        if object.send(attribute)
+          I18n.t('action.is_true')
+        else
+          I18n.t('action.is_false')
+        end
+      when 'enum_field'
+        I18n.t("#{object.class.name.demodulize.downcase}.#{object.send(attribute)}")
+      else
+        object.send(attribute)
+      end
     end
 
     def is_customized_field? field_name
@@ -84,6 +86,7 @@ module Adminpanel
       return (field_name == :adminpanel_file_field ||
         field_name == :belongs_to ||
         field_name == :file_field ||
+        field_name == :non_image_file_field ||
         field_name == :has_many)
     end
 
