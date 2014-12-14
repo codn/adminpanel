@@ -83,7 +83,7 @@ es:
     share: 'Compartir %{model} en Facebook'
     show: 'Ver'
     submitting: 'Enviando...'
-    update: 'Actualizar'
+    update: 'Actualizar %{name}'
     view: 'Ver %{resource}'
   authentication:
     welcome: 'Bienvenido! Inicia Sesión'

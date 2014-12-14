@@ -1,4 +1,7 @@
-<% provide(:page_title, I18n.t('action.create', resource: @model.display_name.capitalize)) -%>
+<% provide(
+  :page_title,
+  I18n.t('action.create', resource: @model.display_name.capitalize)
+) -%>
 <% breadcrumb_add(
   @model.display_name.capitalize.pluralize(I18n.default_locale),
   {
@@ -6,6 +9,7 @@
     action: 'index'
   }
 ) %>
+
 <div class = "row-fluid">
   <div class = "widget widget-padding span12">
     <div class = "widget-header">
@@ -19,22 +23,19 @@
         id: 'new_resource'
       }
     ) do |f| -%>
-      <div class = "widget-body">
-        <div class = "widget-forms clearfix">
-          <%= render 'adminpanel/shared/error_messages', object: @resource_instance %>
-          <%= render 'adminpanel/shared/form_fields', f: f %>
-        </div>
-      </div>
-      <div class = "widget-footer">
-        <%=
-        f.submit(
-          t('action.add', resource: @model.display_name),
-          data: {
-            disable_with: t('action.submitting')
-          },
+
+      <%= f.body do %>
+        <%= render 'adminpanel/shared/error_messages', object: @resource_instance %>
+        <%= render 'adminpanel/shared/form_fields', f: f %>
+      <% end %>
+
+      <%= f.footer do %>
+        <%= f.submit(
+          I18n.t('action.add', resource: @model.display_name),
           id: "new-#{@model.name.demodulize}-button"
         ) %>
-      </div>
+      <% end %>
+
     <% end -%>
   </div>
 </div>

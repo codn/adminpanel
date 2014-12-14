@@ -8,13 +8,26 @@ module Adminpanel
     alias_method :number_field_original, :number_field
     alias_method :email_field_original, :email_field
     alias_method :file_field_original, :file_field
-    # alias_method :select_original, :select
 
-    def text_field name, *args
+    def body(&block)
+      @template.content_tag :div, class: 'widget-body' do
+        @template.content_tag :div, class: 'widget-forms clearfix' do
+          yield
+        end
+      end
+    end
+
+    def footer(&block)
+      @template.content_tag :div, class: 'widget-footer' do
+        yield
+      end
+    end
+
+    def text_field(name, *args)
       base_layout name, *args, 'text_field_original'
     end
 
-    def file_field name, *args
+    def file_field(name, *args)
       image_input = base_layout(name, *args, 'file_field_original')
 
       if !object.nil? && !object.new_record? #if not new record
@@ -24,7 +37,7 @@ module Adminpanel
       end
     end
 
-    def non_image_file_field name, *args
+    def non_image_file_field(name, *args)
       file_input = base_layout(name, *args, 'file_field_original')
 
       if !object.nil? && !object.new_record? #if not new record
@@ -34,11 +47,11 @@ module Adminpanel
       end
     end
 
-    def gallery_field name, *args
+    def gallery_field(name, *args)
       base_layout name, *args, 'gallery_base'
     end
 
-    def wysiwyg_field name, *args
+    def wysiwyg_field(name, *args)
 
       options = args.extract_options!
       options.reverse_merge! class: 'wysihtml5 span7'
@@ -46,7 +59,7 @@ module Adminpanel
       base_layout name, options, 'text_area_original'
     end
 
-    def text_area name, *args
+    def text_area(name, *args)
       base_layout name, *args, 'text_area_original'
     end
 
@@ -65,7 +78,7 @@ module Adminpanel
     # 	end
     # end
 
-    def checkbox checkbox_object, form_object_name, relationship
+    def checkbox(checkbox_object, form_object_name, relationship)
       @template.content_tag(
         :label,
         @template.check_box_tag(
@@ -77,11 +90,11 @@ module Adminpanel
       )
     end
 
-    def boolean name, *args
+    def boolean(name, *args)
       base_layout name, *args, 'boolean_base'
     end
 
-    def enum_field name, *args
+    def enum_field(name, *args)
       select(
         name,
         self.object.class.send(name.pluralize).map{|option, value|
@@ -91,7 +104,7 @@ module Adminpanel
       )
     end
 
-    def resource_select name, *args
+    def resource_select(name, *args)
       select name, Adminpanel.displayable_resources.map{|resource| [symbol_class(resource).display_name, resource.to_s]}, *args
       # select name, Adminpanel.displayable_resources.map{|resource| ['resource', 'resource']}, *args
 
@@ -125,7 +138,12 @@ module Adminpanel
     def submit(name, *args)
       options = args.extract_options!
 
-      options.reverse_merge! class: "btn btn-primary"
+      options.reverse_merge!(
+        class: 'btn btn-primary',
+        data: {
+          disable_with: I18n.t('action.submitting')
+        }
+      )
       super(name, *args << options)
     end
 
@@ -186,75 +204,73 @@ module Adminpanel
     #     )
     #   end
     # end
-
     private
 
-    def base_layout(name, *args, input_type)
-      options = args.extract_options!
-      options.reverse_merge! class: 'span7'
-      label = options['label']
-      options.delete('label')
+      def base_layout(name, *args, input_type)
+        options = args.extract_options!
+        options.reverse_merge! class: 'span7'
+        label = options['label']
+        options.delete('label')
 
-      @template.content_tag :div, class: 'control-group' do
-        @template.content_tag(:label, label, class: 'control-label') +
-        @template.content_tag(:div, class: 'controls') do
-          self.send(input_type, name, options)
-        end
-      end
-    end
-
-    def datepickerize_base(name, options)
-      options.reverse_merge! 'value' => Time.now.strftime("%d-%m-%Y")
-      @template.content_tag(
-                :div,
-                class: 'input-append date datepicker datepicker-basic',
-                data: {
-                  date_format: 'dd-mm-yyyy',
-                  date: options['value']
-                }
-              ) do
-        text_field_original(name, options) +
-        (
-          @template.content_tag :span, class: 'add-on' do
-            @template.content_tag :i, nil, class: 'fa fa-th'
+        @template.content_tag :div, class: 'control-group' do
+          @template.content_tag(:label, label, class: 'control-label') +
+          @template.content_tag(:div, class: 'controls') do
+            self.send(input_type, name, options)
           end
-        )
+        end
       end
-    end
 
-    def boolean_base(name, options)
-      @template.content_tag :label, class: 'checkbox' do
-        check_box(name)
+      def datepickerize_base(name, options)
+        options.reverse_merge! 'value' => Time.now.strftime("%d-%m-%Y")
+        @template.content_tag(
+                  :div,
+                  class: 'input-append date datepicker datepicker-basic',
+                  data: {
+                    date_format: 'dd-mm-yyyy',
+                    date: options['value']
+                  }
+                ) do
+          text_field_original(name, options) +
+          (
+            @template.content_tag :span, class: 'add-on' do
+              @template.content_tag :i, nil, class: 'fa fa-th'
+            end
+          )
+        end
       end
-    end
 
-    def gallery_base(name, options)
-      file_field_input = file_field_original(name, options)
-      hidden_input = hidden_field(:_destroy)
-      delete_button = @template.content_tag(:button, I18n.t("action.delete"), class: "btn btn-danger remove-fields")
-
-      if object.nil? || object.new_record?
-        "#{file_field_input}#{hidden_input}#{delete_button}".html_safe
-      else
-        "#{thumbnail_layout(name)}#{file_field_input}#{hidden_input}#{delete_button}".html_safe
+      def boolean_base(name, options)
+        @template.content_tag :label, class: 'checkbox' do
+          check_box(name)
+        end
       end
-    end
 
-    def thumbnail_layout(attribute)
-      @template.content_tag :div, class: 'control-group' do
-        @template.content_tag :div, class: 'controls' do
-          @template.image_tag self.object.send("#{attribute}_url", :thumb)
+      def gallery_base(name, options)
+        file_field_input = file_field_original(name, options)
+        hidden_input = hidden_field(:_destroy)
+        delete_button = @template.content_tag(:button, I18n.t("action.delete"), class: "btn btn-danger remove-fields")
+
+        if object.nil? || object.new_record?
+          "#{file_field_input}#{hidden_input}#{delete_button}".html_safe
+        else
+          "#{thumbnail_layout(name)}#{file_field_input}#{hidden_input}#{delete_button}".html_safe
+        end
+      end
+
+      def thumbnail_layout(attribute)
+        @template.content_tag :div, class: 'control-group' do
+          @template.content_tag :div, class: 'controls' do
+            @template.image_tag self.object.send("#{attribute}_url", :thumb)
+          end
+        end
+      end
+
+      def title_layout(attribute)
+        @template.content_tag :div, class: 'control-group' do
+          @template.content_tag :div, class: 'controls' do
+            @template.content_tag(:i, I18n.t('adminpanel.form.server_file', file: self.object["#{attribute}"]))
+          end
         end
       end
     end
-
-    def title_layout(attribute)
-      @template.content_tag :div, class: 'control-group' do
-        @template.content_tag :div, class: 'controls' do
-          @template.content_tag(:i, I18n.t('adminpanel.form.server_file', file: self.object["#{attribute}"]))
-        end
-      end
-    end
-
-  end
 end
