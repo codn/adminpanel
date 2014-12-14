@@ -1,6 +1,5 @@
-<% if !defined? remote_request %>
+<% if !is_modal %>
   <!-- if not making resource from other form -->
-
   <%= content_tag(
     :div,
     class: 'file-collection-container',
@@ -22,5 +21,4 @@
     <% end %>
     <%= link_to_add_fields I18n.t('Add Image'), f, attribute, hidden %>
   <% end %>
-
 <% end %>

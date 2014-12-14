@@ -9,7 +9,8 @@
           "adminpanel/form/#{field_type}",
           f: f,
           properties: properties,
-          attribute: attribute
+          attribute: attribute,
+          is_modal: params[:model].present?
       ) %>
     <% else %>
       <% args = properties.except('name') %>

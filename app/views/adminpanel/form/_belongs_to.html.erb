@@ -1,19 +1,24 @@
-<% if !defined? remote_request %>
-<!-- if not making resource from other form so we don't have to manage
-infinite nested forms and relations -->
-  <% args = properties.except('model') %>
-  <%= f.select(
-    attribute,
+<% args = properties.except('model') %>
+<%= f.select(
+  attribute,
+  (
+    @collections["#{properties["model"]}"].collect do |resource|
+      [resource.name, resource.id]
+    end
+  ),
+  args
+) %>
+
+
+<% if (
+    !is_modal &&
     (
-      @collections["#{properties["model"]}"].collect do |resource|
-        [resource.name, resource.id]
-      end
-    ),
-    args
-  ) %>
+      properties['remote_resource'].nil? ||
+      properties['remote_resource']
+    )
+) %>
+  <!-- if rendering the form inside a modal, so we don't have to
+  manage infinited nested forms -->
 
-  <% if(properties['remote_resource'].nil? || properties['remote_resource']) %>
-    <%= render 'adminpanel/shared/create_remote_resource_button', belongs_request: true, remote_resource_name: properties['model'] %>
-  <% end %>
-
+  <%= render 'adminpanel/shared/create_remote_resource_button', belongs_request: true, remote_resource_name: properties['model'] %>
 <% end %>
