@@ -12,7 +12,7 @@
       <%= render 'adminpanel/shared/image_fields', f: builder %>
     <% end -%>
 
-    <% if(
+    <% if (
       properties['max-files'].to_i != 0 &&
       properties['max-files'].to_i <= f.object.send(@model.get_image_relationship).count.to_i
     ) %>
@@ -20,7 +20,7 @@
     <% else %>
       <% hidden = 'not-hidden' %>
     <% end %>
-    <%= link_to_add_fields t('Add Image'), f, attribute, hidden %>
+    <%= link_to_add_fields I18n.t('Add Image'), f, attribute, hidden %>
   <% end %>
 
 <% end %>

@@ -6,7 +6,7 @@
     <% properties = properties.except('type') %>
     <% if is_customized_field?(field_type) %><!-- SharedPagesHelper -->
       <%= render(
-          "form/#{field_type}",
+          "adminpanel/form/#{field_type}",
           f: f,
           properties: properties,
           attribute: attribute
