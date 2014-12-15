@@ -3,10 +3,15 @@ module Adminpanel
     extend ActiveSupport::Concern
     #instance methods
     # static(class) methods
+
     module ClassMethods
       def mount_images(relation)
         has_many relation, dependent: :destroy
         accepts_nested_attributes_for relation, allow_destroy: true
+      end
+
+      def belongs_to(name, scope = nil, options = {})
+        super(name, scope, options.reverse_merge!({touch: true}))
       end
 
       def form_attributes
@@ -87,7 +92,7 @@ module Adminpanel
       end
 
       def gallery_children
-        nil
+        :nil
       end
 
       def routes_options
