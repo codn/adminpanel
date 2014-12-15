@@ -49,9 +49,9 @@ module Adminpanel
       "Producto"
     end
 
-    def self.gallery_children
-      'photos'
-    end
+    # def self.gallery_children
+    #   'photos'
+    # end
 
     def self.icon
       "icon-truck"

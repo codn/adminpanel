@@ -1,0 +1,18 @@
+first:
+  file: hipster.jpg
+  gallery: one
+  position: 1
+  created_at: <%= Date.today %>
+  updated_at: <%= Date.today %>
+second:
+  file: hipster.jpg
+  gallery: one
+  position: 2
+  created_at: <%= Date.today %>
+  updated_at: <%= Date.today %>
+third:
+  file: hipster.jpg
+  gallery: one
+  position: 3
+  created_at: <%= Date.today %>
+  updated_at: <%= Date.today %>

@@ -6,7 +6,7 @@ class RouterHelperTest < ActionView::TestCase
   fixtures :all
 
   def test_get_gallery_childen
-    assert_equal 'photos', get_gallery_children(:products)
+    assert_equal 'galleryfiles', get_gallery_children(:gallery)
   end
 
   def test_resource_parameters

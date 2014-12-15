@@ -24,5 +24,9 @@ module Adminpanel
     def self.display_name
       'Galeria'
     end
+
+    def self.gallery_children
+      'galleryfiles'
+    end
   end
 end

@@ -26,6 +26,13 @@ ActiveRecord::Schema.define do
       t.datetime :created_at,      null: false
       t.datetime :updated_at,      null: false
   end
+  create_table :adminpanel_galleryfiles do |t|
+      t.string   :file
+      t.integer  :position
+      t.integer  :gallery_id
+      t.datetime :created_at,      null: false
+      t.datetime :updated_at,      null: false
+  end
   create_table :adminpanel_sectionfiles do |t|
       t.string   :file
       t.string   :section_id
