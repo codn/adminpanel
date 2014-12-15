@@ -14,11 +14,11 @@
         <h5>
           <%= @model.display_name.humanize %>
 
-          <%= render 'adminpanel/shared/edit_icon_button',    resource: @resource_instance %>
+          <%= render 'adminpanel/icons/edit',    resource: @resource_instance %>
 
-          <%= render 'adminpanel/shared/fb_icon_button',      resource: @resource_instance %>
+          <%= render 'adminpanel/icons/facebook',      resource: @resource_instance %>
 
-          <%= render 'adminpanel/shared/twitter_icon_button', resource: @resource_instance %>
+          <%= render 'adminpanel/icons/twitter', resource: @resource_instance %>
         </h5>
       </div>
       <div class="widget-body">
@@ -46,7 +46,7 @@
         <div class="widget-header">
           <%= content_tag(:i, nil, class: "fa fa-#{@model.icon}") %>
           <h5><%= I18n.t('gallery.container') %>: <%= @model.display_name.humanize %>
-            <%= render 'adminpanel/shared/edit_icon_button',    resource: @resource_instance %>
+            <%= render 'adminpanel/icons/edit',    resource: @resource_instance %>
           </h5>
         </div>
         <% if @model.gallery_children.nil? %>
@@ -55,16 +55,16 @@
                 <%= link_to(
                   image_tag( image.file_url(:thumb) ),
                   image.file_url.to_s,
-                  rel: "group", name: @model.display_name
+                  rel: 'group', name: @model.display_name
                 ) %>
             <% end %>
           </div>
         <% else %>
-        <div class="widget-body widget-tasks-assigned clearfix">
-          <ul id="gallery-entries">
-            <%= render "adminpanel/shared/gallery_entries", images: @resource_instance.send(@model.get_image_relationship) %>
-          </ul>
-        </div>
+          <div class="widget-body widget-tasks-assigned clearfix">
+            <ul id="gallery-entries">
+              <%= render 'adminpanel/shared/gallery_entries', images: @resource_instance.send(@model.get_image_relationship) %>
+            </ul>
+          </div>
         <% end %>
       </div>
   </div>

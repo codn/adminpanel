@@ -36,11 +36,11 @@
     <tr>
       <td><%= link_to category.name, category_path(category) %></td>
       <td>
-        <%= render 'adminpanel/shared/show_icon_button', resource: category %>
+        <%= render 'adminpanel/icons/show', resource: category %>
 
-        <%= render 'adminpanel/shared/edit_icon_button', resource: category %>
+        <%= render 'adminpanel/icons/edit', resource: category %>
 
-        <%= render 'adminpanel/shared/delete_icon_button', resource: category %>
+        <%= render 'adminpanel/icons/delete', resource: category %>
       </td>
     </tr>
   <% end %>

@@ -1,10 +1,12 @@
-<%= link_to(
-  content_tag(
-    :i,
-    nil,
-    class: 'fa fa-chevron-up'
-  ),
-  [:move_to_better, member],
-  method: :put,
-  remote: true
-) %>
+<% if @model.has_route?(:edit) && can?(:update, @model) %>
+  <%= link_to(
+    content_tag(
+      :i,
+      nil,
+      class: 'fa fa-chevron-up'
+    ),
+    [:move_to_better, member],
+    method: :put,
+    remote: true
+  ) %>
+<% end %>
