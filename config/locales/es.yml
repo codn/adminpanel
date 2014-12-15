@@ -4,7 +4,6 @@ es:
       server_file: 'El archivo en el servidor es: %{file}'
   model:
     Analytic: 'Analytics'
-    Gallery: 'Galería de Inicio'
     Categories: 'Categorías'
     Category: 'Categoría'
     Role: 'Rol'
@@ -120,6 +119,14 @@ es:
     add : 'Agregar %{model}'
     no description: 'No tiene descripción aún'
   routes:
+    reply: 'responder'
+    favorite: 'favorito'
+    retweet: 'retweet'
+    comment: 'comentar'
+    publish: 'publicar-a-%{location}'
+    move_to_better: 'subir-prioridad'
+    move_to_worst: 'bajar-prioridad'
+    facebook_page: 'pagina-en-facebook'
     new: 'nuevo'
     edit: 'editar'
     show: 'ver'

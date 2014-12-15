@@ -49,7 +49,6 @@ Adminpanel.setup do |config|
     :roles,
     :permissions,
     # :auths,
-    :galleries,
     #:categories,
     :sections
   ]

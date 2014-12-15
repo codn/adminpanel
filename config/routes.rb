@@ -7,28 +7,31 @@ Adminpanel::Engine.routes.draw do
     when :sections
       # sections cannot be created or destroyed
       resources :sections, resources_parameters(resource).merge(
-      { except: [:new, :create, :destroy] }.merge(rest_path_names)
+        { except: [:new, :create, :destroy] }.merge(rest_path_names)
       )
     when :analytics
       resources :analytics, resources_parameters(resource).merge({ only: [:index] }) do
         collection do
           get :google,               to: 'analytics#google', path: 'google'
+
           get :fb,                   to:'analytics#fb',      path:'facebook'
+
           get :twitter,              to:'analytics#twitter', path:'twitter'
-          post 'reply_to_tweet/:id', to: 'analytics#reply_to_tweet', as: 'reply_to', path: 'twitter/responder/:id'
-          post 'favorite_tweet/:id', to: 'analytics#favorite_tweet', as: 'favorite', path: 'twitter/favorito/:id'
-          post 'retweet_tweet/:id',  to: 'analytics#retweet_tweet',  as: 'retweet',  path: 'twitter/retweet/:id'
+          post 'reply_to_tweet/:id', to: 'analytics#reply_to_tweet', as: 'reply_to', path: "twitter/#{I18n.t('routes.reply')}/:id"
+          post 'favorite_tweet/:id', to: 'analytics#favorite_tweet', as: 'favorite', path: "twitter/#{I18n.t('routes.favorite')}/:id"
+          post 'retweet_tweet/:id',  to: 'analytics#retweet_tweet',  as: 'retweet',  path: "twitter/#{I18n.t('routes.retweet')}/:id"
+
           get :instagram,            to:'analytics#instagram'
-          post 'comment_to_instagram/:id', to: 'analytics#instagram_comment', as: 'comment_instagram', path: 'instagram/comentar/:id'
+          post 'comment_to_instagram/:id', to: 'analytics#instagram_comment', as: 'comment_instagram', path: "instagram/#{I18n.t('routes.comment')}/:id"
         end
       end
     else
-      if !get_gallery_children(resource).nil?
+      if get_gallery_children(resource)
         # make the resources gallery routes
         resources get_gallery_children(resource).to_sym, only: [:index] do
           member do
-            put :move_better, as: 'move_to_better', path: 'subir-prioridad'
-            put :move_worst, as: 'move_to_worst', path: 'bajar-prioridad'
+            put :move_better, as: 'move_to_better', path: I18n.t('routes.move_to_better')
+            put :move_worst, as: 'move_to_worst', path: I18n.t('routes.move_to_worst')
           end
         end
       end
@@ -41,18 +44,20 @@ Adminpanel::Engine.routes.draw do
               send(request_type, args['path'].to_sym, args['args'])
             end
           end
+
           if is_sortable?(resource)
-            put :move_to_better, as: 'move_to_better', path: 'subir-prioridad'
-            put :move_to_worst,  as: 'move_to_worst',  path: 'bajar-prioridad'
+            put :move_to_better, as: 'move_to_better', path: I18n.t('routes.move_to_better')
+            put :move_to_worst,  as: 'move_to_worst',  path: I18n.t('routes.move_to_worst')
           end
+
           if has_fb_share?(resource)
             # if resource is going to be shared on facebook
-            get :fb_choose_page, as: 'fb_choose_page', path: 'publicar-a-pagina-en-fb'
+            get :fb_choose_page, as: 'fb_choose_page', path: I18n.t('routes.publish', location: I18n.t('routes.facebook_page'))
             post :fb_save_token, as: 'fb_save_token', path: 'guardar-token-fb'
-            post :fb_publish, to: "#{resource}#fb_publish", as: 'fb_publish', path: 'publicar-a-facebook'
+            post :fb_publish, to: "#{resource}#fb_publish", as: 'fb_publish', path: I18n.t('routes.publish', location: 'facebook')
           end
           if has_twitter_share?(resource)
-            post :twitter_publish, to: "#{resource}#twitter_publish", as: 'twitter_publish', path: 'publicar-a-twitter'
+            post :twitter_publish, to: "#{resource}#twitter_publish", as: 'twitter_publish', path: I18n.t('routes.publish', location: 'twitter')
           end
         end
         collection do

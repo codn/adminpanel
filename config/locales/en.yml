@@ -1,7 +1,6 @@
 en:
   model:
     Analytic: 'Google Analytics'
-    Gallery: 'Gallery'
     Categories: 'Categories'
     User: 'User'
     Role: 'Role'
