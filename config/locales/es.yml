@@ -126,6 +126,8 @@ es:
     publish: 'publicar-a-%{location}'
     move_to_better: 'subir-prioridad'
     move_to_worst: 'bajar-prioridad'
+    move_gallery_to_better: 'subir-prioridad-galeria'
+    move_gallery_to_worst: 'bajar-prioridad-galeria'
     facebook_page: 'pagina-en-facebook'
     new: 'nuevo'
     edit: 'editar'

@@ -2,16 +2,20 @@ module Adminpanel
   module GalleryzableActions
     extend ActiveSupport::Concern
 
-    def move_better
-      resource = @model.find(params[:id])
-      resource.move_to_better_position
+    included do
+      skip_authorize_resource :move_gallery_better, :move_gallery_worst
+    end
+
+    def move_gallery_better
+      @resource_instance = @model.find(params[:id])
+      @resource_instance.move_to_better_position
       respond
 
     end
 
-    def move_worst
-      resource = @model.find(params[:id])
-      resource.move_to_worst_position
+    def move_gallery_worst
+      @resource_instance = @model.find(params[:id])
+      @resource_instance.move_to_worst_position
       respond
     end
 
@@ -19,9 +23,9 @@ module Adminpanel
     def respond
       respond_to do |format|
         format.js do
-          render 'adminpanel/shared/gallery_entries', :locals => {
-            :collection => @model.where(
-              @model.relation_field.to_sym => resource.send(@model.relation_field)
+          render 'adminpanel/shared/gallery_entries', locals: {
+            collection: @model.ordered.where(
+              @model.relation_field.to_sym => @resource_instance.send(@model.relation_field)
             )
           }
         end

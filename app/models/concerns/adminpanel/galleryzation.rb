@@ -6,9 +6,11 @@ module Adminpanel
       before_create :set_position
       before_destroy :rearrange_positions
 
-      default_scope do
+      scope :ordered, -> do
         order('position ASC')
+        # where(position: 1)
       end
+
     end
 
     def move_to_better_position
