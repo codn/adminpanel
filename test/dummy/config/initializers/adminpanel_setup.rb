@@ -19,6 +19,7 @@ Adminpanel.setup do |config|
     :roles,
     :permissions,
     :products,
+    :galleries, # sortable
     :users,
     :mugs,
     :salesmen,

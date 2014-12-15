@@ -10,7 +10,9 @@
       title: 'Eliminar',
       id: 'resource-delete',
       method: :delete,
-      data: { confirm: "Eliminar #{resource.name}?"}
+      data: {
+        confirm: "Eliminar #{resource.name}?"
+      }
     )
   %>
 <% end %>

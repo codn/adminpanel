@@ -23,7 +23,7 @@ class HasManyThroughNonCategoryModalTest < ViewCase
     fill_in 'product_description', with: 'remote description lorem'
     fill_in 'product_price', with: '12.3'
     submit_modal 'Agregar Producto'
-    assert_content('remote checkbox of product')
+    assert_content 'remote checkbox of product'
 
   end
 
