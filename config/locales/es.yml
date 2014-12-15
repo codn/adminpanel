@@ -66,6 +66,7 @@ es:
     action: 'Acción permitida'
     resource: 'Módulo'
   actions: 'Acciones'
+  position: 'Posición'
   action:
     add: 'Agregar %{resource}'
     close: 'Cerrar'

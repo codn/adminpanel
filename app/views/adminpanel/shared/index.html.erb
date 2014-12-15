@@ -12,13 +12,18 @@
     </div>
     <div class="widget-body">
       <div class="dataTables_wrapper form-inline">
-        <table id="information-table" class="table table-striped table-bordered dataTable">
+        <table id="<%= table_type(@model) %>" class="table table-striped table-bordered dataTable">
           <thead><!-- model attributes -->
             <tr>
               <% @model.display_attributes('index').each do |fields| %>
                 <% fields.each do |attribute, properties| %>
                   <th><%= properties['label'] %></th>
                 <% end %>
+              <% end %>
+              <% if @model.is_sortable? %>
+                <th>
+                  <%= I18n.t('position') %>
+                </th>
               <% end %>
               <th><%= I18n.t('actions') %></th>
             </tr>
@@ -27,31 +32,8 @@
             <% last_update = @collection.max_by(&:updated_at).updated_at %>
           <% end %>
           <% cache ["#{@model.name}-collection", last_update], skip_digest: true do %>
-            <tbody>
-              <% @collection.each do |member| %>
-                <% cache ["#{member.class}-member", member] do %>
-                  <tr>
-                    <% @model.display_attributes('index').each do |fields| %>
-                      <% fields.each do |attribute, properties| %>
-                        <td>
-                          <%= field_value(properties, attribute, member) %>
-                        </td>
-                      <% end %>
-                    <% end %>
-                    <td>
-                      <%= render 'adminpanel/shared/show_icon_button',    resource: member %>
-
-                      <%= render 'adminpanel/shared/edit_icon_button',    resource: member %>
-
-                      <%= render 'adminpanel/shared/delete_icon_button',  resource: member %>
-
-                      <%= render 'adminpanel/shared/fb_icon_button',      resource: member %>
-
-                      <%= render 'adminpanel/shared/twitter_icon_button', resource: member %>
-                    </td>
-                  </tr>
-                <% end %> <!-- end member cache -->
-              <% end %> <!-- end loop -->
+            <tbody id="body-content">
+              <%= render 'adminpanel/shared/index_records', collection: @collection %>
             </tbody>
           <% end %><!-- end collection cache -->
         </table>

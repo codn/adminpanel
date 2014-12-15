@@ -16,6 +16,10 @@ module Adminpanel
       resource_class(resource).twitter_share?
     end
 
+    def is_sortable?(resource)
+      resource_class(resource).is_sortable?
+    end
+
     def member_routes(resource)
       resource_class(resource).member_routes
     end
@@ -33,9 +37,9 @@ module Adminpanel
         }
       }
     end
-  private
-    def resource_class(resource)
-      "adminpanel/#{resource.to_s.singularize}".classify.constantize
-    end
+    private
+      def resource_class(resource)
+        "adminpanel/#{resource.to_s.singularize}".classify.constantize
+      end
   end
 end

@@ -118,6 +118,10 @@ module Adminpanel
         []
       end
 
+      def is_sortable?
+        false
+      end
+
     private
       def exclude?(route)
         if routes_options[:except].nil?

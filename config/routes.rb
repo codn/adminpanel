@@ -9,14 +9,6 @@ Adminpanel::Engine.routes.draw do
       resources :sections, resources_parameters(resource).merge(
       { except: [:new, :create, :destroy] }.merge(rest_path_names)
       )
-    when :galleries
-      # galleries gallery is different from normal resources galleries
-      resources :galleries, resources_parameters(resource).merge(rest_path_names) do
-        member do
-          put :move_better, as: 'move_to_better', path: 'subir-prioridad'
-          put :move_worst, as: 'move_to_worst', path: 'bajar-prioridad'
-        end
-      end
     when :analytics
       resources :analytics, resources_parameters(resource).merge({ only: [:index] }) do
         collection do
@@ -48,6 +40,10 @@ Adminpanel::Engine.routes.draw do
             route.each do |request_type, args|
               send(request_type, args['path'].to_sym, args['args'])
             end
+          end
+          if is_sortable?(resource)
+            put :move_to_better, as: 'move_to_better', path: 'subir-prioridad'
+            put :move_to_worst,  as: 'move_to_worst',  path: 'bajar-prioridad'
           end
           if has_fb_share?(resource)
             # if resource is going to be shared on facebook

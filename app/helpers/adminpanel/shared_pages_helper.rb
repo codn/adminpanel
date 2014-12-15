@@ -81,7 +81,7 @@ module Adminpanel
       end
     end
 
-    def is_customized_field? field_name
+    def is_customized_field?(field_name)
       field_name = field_name.to_sym
       return (field_name == :adminpanel_file_field ||
         field_name == :belongs_to ||
@@ -90,5 +90,12 @@ module Adminpanel
         field_name == :has_many)
     end
 
+    def table_type(model)
+      if model.is_sortable?
+        ''
+      else
+        'information-table'
+      end
+    end
   end
 end

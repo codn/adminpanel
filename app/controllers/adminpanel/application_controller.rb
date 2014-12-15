@@ -9,6 +9,7 @@ module Adminpanel
 
     include SessionsHelper
     include Adminpanel::RestActions
+    include Adminpanel::SortableActions
     include Adminpanel::GalleryzableActions
     include Adminpanel::FacebookActions
     include Adminpanel::TwitterActions
@@ -17,11 +18,11 @@ module Adminpanel
   private
     rescue_from CanCan::AccessDenied do |exception|
       sign_out
-      redirect_to signin_path, :alert => I18n.t('authentication.not_authorized')
+      redirect_to signin_path, alert: I18n.t('authentication.not_authorized')
     end
 
     def signed_in_user
-      redirect_to signin_url, :notice => I18n.t('authentication.welcome') unless signed_in?
+      redirect_to signin_url, notice: I18n.t('authentication.welcome') unless signed_in?
     end
 
     def set_model

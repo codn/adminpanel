@@ -61,6 +61,7 @@ en:
     action: 'Valid actions'
     resource: 'Resource'
   actions: 'Actions'
+  position: 'Position'
   action:
     add: 'Add'
     create: 'Create'

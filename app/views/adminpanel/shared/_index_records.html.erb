@@ -1,0 +1,32 @@
+<% collection.each do |member| %>
+  <% cache ["#{member.class}-member", member] do %>
+    <tr>
+      <% @model.display_attributes('index').each do |fields| %>
+        <% fields.each do |attribute, properties| %>
+        <td>
+          <%= field_value(properties, attribute, member) %>
+        </td>
+        <% end %>
+      <% end %>
+      <% if @model.is_sortable? %>
+        <!-- if has included the orderable concern -->
+        <td>
+          <%= render 'adminpanel/icons/move_to_better', member: member %>
+
+          <%= render 'adminpanel/icons/move_to_worst',  member: member %>
+        </td>
+      <% end %>
+      <td>
+        <%= render 'adminpanel/shared/show_icon_button',    resource: member %>
+
+        <%= render 'adminpanel/shared/edit_icon_button',    resource: member %>
+
+        <%= render 'adminpanel/shared/delete_icon_button',  resource: member %>
+
+        <%= render 'adminpanel/shared/fb_icon_button',      resource: member %>
+
+        <%= render 'adminpanel/shared/twitter_icon_button', resource: member %>
+      </td>
+    </tr>
+  <% end %>
+<% end %>
