@@ -1,11 +1,14 @@
 <% if @model.has_route?(:edit) && can?(:update, @model) %>
+  <% if ! defined? path %>
+    <% path = [:move_to_better, member] %>
+  <% end %>
   <%= link_to(
     content_tag(
       :i,
       nil,
       class: 'fa fa-chevron-up'
     ),
-    [:move_to_better, member],
+    path,
     method: :put,
     remote: true
   ) %>

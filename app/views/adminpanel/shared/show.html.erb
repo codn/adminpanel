@@ -62,7 +62,12 @@
         <% else %>
           <div class="widget-body widget-tasks-assigned clearfix">
             <ul id="gallery-entries">
-              <%= render 'adminpanel/shared/gallery_entries', images: @resource_instance.send(@model.get_image_relationship).ordered %>
+              <%= render(
+                'adminpanel/shared/gallery_entries',
+                images: @resource_instance.send(
+                  @model.get_image_relationship
+                ).ordered
+              ) %>
             </ul>
           </div>
         <% end %>

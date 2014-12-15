@@ -3,8 +3,8 @@
     <%= link_to (image_tag image.file_url(:thumb)), image.file.to_s, :rel  => "group", :name => @model.display_name %>
     <ul class="rightboxes">
       <li>
-        <%= link_to content_tag(:i, nil, :class => 'fa fa-chevron-up'), [:move_gallery_to_better, image], :method => :put, :remote => true %>
-        <%= link_to content_tag(:i, nil, :class => 'fa fa-chevron-down'), [:move_gallery_to_worst, image], :method => :put, :remote => true %>
+        <%= render 'adminpanel/icons/move_to_better', path: [:move_gallery_to_better, image] %>
+        <%= render 'adminpanel/icons/move_to_worst',  path: [:move_gallery_to_worst, image] %>
       </li>
     </ul>
   </li>
