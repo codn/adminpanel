@@ -49,17 +49,7 @@
             <%= render 'adminpanel/icons/edit',    resource: @resource_instance %>
           </h5>
         </div>
-        <% if @model.gallery_children == :nil %>
-          <div class="widget-body row-fluid">
-            <% @resource_instance.send(@model.get_image_relationship).each do |image|%>
-              <%= link_to(
-                image_tag( image.file_url(:thumb) ),
-                image.file_url.to_s,
-                rel: 'group', name: @model.display_name
-              ) %>
-            <% end %>
-          </div>
-        <% else %>
+        <% if @model.gallery_children %>
           <div class="widget-body widget-tasks-assigned clearfix">
             <ul id="gallery-entries">
               <%= render(
@@ -69,6 +59,16 @@
                 ).ordered
               ) %>
             </ul>
+          </div>
+        <% else %>
+          <div class="widget-body row-fluid">
+            <% @resource_instance.send(@model.get_image_relationship).each do |image|%>
+              <%= link_to(
+                image_tag( image.file_url(:thumb) ),
+                image.file_url.to_s,
+                rel: 'group', name: @model.display_name
+              ) %>
+            <% end %>
           </div>
         <% end %>
       </div>

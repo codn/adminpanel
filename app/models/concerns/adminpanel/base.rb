@@ -92,7 +92,7 @@ module Adminpanel
       end
 
       def gallery_children
-        :nil
+        nil
       end
 
       def routes_options
