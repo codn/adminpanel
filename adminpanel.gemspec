@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
 
   spec.requirements  << 'imagemagick installed'
 
-  spec.add_runtime_dependency 'rails',       '>= 4.2.0.beta1', '<= 4.2.0.rc3'
+  spec.add_runtime_dependency 'rails',       '>= 4.2.0', '< 5.0.0'
   spec.add_runtime_dependency 'mini_magick', '4.0.1'
   spec.add_runtime_dependency 'bcrypt',      '~> 3.1',   '>= 3.1.7'
   spec.add_runtime_dependency 'carrierwave', '~> 0.10',  '>= 0.10.0'
@@ -38,7 +38,7 @@ Gem::Specification.new do |spec|
 
   # Asset dependencies
   spec.add_runtime_dependency 'font-awesome-rails', '~> 4.2',   '>= 4.2.0'
-  spec.add_runtime_dependency 'sass-rails',         '~> 5.0.0.beta1'
+  spec.add_runtime_dependency 'sass-rails',         '~> 5.0.0'
   spec.add_runtime_dependency 'coffee-rails',       '~> 4.1.0', '>= 4.1.0'
   spec.add_runtime_dependency 'jquery-rails',       '3.1.2'
   spec.add_runtime_dependency 'turbolinks',         '~> 2.5.0', '>= 2.5.2'

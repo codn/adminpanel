@@ -26,8 +26,9 @@ Adminpanel::Engine.routes.draw do
         end
       end
     else
-      if get_gallery_children(resource) != :nil
-        # make the resources gallery routes
+      if get_gallery_children(resource)
+        # make the resource's gallery routes
+
         resources get_gallery_children(resource).to_sym, only: [:index] do
           member do
             put :move_gallery_better, as: 'move_gallery_to_better', path: I18n.t('routes.move_gallery_to_better')
@@ -62,6 +63,7 @@ Adminpanel::Engine.routes.draw do
         end
         collection do
           # add custom collection routes of the resource
+
           collection_routes(resource).each do |route|
             route.each do |request_type, args|
               send(request_type, args['path'].to_sym, args['args'])
