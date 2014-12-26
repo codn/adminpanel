@@ -23,7 +23,7 @@ module Adminpanel
     def test_default_scope
       assert_equal(
         Adminpanel::Section.all.to_sql,
-        Adminpanel::Section.reorder('').order('page ASC').to_sql
+        Adminpanel::Section.reorder('').order(:order => :asc).to_sql
       )
     end
 
