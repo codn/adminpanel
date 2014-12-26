@@ -8,4 +8,4 @@ sudo: false
 cache: bundler
 
 env:
-  - RAILS=4.2.0.rc3
+  - RAILS=4.2.0
