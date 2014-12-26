@@ -10,6 +10,7 @@ module Adminpanel
         accepts_nested_attributes_for relation, allow_destroy: true
       end
 
+      # implementing cache by default.
       def belongs_to(name, scope = nil, options = {})
         super(name, scope, options.reverse_merge!({touch: true}))
       end
@@ -18,8 +19,16 @@ module Adminpanel
         []
       end
 
+      # The name that is going to be shown in the new button and that is going
+      # to be pluralized (if not overwritten) to generate collection_name
       def display_name
         'please overwrite self.display_name'
+      end
+
+      # The word that is going to be shown in the side menu, routes and
+      # breadcrumb.
+      def collection_name
+        display_name.pluralize(I18n.default_locale)
       end
 
       def get_attribute_label(field)
@@ -96,7 +105,7 @@ module Adminpanel
       end
 
       def routes_options
-        { path: display_name.pluralize(I18n.default_locale).parameterize }
+        { path: collection_name.parameterize }
       end
 
       def has_route?(route)

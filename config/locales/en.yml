@@ -62,8 +62,8 @@ en:
   actions: 'Actions'
   position: 'Position'
   action:
-    add: 'Add'
-    create: 'Create'
+    add: 'Add %{resource}'
+    create: 'Create %{resource}'
     close: 'Close'
     show: 'Show'
     submitting: 'Submitting...'

@@ -18,11 +18,17 @@
           <div class="accordion-heading">
             <%= link_to(
               [route_symbol(resource.to_s)],
-              data: { no_transition_cache: true },
+              data: {
+                no_transition_cache: true
+              },
               class: "accordion-toggle accordion-navigation #{is_current_section?(resource_class.display_name)} spinner-link"
             ) do %>
-              <%= content_tag :i, nil, class: "fa fa-#{resource_class.icon}" %>
-              <%= resource_class.display_name.pluralize(I18n.default_locale) %>
+              <%= content_tag(
+                :i,
+                nil,
+                class: "fa fa-#{resource_class.icon}"
+              ) %>
+              <%= resource_class.collection_name %>
             <% end %>
           </div>
         </div>

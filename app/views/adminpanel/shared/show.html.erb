@@ -1,6 +1,6 @@
 <% provide(:page_title, I18n.t('action.view', resource: @model.display_name.capitalize)) -%>
 <% breadcrumb_add(
-  @model.display_name.capitalize.pluralize(I18n.default_locale),
+  @model.collection_name,
   {
     controller: params[:controller],
     action: 'index'
