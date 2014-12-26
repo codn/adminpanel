@@ -13,7 +13,7 @@ namespace :adminpanel do
       :description => "",
       :key => (args[:name].downcase.tr(' ','_')),
       :page => page_name,
-      :has_image => false,
+      :has_image => false
     )
 
     if order.nil?
