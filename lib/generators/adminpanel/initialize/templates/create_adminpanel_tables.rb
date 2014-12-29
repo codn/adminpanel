@@ -77,6 +77,7 @@ class CreateAdminpanelTables < ActiveRecord::Migration
       t.string  :page
       t.boolean :has_image
       t.integer :max_files, default: 0
+      t.integer :order
       t.timestamps
     end
     add_index :adminpanel_sections, [:key]

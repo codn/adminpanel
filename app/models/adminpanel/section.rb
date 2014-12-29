@@ -28,7 +28,7 @@ module Adminpanel
     validates_format_of :description, with: VALID_EMAIL_REGEX, if: :is_email?
 
     default_scope do
-      order("page ASC")
+      order :order => :asc
     end
 
     scope :of_page, -> (page) do

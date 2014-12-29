@@ -116,6 +116,7 @@ ActiveRecord::Schema.define do
       t.string   :page
       t.datetime :created_at,      null: false
       t.datetime :updated_at,      null: false
+      t.integer :order
       t.boolean  :has_description
   end
   create_table :adminpanel_test_objects do |t|

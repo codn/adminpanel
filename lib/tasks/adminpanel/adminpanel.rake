@@ -4,15 +4,23 @@ namespace :adminpanel do
   task :section, [:name, :section, :type] => :environment do |t, args|
     args.with_defaults(:section => "home", :name => "greeting", :type => "")
     puts "Creating #{args[:name]} in #{args[:section]} section" unless Rails.env.test?
+    page_name = args[:section].capitalize
+    order = Adminpanel::Section.find_by(:page => page_name)
 
     s = Adminpanel::Section.new(
       :name => args[:name].titleize,
       :has_description => false,
       :description => "",
       :key => (args[:name].downcase.tr(' ','_')),
-      :page => args[:section].capitalize,
+      :page => page_name,
       :has_image => false
     )
+
+    if order.nil?
+      s.order = Adminpanel::Section.count + 1
+    else
+      s.order = order.order
+    end
 
     args[:type].split(" ").each do |type|
       case type
