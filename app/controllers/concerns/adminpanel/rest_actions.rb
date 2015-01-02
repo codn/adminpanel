@@ -23,7 +23,7 @@ module Adminpanel
     end
 
     def show
-      render 'adminpanel/shared/show' if stale?(last_modified: @resource_instance.updated_at.utc, etag: @resource_instance.cache_key)
+      render 'adminpanel/shared/show' if stale?(@resource_instance, public: true)
     end
 
     def new

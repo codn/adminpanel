@@ -26,7 +26,7 @@ module Adminpanel
     end
 
     def set_model
-      @model = params[:controller].classify.constantize
+      @model ||= params[:controller].classify.constantize
     end
 
     def handle_unverified_request
