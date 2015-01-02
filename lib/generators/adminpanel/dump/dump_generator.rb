@@ -17,7 +17,7 @@ module Adminpanel
       puts "dumping #{resource.display_name.pluralize(I18n.default_locale)} into db/#{file_name}"
 
       create_file "db/#{file_name}" do
-        resource.all.to_a.to_json
+        resource.all.to_a.map{|o| o.attributes}.to_json
       end
       inject_into_seeds(resource, file_name)
     end
@@ -28,7 +28,11 @@ module Adminpanel
         append_to_file 'db/seeds.rb' do
           "\nobjects = JSON.parse(open(\"\#{Rails.root}/db/#{file_name}\").read)\n" +
           "objects.each do |element|\n" +
-            indent("#{resource}.create element\n", 2) +
+            indent("object = #{resource}.new\n", 2) +
+            indent("element.each do |k,v|\n", 2) +
+              indent("object[k] = v\n", 4) +
+            indent("end\n", 2) +
+            indent("object.save\n", 2) +
           "end\n"
         end
       end
