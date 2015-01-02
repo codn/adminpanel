@@ -8,35 +8,33 @@
       <h5><%= @section.name %></h5>
     </div>
     <%= adminpanel_form_for @section do |f| %>
-      <div class = "widget-body">
-        <div class = "widget-forms clearfix">
-          <%= render 'adminpanel/shared/error_messages', :object => @section %>
+      <%= f.body do %>
+        <%= render 'adminpanel/shared/error_messages', :object => @section %>
 
-          <% if @section.has_description %>
-            <%= f.wysiwyg_field 'description', 'label' => I18n.t('section.description') %>
-          <% else %>
-            <%= f.text_field 'description', 'label' => t("section.description") %>
-          <% end %>
+        <% if @section.has_description %>
+          <%= f.wysiwyg_field 'description', 'label' => I18n.t('section.description') %>
+        <% else %>
+          <%= f.text_field 'description', 'label' => t("section.description") %>
+        <% end %>
 
-          <% if @section.has_image %>
-            <%= content_tag :div, class: 'file-collection-container', data: { max: @section.max_files } do %>
-              <%= f.fields_for :sectionfiles do |builder| %>
-                <%= render 'adminpanel/shared/image_fields', f: builder %>
-              <% end -%>
+        <% if @section.has_image %>
+          <%= content_tag :div, class: 'file-collection-container', data: { max: @section.max_files } do %>
+            <%= f.fields_for :sectionfiles do |builder| %>
+              <%= render 'adminpanel/shared/image_fields', f: builder %>
+            <% end -%>
 
-              <% if @section.max_files != 0 && @section.max_files <= @section.sectionfiles.count %>
-                <% visibility = 'hidden' %>
-              <% else %>
-                <% visibility = 'not-hidden' %>
-              <% end %>
-                <%= link_to_add_fields 'Agregar Imagen', f, :sectionfiles, visibility %>
+            <% if @section.max_files != 0 && @section.max_files <= @section.sectionfiles.count %>
+              <% visibility = 'hidden' %>
+            <% else %>
+              <% visibility = 'not-hidden' %>
             <% end %>
+              <%= link_to_add_fields 'Agregar Imagen', f, :sectionfiles, visibility %>
           <% end %>
-        </div>
-      </div>
-      <div class = "widget-footer">
+        <% end %>
+      <% end %>
+      <%= f.footer do %>
         <%= f.submit t('action.save', resource: @section.name), data: {:disable_with => t("action.submitting")}, :id => "save-button" %>
-      </div>
+      <% end %>
     <% end -%>
   </div>
 </div>
