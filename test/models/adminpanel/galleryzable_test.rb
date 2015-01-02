@@ -1,6 +1,6 @@
 require 'test_helper'
 module Adminpanel
-  class GalleryTest < ActiveSupport::TestCase
+  class GalleryzableTest < ActiveSupport::TestCase
 
     def test_sortable_funcionallity
       gallery = Adminpanel::Gallery.first

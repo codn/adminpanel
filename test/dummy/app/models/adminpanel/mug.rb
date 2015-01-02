@@ -27,6 +27,10 @@ module Adminpanel
       'Taza' #singular
     end
 
+    def self.collection_name
+      'Irregular Tazas'
+    end
+
     # def self.icon
     #     "truck" # fa-{icon}
     # end

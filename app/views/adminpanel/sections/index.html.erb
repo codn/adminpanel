@@ -7,12 +7,9 @@
         <% current_page = "no-page" %>
         <% @sections.each_with_index do |section, index| %>
           <% if current_page != section.page %>
-          <% if index == 0 %>
-            <li class = "active">
-          <% else %>
-            <li>
-          <% end %>
-              <%= link_to (section.page.capitalize), "#tab#{index}", "data-toggle" => "tab" %></li>
+            <li class="<%= active_tab(index) %>">
+              <%= link_to (section.page.capitalize), "#tab#{index}", "data-toggle" => "tab" %>
+            </li>
             <% current_page = section.page %>
           <% end %>
         <% end %>
@@ -24,11 +21,7 @@
         <% current_page = "no-page" %>
         <% @sections.each_with_index do |section, index| %>
           <% if current_page != section.page %>
-          <% if index == 0 %>
-            <div class="tab-pane active" id="tab<%= index %>">
-          <% else %>
-            <div class="tab-pane" id="tab<%= index %>">
-          <% end %>
+            <div class="tab-pane <%= active_tab(index) %>" id="tab<%= index %>">
               <% section_pages = Adminpanel::Section.of_page section.page %>
               <%= render "sections_table", :sections => section_pages %>
             </div>

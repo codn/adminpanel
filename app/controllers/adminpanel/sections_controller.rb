@@ -4,17 +4,8 @@ module Adminpanel
       @sections = Section.all
     end
 
-    # def new
-    #   @section = Section.new
-    #   authorize! :create, @section
-    # end
-
     def edit
       @section = Section.find(params[:id])
-      # respond_to do |format|
-        # format.html
-        # format.json {render :json => {:section => @section }}
-      # end
     end
 
     def update
@@ -25,10 +16,6 @@ module Adminpanel
       else
         render 'edit'
       end
-    end
-
-    def show
-      @section = Section.find(params[:id])
     end
 
     private
