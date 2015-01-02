@@ -1,2 +1,5 @@
 $("#modal-title").html('Agregar <%= @model.display_name %>');
 $("#modal-container").html('<%= escape_javascript(render "adminpanel/shared/remote_form_fields", resource: @resource_instance) %>');
+setTimeout(function() {
+  $("#remote-form-modal input[type='text']:first").focus();
+}, 500);
