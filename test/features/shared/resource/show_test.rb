@@ -9,6 +9,7 @@ class ShowTest < ViewCase
     assert_content(adminpanel_products(:first).price)
     assert_content(adminpanel_products(:first).description)
     assert_selector 'i.fa.fa-pencil'
+    assert_selector 'i.fa.fa-plus'
   end
 
   protected
