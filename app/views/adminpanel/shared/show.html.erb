@@ -13,13 +13,16 @@
         <%= content_tag(:i, nil, class: "fa fa-#{@model.icon}") %>
         <h5>
           <%= @model.display_name.humanize %>
-
-          <%= render 'adminpanel/icons/edit',    resource: @resource_instance %>
-
-          <%= render 'adminpanel/icons/facebook',      resource: @resource_instance %>
-
-          <%= render 'adminpanel/icons/twitter', resource: @resource_instance %>
         </h5>
+        <div class="widget-buttons">
+          <%= render 'adminpanel/icons/new' %>
+
+          <%= render 'adminpanel/icons/edit',     resource: @resource_instance %>
+
+          <%= render 'adminpanel/icons/facebook', resource: @resource_instance %>
+
+          <%= render 'adminpanel/icons/twitter',  resource: @resource_instance %>
+        </div>
       </div>
       <div class="widget-body">
         <div class="widget-tickets widget-tickets-large clearfix">
