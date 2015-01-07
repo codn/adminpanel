@@ -84,6 +84,7 @@ en:
     signin_success: 'Welcome!'
     not_authorized: "You don't have access to that"
   gallery:
+    container: 'Images'
     new: 'Add Image'
     success: 'Image has been saved'
     deleted: 'Image has been deleted'
