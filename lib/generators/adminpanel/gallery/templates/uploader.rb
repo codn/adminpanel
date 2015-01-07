@@ -13,70 +13,76 @@ module Adminpanel
     end
 
     # Process files as they are uploaded:
-    # process :resize_to_fill => [1366, 768]
+    # process resize_to_fill: [1366, 768]
 
     # THE THUMB VERSION IS NECESSARY BY ADMINPANEL, DON'T REMOVE IT!!!!
     version :thumb do
-      process :resize_to_limit => [80, 80]
+      process resize_to_limit: [80, 80]
     end
 
     # however, you can create your own versions:
     # version :awesome do
-    #   process :reside_and_pad => [120, 900]
+    #   process reside_and_pad: [120, 900]
     # end
 
-    # More info at http://www.rubydoc.info/github/jnicklas/carrierwave/CarrierWave/MiniMagick
+    # EXAMPLE: 
+    # original 300 x 300 (this is a square, thanks)
+    #  _________________
+    # |                 |
+    # |        0        |
+    # |       000       |
+    # |        0        |
+    # |       \|/       |
+    # |        |        |
+    # |       / \       |
+    # |                 |
+    # |_________________|
 
-    # resize_and_pad(width, height, background=:transparent, gravity=::Magick::CenterGravity)
-    #
-    # Resize the image to fit within the specified dimensions while retaining
-    # the original aspect ratio. If necessary, will pad the remaining area with
-    # the given color, which defaults to transparent (for gif and png, white for jpeg).
-    #
-    # width (Integer)
-    # the width to scale the image to
-    # height (Integer)
-    # the height to scale the image to
-    # background (String, :transparent)
-    # the color of the background as a hexcode, like “ff45de“
-    # gravity (Magick::GravityType)
-    # how to position the image
+    # resize_and_pad: [700, 300] (fill with transparent to fit size.)
+    #  __________________________________
+    # |TTTTT|                     |TTTTT|
+    # |TTTTT|          0          |TTTTT|
+    # |TTTTT|         000         |TTTTT|
+    # |TTTTT|          0          |TTTTT|
+    # |TTTTT|         \|/         |TTTTT| => [700x300]
+    # |TTTTT|          |          |TTTTT|
+    # |TTTTT|         / \         |TTTTT|
+    # |TTTTT|                     |TTTTT|
+    # |_________________________________|
 
-    # resize_to_fill(width, height)
-    #
-    # Resize the image to fit within the
-    # specified dimensions while retaining the aspect ratio of the original image.
-    # If necessary, crop the image in the larger dimension.
-    #
-    # width (Integer)
-    # the width to scale the image to
-    # height (Integer)
-    # the height to scale the image to
+    # resize_to_fill: [700, 300] (force to fill zooming on the image, crops in half of the image)
+    #  __________________________________
+    # |      00000000000000000000       |
+    # |         000000000000000         |
+    # |              |||||              |
+    # |      \\\\\\\\|||||///////       | => [700x300]
+    # |      \\\\\\\\|||||///////       |
+    # |              |||||              |
+    # |              |||||              |
+    # |_________________________________|
 
-    # resize_to_fit(width, height)
-    #
-    # Resize the image to fit within the
-    # specified dimensions while retaining the original aspect ratio. The image
-    # may be shorter or narrower than specified in the smaller dimension but
-    # will not be larger than the specified values.“
-    #
-    # width (Integer)
-    # the width to scale the image to
-    # height (Integer)
-    # the height to scale the image to
+    # resize_to_fit: [120, 60] (resize to no larger than dimension, while
+    #                             maintaining ratio)
+    #  ____________
+    # |            |
+    # |     0      |
+    # |     \/     |  => [60x60] (no larger than any, original ratio)
+    # |     /|     |
+    # |            |
+    # |____________|
 
-    # resize_to_limit(width, height)
-    #
-    # Resize the image to fit within the specified dimensions while retaining
-    # the original aspect ratio. Will only resize the image if it is larger than
-    # the specified dimensions. The resulting image may be shorter or narrower
-    # than specified in the smaller dimension but will not be larger than the
-    # specified values.
-    #
-    # width (Integer)
-    # the width to scale the image to
-    # height (Integer)
-    # the height to scale the image to
+    #  resize_to_limit: [500, 500] resize_to_fit, but only resizing if original image is larger
+    #  _________________
+    # |                 |
+    # |        0        |
+    # |       000       |
+    # |        0        |
+    # |       \|/       | => [300, 300] (original)
+    # |        |        |
+    # |       / \       |
+    # |                 |
+    # |_________________|
+
     def extension_white_list
       %w(jpg jpeg png)
     end
