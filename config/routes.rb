@@ -4,11 +4,6 @@ Adminpanel::Engine.routes.draw do
 
   Adminpanel.displayable_resources.each do |resource|
     case resource
-    when :sections
-      # sections cannot be created or destroyed
-      resources :sections, resources_parameters(resource).merge(
-        Adminpanel::Section.routes_options.merge(rest_path_names)
-      )
     when :analytics
       resources :analytics, resources_parameters(resource).merge({ only: [:index] }) do
         collection do
