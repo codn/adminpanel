@@ -12,6 +12,7 @@ require 'jquery-rails'
 require 'instagram'
 require 'turbolinks'
 require 'coffee-rails'
+require 'sass'
 
 module Adminpanel
 end
