@@ -13,10 +13,10 @@ module Adminpanel
 
     private
       def extract_fields
-        if fields.empty? && name == ''
+        if fields.empty? && name == '' # no fields supplied
           fields << 'email'
           fields << 'body'
-        elsif name != ''
+        elsif name != '' # at least 1 field supplied
           fields << name
         end
         return fields
