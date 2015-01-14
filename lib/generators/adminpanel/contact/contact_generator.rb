@@ -14,7 +14,8 @@ module Adminpanel
     private
       def extract_fields
         if fields.empty? && name == ''
-          fields << 'email' << 'body'
+          fields << 'email'
+          fields << 'body'
         elsif name != ''
           fields << name
         end
