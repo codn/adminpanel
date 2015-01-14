@@ -7,7 +7,7 @@ Adminpanel::Engine.routes.draw do
     when :sections
       # sections cannot be created or destroyed
       resources :sections, resources_parameters(resource).merge(
-        { except: [:new, :create, :destroy] }.merge(rest_path_names)
+        Adminpanel::Section.routes_options.merge(rest_path_names)
       )
     when :analytics
       resources :analytics, resources_parameters(resource).merge({ only: [:index] }) do
