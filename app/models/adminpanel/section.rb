@@ -64,6 +64,10 @@ module Adminpanel
       end
     end
 
+    def self.routes_options
+      { path: collection_name.parameterize, except: [:new, :create, :destroy] }
+    end
+
     protected
     def has_description?
       !self.has_description.nil? || self.has_description
