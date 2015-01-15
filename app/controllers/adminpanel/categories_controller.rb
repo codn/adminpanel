@@ -9,7 +9,7 @@ module Adminpanel
     def new
       @resource_instance = @model.new
       respond_to do |format|
-        format.html { render 'adminpanel/shared/new' }
+        format.html { render 'adminpanel/templates/new' }
         format.js { render }
       end
     end
@@ -33,7 +33,7 @@ module Adminpanel
             end
           end
         else
-          format.html { render 'adminpanel/shared/new' }
+          format.html { render 'adminpanel/templates/new' }
           format.js { render 'new' }
         end
       end

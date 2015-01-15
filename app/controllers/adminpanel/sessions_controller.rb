@@ -3,7 +3,6 @@ module Adminpanel
     include SessionsHelper
     include ApplicationHelper
 
-    protect_from_forgery
     layout 'adminpanel/application-login'
     before_action :configure_instagram, only:[:instagram_login, :instagram_callback]
 
