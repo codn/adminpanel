@@ -7,74 +7,73 @@
   }
 ) %>
 
-  <div class="row-fluid">
-    <div class="widget span6">
-      <div class="widget-header">
-        <%= content_tag(:i, nil, class: "fa fa-#{@model.icon}") %>
-        <h5>
-          <%= @model.display_name.humanize %>
-        </h5>
-        <div class="widget-buttons">
-          <%= render 'adminpanel/icons/new' %>
+<div class="row-fluid">
+  <div class="widget span6">
+    <div class="widget-header">
+      <%= content_tag(:i, nil, class: "fa fa-#{@model.icon}") %>
+      <h5>
+        <%= @model.display_name.humanize %>
+      </h5>
+      <div class="widget-buttons">
+        <%= render 'adminpanel/icons/new' %>
 
-          <%= render 'adminpanel/icons/edit',     resource: @resource_instance %>
+        <%= render 'adminpanel/icons/edit',     resource: @resource_instance %>
 
-          <%= render 'adminpanel/icons/facebook', resource: @resource_instance %>
+        <%= render 'adminpanel/icons/facebook', resource: @resource_instance %>
 
-          <%= render 'adminpanel/icons/twitter',  resource: @resource_instance %>
-        </div>
-      </div>
-      <div class="widget-body">
-        <div class="widget-tickets widget-tickets-large clearfix">
-          <ul>
-            <% @model.display_attributes('show').each do |fields| %>
-              <% fields.each do |attribute, properties| %>
-                <li class="priority-high">
-                  <div class="span3">
-                    <h6><%= properties['label'] %></h6>
-                  </div>
-                  <div class="span8">
-                    <%= field_value(properties, attribute, @resource_instance) %>
-                  </div>
-                </li>
-              <% end %>
-            <% end %>
-          </ul>
-        </div>
+        <%= render 'adminpanel/icons/twitter',  resource: @resource_instance %>
       </div>
     </div>
-
-    <% if @model.has_images? %>
-      <div class="widget widget-padding span6">
-        <div class="widget-header">
-          <%= content_tag(:i, nil, class: "fa fa-#{@model.icon}") %>
-          <h5><%= I18n.t('gallery.container') %>: <%= @model.display_name.humanize %>
-            <%= render 'adminpanel/icons/edit',    resource: @resource_instance %>
-          </h5>
-        </div>
-        <% if @model.gallery_children %>
-          <div class="widget-body widget-tasks-assigned clearfix">
-            <ul id="gallery-entries">
-              <%= render(
-                'adminpanel/shared/gallery_entries',
-                images: @resource_instance.send(
-                  @model.get_image_relationship
-                ).ordered
-              ) %>
-            </ul>
-          </div>
-        <% else %>
-          <div class="widget-body row-fluid">
-            <% @resource_instance.send(@model.get_image_relationship).each do |image|%>
-              <%= link_to(
-                image_tag( image.file_url(:thumb) ),
-                image.file_url.to_s,
-                rel: 'group', name: @model.display_name
-              ) %>
+    <div class="widget-body">
+      <div class="widget-tickets widget-tickets-large clearfix">
+        <ul>
+          <% @model.display_attributes('show').each do |fields| %>
+            <% fields.each do |attribute, properties| %>
+              <li class="priority-high">
+                <div class="span3">
+                  <h6><%= properties['label'] %></h6>
+                </div>
+                <div class="span8">
+                  <%= field_value(properties, attribute, @resource_instance) %>
+                </div>
+              </li>
             <% end %>
-          </div>
-        <% end %>
+          <% end %>
+        </ul>
       </div>
-    <% end %>
+    </div>
   </div>
+
+  <% if @model.has_images? %>
+    <div class="widget widget-padding span6">
+      <div class="widget-header">
+        <%= content_tag(:i, nil, class: "fa fa-#{@model.icon}") %>
+        <h5><%= I18n.t('gallery.container') %>: <%= @model.display_name.humanize %>
+          <%= render 'adminpanel/icons/edit',    resource: @resource_instance %>
+        </h5>
+      </div>
+      <% if @model.gallery_children %>
+        <div class="widget-body widget-tasks-assigned clearfix">
+          <ul id="gallery-entries">
+            <%= render(
+              'adminpanel/shared/gallery_entries',
+              images: @resource_instance.send(
+                @model.get_image_relationship
+              ).ordered
+            ) %>
+          </ul>
+        </div>
+      <% else %>
+        <div class="widget-body row-fluid">
+          <% @resource_instance.send(@model.get_image_relationship).each do |image|%>
+            <%= link_to(
+              image_tag( image.file_url(:thumb) ),
+              image.file_url.to_s,
+              rel: 'group', name: @model.display_name
+            ) %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
