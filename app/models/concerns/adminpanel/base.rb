@@ -1,9 +1,8 @@
 module Adminpanel
   module Base
     extend ActiveSupport::Concern
-    #instance methods
-    # static(class) methods
 
+    # static(class) methods
     module ClassMethods
       def mount_images(relation)
         has_many relation, dependent: :destroy

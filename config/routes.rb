@@ -22,12 +22,11 @@ Adminpanel::Engine.routes.draw do
       end
     else
       if get_gallery_children(resource)
-        # make the resource's gallery routes
-
+        # include galleryzation concern
         resources get_gallery_children(resource).to_sym, only: [:index] do
           member do
             put :move_gallery_better, as: 'move_gallery_to_better', path: I18n.t('routes.move_gallery_to_better')
-            put :move_gallery_worst, as: 'move_gallery_to_worst', path: I18n.t('routes.move_gallery_to_worst')
+            put :move_gallery_worst,  as: 'move_gallery_to_worst', path: I18n.t('routes.move_gallery_to_worst')
           end
         end
       end
@@ -42,23 +41,26 @@ Adminpanel::Engine.routes.draw do
           end
 
           if is_sortable?(resource)
+            # include sortable concern
             put :move_to_better, as: 'move_to_better', path: I18n.t('routes.move_to_better')
             put :move_to_worst,  as: 'move_to_worst',  path: I18n.t('routes.move_to_worst')
           end
 
           if has_fb_share?(resource)
-            # if resource is going to be shared on facebook
+            # include facebook concern
             get :fb_choose_page, as: 'fb_choose_page', path: I18n.t('routes.publish', location: I18n.t('routes.facebook_page'))
             post :fb_save_token, as: 'fb_save_token', path: 'guardar-token-fb'
             post :fb_publish, to: "#{resource}#fb_publish", as: 'fb_publish', path: I18n.t('routes.publish', location: 'facebook')
           end
+
           if has_twitter_share?(resource)
+            # include twitter concern
             post :twitter_publish, to: "#{resource}#twitter_publish", as: 'twitter_publish', path: I18n.t('routes.publish', location: 'twitter')
           end
         end
+
         collection do
           # add custom collection routes of the resource
-
           collection_routes(resource).each do |route|
             route.each do |request_type, args|
               send(request_type, args['path'].to_sym, args['args'])
@@ -77,7 +79,7 @@ Adminpanel::Engine.routes.draw do
     end
   end
   delete '/signout', to: 'sessions#destroy', as: 'signout', path: I18n.t('routes.signout')
-  get '/signin', to: 'sessions#new', as: 'signin', path: I18n.t('routes.signin')
+  get    '/signin',  to: 'sessions#new',     as: 'signin',  path: I18n.t('routes.signin')
 
 end
 

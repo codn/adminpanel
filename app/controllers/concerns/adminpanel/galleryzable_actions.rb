@@ -10,7 +10,6 @@ module Adminpanel
       @resource_instance = @model.find(params[:id])
       @resource_instance.move_to_better_position
       respond
-
     end
 
     def move_gallery_worst
@@ -23,7 +22,7 @@ module Adminpanel
     def respond
       respond_to do |format|
         format.js do
-          render 'adminpanel/shared/gallery_entries', locals: {
+          render 'adminpanel/templates/gallery_entries', locals: {
             collection: @model.ordered.where(
               @model.relation_field.to_sym => @resource_instance.send(@model.relation_field)
             )

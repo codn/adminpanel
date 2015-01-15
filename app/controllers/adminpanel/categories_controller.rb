@@ -26,10 +26,10 @@ module Adminpanel
               render 'create', locals: { category: @resource_instance }
             elsif params[:belongs_request].present?
               # we are in other controller as a belongs_to, add option to select
-              render 'adminpanel/shared/create_belongs_to', locals: { resource: @resource_instance }
+              render 'adminpanel/templates/create_belongs_to', locals: { resource: @resource_instance }
             else
               # we are in other controller as a has_many, add checkbox
-              render 'adminpanel/shared/create_has_many', locals: { resource: @resource_instance }
+              render 'adminpanel/templates/create_has_many', locals: { resource: @resource_instance }
             end
           end
         else

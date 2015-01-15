@@ -8,7 +8,6 @@ module Adminpanel
 
       scope :ordered, -> do
         order('position ASC')
-        # where(position: 1)
       end
 
     end
