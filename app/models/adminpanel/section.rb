@@ -1,5 +1,3 @@
-require 'carrierwave'
-require 'carrierwave/orm/activerecord'
 module Adminpanel
   class Section < ActiveRecord::Base
     include Adminpanel::Base
@@ -45,11 +43,12 @@ module Adminpanel
         {'name' => {'name' => 'name', 'label' => 'Seccion'}},
         {'key' => {'name' => 'key', 'label' => 'Llave'}},
         {'page' => {'name' => 'page'}},
+        {'sectionfiles' => {'type' => 'adminpanel_file_field', 'show' => false}},
       ]
     end
 
     def self.icon
-    	'tasks'
+      'tasks'
     end
 
     def self.display_name

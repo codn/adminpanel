@@ -19,7 +19,7 @@ module Adminpanel
     def update_index_table
       respond_to do |format|
         format.js do
-          render 'adminpanel/shared/index_records', locals: {
+          render 'adminpanel/templates/index_records', locals: {
             collection: @model.all
           }
         end

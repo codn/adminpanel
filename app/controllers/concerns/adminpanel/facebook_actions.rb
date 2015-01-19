@@ -21,7 +21,7 @@ module Adminpanel
       @pages = user.get_connections('me', 'accounts')
       @name = user.get_object('me')['name']
       @pages << { 'name' => @name, 'access_token' => access_token } # to permit posts on own wall
-      render 'adminpanel/shared/fb_choose_page'
+      render 'adminpanel/templates/fb_choose_page'
     end
 
     def fb_save_token

@@ -1,4 +1,4 @@
 <% if !is_modal %>
   <% args = properties.except('name') %>
-  <%= f.file_field(attribute, properties) %>
+  <%= f.file_field(attribute, args) %>
 <% end %>
