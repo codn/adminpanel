@@ -1,6 +1,6 @@
 Consider starting the commit message with an applicable emoji:
 
-* :lipstick: `:lipstick:` when improving the format/structure of the code
+* :art: `:art:` when improving the format/structure of the code
 * :racehorse:`:racehorse:` when improving performance
 * :memo:`:memo:` when writing docs
 * :bug:`:bug:` when fixing a bug
