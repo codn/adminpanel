@@ -135,7 +135,8 @@ module Adminpanel
         false
       end
 
-    private
+      private
+
       def exclude?(route)
         if routes_options[:except].nil?
           false
