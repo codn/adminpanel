@@ -1,6 +1,6 @@
 <% provide(
   :page_title,
-  I18n.t('action.update', name: @resource_instance.name)
+  I18n.t('action.update', resource: @resource_instance.name)
 ) -%>
 <% breadcrumb_add(
   @model.collection_name,
@@ -14,7 +14,7 @@
   <div class = "widget widget-padding span12">
     <div class = "widget-header">
       <%= content_tag(:i, nil, class: "fa fa-#{@model.icon}") %>
-      <h5><%= I18n.t('action.update', name: @resource_instance.name) %></h5>
+      <h5><%= I18n.t('action.update', resource: @resource_instance.name) %></h5>
     </div>
     <%= adminpanel_form_for(
       @resource_instance,
@@ -31,7 +31,7 @@
 
       <%= f.footer do %>
         <%= f.submit(
-          I18n.t('action.update', name: @resource_instance.name),
+          I18n.t('action.update', resource: @resource_instance.name),
           id: "edit-#{@model.name.demodulize}-button"
         ) %>
       <% end %>
