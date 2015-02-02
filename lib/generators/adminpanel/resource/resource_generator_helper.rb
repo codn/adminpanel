@@ -8,6 +8,10 @@ module Adminpanel
       end
     end
 
+    def class_name
+      "#{resource_name}_#{@attr_field}".camelize
+    end
+
     def belongs_to_field(resource)
       "#{resource.singularize.downcase}_id"
     end
@@ -96,6 +100,10 @@ module Adminpanel
       attribute_hash(@attr_field, 'number_field')
     end
 
+    def file_form_hash
+      attribute_hash(@attr_field, 'file_field')
+    end
+
     def boolean_form_hash
       attribute_hash(@attr_field, 'boolean')
     end
@@ -147,7 +155,12 @@ module Adminpanel
     def has_associations?
       fields.each do |attribute|
         assign_attributes_variables(attribute)
-        if @attr_type == "images" || @attr_type == "belongs_to" || @attr_type == "has_many" || @attr_type == "has_many_through"
+        if( @attr_type == 'images' ||
+            @attr_type == 'belongs_to' ||
+            @attr_type == 'has_many' ||
+            @attr_type == 'has_many_through' ||
+            @attr_type == 'file' ||
+            has_gallery? )
           return true
         end
       end
@@ -158,13 +171,20 @@ module Adminpanel
       association = ""
       fields.each do |attribute|
         assign_attributes_variables(attribute)
-        if @attr_type == "belongs_to"
+        case @attr_type
+        when 'belongs_to'
           association = "#{association}#{belongs_to_association(@attr_field)}"
-        elsif @attr_type == "has_many" || @attr_type == "has_many_through"
+        when 'has_many' || 'has_many_through'
           association = "#{association}#{has_many_association(@attr_field)}"
+        when 'file'
+          association = "#{association}#{file_assocation(@attr_field)}"
         end
-
       end
+
+      if has_gallery?
+        association = "#{association}mount_images :#{gallery_name.pluralize}\n\t\t"
+      end
+
       association
     end
 
@@ -175,12 +195,12 @@ module Adminpanel
     def has_many_association(field)
       return "# has_many :#{@attr_field.downcase}zations\n\t\t" +
       "# has_many :#{@attr_field.pluralize.downcase}, " +
-      ":through => :#{@attr_field.downcase}zations, " +
-      ":dependent => :destroy\n\t\t"
+      "through: :#{@attr_field.downcase}zations, " +
+      "dependent: :destroy\n\t\t"
     end
 
-    def get_gallery
-      return "\n\t\tmount_images :#{gallery_name.pluralize}\n"
+    def file_assocation(field)
+      return "mount_uploader :#{field}, #{class_name}Uploader\n\t\t"
     end
 
   end

@@ -7,16 +7,18 @@ module Adminpanel
     source_root File.expand_path('../templates', __FILE__)
     desc 'Generate the resource files necessary to use a model'
     class_option :'skip-gallery',
-      :type => :boolean,
-      :default => true,
-      :desc => 'Choose if we shoud create the gallery for this resource, default: true (skip gallery)'
+      type: :boolean,
+      default: true,
+      desc: 'Choose if we shoud create the gallery for this resource, default: true (skip gallery)'
 
-    argument :fields, :type => :array, :default => [], :banner => 'field[:type][:index] field[:type][:index]'
+    argument :fields,
+      type: :array,
+      default: [],
+      banner: 'field[:type][:index] field[:type][:index]'
 
     def change_fields_aliases
       fields.each do |attribute|
-        type = attribute.split(':').second
-        case type
+        case attribute.split(':').second
         when 'wysiwyg'
           fields.delete(attribute)
           fields << attribute.split(':').first + ':' + 'text'
@@ -35,8 +37,17 @@ module Adminpanel
     end
 
     def generate_migration
-      parameters = fields
-      parameters.delete_if{ |pair| pair.split(':').second == 'has_many' }
+      parameters = fields.dup
+      parameters.delete_if do |pair|
+        pair.split(':').second == 'has_many'
+      end
+      parameters.each do |attribute|
+        case attribute.split(':').second
+        when 'file'
+          parameters.delete(attribute)
+          parameters << attribute.split(':').first + ':' + 'string'
+        end
+      end
       parameters << 'created_at:datetime' << 'updated_at:datetime'
       invoke :migration, ["create_adminpanel_#{pluralized_name}", parameters]
     end
@@ -44,6 +55,16 @@ module Adminpanel
     def generate_gallery
       if has_gallery? && is_a_resource?
         invoke 'adminpanel:gallery', [resource_name]
+      end
+    end
+
+    def generate_files_uploaders
+      fields.each do |attribute|
+        assign_attributes_variables(attribute)
+        case @attr_type
+        when 'file'
+          template '../../gallery/templates/uploader.rb', "app/uploaders/adminpanel/#{class_name.underscore}_uploader.rb"
+        end
       end
     end
 

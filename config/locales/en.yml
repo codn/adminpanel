@@ -69,7 +69,7 @@ en:
     submitting: 'Submitting...'
     save: 'Save %{resource}'
     save_success: 'Has been saved successfully'
-    update: 'Update %{name}'
+    update: 'Update %{resource}'
     delete: 'Delete'
     view: 'View'
     delete confirmation: "Are you sure you wan't to delete?"

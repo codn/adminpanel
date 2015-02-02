@@ -1,9 +1,8 @@
 module Adminpanel
-  class <%= camelized_resource %> < ActiveRecord::Base
+  class <%= camelized_resource -%> < ActiveRecord::Base
     include Adminpanel::Base
 
     <%= associations if has_associations? -%>
-    <%= get_gallery if has_gallery? -%>
 
     def self.form_attributes
       [
