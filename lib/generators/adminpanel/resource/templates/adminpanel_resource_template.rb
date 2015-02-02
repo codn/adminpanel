@@ -4,6 +4,12 @@ module Adminpanel
 
     <%= associations if has_associations? -%>
 
+<% if needs_name? -%>
+    def name
+      self.id.to_s
+    end
+<% end -%>
+
     def self.form_attributes
       [
 <%= indent(get_attribute_hash, 8) + "," %>

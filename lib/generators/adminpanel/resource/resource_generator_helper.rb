@@ -8,6 +8,13 @@ module Adminpanel
       end
     end
 
+    def needs_name?
+      fields.each do |attribute|
+        return false if attribute.split(':').first == 'name'
+      end
+      true
+    end
+
     def class_name
       "#{resource_name}_#{@attr_field}".camelize
     end
