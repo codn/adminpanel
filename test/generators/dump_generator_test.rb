@@ -10,17 +10,13 @@ class DumpGeneratorTest < Rails::Generators::TestCase
     assert_no_file( 'db/users.json' )
     assert( Adminpanel::User.count > 0 ) #ensure there's something in adminpanel_users
 
-    # Dir.mkdir("#{Rails.root.join('tmp/generators')}/db")
-    # File.open("#{Rails.root.join('tmp/generators')}/db/seeds.rb", 'w') do
-    #   "\n"
-    # end
     run_generator %w(
       user
       -i
       false
     )
 
-    #assert has user fields in json format, in an array.
+    #assert has user fields in json format, in an array dumped
     assert_file(
       'db/users.json',
       /\[{/,
@@ -29,14 +25,6 @@ class DumpGeneratorTest < Rails::Generators::TestCase
       /"email":"user@example.com"/,
       /"role_id":/
     )
-    # haven't been able to assert injection :(
-    # assert_file(
-    #   'db/seeds.rb',
-    #   /objects = JSON.parse(open("#{Rails.root}\/db\/users.json").read)/,
-    #   /objects.each do |element|/,
-    #   /  Adminpanel::User.create element/,
-    #   /end/
-    # )
   end
 
   def test_runs_without_errors

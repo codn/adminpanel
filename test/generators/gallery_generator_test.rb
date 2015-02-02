@@ -32,7 +32,7 @@ class GalleryGeneratorTest < Rails::Generators::TestCase
 
   def test_runs_without_errors
     assert_nothing_raised do
-      run_generator
+      run_generator ['Testname']
     end
   end
 
