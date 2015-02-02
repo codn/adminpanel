@@ -160,8 +160,25 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       /'type' => 'has_many'/,
       /'model' => 'Adminpanel::Post'/,
       /'category_ids' => {/,
-      /'type' => 'has_many'/,
       /'model' => 'Adminpanel::Category'/
+    )
+  end
+
+  def test_generating_with_single_attachment_file
+    run_generator %w(
+      monkey
+      name
+      avatar:file
+    )
+    assert_file(
+      'app/models/adminpanel/monkey.rb',
+      /mount_uploader :avatar, MonkeyAvatarUploader/,
+      /'avatar' => {/,
+      /'type' => 'file_field'/
+    )
+    assert_file(
+      'app/uploaders/adminpanel/monkey_avatar_uploader.rb',
+      /class MonkeyAvatarUploader </
     )
   end
 
