@@ -101,6 +101,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       description:wysiwyg
       number:float
       flag:boolean
+      avatar:file
       quantity:integer
       date:datepicker
       categories:has_many
@@ -120,6 +121,8 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       /'type' => 'text_field',/,
       /'flag' => {/,
       /'type' => 'boolean',/,
+      /'avatar' => {/,
+      /'type' => 'file_field',/,
       /'quantity' => {/,
       /'type' => 'number_field',/,
       /'date' => {/,
@@ -167,11 +170,11 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
   def test_generating_with_single_attachment_file
     run_generator %w(
       monkey
-      name
       avatar:file
     )
     assert_file(
       'app/models/adminpanel/monkey.rb',
+      /def name/,
       /mount_uploader :avatar, MonkeyAvatarUploader/,
       /'avatar' => {/,
       /'type' => 'file_field'/
