@@ -4,7 +4,10 @@ module Adminpanel
     include ApplicationHelper
 
     layout 'adminpanel/application-login'
-    before_action :configure_instagram, only:[:instagram_login, :instagram_callback]
+    before_action :configure_instagram, only: [
+                                          :instagram_login,
+                                          :instagram_callback
+                                        ]
 
     def new
     end
@@ -43,7 +46,7 @@ module Adminpanel
     end
 
     def instagram_callback
-      response = Instagram.get_access_token(params[:code], :redirect_uri => instagram_callback_sessions_url)
+      response = Instagram.get_access_token(params[:code], redirect_uri: instagram_callback_sessions_url)
       username = Instagram.client(access_token: response.access_token).user.username
       Auth.create(key: 'instagram', value: response.access_token, name: "@#{username}")
       redirect_to instagram_analytics_path
