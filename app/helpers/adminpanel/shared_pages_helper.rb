@@ -83,11 +83,14 @@ module Adminpanel
 
     def is_customized_field?(field_name)
       field_name = field_name.to_sym
-      return (field_name == :adminpanel_file_field ||
-        field_name == :belongs_to ||
-        field_name == :file_field ||
-        field_name == :non_image_file_field ||
-        field_name == :has_many)
+      [
+        :adminpanel_file_field,
+        :belongs_to,
+        :file_field,
+        :non_image_file_field,
+        :has_many,
+        :select
+      ].include? field_name
     end
 
     def table_type(model)
