@@ -55,7 +55,7 @@ module Adminpanel
 
 
     def edit
-      render 'adminpanel/templates/edit' if stale?(etag: @resource_instance)
+      render 'adminpanel/templates/edit'
     end
 
     def update

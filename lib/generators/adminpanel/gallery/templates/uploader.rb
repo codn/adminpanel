@@ -15,6 +15,9 @@ module Adminpanel
     # Process files as they are uploaded:
     # process resize_to_fill: [1366, 768]
 
+    # 70 as a good default, make sure you know what's your priority
+    process quality: 70
+
     # THE THUMB VERSION IS NECESSARY BY ADMINPANEL, DON'T REMOVE IT!!!!
     version :thumb do
       process resize_to_limit: [80, 80]
@@ -25,7 +28,7 @@ module Adminpanel
     #   process reside_and_pad: [120, 900]
     # end
 
-    # EXAMPLE: 
+    # EXAMPLE:
     # original 300 x 300 (this is a square, thanks)
     #  _________________
     # |                 |
