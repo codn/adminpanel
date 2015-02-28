@@ -2,28 +2,28 @@ module Adminpanel
   module RestActions
     extend ActiveSupport::Concern
     included do
-      before_action :set_resource_instance,         only: [
-                                                          :show,
-                                                          :edit,
-                                                          :update,
-                                                          :destroy,
-                                                          :fb_choose_page,
-                                                          :fb_save_token,
-                                                          :fb_publish,
-                                                          :twitter_publish,
-                                                          :move_to_better,
-                                                          :move_to_worst
-                                                    ]
-      before_action :set_resource_collection,       only: [:index, :destroy]
-      before_action :set_relationship_collections,  only: [:new, :create, :edit, :update]
+      before_action :set_resource_instance, only: [
+                                              :show,
+                                              :edit,
+                                              :update,
+                                              :destroy,
+                                              :fb_choose_page,
+                                              :fb_save_token,
+                                              :fb_publish,
+                                              :twitter_publish,
+                                              :move_to_better,
+                                              :move_to_worst
+                                            ]
+      before_action :set_resource_collection,      only: [:index, :destroy]
+      before_action :set_relationship_collections, only: [:new, :create, :edit, :update]
     end
 
     def index
-      render 'adminpanel/templates/index'
+      render 'adminpanel/templates/index' if stale?(etag: @collection, public: true)
     end
 
     def show
-      render 'adminpanel/templates/show' if stale?(@resource_instance, public: true)
+      render 'adminpanel/templates/show' if stale?(etag: @resource_instance, public: true)
     end
 
     def new

@@ -28,14 +28,10 @@
               <th><%= I18n.t('actions') %></th>
             </tr>
           </thead><!-- Ends model attributes -->
-          <% if @collection != [] %>
-            <% last_update = @collection.max_by(&:updated_at).updated_at %>
-          <% end %>
-          <% cache ["#{@model.name}-collection", last_update], skip_digest: true do %>
-            <tbody id="body-content">
-              <%= render 'adminpanel/shared/index_records', collection: @collection %>
-            </tbody>
-          <% end %><!-- end collection cache -->
+
+          <tbody id="body-content">
+            <%= render 'adminpanel/shared/index_records', collection: @collection %>
+          </tbody>
         </table>
       </div>
     </div>

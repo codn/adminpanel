@@ -7,6 +7,7 @@ module Adminpanel
 
     mount_uploader :file, <%= class_name %>Uploader
 
+    before_destroy :remove_attachment
 
     # def self.relation_field
     #   '<%= reference_name %>_id'
@@ -16,5 +17,9 @@ module Adminpanel
     #   '<%= class_name %>'
     # end
 
+    private
+      def remove_attachment
+        self.remove_file!
+      end
   end
 end
