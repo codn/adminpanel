@@ -12,6 +12,11 @@ module Adminpanel
 
     end
 
+    # probably we should detect if the name isn't defined in the class
+    def name
+      I18n.t('gallery.image')
+    end
+
     def move_to_better_position
       if self.position > 1
         conflicting_gallery = get_conflicting_gallery(position - 1)
