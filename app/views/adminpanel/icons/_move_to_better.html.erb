@@ -1,6 +1,6 @@
 <% if @model.has_route?(:edit) && can?(:update, @model) %>
-  <% if ! defined? path %>
-    <!-- if defined we're called from gallery sort -->
+  <% if !defined?(path) %>
+    <!-- if defined it's a call from gallery sort -->
     <% path = [:move_to_better, member] %>
   <% end %>
   <%= link_to(

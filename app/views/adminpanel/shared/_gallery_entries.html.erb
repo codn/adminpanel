@@ -3,8 +3,8 @@
     <%= link_to (image_tag image.file_url(:thumb)), image.file.to_s, :rel  => "group", :name => @model.display_name %>
     <ul class="rightboxes">
       <li>
-        <%= render 'adminpanel/icons/move_to_better', path: [:move_gallery_to_better, image] %>
-        <%= render 'adminpanel/icons/move_to_worst',  path: [:move_gallery_to_worst, image] %>
+        <%= render 'adminpanel/icons/move_to_better', path: [:move_gallery_to_better, image], member: image %>
+        <%= render 'adminpanel/icons/move_to_worst',  path: [:move_gallery_to_worst, image], member: image %>
       </li>
     </ul>
   </li>
