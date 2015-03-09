@@ -1,7 +1,6 @@
 ready = ->
   $('tbody#sortable').sortable
     update: (event, ui) ->
-      console.log ui.item
       position = 1
       $(@).children('tr').each ->
 
