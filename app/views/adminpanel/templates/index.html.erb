@@ -31,11 +31,10 @@
             <% @collection.each do |member| %>
               <% cache ["#{member.class}-member", member] do %>
                 <tr
+                  data-id="<%= member.id %>"
                   <% if @model.is_sortable? %>
-                    data-position="<%= member.position %>"
                     data-url="<%= url_for [:move_to_position, member] %>"
                   <% end %>
-                  data-id="<%= member.id %>"
                 >
                   <% if @model.is_sortable? %>
                     <td class="draggable"></td>
