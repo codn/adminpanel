@@ -73,6 +73,7 @@ es:
     delete_confirmation: 'Estás seguro que desea eliminar %{resource}?'
     delete: 'Eliminar'
     details: 'Detalles de la foto'
+    move_to_position: 'cambiar-posicion'
     move_to_better: 'Mejorar %{resource} de posición'
     move_to_worst: 'Bajar %{resource} de posición'
     is_false: 'No'

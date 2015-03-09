@@ -9,10 +9,9 @@ class SortableTest < ViewCase
     visit adminpanel.galleries_path
     assert_link 'Crear Galeria'
 
-    # if this 2 icons exists, routes exist too
-    assert_selector 'i.fa.fa-chevron-down'
-    assert_selector 'i.fa.fa-chevron-up'
-    
+    # test for draggable element
+    assert_selector 'td.draggable'
+
     assert_selector 'i.fa.fa-pencil'
     assert_selector 'i.fa.fa-trash-o'
     assert_selector 'i.fa.fa-search-plus'

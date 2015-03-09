@@ -115,6 +115,7 @@ en:
     retweet: 'retweet'
     comment: 'comment'
     publish: 'publish-to-%{location}'
+    move_to_position: 'move-position'
     move_to_better: 'add-priority'
     move_to_worst: 'remove-priority'
     move_gallery_to_better: 'add-priority-gallery'

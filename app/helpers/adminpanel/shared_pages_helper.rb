@@ -92,7 +92,7 @@ module Adminpanel
 
     def table_type(model)
       if model.is_sortable?
-        ''
+        'sortable'
       else
         'information-table'
       end

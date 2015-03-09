@@ -42,8 +42,7 @@ Adminpanel::Engine.routes.draw do
 
           if is_sortable?(resource)
             # include sortable concern
-            put :move_to_better, as: 'move_to_better', path: I18n.t('routes.move_to_better')
-            put :move_to_worst,  as: 'move_to_worst',  path: I18n.t('routes.move_to_worst')
+            put :move_to_position, as: 'move_to_better', path: I18n.t('routes.move_to_position')
           end
 
           if has_fb_share?(resource)

@@ -15,22 +15,49 @@
         <table id="<%= table_type(@model) %>" class="table table-striped table-bordered dataTable">
           <thead><!-- model attributes -->
             <tr>
+              <% if @model.is_sortable? %>
+                <th><i class="fa fa-sort"></i></th>
+              <% end %>
               <% @model.display_attributes('index').each do |fields| %>
                 <% fields.each do |attribute, properties| %>
                   <th><%= properties['label'] %></th>
                 <% end %>
               <% end %>
-              <% if @model.is_sortable? %>
-                <th>
-                  <%= I18n.t('position') %>
-                </th>
-              <% end %>
               <th><%= I18n.t('actions') %></th>
             </tr>
           </thead><!-- Ends model attributes -->
 
-          <tbody id="body-content">
-            <%= render 'adminpanel/shared/index_records', collection: @collection %>
+          <tbody id="<%= table_type(@model) %>">
+            <% @collection.each do |member| %>
+              <% cache ["#{member.class}-member", member] do %>
+                <tr
+                  data-position="<%= member.position if member.respond_to?(:position) %>"
+                  data-id="<%= member.id %>"
+                >
+                  <% if @model.is_sortable? %>
+                    <td class="draggable"></td>
+                  <% end %>
+                  <% @model.display_attributes('index').each do |fields| %>
+                    <% fields.each do |attribute, properties| %>
+                    <td>
+                      <%= field_value(properties, attribute, member) %>
+                    </td>
+                    <% end %>
+                  <% end %>
+                  <td>
+                    <%= render 'adminpanel/icons/show',     resource: member %>
+
+                    <%= render 'adminpanel/icons/edit',     resource: member %>
+
+                    <%= render 'adminpanel/icons/delete',   resource: member %>
+
+                    <%= render 'adminpanel/icons/facebook', resource: member %>
+
+                    <%= render 'adminpanel/icons/twitter',  resource: member %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
           </tbody>
         </table>
       </div>

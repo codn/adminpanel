@@ -69,7 +69,8 @@
             <%= link_to(
               image_tag( image.file_url(:thumb) ),
               image.file_url.to_s,
-              rel: 'group', name: @model.display_name
+              rel: 'group',
+              name: @model.display_name
             ) %>
           <% end %>
         </div>

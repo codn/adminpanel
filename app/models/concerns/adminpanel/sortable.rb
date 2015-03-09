@@ -18,33 +18,26 @@ module Adminpanel
       end
     end
 
-    def move_to_better_position
-      if self.position > 1
-        conflicting_gallery(self.position - 1).increment!(:position)
-        self.decrement!(:position)
-
-        true
+    # instance methods
+    def move_to_position(new_position)
+      if new_position < position
+        # moving to a better priority
+        self.class.where(
+          'position >= ? AND position < ?',
+          new_position,
+          position
+        ).update_all('position = position + 1')
       else
-        false
+        self.class.where(
+          'position <= ? AND position > ?',
+          new_position,
+          position
+        ).update_all('position = position - 1')
       end
-    end
-
-    def move_to_worst_position
-      records = self.class.count
-      if self.position < records
-        conflicting_gallery(self.position + 1).decrement!(:position)
-        self.increment!(:position)
-        true
-      else
-        false
-      end
+      self.update(position: new_position)
     end
 
     protected
-      def conflicting_gallery(conflicting_position)
-        logger.info "searching pos: #{conflicting_position}"
-        self.class.find_by_position(conflicting_position)
-      end
 
       def rearrange_positions
         unarranged_records = self.class.where(

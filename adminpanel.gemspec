@@ -31,25 +31,26 @@ Gem::Specification.new do |spec|
 
   # Implemented APIs
   spec.add_runtime_dependency 'google-api-client', '0.8.2'  # Google analytics
-  spec.add_runtime_dependency 'koala',             '1.10.1' # Facebook
-  spec.add_runtime_dependency 'twitter',           '5.14.0' # Twitter
-  spec.add_runtime_dependency 'omniauth-twitter',  '1.1.0'  # login Twitter
   spec.add_runtime_dependency 'instagram',         '1.1.3'  # Instagram
+  spec.add_runtime_dependency 'koala',             '1.10.1' # Facebook
+  spec.add_runtime_dependency 'omniauth-twitter',  '1.1.0'  # login Twitter
+  spec.add_runtime_dependency 'twitter',           '5.14.0' # Twitter
 
   # Asset dependencies
-  spec.add_runtime_dependency 'font-awesome-rails', '~> 4.2',   '>= 4.2.0'
-  spec.add_runtime_dependency 'sass-rails',         '~> 5.0.0', '>= 5.0.0'
   spec.add_runtime_dependency 'coffee-rails',       '~> 4.1.0', '>= 4.1.0'
+  spec.add_runtime_dependency 'font-awesome-rails', '~> 4.2',   '>= 4.2.0'
   spec.add_runtime_dependency 'jquery-rails',       '4.0.3'
+  spec.add_runtime_dependency 'jquery-ui-rails',    '5.0.3'
+  spec.add_runtime_dependency 'sass-rails',         '~> 5.0.0', '>= 5.0.0'
   spec.add_runtime_dependency 'turbolinks',         '~> 2.5.0', '>= 2.5.2'
 
   # Development dependencies
   spec.add_runtime_dependency 'faker', '~> 1.3',   '>= 1.3.0'
 
   # Test dependencies
-  spec.add_development_dependency 'sqlite3',          '~> 1.3',   '1.3.10'
   spec.add_development_dependency 'minitest',         '>= 5.4.0', '<= 6.0.0'
   spec.add_development_dependency 'minitest-emoji',   '2.0.0'
   spec.add_development_dependency 'minitest-capybara','~> 0.7',   '>= 0.7.1'
   spec.add_development_dependency 'poltergeist',      '~> 1.5',   '>= 1.5.1'
+  spec.add_development_dependency 'sqlite3',          '~> 1.3',   '1.3.10'
 end
