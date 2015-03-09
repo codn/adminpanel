@@ -4,11 +4,6 @@ module Adminpanel
     desc 'Generate the migrations necessary to start the gem'
     source_root File.expand_path("../templates", __FILE__)
     argument :name, type: :string, default: 'default', require: false
-    class_option :'skip-category',
-                  type: :boolean,
-                  aliases: '-c',
-                  default: false,
-                  desc: 'Skip category skeleton and migration for it if true'
     class_option :'skip-section-uploader',
                   type: :boolean,
                   aliases: '-u',
@@ -28,13 +23,6 @@ module Adminpanel
     def create_initializer
       if !options[:'skip-setup']
         copy_file 'adminpanel_setup.rb', 'config/initializers/adminpanel_setup.rb'
-      end
-    end
-
-    def create_category
-      if !options[:'skip-category']
-        copy_file 'category_template.rb', 'app/models/adminpanel/category.rb'
-        migration_template 'create_adminpanel_categories_table.rb', 'db/migrate/create_adminpanel_categories_table.rb'
       end
     end
 

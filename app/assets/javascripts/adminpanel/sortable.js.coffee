@@ -7,9 +7,8 @@ ready = ->
 
         if $(@).data('position') == ui.item.data('position')
           row = $(@)
-          console.log "new pos: #{position}"
           $.ajax(
-            url: "/panel/products/#{$(@).data('id')}/move-position",
+            url: row.data('url')
             data:
               position: position
             method: 'put',

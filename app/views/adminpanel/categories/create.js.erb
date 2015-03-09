@@ -1,6 +1,0 @@
-$('#new-category').modal('toggle');
-row = "<tr><td><%= escape_javascript link_to @resource_instance.name, category_path(@resource_instance) %></td>";
-row = row + "<td><%= escape_javascript link_to content_tag(:i, nil, class: 'fa fa-pencil'), edit_category_path(@resource_instance), title: 'Editar' %> ";
-row = row + "<%= escape_javascript link_to content_tag(:i, nil, class: 'fa fa-remove'),[@resource_instance], title: 'Editar', method: :delete %></td>";
-row = row + "</tr>";
-$("#<%= @resource_instance.model %>-table").append(row);

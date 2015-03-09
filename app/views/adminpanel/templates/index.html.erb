@@ -31,7 +31,10 @@
             <% @collection.each do |member| %>
               <% cache ["#{member.class}-member", member] do %>
                 <tr
-                  data-position="<%= member.position if member.respond_to?(:position) %>"
+                  <% if @model.is_sortable? %>
+                    data-position="<%= member.position %>"
+                    data-url="<%= url_for [:move_to_position, member] %>"
+                  <% end %>
                   data-id="<%= member.id %>"
                 >
                   <% if @model.is_sortable? %>

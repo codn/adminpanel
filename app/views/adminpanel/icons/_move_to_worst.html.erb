@@ -1,9 +1,4 @@
 <% if @model.has_route?(:edit) && can?(:update, @model) %>
-  <% if ! defined? path %>
-    <!-- if defined we're called for gallery sort -->
-    <% path = [:move_to_worst, member] %>
-  <% end %>
-
   <%= link_to(
     content_tag(
       :i,

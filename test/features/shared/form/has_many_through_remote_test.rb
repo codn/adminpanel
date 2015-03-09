@@ -1,7 +1,7 @@
 require 'test_helper'
 require 'adminpanel/product'
 require 'adminpanel/category'
-class HasManyThroughNonCategoryModalTest < ViewCase
+class HasManyThroughRemoteTest < ViewCase
 
   setup :visit_adminpanel_new_department_path
   teardown :teardown

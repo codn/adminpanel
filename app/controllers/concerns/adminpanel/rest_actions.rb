@@ -42,8 +42,10 @@ module Adminpanel
           format.js do
             # if format js, request is from another controller's form
             if params[:belongs_request]
+              # we are in other controller as a belongs_to, add option to select
               render 'adminpanel/templates/create_belongs_to', locals: { resource: @resource_instance }
             else
+              # we are in other controller as a has_many, add checkbox
               render 'adminpanel/templates/create_has_many', locals: { resource: @resource_instance }
             end
           end
@@ -103,7 +105,6 @@ module Adminpanel
       params.merge({model:             params[:model]})             if params[:model].present?
       params.merge({model_name:        params[:model_name]})        if params[:model_name].present?
       params.merge({belongs_request:   params[:belongs_request]})   if params[:belongs_request].present?
-      params.merge({currentcontroller: params[:currentcontroller]}) if params[:currentcontroller].present?
     end
 
     def whitelisted_params
@@ -119,7 +120,7 @@ module Adminpanel
       @collection = @model.all
     end
 
-    def render_new format
+    def render_new(format)
       format.html do
         render 'adminpanel/templates/new'
       end

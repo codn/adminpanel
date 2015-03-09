@@ -10,7 +10,6 @@ en:
       adminproject_id: 'Proyect'
       brief: 'Brief Description'
       body: 'Body'
-      category_id: 'Category'
       client_id: 'Client'
       description: 'Description'
       email: 'Email'

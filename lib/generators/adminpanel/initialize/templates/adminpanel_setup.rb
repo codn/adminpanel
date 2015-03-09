@@ -48,8 +48,7 @@ Adminpanel.setup do |config|
     :users,
     :roles,
     :permissions,
-    # :auths,
-    #:categories,
+    #:auths,
     :sections
   ]
 end

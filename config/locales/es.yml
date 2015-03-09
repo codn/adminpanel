@@ -5,7 +5,6 @@ es:
   model:
     Analytic: 'Analytics'
     Categories: 'Categorías'
-    Category: 'Categoría'
     Role: 'Rol'
     User: 'Usuario'
     Permission: 'Permisos'
@@ -14,7 +13,6 @@ es:
       adminproject_id: 'Proyecto'
       brief: 'Pequeña descripción'
       body: 'Contenido'
-      category_id: 'Categoría'
       client_id: 'Cliente'
       description: 'Descripción'
       email: 'Correo electrónico'

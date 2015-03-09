@@ -2,7 +2,7 @@ require 'test_helper'
 require 'adminpanel/product'
 require 'adminpanel/category'
 
-class BelongsToNonCategoryModalTest < ViewCase
+class BelongsToRemoteTest < ViewCase
 
   setup :visit_adminpanel_new_salesman_path
   teardown :teardown
