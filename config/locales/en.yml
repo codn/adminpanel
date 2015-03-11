@@ -71,7 +71,7 @@ en:
     update: 'Update %{resource}'
     delete: 'Delete'
     view: 'View'
-    delete confirmation: "Are you sure you wan't to delete?"
+    delete_confirmation: "Are you sure you wan't to delete?"
     is_true: 'Yes'
     is_false: 'No'
   authentication:

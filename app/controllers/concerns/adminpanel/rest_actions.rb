@@ -17,11 +17,11 @@ module Adminpanel
     end
 
     def index
-      render 'adminpanel/templates/index' if stale?(etag: @collection, public: true)
+      render 'adminpanel/templates/index' if stale?(etag: @collection, public: true, template: false)
     end
 
     def show
-      render 'adminpanel/templates/show' if stale?(etag: @resource_instance, public: true)
+      render 'adminpanel/templates/show' if stale?(etag: @resource_instance, public: true, template: false)
     end
 
     def new
