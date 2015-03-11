@@ -1,7 +1,7 @@
 module Adminpanel
   class Photo < ActiveRecord::Base
     include Adminpanel::Base
-    # include Adminpanel::Galleryzation
+    # include Adminpanel::SortableGallery
     mount_uploader :file, PhotoUploader
     belongs_to :product
 

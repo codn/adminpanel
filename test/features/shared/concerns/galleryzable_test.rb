@@ -11,8 +11,8 @@ class GalleryzableTest < ViewCase
     visit adminpanel.gallery_path(adminpanel_galleries(:one))
 
     # assert for sortable stuff
-    assert_selector 'i.fa.fa-chevron-down'
-    assert_selector 'i.fa.fa-chevron-up'
+    assert_selector 'td.draggable'
+    assert_selector 'td.draggable'
   end
 
   protected

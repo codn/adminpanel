@@ -1,6 +1,6 @@
 module Adminpanel
   class FileResourcefile < ActiveRecord::Base
-    # include Adminpanel::Galleryzation
+    # include Adminpanel::SortableGallery
 
     mount_uploader :file, FileResourcefileUploader
 

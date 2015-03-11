@@ -10,9 +10,7 @@ module Adminpanel
                                               :fb_choose_page,
                                               :fb_save_token,
                                               :fb_publish,
-                                              :twitter_publish,
-                                              :move_to_better,
-                                              :move_to_worst
+                                              :twitter_publish
                                             ]
       before_action :set_resource_collection,      only: [:index, :destroy]
       before_action :set_relationship_collections, only: [:new, :create, :edit, :update]

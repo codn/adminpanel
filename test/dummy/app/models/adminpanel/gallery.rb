@@ -5,6 +5,8 @@ module Adminpanel
 
     mount_uploader :file, Adminpanel::PhotoUploader
 
+    mount_images :galleryfiles
+
     def name
       file
     end

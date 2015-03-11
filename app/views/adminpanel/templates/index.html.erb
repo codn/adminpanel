@@ -28,7 +28,8 @@
           </thead><!-- Ends model attributes -->
 
           <tbody id="<%= table_type(@model) %>">
-            <% @collection.ordered.each do |member| %>
+            <% @collection = @collection.ordered if table_type(@model) == 'sortable' %>
+            <% @collection.each do |member| %>
               <% cache ["#{member.class}-member", member] do %>
                 <tr
                   data-id="<%= member.id %>"

@@ -1,7 +1,7 @@
 module Adminpanel
   class Galleryfile < ActiveRecord::Base
     include Adminpanel::Base
-    include Adminpanel::Galleryzation
+    include Adminpanel::SortableGallery
 
     belongs_to :gallery
 

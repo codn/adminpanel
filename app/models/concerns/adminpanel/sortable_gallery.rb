@@ -5,13 +5,11 @@ module Adminpanel
     included do
       before_create :set_position
       before_destroy :rearrange_positions
+
+      scope :ordered, -> { order('position ASC') }
     end
 
     module ClassMethods
-      def ordered
-        order('position ASC')
-      end
-
       def in_better_position(current_position, new_position, relation_id)
         where(
           'position >= ? AND position < ?',
@@ -77,7 +75,7 @@ module Adminpanel
         self.class.relation_field => self.send(
           self.class.relation_field
         )
-      ).last
+      ).ordered.last
       if last_record.nil?
         self.position = 1
       else
