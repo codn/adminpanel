@@ -41,6 +41,9 @@ module Adminpanel
         return "field #{field} 'label' property not found :("
       end
 
+      # returns the attributes that should be shown in the correspondin view
+      # (some attributes may be filtered from the index table, from the show
+      # or even both)
       def display_attributes(type)
         display_attributes = []
         form_attributes.each do |attribute|
@@ -57,7 +60,6 @@ module Adminpanel
             end
           end
         end
-
         return display_attributes
       end
 

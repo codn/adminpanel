@@ -12,7 +12,7 @@ module Adminpanel
     end
 
     def self.display_name
-      'dsf'
+      'galleryfile'
     end
 
   end

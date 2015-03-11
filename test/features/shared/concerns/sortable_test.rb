@@ -5,6 +5,7 @@ class SortableTest < ViewCase
 
   setup :sign_in
   teardown :teardown
+
   def test_including_of_position_and_default_icons
     visit adminpanel.galleries_path
     assert_link 'Crear Galeria'

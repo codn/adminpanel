@@ -49,7 +49,7 @@
       <div class="widget-header">
         <%= content_tag(:i, nil, class: "fa fa-#{@model.icon}") %>
         <h5><%= I18n.t('gallery.container') %>: <%= @model.display_name.humanize %>
-          <%= render 'adminpanel/icons/edit',    resource: @resource_instance %>
+          <%= render 'adminpanel/icons/edit', resource: @resource_instance %>
         </h5>
       </div>
       <% if @model.gallery_children %>
@@ -80,8 +80,6 @@
               <% end %>
             </tbody>
           </table>
-          <ul id="sortable">
-          </ul>
         </div>
       <% else %>
         <div class="widget-body row-fluid">

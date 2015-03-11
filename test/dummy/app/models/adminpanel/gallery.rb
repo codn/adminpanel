@@ -15,9 +15,15 @@ module Adminpanel
       [
         {
           'file' => {
-            'type' => 'adminpanel_file_field',
+            'type' => 'text',
             'label' => 'file',
 
+          }
+        },
+        {
+          'galleryfiles' => {
+            'type' => 'adminpanel_file_fields',
+            'label' => 'images for this gallery'
           }
         }
       ]
