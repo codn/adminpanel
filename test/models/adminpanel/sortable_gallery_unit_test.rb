@@ -1,6 +1,6 @@
 require 'test_helper'
 module Adminpanel
-  class SortableGalleryTest < ActiveSupport::TestCase
+  class SortableGalleryUnitTest < ActiveSupport::TestCase
 
     setup :instance_objects
 

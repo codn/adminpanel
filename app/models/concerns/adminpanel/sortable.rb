@@ -60,7 +60,7 @@ module Adminpanel
       end
 
       def set_position
-        last_record = self.class.last
+        last_record = self.class.ordered.last
         if last_record.nil?
           # this is the first record that is created
           self.position = 1
