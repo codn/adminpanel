@@ -21,7 +21,6 @@ module Adminpanel
       logger.info Time.now
       ping_urls.each do |name, url|
         request = url % CGI.escape("#{root_url}/sitemap.xml")
-        logger.info root_url
         logger.info "  Pinging #{name} with #{request}"
         if !Rails.env.development?
           response = Net::HTTP.get_response(URI.parse(request))

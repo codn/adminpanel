@@ -10,6 +10,10 @@ module Adminpanel
     end
 
     module ClassMethods
+      def is_sortable?
+        true
+      end
+
       def in_better_position(current_position, new_position, relation_id)
         where(
           'position >= ? AND position < ?',
