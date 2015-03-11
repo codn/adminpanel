@@ -5,10 +5,6 @@ class RouterHelperTest < ActionView::TestCase
 
   fixtures :all
 
-  def test_get_gallery_childen
-    assert_equal 'galleryfiles', get_gallery_children(:gallery)
-  end
-
   def test_resource_parameters
     assert_equal( { path: 'categorias' }, resources_parameters(:categories) )
     assert_equal( { path: 'articulo-espacios-mayusculas-y-acentos' }, resources_parameters(:items) )
