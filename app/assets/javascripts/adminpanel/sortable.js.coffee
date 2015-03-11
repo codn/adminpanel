@@ -22,5 +22,6 @@ ready = ->
           position++
   $('tbody#sortable').disableSelection
 
+
 $(document).ready(ready)
 $(document).on('page:load', ready)

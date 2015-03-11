@@ -10,7 +10,6 @@ module Adminpanel
     include SessionsHelper
     include Adminpanel::RestActions
     include Adminpanel::SortableActions
-    include Adminpanel::GalleryzableActions
     include Adminpanel::FacebookActions
     include Adminpanel::TwitterActions
     include Adminpanel::SitemapActions

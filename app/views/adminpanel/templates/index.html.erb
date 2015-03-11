@@ -28,7 +28,7 @@
           </thead><!-- Ends model attributes -->
 
           <tbody id="<%= table_type(@model) %>">
-            <% @collection.each do |member| %>
+            <% @collection.ordered.each do |member| %>
               <% cache ["#{member.class}-member", member] do %>
                 <tr
                   data-id="<%= member.id %>"

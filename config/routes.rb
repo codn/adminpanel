@@ -25,8 +25,7 @@ Adminpanel::Engine.routes.draw do
         # include galleryzation concern
         resources get_gallery_children(resource).to_sym, only: [:index] do
           member do
-            put :move_gallery_better, as: 'move_gallery_to_better', path: I18n.t('routes.move_gallery_to_better')
-            put :move_gallery_worst,  as: 'move_gallery_to_worst', path: I18n.t('routes.move_gallery_to_worst')
+            put :move_to_position, as: 'move_to_position', path: I18n.t('routes.move_to_position')
           end
         end
       end
