@@ -4,6 +4,8 @@ module Adminpanel
 
     # static(class) methods
     module ClassMethods
+
+      # API methods
       def mount_images(relation)
         has_many relation, dependent: :destroy
         accepts_nested_attributes_for relation, allow_destroy: true
@@ -14,6 +16,8 @@ module Adminpanel
         super(name, scope, options.reverse_merge!({touch: true}))
       end
 
+      # The fields and the types that should be used to generate form
+      # and display fields
       def form_attributes
         []
       end
@@ -22,6 +26,11 @@ module Adminpanel
       # to be pluralized (if not overwritten) to generate collection_name
       def display_name
         'please overwrite self.display_name'
+      end
+
+      # side menu icon
+      def icon
+        'truck'
       end
 
       # The word that is going to be shown in the side menu, routes and
@@ -63,7 +72,9 @@ module Adminpanel
         return display_attributes
       end
 
-      def has_images?
+      # return true if model has adminpanel_file_field in
+      # it's attributes
+      def has_gallery?
         form_attributes.each do |fields|
           fields.each do |attribute, properties|
             if properties['type'] == 'adminpanel_file_field'
@@ -74,7 +85,9 @@ module Adminpanel
         return false
       end
 
-      def get_image_relationship
+      # returns the attribute that should be namespaced to be the class
+      # ex: returns 'productfiles', so class is Adminpanel::Productfile
+      def gallery_relationship
         form_attributes.each do |fields|
           fields.each do |attribute, properties|
             if properties['type'] == 'adminpanel_file_field'
@@ -85,6 +98,16 @@ module Adminpanel
         return false
       end
 
+      # gets the class gallery and return it's class
+      def gallery_class
+        "adminpanel/#{gallery_relationship}".classify.constantize
+      end
+
+      # returns all the class of the attributes of a given type.
+      # Usage:
+      # To get all classes of all belongs_to attributes:
+      #   @model.relationships_of('belongs_to')
+      #   # => ['Adminpanel::Category', Adminpanel::ModelBelongTo]
       def relationships_of(type_property)
         classes_of_relation = []
         form_attributes.each do |fields|
@@ -95,14 +118,6 @@ module Adminpanel
           end
         end
         return classes_of_relation
-      end
-
-      def icon
-        'truck'
-      end
-
-      def gallery_children
-        nil
       end
 
       def routes_options
@@ -135,6 +150,12 @@ module Adminpanel
 
       def is_sortable?
         false
+      end
+
+      def has_sortable_gallery?
+        if has_gallery?
+          gallery_class.is_sortable?
+        end
       end
 
       private

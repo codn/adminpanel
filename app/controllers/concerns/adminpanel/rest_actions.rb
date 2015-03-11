@@ -79,12 +79,15 @@ module Adminpanel
       set_has_many_collections
     end
 
+    # set the collection of objects for each attribute that it's a select (belongs_to)
+    # to populate the <select></select>s
     def set_belongs_to_collections
       @model.relationships_of('belongs_to').each do |class_variable|
         set_relationship(class_variable)
       end
     end
 
+    # set the collection of objects for each attribute that it's a checkbox (has_many)
     def set_has_many_collections
       @model.relationships_of('has_many').each do |class_variable|
         set_relationship(class_variable)
@@ -92,7 +95,7 @@ module Adminpanel
     end
 
     def set_relationship(class_variable)
-      if class_variable.respond_to?("of_model")
+      if class_variable.respond_to?('of_model')
         @collections.merge!({"#{class_variable}" => class_variable.of_model(@model.display_name)})
       else
         @collections.merge!({"#{class_variable}" => class_variable.all})
@@ -100,9 +103,9 @@ module Adminpanel
     end
 
     def merge_params
-      params.merge({model:             params[:model]})             if params[:model].present?
-      params.merge({model_name:        params[:model_name]})        if params[:model_name].present?
-      params.merge({belongs_request:   params[:belongs_request]})   if params[:belongs_request].present?
+      params.merge({model:           params[:model]})           if params[:model].present?
+      params.merge({model_name:      params[:model_name]})      if params[:model_name].present?
+      params.merge({belongs_request: params[:belongs_request]}) if params[:belongs_request].present?
     end
 
     def whitelisted_params

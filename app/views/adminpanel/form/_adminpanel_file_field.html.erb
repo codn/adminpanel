@@ -13,7 +13,7 @@
 
     <% if (
       properties['max-files'].to_i != 0 &&
-      properties['max-files'].to_i <= f.object.send(@model.get_image_relationship).count.to_i
+      properties['max-files'].to_i <= f.object.send(@model.gallery_relationship).count.to_i
     ) %>
       <% hidden = 'hidden' %>
     <% else %>

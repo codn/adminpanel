@@ -21,9 +21,9 @@ Adminpanel::Engine.routes.draw do
         end
       end
     else
-      if get_gallery_children(resource)
-        # include galleryzation concern
-        resources get_gallery_children(resource).to_sym, only: [:index] do
+      if gallery_is_sortable?(resource)
+        # included sortable_gallery
+        resources sortable_gallery(resource), only: [:index] do
           member do
             put :move_to_position, as: 'move_to_position', path: I18n.t('routes.move_to_position')
           end
@@ -39,7 +39,7 @@ Adminpanel::Engine.routes.draw do
             end
           end
 
-          if is_sortable?(resource)
+          if resource_is_sortable?(resource)
             # include sortable concern
             put :move_to_position, as: 'move_to_position', path: I18n.t('routes.move_to_position')
           end

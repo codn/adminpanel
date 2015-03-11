@@ -1,6 +1,6 @@
 module Adminpanel
   class <%= class_name %> < ActiveRecord::Base
-    # include Adminpanel::Base # required for sortable gallery
+    include Adminpanel::Base
     # include Adminpanel::SortableGallery
 
     belongs_to :<%= reference_name %>

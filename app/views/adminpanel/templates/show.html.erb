@@ -44,7 +44,7 @@
     </div>
   </div>
 
-  <% if @model.has_images? %>
+  <% if @model.has_gallery? %>
     <div class="widget widget-padding span6">
       <div class="widget-header">
         <%= content_tag(:i, nil, class: "fa fa-#{@model.icon}") %>
@@ -52,7 +52,7 @@
           <%= render 'adminpanel/icons/edit', resource: @resource_instance %>
         </h5>
       </div>
-      <% if @model.gallery_children %>
+      <% if @model.has_sortable_gallery? %>
         <div class="widget-body widget-tasks-assigned clearfix">
           <table class="table table-striped table-bordered">
             <thead>
@@ -62,7 +62,8 @@
               </tr>
             </thead>
             <tbody id="sortable">
-              <% @resource_instance.send(@model.get_image_relationship).ordered.each do |image| %>
+              <% collection = @resource_instance.send(@model.gallery_relationship).ordered %>
+              <% collection.each do |image| %>
                 <tr
                   data-id="<%= image.id %>"
                   data-url="<%= url_for [:move_to_position, image] %>"
@@ -83,7 +84,7 @@
         </div>
       <% else %>
         <div class="widget-body row-fluid">
-          <% @resource_instance.send(@model.get_image_relationship).each do |image|%>
+          <% @resource_instance.send(@model.gallery_relationship).each do |image|%>
             <%= link_to(
               image_tag( image.file_url(:thumb) ),
               image.file_url.to_s,

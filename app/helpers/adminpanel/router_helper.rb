@@ -1,7 +1,11 @@
 module Adminpanel
   module RouterHelper
-    def get_gallery_children(resource)
-      resource_class(resource).gallery_children
+    def gallery_is_sortable?(resource)
+      resource_class(resource).has_sortable_gallery?
+    end
+
+    def sortable_gallery(resource)
+      resource_class(resource).gallery_relationship
     end
 
     def resources_parameters(resource)
@@ -16,7 +20,7 @@ module Adminpanel
       resource_class(resource).twitter_share?
     end
 
-    def is_sortable?(resource)
+    def resource_is_sortable?(resource)
       resource_class(resource).is_sortable?
     end
 
@@ -37,7 +41,9 @@ module Adminpanel
         }
       }
     end
+
     private
+
       def resource_class(resource)
         "adminpanel/#{resource.to_s.singularize}".classify.constantize
       end
