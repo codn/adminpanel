@@ -1,5 +1,5 @@
 namespace :adminpanel do
-  desc "Interact with adminpanel models :D"
+  desc 'Interact with adminpanel models :D'
 
   task :section, [:name, :section, :type] => :environment do |t, args|
     args.with_defaults(:section => "home", :name => "greeting", :type => "")
@@ -8,12 +8,12 @@ namespace :adminpanel do
     order = Adminpanel::Section.find_by(:page => page_name)
 
     s = Adminpanel::Section.new(
-      :name => args[:name].titleize,
-      :has_description => false,
-      :description => "",
-      :key => (args[:name].downcase.tr(' ','_')),
-      :page => page_name,
-      :has_image => false
+      name: args[:name].titleize,
+      has_description: false,
+      description: "",
+      key: (args[:name].downcase.tr(' ','_')),
+      page: page_name,
+      has_image: false
     )
 
     if order.nil?
@@ -33,54 +33,34 @@ namespace :adminpanel do
     s.save
   end
 
-  task :user => :environment do |t|
+  task user: :environment do |t|
     characters = []
     characters.concat(("a".."z").to_a)
     characters.concat(("A".."Z").to_a)
     characters.concat((0..9).to_a)
     characters.concat(%w[! @ \# $ % ^ & * , _ - + =])
-    password = ""
+    password = ''
     8.times do
       password = password + "#{characters.sample}"
     end
-    puts "Creating/overwriting webmaster@codn.com with password #{password}" unless Rails.env.test?
-    user = Adminpanel::User.find_by_email('webmaster@codn.com')
+    puts "Creating/overwriting webmaster@codn.mx with password #{password}" unless Rails.env.test?
+    user = Adminpanel::User.find_by_email('webmaster@codn.mx')
     if !user.nil?
       user.delete
     end
 
-    role = Adminpanel::Role.find_by_name("Admin")
+    role = Adminpanel::Role.find_by_name('Admin')
     if role.nil?
-      role = Adminpanel::Role.new(:name => "Admin")
+      role = Adminpanel::Role.new(name: 'Admin')
       role.save
     end
     Adminpanel::User.new(
-      :email => 'webmaster@codn.com',
-      :name => 'Webmaster',
-      :password => password,
-      :password_confirmation => password,
-      :role_id => role.id
+      email: 'webmaster@codn.mx',
+      name: 'Webmaster',
+      password: password,
+      password_confirmation: password,
+      role_id: role.id
     ).save
-  end
-
-  task :dump_sections => :environment do |t|
-    puts "Dumping adminpanel_sections table into db/seeds.rb"
-    File.open("#{Rails.root.join('db', 'seeds.rb')}", "w") do |f|
-        f << "Adminpanel::Section.delete_all\n"
-      Adminpanel::Section.all.each do |section|
-        f << "#{creation_command_section(section)}"
-      end
-    end
-  end
-
-  task :dump_categories => :environment do |t|
-    puts "Dumping adminpanel_categories table into db/seeds.rb"
-    File.open("#{Rails.root.join('db', 'seeds.rb')}", "w") do |f|
-        f << "Adminpanel::Section.delete_all\n"
-      Adminpanel::Section.all.each do |section|
-        f << "#{creation_command_categories(section)}"
-      end
-    end
   end
 
   task :populate, [:times, :model, :attributes] => :environment do |t, args|
@@ -159,28 +139,6 @@ end
 
 private
 
-  def creation_command_section(section)
-    "Adminpanel::Section.new(\n" +
-    "\t:name => \"#{section.name}\",\n" +
-    "\t:has_description => #{section.has_description},\n" +
-    "\t:description => \"#{escape_double_quotes(section.description)}\",\n" +
-    "\t:key => \"#{section.key}\",\n" +
-    "\t:page => \"#{section.page}\",\n" +
-    "\t:has_image => #{section.has_image}\n" +
-    ").save\n"
-  end
-
-  def creation_command_category(category)
-    "Adminpanel::Category.new(\n" +
-    "\t:name => \"#{escape_double_quotes(category.name)}\",\n" +
-    "\t:model => \"#{category.model}\"\n" +
-    ").save\n"
-  end
-
-  def escape_double_quotes(string)
-    string.gsub('"', '\\"')
-  end
-
   def change_dates(instance)
     date = rand(Date.parse('2010-01-01')..Date.today)
     instance.update_attribute(:created_at, date)
@@ -189,5 +147,5 @@ private
 
   def float_random(min_number, max_number)
     width = max_number - min_number
-    return (rand*width)+min_number
+    return (rand*width) + min_number
   end

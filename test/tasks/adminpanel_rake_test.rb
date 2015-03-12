@@ -29,7 +29,7 @@ class AdminpanelRakeTest < ActiveSupport::TestCase
   def test_user_task
     Rake.application.invoke_task 'adminpanel:user'
     generated_user = Adminpanel::User.last
-    assert_equal 'webmaster@codn.com', generated_user.email
+    assert_equal 'webmaster@codn.mx', generated_user.email
     assert_equal 'Webmaster', generated_user.name
     assert_equal 'Admin', generated_user.role.name
   end

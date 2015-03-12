@@ -6,12 +6,12 @@ require 'adminpanel/version'
 Gem::Specification.new do |spec|
   spec.name          = 'adminpanel'
   spec.version       = Adminpanel::VERSION
-  spec.authors       = ['Jose Ramon Camacho', 'Victor Camacho']
+  spec.authors       = ['Jose Ramon Camacho', 'Victor Camacho', 'Eduardo Albertos']
   spec.email         = ['info@codn.mx']
   spec.description   = %q{Gem that focus on making a public site's resources very quickly while being very configurable!,
     supports facebook sharing, twitter, instagram and google analytics integration}
   spec.summary       = %q{Made with <3 by CoDN}
-  spec.homepage      = 'https://github.com/joseramonc/adminpanel'
+  spec.homepage      = 'https://github.com/codn/adminpanel'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($/)
