@@ -33,8 +33,5 @@ module Adminpanel
       'Galeria'
     end
 
-    def self.gallery_children
-      'galleryfiles'
-    end
   end
 end

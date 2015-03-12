@@ -57,7 +57,7 @@
           <table class="table table-striped table-bordered">
             <thead>
               <tr>
-                <td><i class="fa fa-sort"></i>Orden</td>
+                <td class="draggable-header"></td>
                 <td><i class="fa fa-picture-o"></i></td>
               </tr>
             </thead>
@@ -68,7 +68,7 @@
                   data-id="<%= image.id %>"
                   data-url="<%= url_for [:move_to_position, image] %>"
                 >
-                  <td class="draggable img"></td>
+                  <td class="draggable img"><i class="fa fa-bars fa-2x"></i></td>
                   <td>
                     <%= link_to(
                       image_tag(image.file_url(:thumb)),

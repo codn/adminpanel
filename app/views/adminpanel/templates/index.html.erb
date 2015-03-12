@@ -16,7 +16,7 @@
           <thead><!-- model attributes -->
             <tr>
               <% if @model.is_sortable? %>
-                <th><i class="fa fa-sort"></i></th>
+                <th></th>
               <% end %>
               <% @model.display_attributes('index').each do |fields| %>
                 <% fields.each do |attribute, properties| %>
@@ -38,7 +38,9 @@
                   <% end %>
                 >
                   <% if @model.is_sortable? %>
-                    <td class="draggable"></td>
+                    <td class="draggable">
+                      <i class="fa fa-bars"></i>
+                    </td>
                   <% end %>
                   <% @model.display_attributes('index').each do |fields| %>
                     <% fields.each do |attribute, properties| %>
