@@ -16,8 +16,6 @@ And then execute:
 
     $ bundle
 
-## Installation
-
 In you application.rb
 
     config.i18n.default_locale = :es # or :en
