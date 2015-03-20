@@ -29,8 +29,7 @@ module Adminpanel
     self.twitter_api_secret = nil
 
     self.displayable_resources = [
-      :users,
-      :sections
+      :users
     ]
 
     self.fb_app_id = nil
