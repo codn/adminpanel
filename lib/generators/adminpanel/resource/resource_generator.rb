@@ -17,12 +17,16 @@ module Adminpanel
       banner: 'field[:type][:index] field[:type][:index]'
 
     def change_fields_aliases
+      fields_to_delete = []
       fields.each do |attribute|
         case attribute.split(':').second
         when 'wysiwyg'
-          fields.delete(attribute)
+          fields_to_delete << attribute
           fields << attribute.split(':').first + ':' + 'text'
         end
+      end
+      fields_to_delete.each do |field|
+        fields.delete(field)
       end
     end
 
