@@ -114,7 +114,11 @@ module Adminpanel
     end
 
     def set_resource_instance
-      @resource_instance = @model.find(params[:id])
+      if @model.respond_to? :friendly
+        @resource_instance = @model.friendly.find(params[:id])
+      else
+        @resource_instance = @model.find(params[:id])
+      end
     end
 
     def set_resource_collection
