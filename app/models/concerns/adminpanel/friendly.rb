@@ -1,9 +1,9 @@
 module Adminpanel
-  module FriendlyId
+  module Friendly
     extend ActiveSupport::Concern
 
     included do
-      extend ::FriendlyId
+      extend FriendlyId
 
       friendly_id :slug_candidates, use: :slugged
 
@@ -13,6 +13,7 @@ module Adminpanel
     end
 
     private
+
       def slug_candidates
         [
           :name,
