@@ -1,0 +1,5 @@
+<%
+  block = properties['options']
+  args = properties.except('options')
+%>
+<%= f.select attribute, block.call(f.object), { include_blank: true }, args  %>
