@@ -16,29 +16,33 @@ And then execute:
 
     $ bundle
 
+Run:
+
+    rails g adminpanel:initialize
+    rake db:migrate
+This create and seeds a user to the database (email: 'admin@admin.com', password: 'password').
+
+And mount the gem wherever you like!
+
+    mount Adminpanel::Engine => '/panel'
+    
+#### Optional
+
 In you application.rb
 
     config.i18n.default_locale = :es # or :en
 
 no other language is currently supported, but pull requests are welcome.
 
-Then run:
-
-    rails g adminpanel:initialize
-    rake db:migrate
-to create the database that the adminpanel it's expecting, this will also seed the database with the default user if you're in development environment (email: 'admin@admin.com', password: 'password').
-
-Then, mount the gem wherever you like!
-
-    mount Adminpanel::Engine => '/panel'
-
 ## Usage
 
+To create a new resource: 
+```
+rails g adminpanel:resource product name price:float description:wysiwyg
+```
+check the [Resource Generator wiki.](https://github.com/codn/adminpanel/wiki/Generator-adminpanel:resource) for more information.
+
 Make sure you [read the wiki](https://github.com/codn/adminpanel/wiki), there is the descriptions of every relevant part of the gem.
-
-To create a new resource check the [Resource Generator.](https://github.com/codn/adminpanel/wiki/Generator-adminpanel:resource)
-
-You can seed the sections with help of the [Section task.](https://github.com/codn/adminpanel/wiki/Rake-task-adminpanel:section)
 
 ## Dependencies
 
