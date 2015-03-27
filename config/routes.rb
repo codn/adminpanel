@@ -5,7 +5,7 @@ Adminpanel::Engine.routes.draw do
   Adminpanel.displayable_resources.each do |resource|
     case resource
     when :analytics
-      resources :analytics, resources_parameters(resource).merge({ only: [:index] }) do
+      resources :analytics, only: [:index] do
         collection do
           get :google,               to: 'analytics#google', path: 'google'
 

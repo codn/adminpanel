@@ -2,10 +2,9 @@ module Adminpanel
   module Base
     extend ActiveSupport::Concern
 
-    # static(class) methods
     module ClassMethods
 
-      # API methods
+      # Adminpanel API
       def mount_images(relation)
         has_many relation, dependent: :destroy
         accepts_nested_attributes_for relation, allow_destroy: true

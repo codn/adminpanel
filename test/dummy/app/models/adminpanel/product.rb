@@ -3,6 +3,7 @@ module Adminpanel
     include Adminpanel::Base
     include Adminpanel::Facebook
     include Adminpanel::Twitter
+    include Adminpanel::Friendly
 
     has_many :categorizations
     has_many :categories, through: :categorizations

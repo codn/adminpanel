@@ -7,6 +7,7 @@ module Adminpanel
                                               :edit,
                                               :update,
                                               :destroy,
+                                              :move_to_position,
                                               :fb_choose_page,
                                               :fb_save_token,
                                               :fb_publish,
@@ -115,9 +116,9 @@ module Adminpanel
 
     def set_resource_instance
       if @model.respond_to? :friendly
-        @resource_instance = @model.friendly.find(params[:id])
+        @resource_instance ||= @model.friendly.find(params[:id])
       else
-        @resource_instance = @model.find(params[:id])
+        @resource_instance ||= @model.find(params[:id])
       end
     end
 

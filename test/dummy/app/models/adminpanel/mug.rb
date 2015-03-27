@@ -36,7 +36,7 @@ module Adminpanel
     # end
 
     def self.routes_options
-      { except:[:new, :create, :edit, :update, :destroy, :show], path:'tazas'}
+      { except: [:new, :create, :edit, :update, :destroy, :show], path:'tazas'}
     end
   end
 end
