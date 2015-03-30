@@ -26,10 +26,11 @@ module Adminpanel
       [
         {
           'role_id' => {
-            'type' => 'belongs_to',
+            'type' => 'select',
             'label' => I18n.t('permission.role'),
-            'model' => 'Adminpanel::Role',
-            # 'remote_resource' => false
+            'options' => Proc.new {|object|
+              Adminpanel::Role.all.map {|o| [o.id, o.name]}
+            }
           }
         },
         {

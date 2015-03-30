@@ -13,16 +13,19 @@ module Adminpanel
                                               :fb_publish,
                                               :twitter_publish
                                             ]
-      before_action :set_resource_collection,      only: [:index, :destroy]
-      before_action :set_relationship_collections, only: [:new, :create, :edit, :update]
+      before_action :set_resource_collection, only: [:index, :destroy]
     end
 
     def index
-      render 'adminpanel/templates/index' if stale?(etag: @collection, public: true, template: false)
+      if stale?(etag: @collection, public: true, template: false)
+        render 'adminpanel/templates/index'
+      end
     end
 
     def show
-      render 'adminpanel/templates/show' if stale?(etag: @resource_instance, public: true, template: false)
+      if stale?(etag: @resource_instance, public: true, template: false)
+        render 'adminpanel/templates/show'
+      end
     end
 
     def new
@@ -42,10 +45,10 @@ module Adminpanel
             # if format js, request is from another controller's form
             if params[:belongs_request]
               # we are in other controller as a belongs_to, add option to select
-              render 'adminpanel/templates/create_belongs_to', locals: { resource: @resource_instance }
+              render 'adminpanel/templates/create_belongs_to'
             else
               # we are in other controller as a has_many, add checkbox
-              render 'adminpanel/templates/create_has_many', locals: { resource: @resource_instance }
+              render 'adminpanel/templates/create_has_many'
             end
           end
         else
@@ -74,32 +77,15 @@ module Adminpanel
 
     private
 
-    def set_relationship_collections
-      @collections = {}
-      set_belongs_to_collections
-      set_has_many_collections
+    def set_resource_collection
+      @collection = @model.all
     end
 
-    # set the collection of objects for each attribute that it's a select (belongs_to)
-    # to populate the <select></select>s
-    def set_belongs_to_collections
-      @model.relationships_of('belongs_to').each do |class_variable|
-        set_relationship(class_variable)
-      end
-    end
-
-    # set the collection of objects for each attribute that it's a checkbox (has_many)
-    def set_has_many_collections
-      @model.relationships_of('has_many').each do |class_variable|
-        set_relationship(class_variable)
-      end
-    end
-
-    def set_relationship(class_variable)
-      if class_variable.respond_to?('of_model')
-        @collections.merge!({"#{class_variable}" => class_variable.of_model(@model.display_name)})
+    def set_resource_instance
+      if @model.respond_to? :friendly
+        @resource_instance ||= @model.friendly.find(params[:id])
       else
-        @collections.merge!({"#{class_variable}" => class_variable.all})
+        @resource_instance ||= @model.find(params[:id])
       end
     end
 
@@ -114,24 +100,12 @@ module Adminpanel
       "#{resource}_params"
     end
 
-    def set_resource_instance
-      if @model.respond_to? :friendly
-        @resource_instance ||= @model.friendly.find(params[:id])
-      else
-        @resource_instance ||= @model.find(params[:id])
-      end
-    end
-
-    def set_resource_collection
-      @collection = @model.all
-    end
-
     def render_new(format)
       format.html do
         render 'adminpanel/templates/new'
       end
       format.js do
-        render 'adminpanel/templates/new', locals: { resource: @resource_instance }
+        render 'adminpanel/templates/new'
       end
     end
   end

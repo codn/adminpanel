@@ -50,14 +50,14 @@ module Adminpanel
       ).url_for_oauth_code
     end
 
-    def field_value properties, attribute, object
+    def field_value(properties, attribute, object)
       case properties['type']
-      when 'belongs_to'
-        belong_to_object_name(object, attribute.split('_id').first)
-      when 'has_many'
+      when 'select'
+        belong_to_object_name(object, attribute.gsub('_id', ''))
+      when 'checkbox'
         li_tags = ""
         content_tag :ul do
-          object.send("#{pluralize_model(properties['model'])}").each do |member|
+          object.send(attribute.gsub('_ids', '').pluralize).each do |member|
             li_tags << content_tag(:li, class: 'priority-low') do
               member.name
             end
@@ -85,10 +85,9 @@ module Adminpanel
       field_name = field_name.to_sym
       [
         :adminpanel_file_field,
-        :belongs_to,
         :file_field,
         :non_image_file_field,
-        :has_many,
+        :checkbox,
         :select
       ].include? field_name
     end

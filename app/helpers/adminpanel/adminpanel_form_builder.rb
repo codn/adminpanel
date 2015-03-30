@@ -23,12 +23,12 @@ module Adminpanel
       end
     end
 
-    def text_field(name, *args)
-      base_layout name, *args, 'text_field_original'
+    def text_field(method, *args)
+      base_layout method, *args, 'text_field_original'
     end
 
-    def file_field(name, *args)
-      image_input = base_layout(name, *args, 'file_field_original')
+    def file_field(method, *args)
+      image_input = base_layout(method, *args, 'file_field_original')
 
       if !object.nil? && !object.new_record? #if not new record
         "#{thumbnail_layout(name)}#{image_input}".html_safe
@@ -37,11 +37,11 @@ module Adminpanel
       end
     end
 
-    def non_image_file_field(name, *args)
-      file_input = base_layout(name, *args, 'file_field_original')
+    def non_image_file_field(method, *args)
+      file_input = base_layout(method, *args, 'file_field_original')
 
       if !object.nil? && !object.new_record? #if not new record
-        "#{title_layout(name)}#{file_input}".html_safe
+        "#{title_layout(method)}#{file_input}".html_safe
       else
         file_input
       end
@@ -51,16 +51,16 @@ module Adminpanel
       base_layout name, *args, 'gallery_base'
     end
 
-    def wysiwyg_field(name, *args)
+    def wysiwyg_field(method, *args)
 
       options = args.extract_options!
       options.reverse_merge! class: 'wysihtml5 span7'
 
-      base_layout name, options, 'text_area_original'
+      base_layout method, options, 'text_area_original'
     end
 
-    def text_area(name, *args)
-      base_layout name, *args, 'text_area_original'
+    def text_area(method, *args)
+      base_layout method, *args, 'text_area_original'
     end
 
     # def radio_button_group(name, buttons, options)
@@ -78,26 +78,23 @@ module Adminpanel
     # 	end
     # end
 
-    def checkbox(checkbox_object, form_object_name, relationship)
-      @template.content_tag(
-        :label,
-        @template.check_box_tag(
-          "#{form_object_name}[#{relationship}][]",
-          checkbox_object.id,
-          self.object.send(relationship).include?(checkbox_object.id)
-          ) + checkbox_object.name,
-        class: "checkbox"
-      )
+    def collection_check_boxes(method, collection, value_method, text_method, options = {}, html_options = {})
+      super method, collection, value_method, text_method, options, html_options do |b|
+        b.label class: 'checkbox' do
+          b.check_box +
+          b.label
+        end
+      end
     end
 
-    def boolean(name, *args)
-      base_layout name, *args, 'boolean_base'
+    def boolean(method, *args)
+      base_layout method, *args, 'boolean_base'
     end
 
-    def enum_field(name, *args)
+    def enum_field(method, *args)
       select(
-        name,
-        self.object.class.send(name.pluralize).map{|option, value|
+        method,
+        self.object.class.send(method.pluralize).map{|option, value|
           [I18n.t("#{self.object.class.name.demodulize.downcase}.#{option}"), option]
         },
         *args
@@ -106,8 +103,6 @@ module Adminpanel
 
     def resource_select(name, *args)
       select name, Adminpanel.displayable_resources.map{|resource| [symbol_class(resource).display_name, resource.to_s]}, *args
-      # select name, Adminpanel.displayable_resources.map{|resource| ['resource', 'resource']}, *args
-
     end
 
     def select(name, select_options, *args)

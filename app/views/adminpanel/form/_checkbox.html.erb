@@ -1,0 +1,45 @@
+<%
+  block = properties['options']
+  args = properties.except('options')
+  collection = block.call(@resource_instance)
+  if collection.class.to_s.demodulize == 'ActiveRecord_Relation'
+    id_method = :id
+    label_method = :name
+  else
+    # collection is an array of arrays:
+    # [
+    #   [123, value],
+    #   [456, value]
+    #   ...
+    # ]
+    id_method = :first
+    label_method = :last
+  end
+%>
+<div class="control-group">
+  <div class="control-label">
+    <%= properties['label'] %>
+  </div>
+  <%= hidden_field_tag("#{class_name_downcase(f.object)}[#{relationship_ids(properties["model"])}][]", nil) %>
+  <div class="controls" id="<%= attribute.gsub('_ids', '') %>-relation">
+    <%= f.collection_check_boxes(
+          attribute,
+          collection,
+          id_method,
+          label_method
+    ) %>
+  </div>
+</div>
+
+<% if !is_modal &&
+  (
+    properties['remote_resource'].nil? ||
+    properties['remote_resource']
+  ) %>
+  <!-- if not making resource from other form so we don't have to manage
+  infinite nested forms and relations -->
+  <%= render(
+      'adminpanel/shared/create_remote_resource_button',
+      remote_model: attribute.gsub('_ids', '')
+  ) %>
+<% end %>

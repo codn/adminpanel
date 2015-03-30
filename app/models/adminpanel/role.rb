@@ -23,9 +23,11 @@ module Adminpanel
         },
         {
           'permission_ids' => {
-            'type' => 'has_many',
-            'model' => "Adminpanel::Permission",
-            'label' => 'Permisos'
+            'label' => 'Permisos',
+            'type' => 'checkbox',
+            'options' => Proc.new { |object|
+              Adminpanel::Permission.all
+            },
           }
         }
       ]
