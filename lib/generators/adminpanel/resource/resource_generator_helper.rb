@@ -179,9 +179,9 @@ module Adminpanel
       fields.each do |attribute|
         assign_attributes_variables(attribute)
         case @attr_type
-        when 'belongs_to'
+        when 'belongs_to' || 'select'
           association = "#{association}#{belongs_to_association(@attr_field)}"
-        when 'has_many' || 'has_many_through'
+        when 'has_many' || 'has_many_through' || 'checkbox'
           association = "#{association}#{has_many_association(@attr_field)}"
         when 'file'
           association = "#{association}#{file_assocation(@attr_field)}"
