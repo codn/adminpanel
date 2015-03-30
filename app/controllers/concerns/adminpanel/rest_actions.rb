@@ -45,10 +45,10 @@ module Adminpanel
             # if format js, request is from another controller's form
             if params[:belongs_request]
               # we are in other controller as a belongs_to, add option to select
-              render 'adminpanel/templates/create_belongs_to'
+              render 'adminpanel/templates/option_for_select'
             else
               # we are in other controller as a has_many, add checkbox
-              render 'adminpanel/templates/create_has_many'
+              render 'adminpanel/templates/checkbox'
             end
           end
         else
