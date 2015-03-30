@@ -94,7 +94,7 @@ class SharedPagesHelperTest < ActionView::TestCase
     attribute = 'category_ids'
     properties = {
       'type' => 'checkbox',
-      'label' => 'hasmany',
+      'label' => 'checkbox label',
       'options' => Proc.new { |object|
         Adminpanel::Category.all
       },
