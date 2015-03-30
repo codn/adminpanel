@@ -14,9 +14,10 @@ module Adminpanel
         },
         {
           'category_ids' => {
-            'type' => 'has_many',
-            'model' => 'Adminpanel::Category',
-            'label' => 'has_many'
+            'type' => 'checkbox',
+            'options' => Proc.new { |object|
+              Adminpanel::Category.all.map { |o| [o.id, o.name] }
+            }
           }
         },
         {

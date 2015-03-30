@@ -130,7 +130,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       /'admin_postfiles' => {/,
       /'type' => 'adminpanel_file_field',/,
       /'category_ids' => {/,
-      /'type' => 'has_many'/,
+      /'type' => 'checkbox'/,
       /'model' => 'Adminpanel::Category/
     )
   end
@@ -160,7 +160,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
     assert_file(
       'app/models/adminpanel/blog.rb',
       /'post_ids' => {/,
-      /'type' => 'has_many'/,
+      /'type' => 'checkbox'/,
       /'model' => 'Adminpanel::Post'/,
       /'category_ids' => {/,
       /'model' => 'Adminpanel::Category'/

@@ -1,11 +1,11 @@
 first:
-  name: Product saved
+  name: "Product saved"
   price: 123.45
   description: lorem ipsum dolor sit amec
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
   slug: 'first-product-slug'
-  
+
 limit_images:
   name: Product with limit
   price: 123.45

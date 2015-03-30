@@ -3,8 +3,7 @@ es:
     form:
       server_file: 'El archivo en el servidor es: %{file}'
   model:
-    Analytic: 'Analytics'
-    Categories: 'Categorías'
+    Analytic: 'Google Analytics'
     Role: 'Rol'
     User: 'Usuario'
     Permission: 'Permisos'

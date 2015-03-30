@@ -9,18 +9,20 @@ module Adminpanel
       [
         {
           'product_id' => {
-            'type' => 'belongs_to',
-            'label' => 'product',
+            'type' => 'select',
             'placeholder' => 'product',
-            'model' => 'Adminpanel::Product',
+            'options' => Proc.new {|object|
+              Adminpanel::Product.all {|o| [o.id, o.name] }
+            }
           }
         },
         {
           'category_id' => {
-            'type' => 'belongs_to',
-            'label' => 'category',
+            'type' => 'select',
             'placeholder' => 'category',
-            'model' => 'Adminpanel::Category',
+            'options' => Proc.new {|object|
+              Adminpanel::Category.all {|o| [o.id, o.name] }
+            }
           }
         },
 

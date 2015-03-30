@@ -8,21 +8,22 @@ module Adminpanel
 
     def self.form_attributes
       [
-      {
-        'name' => {
-          'type' => 'text_field',
-          'label' => 'name',
-          'placeholder' => 'name'
-        }
-      },
-      {
-        'product_id' => {
-          'type' => 'belongs_to',
-          'model' => 'Adminpanel::Product',
-          'label' => 'product',
-          'placeholder' => 'product'
-        }
-      },
+        {
+          'name' => {
+            'type' => 'text_field',
+            'label' => 'name',
+            'placeholder' => 'name'
+          }
+        },
+        {
+          'product_id' => {
+            'type' => 'select',
+            'label' => 'product_id',
+            'options' => Proc.new { |object|
+              Adminpanel::Product.all.map {|o| [o.id, o.supername]}
+            }
+          }
+        },
       ]
     end
 

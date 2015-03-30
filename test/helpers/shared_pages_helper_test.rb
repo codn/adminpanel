@@ -73,9 +73,11 @@ class SharedPagesHelperTest < ActionView::TestCase
     test_object = adminpanel_salesmen(:one)
     attribute = 'product_id'
     properties = {
-      'type' => 'belongs_to',
-      'model' => 'Adminpanel::Product',
+      'type' => 'select',
       'label' => 'product',
+      'model' => Proc.new { |object|
+        Adminpanel::Product.all
+      }
     }
     assert_equal(
       'Product saved',
@@ -83,8 +85,7 @@ class SharedPagesHelperTest < ActionView::TestCase
         properties,
         attribute,
         test_object
-      ),
-      'didn\'t matched belongs_to :('
+      )
     )
   end
 
@@ -92,9 +93,11 @@ class SharedPagesHelperTest < ActionView::TestCase
     test_object = adminpanel_test_objects(:first)
     attribute = 'category_ids'
     properties = {
-      'type' => 'has_many',
-      'model' => 'Adminpanel::Category',
-      'label' => 'hasmany'
+      'type' => 'checkbox',
+      'label' => 'hasmany',
+      'options' => Proc.new { |object|
+        Adminpanel::Category.all
+      },
     }
     assert_equal(
       content_tag(:ul, nil) do
@@ -105,6 +108,27 @@ class SharedPagesHelperTest < ActionView::TestCase
           adminpanel_categories(:pretty).name
         end
       end,
+      field_value(
+        properties,
+        attribute,
+        test_object
+      ),
+      'didn\'t matched has_many fields :('
+    )
+  end
+
+  def test_enum_in_field_value
+    test_object = adminpanel_permissions(:publish)
+    attribute = 'action'
+    properties = {
+      'type' => 'enum_field',
+      'label' => 'hasmany',
+      'options' => Proc.new { |object|
+        Adminpanel::Category.all
+      },
+    }
+    assert_equal(
+      'Publicar en Redes Sociales',
       field_value(
         properties,
         attribute,
@@ -140,16 +164,16 @@ class SharedPagesHelperTest < ActionView::TestCase
   end
 
   def test_is_customized_field?
-    assert_equal true, is_customized_field?('adminpanel_file_field')
-    assert_equal true, is_customized_field?('belongs_to')
-    assert_equal true, is_customized_field?('file_field')
-    assert_equal true, is_customized_field?('non_image_file_field')
-    assert_equal true, is_customized_field?('has_many')
+    assert is_customized_field?('adminpanel_file_field')
+    assert is_customized_field?('select')
+    assert is_customized_field?('checkbox')
+    assert is_customized_field?('file_field')
+    assert is_customized_field?('non_image_file_field')
     # some example false values (not everyone)
-    assert_equal false, is_customized_field?('text_field')
-    assert_equal false, is_customized_field?('number_field')
-    assert_equal false, is_customized_field?('text_area')
-    assert_equal false, is_customized_field?('wysiwyg_field')
+    assert_not is_customized_field?('text_field')
+    assert_not is_customized_field?('number_field')
+    assert_not is_customized_field?('text_area')
+    assert_not is_customized_field?('wysiwyg_field')
   end
 
 end
