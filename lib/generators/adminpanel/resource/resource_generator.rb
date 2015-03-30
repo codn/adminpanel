@@ -23,7 +23,12 @@ module Adminpanel
         when 'wysiwyg'
           fields_to_delete << attribute
           fields << attribute.split(':').first + ':' + 'text'
-        when 'belongs_to' || 'checkbox'
+        when 'belongs_to'
+          fields_to_delete << attribute
+          fields << attribute.split(':').first + ':' + 'select'
+        when 'has_many'
+          fields_to_delete << attribute
+          fields << attribute.split(':').first + ':' + 'checkbox'
         end
       end
       fields_to_delete.each do |field|
