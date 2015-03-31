@@ -13,9 +13,21 @@ module Adminpanel
     validates_presence_of :price
     validates_presence_of :description
 
+    def supername
+      "Super#{name}"
+    end
+
     def self.form_attributes
       [
-      {"category_ids" => {"type" => "has_many", "model" => "Adminpanel::Category", "name" => "category_ids"}},
+      {
+        "category_ids" => {
+          "type" => "checkbox",
+          "options" => Proc.new {|object|
+            Adminpanel::Category.all
+          }
+        }
+      },
+
       {
         'name' => {
           'type' => 'text_field',
@@ -25,7 +37,6 @@ module Adminpanel
       {
         'price' => {
           'type' => 'text_field',
-          'name' => 'price'
         }
       },
       {

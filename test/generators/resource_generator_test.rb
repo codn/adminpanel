@@ -130,8 +130,9 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       /'admin_postfiles' => {/,
       /'type' => 'adminpanel_file_field',/,
       /'category_ids' => {/,
-      /'type' => 'has_many'/,
-      /'model' => 'Adminpanel::Category/
+      /'type' => 'checkbox'/,
+      /'options' => Proc.new { |object|/,
+      /Adminpanel::Category.all/
     )
   end
 
@@ -160,10 +161,12 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
     assert_file(
       'app/models/adminpanel/blog.rb',
       /'post_ids' => {/,
-      /'type' => 'has_many'/,
-      /'model' => 'Adminpanel::Post'/,
+      /'type' => 'checkbox'/,
+      /'options' => Proc.new { |object|/,
+      /Adminpanel::Post.all/,
       /'category_ids' => {/,
-      /'model' => 'Adminpanel::Category'/
+      /'options' => Proc.new { |object|/,
+      /Adminpanel::Category.all/
     )
   end
 
@@ -182,7 +185,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
     assert_file(
       'app/uploaders/adminpanel/monkey_avatar_uploader.rb',
       /class MonkeyAvatarUploader </
-    )
+      )
   end
 
   def test_that_runs_without_errors

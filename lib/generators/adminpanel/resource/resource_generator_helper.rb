@@ -19,11 +19,11 @@ module Adminpanel
       "#{resource_name}_#{@attr_field}".camelize
     end
 
-    def belongs_to_field(resource)
+    def select_field(resource)
       "#{resource.singularize.downcase}_id"
     end
 
-    def has_many_field(resource)
+    def checkbox_field(resource)
       "#{resource.singularize.downcase}_ids"
     end
 
@@ -43,7 +43,7 @@ module Adminpanel
     def is_a_resource?
       fields.each do |attribute|
         assign_attributes_variables(attribute)
-        if @attr_type != 'belongs_to'
+        if @attr_type != 'select'
           return true
         end
       end
@@ -74,11 +74,11 @@ module Adminpanel
       fields.map do |attribute|
         assign_attributes_variables(attribute)
         case @attr_type
-          when 'belongs_to'
-            ':' + belongs_to_field(@attr_field)
-          when 'has_many'
-            "{ #{has_many_field(@attr_field)}: [] }"
-          else
+        when 'select'
+          ":#{select_field(@attr_field)}"
+        when 'checkbox'
+          "{ #{checkbox_field(@attr_field)}: [] }"
+        else
           ":#{attribute.split(':').first}"
         end
       end.join(",\n")
@@ -123,12 +123,12 @@ module Adminpanel
       attribute_hash(gallery_name.pluralize, 'adminpanel_file_field')
     end
 
-    def belongs_to_form_hash
-      attribute_hash(belongs_to_field(@attr_field), 'belongs_to', resource_class_name(@attr_field))
+    def select_form_hash
+      attribute_hash(select_field(@attr_field), 'select', resource_class_name(@attr_field))
     end
 
-    def has_many_form_hash
-      attribute_hash(has_many_field(resource_class_name(@attr_field.downcase.singularize + 's')), 'has_many', @attr_field.capitalize.singularize)
+    def checkbox_form_hash
+      attribute_hash(checkbox_field(resource_class_name(@attr_field.downcase.singularize + 's')), 'checkbox', @attr_field.capitalize.singularize)
     end
 
     def attribute_hash(name, type, model = '')
@@ -155,17 +155,18 @@ module Adminpanel
       "'placeholder' => '#{@attr_field}'"
     end
 
-    def model_type(type)
-      "'model' => 'Adminpanel::#{type}'"
+    def model_type(model_name)
+      "'options' => Proc.new { |object|\n" +
+        indent("Adminpanel::#{model_name}.all\n", 2) +
+      '}'
     end
 
     def has_associations?
       fields.each do |attribute|
         assign_attributes_variables(attribute)
         if( @attr_type == 'images' ||
-            @attr_type == 'belongs_to' ||
-            @attr_type == 'has_many' ||
-            @attr_type == 'has_many_through' ||
+            @attr_type == 'select' ||
+            @attr_type == 'checkbox' ||
             @attr_type == 'file' ||
             has_gallery? )
           return true
@@ -179,10 +180,10 @@ module Adminpanel
       fields.each do |attribute|
         assign_attributes_variables(attribute)
         case @attr_type
-        when 'belongs_to'
-          association = "#{association}#{belongs_to_association(@attr_field)}"
-        when 'has_many' || 'has_many_through'
-          association = "#{association}#{has_many_association(@attr_field)}"
+        when 'select'
+          association = "#{association}#{select_association(@attr_field)}"
+        when 'checkbox'
+          association = "#{association}#{checkbox_association(@attr_field)}"
         when 'file'
           association = "#{association}#{file_assocation(@attr_field)}"
         end
@@ -195,11 +196,11 @@ module Adminpanel
       association
     end
 
-    def belongs_to_association(field)
+    def select_association(field)
       "belongs_to :#{field.singularize.downcase}\n\t\t"
     end
 
-    def has_many_association(field)
+    def checkbox_association(field)
       return "# has_many :#{@attr_field.downcase}zations\n\t\t" +
       "# has_many :#{@attr_field.pluralize.downcase}, " +
       "through: :#{@attr_field.downcase}zations, " +
@@ -207,7 +208,7 @@ module Adminpanel
     end
 
     def file_assocation(field)
-      return "mount_uploader :#{field}, #{class_name}Uploader\n\t\t"
+      "mount_uploader :#{field}, #{class_name}Uploader\n\t\t"
     end
 
   end

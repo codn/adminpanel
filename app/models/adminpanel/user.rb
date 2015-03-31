@@ -66,10 +66,10 @@ module Adminpanel
         },
         {
           'role_id' => {
-            'type' => 'belongs_to',
-            'model' => 'Adminpanel::Role',
-            # 'remote_resource' => false,
-            'placeholder' => I18n.t('model.attributes.role_id'),
+            'type' => 'select',
+            'options' => Proc.new { |user|
+              Role.all.map { |r| [r.id, r.name] }
+            },
             'label' => I18n.t('model.attributes.role_id')
           }
         },

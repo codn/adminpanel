@@ -95,12 +95,8 @@ namespace :adminpanel do
             value = Faker::Internet.url
           when 'id' #assign field_id it to a random instance of Adminpanel::field
             field = field.downcase.singularize
-            if field != 'category'
-              value = "adminpanel/#{field}".classify.constantize.order('RAND()').first.id
-            else
-              value = "adminpanel/#{field}".classify.constantize.of_model(@model.display_name).order('RAND()').first.id
-            end
-              field = "#{field}_id"
+            value = "adminpanel/#{field}".classify.constantize.order('RAND()').first.id
+            field = "#{field}_id"
 
           when 'email' #generates a random email
             value = Faker::Internet.email

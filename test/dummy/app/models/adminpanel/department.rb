@@ -5,24 +5,26 @@ module Adminpanel
     belongs_to :category
 
     has_many :items
-    has_many :product, :through => :items, :dependent => :destroy
+    has_many :product, through: :items, dependent: :destroy
 
     def self.form_attributes
       [
         {
           'category_id' => {
-            'type' => 'belongs_to',
-            'label' => 'category',
+            'type' => 'select',
             'placeholder' => 'category',
-            'model' => 'Adminpanel::Category',
+            'options' => Proc.new { |object|
+              Adminpanel::Category.all
+            }
           }
         },
         {
           'product_ids' => {
-            'type' => 'has_many',
-            'label' => 'product',
+            'type' => 'checkbox',
             'placeholder' => 'product',
-            'model' => 'Adminpanel::Product',
+            'options' => Proc.new { |object|
+              Adminpanel::Product.all
+            }
           }
         },
         {

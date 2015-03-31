@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RemoteResourceModalTest < ViewCase
+class ModalContentsTest < ViewCase
   fixtures :all
 
   setup :visit_adminpanel_new_user
@@ -26,7 +26,7 @@ class RemoteResourceModalTest < ViewCase
     assert_no_link 'Agregar Rol'
   end
 
-  def test_modals_exclude_exclude_add_images_button
+  def test_modals_exclude_add_images_button
     # test file_field and non file field
     visit adminpanel.new_salesman_path
     trigger_modal 'Agregar Producto'
