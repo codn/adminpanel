@@ -76,6 +76,8 @@ module Adminpanel
         end
       when 'enum_field'
         I18n.t("#{object.class.name.demodulize.downcase}.#{object.send(attribute)}")
+      when 'adminpanel_file_field'
+        object.send(attribute).count
       else
         object.send(attribute)
       end
