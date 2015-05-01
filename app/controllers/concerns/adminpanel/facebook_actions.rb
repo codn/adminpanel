@@ -38,12 +38,14 @@ module Adminpanel
       authorize! :publish, @resource_instance
 
       page_graph = Koala::Facebook::API.new(Auth.find_by_key('facebook').value)
+      options = {
+        link: @resource_instance.share_link,
+        name: @resource_instance.name
+      }
+      options.merge!({ picture: @resource_instance.share_picture }) if @resource_instance.share_picture
       page_graph.put_wall_post(
         params[model_name][:fb_message],
-        {
-          link: @resource_instance.share_link,
-          name: @resource_instance.name
-        }
+        options
       )
       flash[:success] = I18n.t('fb.posted', user: page_graph.get_object('me')['name'])
       redirect_to @resource_instance

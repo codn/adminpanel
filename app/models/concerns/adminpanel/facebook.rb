@@ -9,6 +9,12 @@ module Adminpanel
       'http://www.google.com'
     end
 
+    # if return any other thing than nil, it'll send it as the picture_thumb
+    # whenever it's posted.
+    def share_picture
+      nil
+    end
+
     # static(class) methods
     module ClassMethods
       def fb_share?
