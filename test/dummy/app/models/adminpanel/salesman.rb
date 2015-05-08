@@ -19,9 +19,8 @@ module Adminpanel
           'product_id' => {
             'type' => 'select',
             'label' => 'product_id',
-            'options' => Proc.new { |object|
-              Adminpanel::Product.all.map {|o| [o.id, o.supername]}
-            }
+            'options' => Proc.new { |object| Adminpanel::Product.all },
+            'name_method' => :supername
           }
         },
       ]
