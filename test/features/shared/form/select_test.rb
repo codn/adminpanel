@@ -23,15 +23,14 @@ class SelectTest < ViewCase
     assert select_selector.find('option', text: 'Publisher')
   end
 
-  def test_select_with_mapped_result
-    # test select, with proc in options gives an
-    # [['one', '1'], ['two', '2'], ...] as a repsonse (map)
+  def test_select_with_diffent_name_method
+    # test select, with a name method different than the default
     visit adminpanel.new_salesman_path
     # puts page.
     select_field = find('#salesman_product_id')
     assert select_field
-    assert select_field.find('option', text: 'SuperProduct saved')
-    assert select_field.find('option', text: 'SuperProduct with limit')
+    assert select_field.find('option', text: adminpanel_products(:first).supername)
+    assert select_field.find('option', text: adminpanel_products(:limit_images).supername)
   end
 
   private

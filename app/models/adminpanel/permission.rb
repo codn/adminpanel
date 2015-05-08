@@ -28,9 +28,7 @@ module Adminpanel
           'role_id' => {
             'type' => 'select',
             'label' => I18n.t('permission.role'),
-            'options' => Proc.new {|object|
-              Adminpanel::Role.all.map {|o| [o.id, o.name]}
-            }
+            'options' => Proc.new {|object| Adminpanel::Role.all }
           }
         },
         {
