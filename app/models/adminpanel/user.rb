@@ -67,9 +67,7 @@ module Adminpanel
         {
           'role_id' => {
             'type' => 'select',
-            'options' => Proc.new { |user|
-              Role.all.map { |r| [r.id, r.name] }
-            },
+            'options' => Proc.new { |user| Role.all },
             'label' => I18n.t('model.attributes.role_id')
           }
         },
