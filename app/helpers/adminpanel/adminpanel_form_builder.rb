@@ -27,7 +27,7 @@ module Adminpanel
       base_layout method, *args, 'text_field_original'
     end
 
-    def file_field(method, *args)
+    def image_field(method, *args)
       image_input = base_layout(method, *args, 'file_field_original')
 
       if !object.nil? && !object.new_record? #if not new record
@@ -37,7 +37,7 @@ module Adminpanel
       end
     end
 
-    def non_image_file_field(method, *args)
+    def file_field(method, *args)
       file_input = base_layout(method, *args, 'file_field_original')
 
       if !object.nil? && !object.new_record? #if not new record
