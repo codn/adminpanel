@@ -27,17 +27,17 @@ module Adminpanel
       base_layout method, *args, 'text_field_original'
     end
 
-    def file_field(method, *args)
+    def image_field(method, *args)
       image_input = base_layout(method, *args, 'file_field_original')
 
       if !object.nil? && !object.new_record? #if not new record
-        "#{thumbnail_layout(name)}#{image_input}".html_safe
+        "#{thumbnail_layout(method)}#{image_input}".html_safe
       else
         image_input
       end
     end
 
-    def non_image_file_field(method, *args)
+    def file_field(method, *args)
       file_input = base_layout(method, *args, 'file_field_original')
 
       if !object.nil? && !object.new_record? #if not new record
@@ -47,8 +47,8 @@ module Adminpanel
       end
     end
 
-    def gallery_field(name, *args)
-      base_layout name, *args, 'gallery_base'
+    def gallery_field(method, *args)
+      base_layout method, *args, 'gallery_base'
     end
 
     def wysiwyg_field(method, *args)
@@ -101,11 +101,11 @@ module Adminpanel
       )
     end
 
-    def resource_select(name, *args)
-      select name, Adminpanel.displayable_resources.map{|resource| [symbol_class(resource).display_name, resource.to_s]}, *args
+    def resource_select(method, *args)
+      select method, Adminpanel.displayable_resources.map{|resource| [symbol_class(resource).display_name, resource.to_s]}, *args
     end
 
-    def select(name, select_options, *args)
+    def select(method, select_options, *args)
       options = args.extract_options!
       label = options['label']
       options.delete('label')
@@ -114,23 +114,23 @@ module Adminpanel
 
       @template.content_tag :div, class: "control-group" do
         @template.content_tag(:label, label, class: "control-label") +
-        @template.content_tag(:div, super(name, select_options, options), class: "controls")
+        @template.content_tag(:div, super(method, select_options, options), class: "controls")
       end
     end
 
-    def number_field(name, *args)
-      base_layout( name, *args, 'number_field_original' )
+    def number_field(method, *args)
+      base_layout( method, *args, 'number_field_original' )
     end
 
-    def password_field(name, *args)
-      base_layout( name, *args, 'password_field_original' )
+    def password_field(method, *args)
+      base_layout( method, *args, 'password_field_original' )
     end
 
-    def email_field(name, *args)
-      base_layout( name, *args, 'email_field_original' )
+    def email_field(method, *args)
+      base_layout( method, *args, 'email_field_original' )
     end
 
-    def submit(name, *args)
+    def submit(method, *args)
       options = args.extract_options!
 
       options.reverse_merge!(
@@ -139,11 +139,11 @@ module Adminpanel
           disable_with: I18n.t('action.submitting')
         }
       )
-      super(name, *args << options)
+      super(method, *args << options)
     end
 
-    def datepicker(name, *args)
-      base_layout( name, *args, 'datepickerize_base' )
+    def datepicker(method, *args)
+      base_layout( method, *args, 'datepickerize_base' )
     end
 
     # def prepend_field(name, *args)
@@ -201,7 +201,7 @@ module Adminpanel
     # end
     private
 
-      def base_layout(name, *args, input_type)
+      def base_layout(method, *args, input_type)
         options = args.extract_options!
         options.reverse_merge! class: 'span7'
         label = options['label']
@@ -210,12 +210,12 @@ module Adminpanel
         @template.content_tag :div, class: 'control-group' do
           @template.content_tag(:label, label, class: 'control-label') +
           @template.content_tag(:div, class: 'controls') do
-            self.send(input_type, name, options)
+            self.send(input_type, method, options)
           end
         end
       end
 
-      def datepickerize_base(name, options)
+      def datepickerize_base(method, options)
         options.reverse_merge! 'value' => Time.now.strftime("%d-%m-%Y")
         @template.content_tag(
                   :div,
@@ -225,7 +225,7 @@ module Adminpanel
                     date: options['value']
                   }
                 ) do
-          text_field_original(name, options) +
+          text_field_original(method, options) +
           (
             @template.content_tag :span, class: 'add-on' do
               @template.content_tag :i, nil, class: 'fa fa-th'
@@ -234,21 +234,21 @@ module Adminpanel
         end
       end
 
-      def boolean_base(name, options)
+      def boolean_base(method, options)
         @template.content_tag :label, class: 'checkbox' do
-          check_box(name)
+          check_box(method)
         end
       end
 
-      def gallery_base(name, options)
-        file_field_input = file_field_original(name, options)
+      def gallery_base(method, options)
+        file_field_input = file_field_original(method, options)
         hidden_input = hidden_field(:_destroy)
         delete_button = @template.content_tag(:button, I18n.t("action.delete"), class: "btn btn-danger remove-fields")
 
         if object.nil? || object.new_record?
           "#{file_field_input}#{hidden_input}#{delete_button}".html_safe
         else
-          "#{thumbnail_layout(name)}#{file_field_input}#{hidden_input}#{delete_button}".html_safe
+          "#{thumbnail_layout(method)}#{file_field_input}#{hidden_input}#{delete_button}".html_safe
         end
       end
 
