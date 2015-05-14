@@ -19,6 +19,11 @@ module Adminpanel
                   aliases: '-p',
                   default: false,
                   desc: 'Skip setup if true'
+    class_option :'skip-mount-engine',
+                  type: :boolean,
+                  aliases: '-engine',
+                  default: false,
+                  desc: 'Inject engine into routes'
 
     def create_initializer
       if !options[:'skip-setup']
@@ -29,6 +34,14 @@ module Adminpanel
     def create_section_uploader
       if !options[:'skip-section-uploader']
         copy_file 'section_uploader.rb', 'app/uploaders/adminpanel/section_uploader.rb'
+      end
+    end
+
+    def inject_engine_into_routes
+      if !options[:'skip-mount-engine']
+        inject_into_file 'config/routes.rb', after: 'Rails.application.routes.draw do' do
+          indent "\n  mount Adminpanel::Engine => '/panel'"
+        end
       end
     end
 
