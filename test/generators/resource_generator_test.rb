@@ -125,7 +125,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       /class AdminPost </,
       /include Adminpanel::Base/,
       /mount_images :admin_postfiles/,
-      # form_fields generated correctly
+      # form_attributes generated correctly
       /'description' => {/,
       /'type' => 'wysiwyg_field',/,
       /'name' => {/,

@@ -7,10 +7,7 @@ class SortableGalleryUiTest < ViewCase
   teardown :teardown
 
   def test_including_draggable_td
-    skip '😪'
     visit adminpanel.gallery_path(adminpanel_galleries(:one))
-
-    p page.body
 
     # assert for sortable stuff
     assert_selector 'td.draggable.img'

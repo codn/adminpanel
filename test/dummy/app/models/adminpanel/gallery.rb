@@ -3,27 +3,27 @@ module Adminpanel
     include Adminpanel::Base
     include Adminpanel::Sortable
 
-    mount_uploader :file, Adminpanel::PhotoUploader
-
     mount_images :galleryfiles
 
+    mount_uploader :file, Adminpanel::PhotoUploader
+
     def name
-      file
+      self['file']
     end
 
-    def self.form_fields
+    def self.form_attributes
       [
         {
           'file' => {
-            'type' => 'text',
+            'type' => 'file_field',
             'label' => 'file',
 
           }
         },
         {
           'galleryfiles' => {
-            'type' => 'adminpanel_file_fields',
-            'label' => 'images for this gallery'
+            'type' => 'adminpanel_file_field',
+            'label' => 'galleryfiels'
           }
         }
       ]

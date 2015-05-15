@@ -29,7 +29,6 @@ class MaxImagesGalleryTest < ViewCase
     end
     visit adminpanel.edit_product_path(product)
     ## $('#add-image-link') should not be visible if max files is reached (it is reached)
-    # assert_no_selector '#add-image-link'
 
     assert_no_selector '#add-image-link'
 
