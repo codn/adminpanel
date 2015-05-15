@@ -79,7 +79,7 @@ module Adminpanel
     end
 
     def add_resource_to_config
-      if setup_is_found? && is_a_resource?
+      if is_a_resource?
         inject_into_file 'config/initializers/adminpanel_setup.rb',
           after: 'config.displayable_resources = [' do
           indent "\n:#{pluralized_name},", 4

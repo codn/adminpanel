@@ -6,6 +6,20 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
   destination Rails.root.join('tmp/generators')
   setup :prepare_destination
 
+  def after_setup
+    Dir.mkdir Rails.root.join('tmp', 'generators', 'config')
+    Dir.mkdir Rails.root.join('tmp', 'generators', 'config', 'initializers')
+    File.open Rails.root.join('tmp', 'generators', 'config', 'initializers', 'adminpanel_setup.rb'), 'w' do |f|
+      f.puts "Adminpanel.setup do |config| \n"
+      f.puts "  config.displayable_resources = [ \n"
+      f.puts "    :users,\n"
+      f.puts "    :permissions\n"
+      f.puts "  end\n"
+      f.puts "end"
+    end
+  end
+
+
   def test_default_not_generation_of_gallery
     run_generator %w(
       post
@@ -29,19 +43,18 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
     assert_migration 'db/migrate/create_adminpanel_postfiles.rb'
   end
 
-  # def test_initializer_update
-  #   run_generator %w(
-  #     post
-  #     name
-  #     description:wysiwyg
-  #     number:float
-  #     -g=false
-  #   )
-  #   assert_file(
-  #     'config/adminpanel_setup.rb',
-  #     /:posts,/
-  #   )
-  # end
+  def test_initializer_update
+    run_generator %w(
+      post
+      name
+      description:wysiwyg
+      number:float
+    )
+    assert_file(
+      'config/initializers/adminpanel_setup.rb',
+      /:posts,/
+    )
+  end
 
   def test_controller_generation
     run_generator %w(

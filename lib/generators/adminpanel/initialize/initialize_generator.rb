@@ -38,7 +38,7 @@ module Adminpanel
     end
 
     def inject_engine_into_routes
-      if !options[:'skip-mount-engine']
+      if !options[:'skip-mount-engine'] && Dir.exists?(Rails.root.join('config')) && File.exists?(Rails.root.join('config', 'routes.rb'))
         inject_into_file 'config/routes.rb', after: 'Rails.application.routes.draw do' do
           indent "\n  mount Adminpanel::Engine => '/panel'"
         end

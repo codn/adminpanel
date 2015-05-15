@@ -1,13 +1,5 @@
 module Adminpanel
   module ResourceGeneratorHelper
-    def setup_is_found?
-      if Dir.exists?('config') && Dir.exists?('config/initializers') && File.exists?('config/initializers/adminpanel_setup.rb')
-        true
-      else
-        false
-      end
-    end
-
     def needs_name?
       fields.each do |attribute|
         return false if attribute.split(':').first == 'name'
