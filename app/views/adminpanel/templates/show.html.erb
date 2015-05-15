@@ -84,7 +84,7 @@
         </div>
       <% else %>
         <div class="widget-body row-fluid">
-          <% @resource_instance.send(@model.gallery_relationship).each do |image|%>
+          <% @resource_instance.send(@model.gallery_relationship).each do |image| %>
             <%= link_to(
               image_tag( image.file_url(:thumb) ),
               image.file_url.to_s,
