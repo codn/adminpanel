@@ -1,0 +1,22 @@
+encoding: UTF-8
+
+# Dependencies
+markdown:         redcarpet
+highlighter:      pygments
+
+# Permalinks
+permalink:        pretty
+relative_permalinks: true
+
+# Setup
+title:            Adminpanel
+tagline:          Administration panel with nice defaults and flexible customizations, supporting facebook, twitter, instagram and google analytics API, developed with the goal of generating your dynamic site very quickly
+
+url:              http://codn.github.io/adminpanel
+baseurl:          /
+
+# Custom vars
+version:          2.1.0
+
+github:
+  repo:           https://github.com/codn/adminpanel
