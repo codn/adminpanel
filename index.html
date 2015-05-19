@@ -2,105 +2,93 @@
 layout: default
 title: Home
 ---
-<section>
-  <h1>
-    <a id="-adminpanel" class="anchor" href="#-adminpanel" aria-hidden="true"><span class="octicon octicon-link"></span></a>
-    <a href="http://www.codn.mx" title="CoDN"><img src="http://cl.ly/image/130Q0E153d2G/codn180.png" alt="CoDN"></a> Adminpanel
-  </h1>
+<h1>
+  <a id="-adminpanel" class="anchor" href="#-adminpanel" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+  <a href="http://www.codn.mx" title="CoDN"><img src="http://cl.ly/image/130Q0E153d2G/codn180.png" alt="CoDN"></a> Adminpanel
+</h1>
 
-  <p>Thank you for considering this gem, we are going to use the lastest Rails version of Rails. make sure you can use it before trying this gem out.</p>
+<p>Thank you for considering this gem, we are going to use the lastest Rails version of Rails. make sure you can use it before trying this gem out.</p>
 
-  <p>
-    <a href="http://badge.fury.io/rb/adminpanel"><img src="https://badge.fury.io/rb/adminpanel.svg" alt="Gem Version"></a>
-    <a href="https://travis-ci.org/codn/adminpanel"><img src="https://travis-ci.org/codn/adminpanel.svg?branch=master" alt="Build Status"></a>
-    <a href="https://codeclimate.com/github/codn/adminpanel"><img src="https://codeclimate.com/github/codn/adminpanel/badges/gpa.svg" alt="Code Climate"></a>
-  </p>
+<p>
+  <a href="http://badge.fury.io/rb/adminpanel"><img src="https://badge.fury.io/rb/adminpanel.svg" alt="Gem Version"></a>
+  <a href="https://travis-ci.org/codn/adminpanel"><img src="https://travis-ci.org/codn/adminpanel.svg?branch=master" alt="Build Status"></a>
+  <a href="https://codeclimate.com/github/codn/adminpanel"><img src="https://codeclimate.com/github/codn/adminpanel/badges/gpa.svg" alt="Code Climate"></a>
+</p>
 
-  <h2>
-    <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation
-  </h2>
+<h2>
+  <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation
+</h2>
 
-  <p>Add this line to your application's Gemfile:</p>
+<p>Add this line to your application's Gemfile:</p>
 
-  <pre><code>gem 'adminpanel'
-  </code></pre>
+<pre><code>gem 'adminpanel'</code></pre>
 
-  <p>And then execute:</p>
+<p>And then execute:</p>
 
-  <pre><code>$ bundle
-  </code></pre>
+<pre><code>$ bundle</code></pre>
 
-  <p>Run:</p>
+<p>Run:</p>
 
-  <pre><code>rails g adminpanel:initialize
-    rake db:migrate
-  </code></pre>
+<pre><code>rails g adminpanel:initialize
+rake db:migrate</code></pre>
 
-  <p>This create and seeds a user to the database (email: '<a href="mailto:admin@admin.com">admin@admin.com</a>', password: 'password').</p>
+<p>This create and seeds a user to the database (email: '<a href="mailto:admin@admin.com">admin@admin.com</a>', password: 'password').</p>
 
-  <p>And mount the gem wherever you like!</p>
+<p>And mount the gem wherever you like!</p>
 
-  <pre><code>mount Adminpanel::Engine =&gt; '/panel'
-  </code></pre>
+<pre><code>mount Adminpanel::Engine =&gt; '/panel'</code></pre>
 
-  <h4>
-    <a id="optional" class="anchor" href="#optional" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optional
-  </h4>
+<h4>
+  <a id="optional" class="anchor" href="#optional" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optional
+</h4>
 
-  <p>In you application.rb</p>
+<p>In you application.rb</p>
 
-  <pre><code>config.i18n.default_locale = :es # or :en
-  </code></pre>
+<pre><code>config.i18n.default_locale = :es # or :en</code></pre>
 
-  <p>no other language is currently supported, but pull requests are welcome.</p>
+<p>no other language is currently supported, but pull requests are welcome.</p>
 
-  <h2>
-    <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage
-  </h2>
+<h2>
+  <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage
+</h2>
 
-  <p>To create a new resource: </p>
+<p>To create a new resource: </p>
 
-  <pre><code>rails g adminpanel:resource product name price:float description:wysiwyg
-  </code></pre>
+<pre><code>rails g adminpanel:resource product name price:float description:wysiwyg</code></pre>
 
-  <p>check the <a href="https://github.com/codn/adminpanel/wiki/Generator-adminpanel:resource">Resource Generator wiki.</a> for more information.</p>
+<p>check the <a href="https://github.com/codn/adminpanel/wiki/Generator-adminpanel:resource">Resource Generator wiki.</a> for more information.</p>
 
-  <p>Make sure you <a href="https://github.com/codn/adminpanel/wiki">read the wiki</a>, there is the descriptions of every relevant part of the gem.</p>
+<p>Make sure you <a href="https://github.com/codn/adminpanel/wiki">read the wiki</a>, there is the descriptions of every relevant part of the gem.</p>
 
-  <h2>
-    <a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies
-  </h2>
+<h2>
+  <a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies
+</h2>
 
-  <p>Please make sure that you have ImageMagick -v 2.13.2 installed before trying to use the gem.</p>
+<p>Please make sure that you have ImageMagick -v 2.13.2 installed before trying to use the gem.</p>
 
-  <h2>
-    <a id="integrated-apis" class="anchor" href="#integrated-apis" aria-hidden="true"><span class="octicon octicon-link"></span></a>Integrated APIs
-  </h2>
+<h2>
+  <a id="integrated-apis" class="anchor" href="#integrated-apis" aria-hidden="true"><span class="octicon octicon-link"></span></a>Integrated APIs
+</h2>
 
-  <p>Currently the integrations working are:</p>
+<p>Currently the integrations working are:</p>
 
-  <ul>
-    <li><a href="https://github.com/codn/adminpanel/wiki/include-Google-Analytics">Google Analytics Service</a></li>
-    <li><a href="https://github.com/codn/adminpanel/wiki/include-Adminpanel::Facebook">Facebook Share Link to Wall</a></li>
-    <li><a href="https://github.com/codn/adminpanel/wiki/include-Adminpanel::Twitter">Twitter API</a></li>
-    <li><a href="https://github.com/codn/adminpanel/wiki/include-Adminpanel::Instagram">Instagram API</a></li>
-  </ul>
+<ul>
+  <li><a href="https://github.com/codn/adminpanel/wiki/include-Google-Analytics">Google Analytics Service</a></li>
+  <li><a href="https://github.com/codn/adminpanel/wiki/include-Adminpanel::Facebook">Facebook Share Link to Wall</a></li>
+  <li><a href="https://github.com/codn/adminpanel/wiki/include-Adminpanel::Twitter">Twitter API</a></li>
+  <li><a href="https://github.com/codn/adminpanel/wiki/include-Adminpanel::Instagram">Instagram API</a></li>
+</ul>
 
-  <h2>
-    <a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing
-  </h2>
+<h2>
+  <a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing
+</h2>
 
-  <ol>
-    <li>Fork it</li>
-    <li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
-    <li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
-    <li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
-    <li>Create new Pull Request</li>
-  </ol>
+<ol>
+  <li>Fork it</li>
+  <li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+  <li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+  <li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+  <li>Create new Pull Request</li>
+</ol>
 
-  <p>Any questions, errors or feature suggestions <a href="https://github.com/codn/adminpanel/issues/new">are welcome in the issues</a></p>
-</section>
-<footer>
-  <p>This project is maintained by <a href="https://github.com/codn">CoDN</a></p>
-  <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-</footer>
+<p>Any questions, errors or feature suggestions <a href="https://github.com/codn/adminpanel/issues/new">are welcome in the issues</a></p>

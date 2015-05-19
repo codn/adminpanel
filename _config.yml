@@ -1,22 +1,26 @@
 encoding: UTF-8
 
+# url:              http://codn.github.io/adminpanel
+url:              http://localhost:4000/adminpanel/
+baseurl: /adminpanel
+
 # Dependencies
 markdown:         redcarpet
 highlighter:      pygments
 
 # Permalinks
-permalink:        pretty
+permalink:        none
 relative_permalinks: true
 
-# Setup
-title:            Adminpanel
-tagline:          Administration panel with nice defaults and flexible customizations, supporting facebook, twitter, instagram and google analytics API, developed with the goal of generating your dynamic site very quickly
+defaults:
+  -
+    scope:
+      path: 'generators'
+    values:
+      layout: 'post'
 
-url:              http://codn.github.io/adminpanel
-baseurl:          /
-
-# Custom vars
-version:          2.1.0
-
-github:
-  repo:           https://github.com/codn/adminpanel
+  -
+    scope:
+      path: 'concerns'
+    values:
+      layout: 'post'
