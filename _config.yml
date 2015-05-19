@@ -21,6 +21,12 @@ defaults:
 
   -
     scope:
-      path: 'concerns'
+      path: 'modules'
+    values:
+      layout: 'post'
+
+  -
+    scope:
+      path: 'sections'
     values:
       layout: 'post'
