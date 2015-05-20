@@ -11,7 +11,11 @@ header ul.features li {
   width: 100%;
 }
 
-header ul.features li::before{
+header ul.features li.active a {
+  color: #281C51;
+}
+
+header ul.features li::before {
   content: url(../images/bullet.png);
 }
 

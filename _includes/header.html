@@ -10,7 +10,7 @@
   <h3>Modules</h3>
   <ul class="features">
     {% for post in site.categories['module'] %}
-      <li>
+      <li class="{% if page.url == post.url %}active{% endif %}">
         <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
       </li>
     {% endfor %}
@@ -19,7 +19,7 @@
   <h3>Generators</h3>
   <ul class="features">
     {% for post in site.categories['generator'] %}
-      <li>
+      <li class="{% if page.url == post.url %}active{% endif %}">
         <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
       </li>
     {% endfor %}
@@ -28,7 +28,7 @@
   <h3>Tasks</h3>
   <ul class="features">
     {% for post in site.categories['task'] %}
-      <li>
+      <li class="{% if page.url == post.url %}active{% endif %}">
         <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
       </li>
     {% endfor %}

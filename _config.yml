@@ -27,6 +27,6 @@ defaults:
 
   -
     scope:
-      path: 'sections'
+      path: 'tasks'
     values:
       layout: 'post'
