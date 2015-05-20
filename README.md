@@ -1,6 +1,6 @@
 # [![CoDN](http://cl.ly/image/130Q0E153d2G/codn180.png)](http://www.codn.mx "CoDN") Adminpanel
 
-Thank you for considering this gem, we are going to use the lastest Rails version of Rails. make sure you can use it before trying this gem out.
+This gem uses use the lastest version of Rails. [Usage Docs](http://codn.github.io/adminpanel).
 
 [![Gem Version](https://badge.fury.io/rb/adminpanel.svg)](http://badge.fury.io/rb/adminpanel)
 [![Build Status](https://travis-ci.org/codn/adminpanel.svg?branch=master)](https://travis-ci.org/codn/adminpanel)
@@ -56,7 +56,7 @@ Make sure you [read the docs](http://codn.github.io/adminpanel), there is the de
 Currently the integrations working are:
 
 * [Google Analytics Service](http://codn.github.io/adminpanel/module/google-analytics.html)
-* [Facebook Share Link to Wall](http://codn.github.io/module/facebook)
+* [Facebook Share Link to Wall](http://codn.github.io/adminpanel/module/facebook)
 * [Twitter API](http://codn.github.io/adminpanel/module/twitter)
 * [Instagram API](http://codn.github.io/adminpanel/module/instagram)
 
