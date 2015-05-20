@@ -21,18 +21,19 @@ Run:
     rails g adminpanel:initialize
     rake db:migrate
 This create and seeds a user to the database (email: 'admin@admin.com', password: 'password').
-
-And mount the gem wherever you like!
-
-    mount Adminpanel::Engine => '/panel'
     
 #### Optional
 
-In you application.rb
+Change the path where adminpanel is mounted
 
-    config.i18n.default_locale = :es # or :en
+    # routes.rb
+    mount Adminpanel::Engine => '/panel'
 
-no other language is currently supported, but pull requests are welcome.
+Change the panel locale
+
+    # application.rb
+    # Adminpanel supported locales :en, :es (pull requests are welcome)
+    config.i18n.default_locale = :es
 
 ## Usage
 
@@ -40,29 +41,23 @@ To create a new resource:
 ```
 rails g adminpanel:resource product name price:float description:wysiwyg
 ```
-check the [Resource Generator wiki.](https://github.com/codn/adminpanel/wiki/Generator-adminpanel:resource) for more information.
+check the [Resource Generator docs](http://codn.github.io/generator/resource) for more information.
 
-Make sure you [read the wiki](https://github.com/codn/adminpanel/wiki), there is the descriptions of every relevant part of the gem.
+Make sure you [read the docs](http://codn.github.io/adminpanel), there is the descriptions of every relevant part of the gem.
 
 ## Dependencies
 
-Please make sure that you have ImageMagick -v 2.13.2 installed before trying to use the gem.
+* Imagemagick
+* Ruby 2.1.0+
+* Rails 4.2+
 
 ## Integrated APIs
 
 Currently the integrations working are:
 
-* [Google Analytics Service](https://github.com/codn/adminpanel/wiki/include-Google-Analytics)
-* [Facebook Share Link to Wall](https://github.com/codn/adminpanel/wiki/include-Adminpanel::Facebook)
-* [Twitter API](https://github.com/codn/adminpanel/wiki/include-Adminpanel::Twitter)
-* [Instagram API](https://github.com/codn/adminpanel/wiki/include-Adminpanel::Instagram)
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+* [Google Analytics Service](http://codn.github.io/adminpanel/module/google-analytics.html)
+* [Facebook Share Link to Wall](http://codn.github.io/module/facebook)
+* [Twitter API](http://codn.github.io/adminpanel/module/twitter)
+* [Instagram API](http://codn.github.io/adminpanel/module/instagram)
 
 Any questions, errors or feature suggestions [are welcome in the issues](https://github.com/codn/adminpanel/issues/new)
