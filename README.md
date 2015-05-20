@@ -41,7 +41,7 @@ To create a new resource:
 ```
 rails g adminpanel:resource product name price:float description:wysiwyg
 ```
-check the [Resource Generator docs](http://codn.github.io/generator/resource) for more information.
+check the [Resource Generator docs](http://codn.github.io/adminpanel/generator/resource) for more information.
 
 Make sure you [read the docs](http://codn.github.io/adminpanel), there is the descriptions of every relevant part of the gem.
 
