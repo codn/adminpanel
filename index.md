@@ -26,17 +26,15 @@ This create and seeds a user to the database (email: 'admin@admin.com', password
 
 The core parts of this documentation are:
 
-* [Creating a New app](https://github.com/codn/adminpanel/wiki/Generator-adminpanel:initialize)
+* [Creating a New app](http://blog.codn.mx/adminpanel/generator/initialize-generator.html)
 
-* [Creating new resources](https://github.com/codn/adminpanel/wiki/Generator-adminpanel:resource)
+* [Creating new resources](http://blog.codn.mx/adminpanel/generator/resource.html)
 
-* [Adding fields to a resource](https://github.com/codn/adminpanel/wiki/Generator-adminpanel:migration)
+* [Adding fields to a resource](http://blog.codn.mx/adminpanel/generator/migration.html)
 
 * [Customizing your resources](https://github.com/codn/adminpanel/wiki/Adminpanel::Base-methods)
 
-* [Preparing your application for production](https://github.com/codn/adminpanel/wiki/Generator-adminpanel:dump)
-
-* [Rake tasks](https://github.com/codn/adminpanel/wiki/Rake-tasks-list-and-descriptions), useful actions.
+* [Preparing your application for production](http://blog.codn.mx/adminpanel/generator/dump.html)
 
 
 ## The available rake tasks are
