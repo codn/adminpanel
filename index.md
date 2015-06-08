@@ -2,7 +2,7 @@
 layout: pages
 title: Home
 ---
-# [![CoDN](http://cl.ly/bYYU/codn.svg)](http://www.codn.mx "CoDN")
+# [![CoDN](http://cl.ly/bZp9/codn.svg)](http://www.codn.mx "CoDN")
 
 ### This gem was created and is mantained by CoDN
 
