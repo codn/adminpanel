@@ -16,7 +16,7 @@ header ul.features li.active a {
 }
 
 header ul.features li::before {
-  content: url(../images/bullet.png);
+  content: url(../images/bullet.svg);
 }
 
 a:hover {
