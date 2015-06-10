@@ -9,6 +9,7 @@ header ul.features {
 
 header ul.features li {
   width: 100%;
+  position: relative;
 }
 
 header ul.features li.active a {
@@ -17,11 +18,12 @@ header ul.features li.active a {
 
 header ul.features li::before {
   content: " ";
-  width: 17px;
+  width: 20px;
   position: absolute;
-  height: 14px;
-  left: -4px;
-  margin-top: 4px;
+  height: 17px;
+  max-height: 17px;
+  left: -22px;
+  top: 2px;
   background-image: url(../images/bullet.svg);
   background-size: cover;
   background-position: center;
