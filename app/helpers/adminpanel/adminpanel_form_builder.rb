@@ -216,14 +216,15 @@ module Adminpanel
       end
 
       def datepickerize_base(method, options)
-        options.reverse_merge! 'value' => Time.now.strftime("%d-%m-%Y")
+        options['data'] ||= {}
+        options['data']['date_format'] ||= 'dd-mm-yyyy'
+        options['data']['date'] ||= Time.now.strftime("%d-%m-%Y")
+        options['value'] = options['data']['date']
+        
         @template.content_tag(
                   :div,
                   class: 'input-append date datepicker datepicker-basic',
-                  data: {
-                    date_format: 'dd-mm-yyyy',
-                    date: options['value']
-                  }
+                  data: options['data']
                 ) do
           text_field_original(method, options) +
           (
