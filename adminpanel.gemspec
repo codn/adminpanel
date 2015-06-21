@@ -40,8 +40,8 @@ Gem::Specification.new do |spec|
   # Asset dependencies
   spec.add_runtime_dependency 'coffee-rails',       '~> 4.1.0', '>= 4.1.0'
   spec.add_runtime_dependency 'font-awesome-rails', '~> 4.2',   '>= 4.2.0'
-  spec.add_runtime_dependency 'jquery-rails',       '>= 4.0.4'
-  spec.add_runtime_dependency 'jquery-ui-rails',    '5.0.3'
+  spec.add_runtime_dependency 'jquery-rails',       '~> 4.0.4', '>= 4.0.4'
+  spec.add_runtime_dependency 'jquery-ui-rails',    '~> 5.0.5', '>= 5.0.5'
   spec.add_runtime_dependency 'sass-rails',         '~> 5.0.0', '>= 5.0.0'
   spec.add_runtime_dependency 'turbolinks',         '~> 2.5.0', '>= 2.5.2'
 
