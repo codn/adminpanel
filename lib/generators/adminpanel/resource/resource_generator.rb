@@ -23,6 +23,9 @@ module Adminpanel
         when 'wysiwyg'
           fields_to_delete << attribute
           fields << attribute.split(':').first + ':' + 'text'
+        when 'datepicker'
+          fields_to_delete << attribute
+          fields << attribute.split(':').first + ':' + 'date'
         when 'belongs_to'
           fields_to_delete << attribute
           fields << attribute.split(':').first + ':' + 'select'

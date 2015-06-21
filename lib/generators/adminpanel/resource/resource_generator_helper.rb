@@ -76,7 +76,7 @@ module Adminpanel
       end.join(",\n")
     end
 
-    def get_attribute_hash
+    def form_attributes_hash
       fields.map do |attribute|
         assign_attributes_variables(attribute)
         send(@attr_type + '_form_hash')
@@ -107,8 +107,8 @@ module Adminpanel
       attribute_hash(@attr_field, 'boolean')
     end
 
-    def datepicker_form_hash
-      attribute_hash(@attr_field, 'datepicker')
+    def date_form_hash
+      attribute_hash(@attr_field, 'date')
     end
 
     def file_field_form_hash
@@ -148,7 +148,7 @@ module Adminpanel
     end
 
     def model_type(model_name)
-      "'options' => Proc.new { |object|\n" +
+      "'options' => Proc.new { |#{resource_name.downcase}_instance|\n" +
         indent("Adminpanel::#{model_name}.all\n", 2) +
       '}'
     end

@@ -7,6 +7,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
   setup :prepare_destination
 
   def after_setup
+    # Create setup dynamically to test over it.
     Dir.mkdir Rails.root.join('tmp', 'generators', 'config')
     Dir.mkdir Rails.root.join('tmp', 'generators', 'config', 'initializers')
     File.open Rails.root.join('tmp', 'generators', 'config', 'initializers', 'adminpanel_setup.rb'), 'w' do |f|
@@ -139,7 +140,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       /'quantity' => {/,
       /'type' => 'number_field',/,
       /'date' => {/,
-      /'type' => 'datepicker',/,
+      /'type' => 'date',/,
       /'admin_postfiles' => {/,
       /'type' => 'adminpanel_file_field',/,
       /'category_ids' => {/,

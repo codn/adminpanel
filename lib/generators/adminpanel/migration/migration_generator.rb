@@ -40,7 +40,7 @@ module Adminpanel
         "app/models/adminpanel/#{resource_migrating}.rb",
         after: '      ['
       ) do
-        indent ("\n" + get_attribute_hash + ','), 8
+        indent ("\n" + form_attributes_hash + ','), 8
       end
     end
 
