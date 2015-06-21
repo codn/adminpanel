@@ -30,7 +30,7 @@ module Adminpanel
     end
 
     def class_name
-      "#{lower_name.capitalize}"
+      "#{reference_name.camelize}file"
     end
 
   end

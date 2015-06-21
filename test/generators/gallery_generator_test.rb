@@ -13,20 +13,29 @@ class GalleryGeneratorTest < Rails::Generators::TestCase
       /t.integer :product_id/,
       /create_table :adminpanel_productfiles/
     )
-  end
-
-  def test_the_generation_of_the_productfile
-    run_generator ['Product']
     assert_file(
       'app/models/adminpanel/productfile.rb',
       /mount_uploader :file, ProductfileUploader/
     )
-  end
-
-  def test_the_generation_of_the_productfile_uploader
-    run_generator ['Product']
     assert_file(
       'app/uploaders/adminpanel/productfile_uploader.rb'
+    )
+  end
+
+  def test_the_generation_of_the_snake_cases_migration
+    run_generator ['snake_case']
+    assert_migration(
+      'db/migrate/create_adminpanel_snake_casefiles.rb',
+      /t.integer :snake_case_id/,
+      /create_table :adminpanel_snake_casefiles/
+    )
+    assert_file(
+      'app/models/adminpanel/snake_casefile.rb',
+      /mount_uploader :file, SnakeCasefileUploader/
+    )
+    assert_file(
+      'app/uploaders/adminpanel/snake_casefile_uploader.rb',
+      /class SnakeCase/
     )
   end
 
