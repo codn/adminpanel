@@ -24,15 +24,15 @@ Gem::Specification.new do |spec|
   spec.requirements  << 'imagemagick installed'
 
   spec.add_runtime_dependency 'rails',       '>= 4.2.0', '< 5.0.0'
-  spec.add_runtime_dependency 'mini_magick', '4.1.0'
+  spec.add_runtime_dependency 'mini_magick', '4.2.7'
   spec.add_runtime_dependency 'bcrypt',      '~> 3.1',   '>= 3.1.7'
   spec.add_runtime_dependency 'carrierwave', '~> 0.10',  '>= 0.10.0'
-  spec.add_runtime_dependency 'cancancan',   '~> 1.10.1','>= 1.10.1'
+  spec.add_runtime_dependency 'cancancan',   '~> 1.11.0','>= 1.11.0'
   spec.add_runtime_dependency 'friendly_id', '~> 5.1.0',   '>= 5.1.0'
 
   # Implemented APIs
-  spec.add_runtime_dependency 'google-api-client', '0.8.2'  # Google analytics
-  spec.add_runtime_dependency 'instagram',         '1.1.3'  # Instagram
+  spec.add_runtime_dependency 'google-api-client', '~> 0.8.6'  # Google analytics
+  spec.add_runtime_dependency 'instagram',         '~> 1.1.3'
   spec.add_runtime_dependency 'koala',             '1.10.1' # Facebook
   spec.add_runtime_dependency 'omniauth-twitter',  '1.1.0'  # login Twitter
   spec.add_runtime_dependency 'twitter',           '5.14.0' # Twitter
@@ -40,7 +40,7 @@ Gem::Specification.new do |spec|
   # Asset dependencies
   spec.add_runtime_dependency 'coffee-rails',       '~> 4.1.0', '>= 4.1.0'
   spec.add_runtime_dependency 'font-awesome-rails', '~> 4.2',   '>= 4.2.0'
-  spec.add_runtime_dependency 'jquery-rails',       '4.0.3'
+  spec.add_runtime_dependency 'jquery-rails',       '>= 4.0.4'
   spec.add_runtime_dependency 'jquery-ui-rails',    '5.0.3'
   spec.add_runtime_dependency 'sass-rails',         '~> 5.0.0', '>= 5.0.0'
   spec.add_runtime_dependency 'turbolinks',         '~> 2.5.0', '>= 2.5.2'
