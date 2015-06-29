@@ -65,9 +65,7 @@ module Adminpanel
           li_tags.html_safe
         end
       when 'file_field'
-        content_tag :ul do
-          image_tag(object.send("#{attribute}_url", :thumb))
-        end
+        render partial: "adminpanel/shared/image_modal", locals: { object: object, attribute: attribute }
       when 'boolean'
         if object.send(attribute)
           I18n.t('action.is_true')
