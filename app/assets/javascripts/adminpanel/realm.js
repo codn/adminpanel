@@ -8,8 +8,6 @@ var ready = function(){
 
   // show the overview boxes on the dashboard once they are loaded
   $('.overview_boxes .box_row').css('display', 'inline-block');
-  $(".knob").knob();
-
 
   // init tooltips on .tips class elements, text for the tooltip is in the data-title attribute on the element itself
   // $('.tip').tooltip();
