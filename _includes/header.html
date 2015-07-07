@@ -7,6 +7,15 @@
 
   <p class="view"><a href="https://github.com/codn/adminpanel" target="_blank">View the Project on GitHub <small>codn/adminpanel</small></a></p>
 
+  <h3>Special Behavior</h3>
+  <ul class="features">
+    {% for post in site.categories['behaviors'] %}
+      <li class="{% if page.url == post.url %}active{% endif %}">
+        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+
   <h3>Modules</h3>
   <ul class="features">
     {% for post in site.categories['module'] %}

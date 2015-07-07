@@ -30,9 +30,7 @@ The core parts of this documentation are:
 
 * [Creating new resources](http://blog.codn.mx/adminpanel/generator/resource.html)
 
-* [Adding fields to a resource](http://blog.codn.mx/adminpanel/generator/migration.html)
-
-* [Customizing your resources](https://github.com/codn/adminpanel/wiki/Adminpanel::Base-methods)
+* [Customizing your resources]({{site.baseurl}}{% post_url behaviors/2015-07-07-adminpanel %})
 
 * [Preparing your application for production](http://blog.codn.mx/adminpanel/generator/dump.html)
 
