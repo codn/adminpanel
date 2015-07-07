@@ -9,7 +9,7 @@
 
   <h3>Special Behavior</h3>
   <ul class="features">
-    {% for post in site.categories['behaviors'] %}
+    {% for post in site.categories['behavior'] %}
       <li class="{% if page.url == post.url %}active{% endif %}">
         <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
       </li>
