@@ -30,3 +30,9 @@ defaults:
       path: 'tasks'
     values:
       layout: 'post'
+
+  -
+    scope:
+      path: 'behaviors'
+    values:
+      layout: 'post'
