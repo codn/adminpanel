@@ -18,5 +18,9 @@ module Adminpanel
       "dashboard"
     end
 
+    def self.has_route?(path)
+      true
+    end
+
   end
 end
