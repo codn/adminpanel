@@ -35,14 +35,10 @@ class SharedPagesHelperTest < ActionView::TestCase
   def test_string_in_field_value
     test_object = adminpanel_test_objects(:first)
     attribute = 'name'
-    properties = {
-      'type' => 'text_field',
-      'label' => 'name'
-    }
     assert_equal(
       'John Doe',
       field_value(
-        properties,
+        'text_field',
         attribute,
         test_object
       ),
@@ -53,14 +49,10 @@ class SharedPagesHelperTest < ActionView::TestCase
   def test_boolean_in_field_value
     test_object = adminpanel_test_objects(:first)
     attribute = 'boolean'
-    properties = {
-      'type' => 'boolean',
-      'label' => 'boolean'
-    }
     assert_equal(
       I18n.t('action.is_true'),
       field_value(
-        properties,
+        'boolean',
         attribute,
         test_object
       ),
@@ -72,17 +64,10 @@ class SharedPagesHelperTest < ActionView::TestCase
     @model = Adminpanel::Salesman # simulating salesman controller
     test_object = adminpanel_salesmen(:one)
     attribute = 'product_id'
-    properties = {
-      'type' => 'select',
-      'label' => 'product',
-      'model' => Proc.new { |object|
-        Adminpanel::Product.all
-      }
-    }
     assert_equal(
       'Product saved',
       field_value(
-        properties,
+        'select',
         attribute,
         test_object
       )
@@ -92,13 +77,6 @@ class SharedPagesHelperTest < ActionView::TestCase
   def test_has_many_in_field_value
     test_object = adminpanel_test_objects(:first)
     attribute = 'category_ids'
-    properties = {
-      'type' => 'checkbox',
-      'label' => 'checkbox label',
-      'options' => Proc.new { |object|
-        Adminpanel::Category.all
-      },
-    }
     assert_equal(
       content_tag(:ul, nil) do
         content_tag(:li, nil, class: 'priority-low') do
@@ -109,7 +87,7 @@ class SharedPagesHelperTest < ActionView::TestCase
         end
       end,
       field_value(
-        properties,
+        'checkbox',
         attribute,
         test_object
       ),
@@ -120,17 +98,10 @@ class SharedPagesHelperTest < ActionView::TestCase
   def test_enum_in_field_value
     test_object = adminpanel_permissions(:publish)
     attribute = 'action'
-    properties = {
-      'type' => 'enum_field',
-      'label' => 'hasmany',
-      'options' => Proc.new { |object|
-        Adminpanel::Category.all
-      },
-    }
     assert_equal(
       'Publicar en Redes Sociales',
       field_value(
-        properties,
+        'enum_field',
         attribute,
         test_object
       ),
@@ -141,25 +112,33 @@ class SharedPagesHelperTest < ActionView::TestCase
   def test_file_field_in_field_value
     test_object = adminpanel_galleries(:one)
     attribute = 'file'
-    properties = {
-      'type' => 'file_field',
-      'label' => 'file'
-    }
     assert_equal(
-      content_tag(:ul) do
+      test_object[attribute],
+      field_value(
+        'file_field',
+        attribute,
+        test_object
+      )
+    )
+  end
+
+  def test_image_field_in_field_value
+    test_object = adminpanel_galleries(:one)
+    attribute = 'file'
+    assert_equal(
+      content_tag(:ul) {
         image_tag(
           test_object.send(
             "#{attribute}_url",
             :thumb
           )
         )
-      end,
+      },
       field_value(
-        properties,
+        'image_field',
         attribute,
         test_object
-      ),
-      'regex didn\'t matched :('
+      )
     )
   end
 

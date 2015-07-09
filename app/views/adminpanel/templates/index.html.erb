@@ -44,9 +44,9 @@
                   <% end %>
                   <% @model.display_attributes('index').each do |fields| %>
                     <% fields.each do |attribute, properties| %>
-                    <td>
-                      <%= field_value(properties, attribute, member) %>
-                    </td>
+                      <td>
+                        <%= field_value(properties['type'], attribute, member) %><!-- SharedPagesHelper -->
+                      </td>
                     <% end %>
                   <% end %>
                   <td>
