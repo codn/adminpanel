@@ -207,7 +207,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
   def test_generating_with_single_attachment_file
     run_generator %w(
       monkey
-      avatar:file
+      avatar:image
       user:belongs_to
     )
     assert_file(
@@ -215,7 +215,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       /def name/,
       /mount_uploader :avatar, MonkeyAvatarUploader/,
       /'avatar' => {/,
-      /'type' => 'file_field'/
+      /'type' => 'image_field'/
     )
     assert_file(
       'app/uploaders/adminpanel/monkey_avatar_uploader.rb',
