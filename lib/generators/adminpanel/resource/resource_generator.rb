@@ -17,26 +17,21 @@ module Adminpanel
       banner: 'field[:type][:index] field[:type][:index]'
 
     def change_fields_aliases
-      fields_to_delete = []
+      attrs_to_delete = []
       fields.each do |attribute|
         case attribute.split(':').second
         when 'wysiwyg'
-          fields_to_delete << attribute
+          attrs_to_delete << attribute
           fields << attribute.split(':').first + ':' + 'text'
         when 'datepicker'
-          fields_to_delete << attribute
+          attrs_to_delete << attribute
           fields << attribute.split(':').first + ':' + 'date'
-        when 'belongs_to'
-          fields_to_delete << attribute
-          fields << attribute.split(':').first + ':' + 'select'
         when 'has_many'
-          fields_to_delete << attribute
+          attrs_to_delete << attribute
           fields << attribute.split(':').first + ':' + 'checkbox'
         end
       end
-      fields_to_delete.each do |field|
-        fields.delete(field)
-      end
+      attrs_to_delete.each { |f| fields.delete(f) }
     end
 
     def generate_model
@@ -51,17 +46,18 @@ module Adminpanel
 
     def generate_migration
       parameters = fields.dup
-      parameters.delete_if do |pair|
-        pair.split(':').second == 'has_many'
-      end
+      parameters.delete_if { |pair| pair.split(':').second == 'checkbox' }
+      attrs_to_delete = []
       parameters.each do |attribute|
         case attribute.split(':').second
-        when 'file'
-          parameters.delete(attribute)
+        when 'file', 'image'
+          attrs_to_delete << attribute
           parameters << attribute.split(':').first + ':' + 'string'
         end
       end
+      attrs_to_delete.each { |a| parameters.delete(a) }
       parameters << 'created_at:datetime' << 'updated_at:datetime'
+
       invoke :migration, ["create_adminpanel_#{pluralized_name}", parameters]
     end
 
@@ -75,7 +71,7 @@ module Adminpanel
       fields.each do |attribute|
         assign_attributes_variables(attribute)
         case @attr_type
-        when 'file'
+        when 'file', 'image'
           template '../../gallery/templates/uploader.rb', "app/uploaders/adminpanel/#{class_name.underscore}_uploader.rb"
         end
       end

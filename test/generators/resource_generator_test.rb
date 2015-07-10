@@ -94,6 +94,23 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
     )
   end
 
+  def test_multiple_files
+    run_generator %w(
+      fily_resource
+      pdf1:file
+      pdf2:file
+      pdf3:file
+      img1:image
+    )
+    assert_file(
+      'app/models/adminpanel/fily_resource.rb',
+      /'pdf1' => {/,
+      /'pdf2' => {/,
+      /'pdf3' => {/,
+      /'type' => 'file_field'/,
+    )
+  end
+
   def test_model_generation
     run_generator %w(
       post
@@ -115,7 +132,8 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       description:wysiwyg
       number:float
       flag:boolean
-      avatar:file
+      avatar:image
+      user:belongs_to
       quantity:integer
       date:datepicker
       categories:has_many
@@ -136,10 +154,12 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       /'flag' => {/,
       /'type' => 'boolean',/,
       /'avatar' => {/,
-      /'type' => 'file_field',/,
+      /'type' => 'image_field',/,
       /'quantity' => {/,
       /'type' => 'number_field',/,
       /'date' => {/,
+      /'user_id' => {/,
+      /Adminpanel::User.all/,
       /'type' => 'date',/,
       /'admin_postfiles' => {/,
       /'type' => 'adminpanel_file_field',/,
@@ -188,6 +208,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
     run_generator %w(
       monkey
       avatar:file
+      user:belongs_to
     )
     assert_file(
       'app/models/adminpanel/monkey.rb',
@@ -199,7 +220,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
     assert_file(
       'app/uploaders/adminpanel/monkey_avatar_uploader.rb',
       /class MonkeyAvatarUploader </
-      )
+    )
   end
 
   def test_that_runs_without_errors
