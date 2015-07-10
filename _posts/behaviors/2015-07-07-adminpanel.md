@@ -22,28 +22,29 @@ in the example above, `'name'` is the database field, `'type'` is the form type,
 ### types supported
 * `'type' => 'text_field'`
 * `'type' => 'adminpanel_file_field'` works for [adminpanel galleries](https://github.com/codn/adminpanel/wiki/Generator-adminpanel:gallery)
-* `'type' => 'file_field'` Used for single image input
-* `'type' => 'non_image_file_field'` Used for single file inputs like pdfs or documents.
+* `'type' => 'file_field'` Used for single file input
+* `'type' => 'image_field'` Used for single image input
+* `'type' => 'text_area'`
 * `'type' => 'wysiwyg_field'`
 * `'type' => 'boolean'`
 * `'type' => 'number_field'`
 * `'type' => 'password_field'`
-* `'type' => 'text_area'`
 * `'type' => 'date'`
 * `'type' => 'enum_field'`
-* `'type' => 'resource_select'` Shows all your resources of the setup and lets you choose one
+* `'type' => 'resource_select'` Shows all your resources in `Adminpanel::displayable_resources` and lets you choose one.
 * `'type" => 'select', "options" => Proc.new { |object| Adminpanel::Model.scope }`
-* `'type' => 'checkbox', "options" => Proc.new { |object| object.custom_scope }` # you may use the object available to create the scope.
+* `'type' => 'checkbox', "options" => Proc.new { |object| object.custom_scope }` you may use the object available to create the scope.
 
 ### additional keys and values supported
 *  `'show' => 'false'` If you want an attribute that isn't going to be displayed in index and show.
 *  `'show' => 'index'` If you want an attribute to be displayed in index only.
 *  `'show' => 'show'` If you want an attribute to be displayed in show only.
-*  `'remote_resource' => false` This resource isn't going to be created in relations forms, valid when `'type'` is `select` or `checkbox`
+*  `'remote_resource' => false` This resource it's going to be created only through model/new page, valid when `'type'` is `select` or `checkbox`
 *  `'max-files' => 15` This is the maximum number of attachments that `adminpanel/thismodelfile.rb` is going to create.
 
 # def self.routes_options
-This method should return a hash with params for the `resources` method in the `routes`, for example
+This method should return a hash with params for the `resources` method in the `routes`, for example, this can
+be used to don't show some links or to change the path of the resource.
 
 `{ except:[:destroy, :new], path:'super-resource' } `
 
