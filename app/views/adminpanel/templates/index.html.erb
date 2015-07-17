@@ -27,7 +27,7 @@
             </tr>
           </thead><!-- Ends model attributes -->
 
-          <tbody id="<%= table_type(@model) %>">
+          <tbody id="<%= table_type(@model) %>" data-no-transition-cache>
             <% @collection = @collection.ordered if table_type(@model) == 'sortable' %>
             <% @collection.each do |member| %>
               <% cache ["#{member.class}-member", member] do %>
