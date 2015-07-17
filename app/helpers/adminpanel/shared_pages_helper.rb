@@ -14,7 +14,7 @@ module Adminpanel
     end
 
     def pluralize_model(class_name)
-      "#{demodulize_class(class_name).pluralize}"
+      demodulize_class(class_name).pluralize
     end
 
     def relationship_ids(class_string)
