@@ -15,7 +15,7 @@ module Adminpanel
     end
 
     test "deleting an image should destroy old unassigned images of the same type" do
-      unassigned_image = adminpanel_galleryfiles(:unassigned)
+      unassigned_image = adminpanel_images(:unassigned)
       assert_not unassigned_image.nil?
       assert_equal 1, Adminpanel::Galleryfile.where(model: nil, model_type: nil).count
 
