@@ -1,7 +1,0 @@
-first_product_photo:
-  file: dog-fries.png
-  type: Adminpanel::Photo
-  position: 1
-  model: first(Adminpanel::Product)
-  created_at: <%= Date.today %>
-  updated_at: <%= Date.today %>
