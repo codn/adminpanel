@@ -20,7 +20,7 @@ module Adminpanel
 
     # THE THUMB VERSION IS NECESSARY BY ADMINPANEL, DON'T REMOVE IT!!!!
     version :thumb do
-      process resize_to_limit: [80, 80]
+      process resize_to_fill: [120, 120]
     end
 
     # however, you can create your own versions:

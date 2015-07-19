@@ -1,0 +1,31 @@
+require 'test_helper'
+
+module Adminpanel
+  class ImageTest < ActiveSupport::TestCase
+    test "creating an image should store the size and content_type" do
+      uploader = Adminpanel::PhotoUploader.new(model: Adminpanel::Galleryfile)
+
+      image = Adminpanel::Galleryfile.new(file: uploader)
+
+      image.file.store! Rack::Test::UploadedFile.new(Rails.root.join('app/assets/images/hipster.jpg'), 'image/jpg')
+
+      assert image.save
+      assert_equal image.content_type, 'image/jpg'
+      assert_equal image.file_size.to_i, 52196
+    end
+
+    test "deleting an image should destroy old unassigned images of the same type" do
+      unassigned_image = adminpanel_galleryfiles(:unassigned)
+      assert_not unassigned_image.nil?
+      assert_equal 1, Adminpanel::Galleryfile.where(model: nil, model_type: nil).count
+
+      image = Adminpanel::Galleryfile.create
+
+      # 1 because the variable image is saved and the fixture should be deleted
+      assert_equal 1, Adminpanel::Galleryfile.where(model: nil, model_type: nil).count
+      assert_raise ActiveRecord::RecordNotFound do
+        unassigned_image.reload
+      end
+    end
+  end
+end

@@ -12,14 +12,6 @@ module Adminpanel
       template 'uploader.rb', "app/uploaders/adminpanel/#{lower_name}_uploader.rb"
     end
 
-    def generate_migration
-      migration_template(
-        'gallery_migration.rb',
-        "db/migrate/create_adminpanel_#{lower_name.pluralize}.rb"
-      )
-      puts "don't forget to add the form_field, the relationship and #{lower_name}s_attributes it to the permited params"
-    end
-
   private
     def reference_name
       name.singularize.downcase

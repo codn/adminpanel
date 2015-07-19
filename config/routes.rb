@@ -64,6 +64,11 @@ Adminpanel::Engine.routes.draw do
               send(request_type, args['path'].to_sym, args['args'])
             end
           end
+
+          if has_gallery?(resource)
+            post :add_to_gallery, to: "#{resource}#add_to_gallery", as: 'add_to_gallery', path: I18n.t('routes.add_to_gallery')
+            delete :remove_image, to: "#{resource}#remove_image", as: 'remove_image', path: I18n.t('routes.remove_image')
+          end
         end
       end
     end

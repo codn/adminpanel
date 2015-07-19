@@ -1,8 +1,6 @@
 module Adminpanel
-  class Sectionfile < ActiveRecord::Base
+  class Sectionfile < Image
     include Adminpanel::Base
-
-    validates_presence_of :file
 
     mount_uploader :file, Adminpanel::SectionUploader
   end

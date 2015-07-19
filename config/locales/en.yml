@@ -120,5 +120,15 @@ en:
     show: 'show'
     signout: 'signout'
     signin: 'signin'
+    add_to_gallery: 'add-to-galeria'
+    remove_image: 'delete-image'
   breadcrumb:
     index: 'Index'
+  dropzone:
+    drag_here: 'Drag here the files you wish to upload'
+    choose_files: 'Choose your files manually'
+    size_limit: 'File size limit: %{file_size}'
+    or: 'OR'
+    remove_file: 'Remove file'
+    cancel_upload: 'Cancela Upload'
+    cancel_upload_confirmation: 'Do you wish to cancel the upload?'

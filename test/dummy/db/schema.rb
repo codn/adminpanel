@@ -26,30 +26,22 @@ ActiveRecord::Schema.define do
       t.datetime :created_at,      null: false
       t.datetime :updated_at,      null: false
   end
-  create_table :adminpanel_galleryfiles do |t|
-      t.string   :file
-      t.integer  :position
-      t.integer  :gallery_id
-      t.datetime :created_at,      null: false
-      t.datetime :updated_at,      null: false
-  end
-  create_table :adminpanel_sectionfiles do |t|
-      t.string   :file
-      t.string   :section_id
-      t.datetime :created_at,      null: false
-      t.datetime :updated_at,      null: false
+  create_table :adminpanel_images do |t|
+    t.string   :file
+    t.integer  :model_id
+    t.string   :model_type
+    t.string   :type
+    t.string   :file_size
+    t.string   :content_type
+    t.integer  :position
+    t.datetime :created_at,        null: false
+    t.datetime :updated_at,        null: false
   end
   create_table :adminpanel_products do |t|
       t.string   :price
       t.string   :name
       t.text     :description
       t.string   :slug
-      t.datetime :created_at,      null: false
-      t.datetime :updated_at,      null: false
-  end
-  create_table :adminpanel_photos do |t|
-      t.string   :file
-      t.text     :product_id
       t.datetime :created_at,      null: false
       t.datetime :updated_at,      null: false
   end

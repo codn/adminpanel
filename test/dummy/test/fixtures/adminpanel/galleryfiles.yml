@@ -1,42 +1,53 @@
 first:
-  file: <%= File.open(Rails.root.join("app/assets/images/hipster.jpg")) %>
-  gallery: one
+  file: dog-fries.png
+  type: Adminpanel::Galleryfile
   position: 1
+  model: one(Adminpanel::Gallery)
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
 second:
-  file: <%= File.open(Rails.root.join("app/assets/images/hipster.jpg")) %>
-  gallery: one
+  file: dog-fries.png
+  type: Adminpanel::Galleryfile
+  model: one(Adminpanel::Gallery)
   position: 2
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
 third:
-  file: <%= File.open(Rails.root.join("app/assets/images/hipster.jpg")) %>
-  gallery: one
+  file: dog-fries.png
+  type: Adminpanel::Galleryfile
+  model: one(Adminpanel::Gallery)
   position: 3
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
 fourth:
-  file: <%= File.open(Rails.root.join("app/assets/images/hipster.jpg")) %>
-  gallery: one
+  file: dog-fries.png
+  type: Adminpanel::Galleryfile
+  model: one(Adminpanel::Gallery)
   position: 4
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
 fifth:
-  file: <%= File.open(Rails.root.join("app/assets/images/hipster.jpg")) %>
-  gallery: one
+  file: dog-fries.png
+  type: Adminpanel::Galleryfile
+  model: one(Adminpanel::Gallery)
   position: 5
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
 first_2:
-  file: <%= File.open(Rails.root.join("app/assets/images/hipster.jpg")) %>
-  gallery: two
+  file: dog-fries.png
+  type: Adminpanel::Galleryfile
+  model: two(Adminpanel::Gallery)
   position: 1
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
 second_2:
-  file: <%= File.open(Rails.root.join("app/assets/images/hipster.jpg")) %>
-  gallery: two
+  file: dog-fries.png
+  type: Adminpanel::Galleryfile
+  model: two(Adminpanel::Gallery)
   position: 2
   created_at: <%= Date.today %>
   updated_at: <%= Date.today %>
+unassigned:
+  type: Adminpanel::Galleryfile
+  created_at: <%= Date.yesterday %>
+  updated_at: <%= Date.yesterday %>

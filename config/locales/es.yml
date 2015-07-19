@@ -128,6 +128,8 @@ es:
     show: 'ver'
     signout: 'cerrar-sesion'
     signin: 'iniciar-sesion'
+    add_to_gallery: 'agregar-a-galeria'
+    remove_image: 'eliminar-image'
   analytics:
     day: 'Hoy'
     days_28: 'el mes'
@@ -183,3 +185,11 @@ es:
     saved_token: 'Log in con Twitter exitoso, ya puedes publicar con la cuenta de Twitter'
   breadcrumb:
     index: 'Inicio'
+  dropzone:
+    drag_here: 'Arrastre aqui los archivos que desea cargar'
+    choose_files: 'Elija sus archivos manualmente'
+    size_limit: 'Tamaño máximo de archivo: %{file_size}'
+    or: 'O'
+    remove_file: 'Eliminar'
+    cancel_upload: 'Cancelar'
+    cancel_upload_confirmation: 'Deseas cancelar la carga?'

@@ -3,10 +3,12 @@ module Adminpanel
     extend ActiveSupport::Concern
 
     module ClassMethods
+    FILE_FIELD_NAME = 'adminpanel_file_field'
+
 
       # Adminpanel API
       def mount_images(relation)
-        has_many relation, dependent: :destroy
+        has_many relation, dependent: :destroy, as: :model
         accepts_nested_attributes_for relation, allow_destroy: true
       end
 
@@ -61,7 +63,7 @@ module Adminpanel
               properties['show'] == 'true' ||
               (
                 properties['show'] == type &&
-                properties['type'] != 'adminpanel_file_field' #file fields get only displayed in form
+                properties['type'] != FILE_FIELD_NAME #file fields get only displayed in form
               )
             )
               display_attributes << attribute
@@ -76,7 +78,7 @@ module Adminpanel
       def has_gallery?
         form_attributes.each do |fields|
           fields.each do |attribute, properties|
-            if properties['type'] == 'adminpanel_file_field'
+            if properties['type'] == FILE_FIELD_NAME
               return true
             end
           end
@@ -84,12 +86,26 @@ module Adminpanel
         return false
       end
 
+      #Returns an array of all the adminpanel_field_field fields found in form_attributes
+      def galleries
+        galleries = {}
+        form_attributes.each do |fields|
+          fields.each do |attribute, properties|
+            if properties['type'] == FILE_FIELD_NAME
+              galleries["#{attribute.singularize}"] = "adminpanel/#{attribute}".classify.constantize.to_s
+            end
+          end
+        end
+
+        return galleries
+      end
+
       # returns the attribute that should be namespaced to be the class
       # ex: returns 'productfiles', so class is Adminpanel::Productfile
       def gallery_relationship
         form_attributes.each do |fields|
           fields.each do |attribute, properties|
-            if properties['type'] == 'adminpanel_file_field'
+            if properties['type'] == FILE_FIELD_NAME
               return attribute
             end
           end
@@ -155,6 +171,10 @@ module Adminpanel
         if has_gallery?
           gallery_class.is_sortable?
         end
+      end
+
+      def to_controller_name
+        to_s.demodulize.underscore.pluralize
       end
 
       private
