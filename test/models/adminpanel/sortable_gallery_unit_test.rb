@@ -106,13 +106,14 @@ module Adminpanel
         # fgo => first gallery object
         # sgo => second gallery object (since there are 2 galleries according to fixtures)
         # p1 => means original position 1 and so on...
-        @fgo_p1 = adminpanel_galleryfiles(:first)
-        @fgo_p2 = adminpanel_galleryfiles(:second)
-        @fgo_p3 = adminpanel_galleryfiles(:third)
-        @fgo_p4 = adminpanel_galleryfiles(:fourth)
-        @fgo_p5 = adminpanel_galleryfiles(:fifth)
-        @sgo_p1 = adminpanel_galleryfiles(:first_2)
-        @sgo_p2 = adminpanel_galleryfiles(:second_2)
+
+        @fgo_p1 = adminpanel_images(:first)
+        @fgo_p2 = adminpanel_images(:second)
+        @fgo_p3 = adminpanel_images(:third)
+        @fgo_p4 = adminpanel_images(:fourth)
+        @fgo_p5 = adminpanel_images(:fifth)
+        @sgo_p1 = adminpanel_images(:first_2)
+        @sgo_p2 = adminpanel_images(:second_2)
       end
   end
 end
