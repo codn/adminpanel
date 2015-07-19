@@ -1,7 +1,6 @@
 require 'test_helper'
 module Adminpanel
   class SortableGalleryUnitTest < ActiveSupport::TestCase
-
     setup :instance_objects
 
     def test_has_and_ordered_scope
