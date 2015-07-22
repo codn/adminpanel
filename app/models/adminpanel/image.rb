@@ -6,8 +6,13 @@ module Adminpanel
 
     before_save :store_file_size_and_content_type
     after_save :delete_old_unused_images
-
+    before_destroy :remove_attachment
+  
     private
+      def remove_attachment
+        self.remove_file!
+      end
+    
       def store_file_size_and_content_type
         if file.present? && file_changed?
           self.content_type = file.file.content_type
