@@ -107,6 +107,10 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       /'pdf1' => {/,
       /'pdf2' => {/,
       /'pdf3' => {/,
+      /mount_uploader :pdf1, FilyResourcePdf1Uploader/,
+      /mount_uploader :pdf2, FilyResourcePdf2Uploader/,
+      /mount_uploader :pdf3, FilyResourcePdf3Uploader/,
+      /mount_uploader :img1, FilyResourceImg1Uploader/,
       /'type' => 'file_field'/,
     )
   end

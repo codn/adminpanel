@@ -166,7 +166,8 @@ module Adminpanel
         assign_attributes_variables(attribute)
         if( @attr_type == 'belongs_to' ||
             @attr_type == 'checkbox' ||
-            has_gallery? )
+            @attr_type == 'file' ||
+            has_gallery?)
           return true
         end
       end
@@ -182,8 +183,8 @@ module Adminpanel
           association = "#{association}#{belongs_to_association(@attr_field)}"
         when 'checkbox'
           association = "#{association}#{checkbox_association(@attr_field)}"
-        when 'image'
-          association = "#{association}#{image_association(@attr_field)}"
+        when 'image', 'file'
+          association = "#{association}#{file_association(@attr_field)}"
         end
       end
 
@@ -205,7 +206,7 @@ module Adminpanel
       "dependent: :destroy\n\t\t"
     end
 
-    def image_association(field)
+    def file_association(field)
       "mount_uploader :#{field}, #{class_name}Uploader\n\t\t"
     end
 
