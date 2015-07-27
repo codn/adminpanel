@@ -5,9 +5,6 @@ var ready = function(){
     $('.accordion-heading .accordion-toggle').not($(this)[0], '.accordion-heading .accordion-toggle.collapse').addClass('collapsed');
   });
 
-
-  // show the overview boxes on the dashboard once they are loaded
-  $('.overview_boxes .box_row').css('display', 'inline-block');
   $(".knob").knob();
 
 

@@ -122,3 +122,5 @@ en:
     signin: 'signin'
   breadcrumb:
     index: 'Index'
+  search:
+    placeholder: Search
