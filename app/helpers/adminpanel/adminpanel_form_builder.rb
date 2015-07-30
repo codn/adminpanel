@@ -220,7 +220,7 @@ module Adminpanel
         options['data']['date_format'] ||= 'dd-mm-yyyy'
         options['data']['date'] ||= Time.now.strftime("%d-%m-%Y")
         options['value'] = options['data']['date']
-        
+
         @template.content_tag(
                   :div,
                   class: 'input-append date datepicker datepicker-basic',

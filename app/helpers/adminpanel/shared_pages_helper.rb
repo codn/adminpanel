@@ -92,7 +92,8 @@ module Adminpanel
         :file_field,
         :non_image_file_field,
         :checkbox,
-        :select
+        :select,
+        :map_field
       ].include? field_name
     end
 
