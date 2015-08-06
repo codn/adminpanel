@@ -94,7 +94,7 @@ module Adminpanel
     def enum_field(method, *args)
       select(
         method,
-        self.object.class.send(method.pluralize).map{|option, value|
+        self.object.class.send(method.to_s.pluralize).map{|option, value|
           [I18n.t("#{self.object.class.name.demodulize.downcase}.#{option}"), option]
         },
         *args

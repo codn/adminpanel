@@ -11,7 +11,7 @@ module Adminpanel
       "#{resource_name}_#{@attr_field}".camelize
     end
 
-    def select_field(resource)
+    def belongs_to_field(resource)
       "#{resource.singularize.downcase}_id"
     end
 
@@ -35,7 +35,7 @@ module Adminpanel
     def is_a_resource?
       fields.each do |attribute|
         assign_attributes_variables(attribute)
-        if @attr_type != 'select'
+        if @attr_type != 'belongs_to'
           return true
         end
       end
@@ -66,8 +66,8 @@ module Adminpanel
       fields.map do |attribute|
         assign_attributes_variables(attribute)
         case @attr_type
-        when 'select'
-          ":#{select_field(@attr_field)}"
+        when 'belongs_to'
+          ":#{belongs_to_field(@attr_field)}"
         when 'checkbox'
           "{ #{checkbox_field(@attr_field)}: [] }"
         else
@@ -103,6 +103,10 @@ module Adminpanel
       attribute_hash(@attr_field, 'file_field')
     end
 
+    def image_form_hash
+      attribute_hash(@attr_field, 'image_field')
+    end
+
     def boolean_form_hash
       attribute_hash(@attr_field, 'boolean')
     end
@@ -115,12 +119,16 @@ module Adminpanel
       attribute_hash(gallery_name.pluralize, 'adminpanel_file_field')
     end
 
-    def select_form_hash
-      attribute_hash(select_field(@attr_field), 'select', resource_class_name(@attr_field))
+    def belongs_to_form_hash
+      attribute_hash(belongs_to_field(@attr_field), 'select', resource_class_name(@attr_field))
     end
 
     def checkbox_form_hash
-      attribute_hash(checkbox_field(resource_class_name(@attr_field.downcase.singularize + 's')), 'checkbox', @attr_field.capitalize.singularize)
+      attribute_hash(
+        checkbox_field(resource_class_name(@attr_field.downcase.singularize + 's')),
+        'checkbox',
+        @attr_field.capitalize.singularize
+      )
     end
 
     def attribute_hash(name, type, model = '')
@@ -156,11 +164,10 @@ module Adminpanel
     def has_associations?
       fields.each do |attribute|
         assign_attributes_variables(attribute)
-        if( @attr_type == 'images' ||
-            @attr_type == 'select' ||
+        if( @attr_type == 'belongs_to' ||
             @attr_type == 'checkbox' ||
             @attr_type == 'file' ||
-            has_gallery? )
+            has_gallery?)
           return true
         end
       end
@@ -172,12 +179,12 @@ module Adminpanel
       fields.each do |attribute|
         assign_attributes_variables(attribute)
         case @attr_type
-        when 'select'
-          association = "#{association}#{select_association(@attr_field)}"
+        when 'belongs_to'
+          association = "#{association}#{belongs_to_association(@attr_field)}"
         when 'checkbox'
           association = "#{association}#{checkbox_association(@attr_field)}"
-        when 'file'
-          association = "#{association}#{file_assocation(@attr_field)}"
+        when 'image', 'file'
+          association = "#{association}#{file_association(@attr_field)}"
         end
       end
 
@@ -188,7 +195,7 @@ module Adminpanel
       association
     end
 
-    def select_association(field)
+    def belongs_to_association(field)
       "belongs_to :#{field.singularize.downcase}\n\t\t"
     end
 
@@ -199,7 +206,7 @@ module Adminpanel
       "dependent: :destroy\n\t\t"
     end
 
-    def file_assocation(field)
+    def file_association(field)
       "mount_uploader :#{field}, #{class_name}Uploader\n\t\t"
     end
 

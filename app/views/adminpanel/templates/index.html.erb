@@ -27,7 +27,7 @@
             </tr>
           </thead><!-- Ends model attributes -->
 
-          <tbody id="<%= table_type(@model) %>">
+          <tbody id="<%= table_type(@model) %>" data-no-transition-cache>
             <% @collection = @collection.ordered if table_type(@model) == 'sortable' %>
             <% @collection.each do |member| %>
               <% cache ["#{member.class}-member", member] do %>
@@ -44,9 +44,9 @@
                   <% end %>
                   <% @model.display_attributes('index').each do |fields| %>
                     <% fields.each do |attribute, properties| %>
-                    <td>
-                      <%= field_value(properties, attribute, member) %>
-                    </td>
+                      <td>
+                        <%= field_value(properties['type'], attribute, member) %><!-- SharedPagesHelper -->
+                      </td>
                     <% end %>
                   <% end %>
                   <td>

@@ -132,3 +132,5 @@ en:
     remove_file: 'Remove file'
     cancel_upload: 'Cancela Upload'
     cancel_upload_confirmation: 'Do you wish to cancel the upload?'
+  search:
+    placeholder: Search

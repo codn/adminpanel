@@ -193,3 +193,5 @@ es:
     remove_file: 'Eliminar'
     cancel_upload: 'Cancelar'
     cancel_upload_confirmation: 'Deseas cancelar la carga?'
+  search:
+    placeholder: Buscar

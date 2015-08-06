@@ -14,7 +14,7 @@ module Adminpanel
     end
 
     def pluralize_model(class_name)
-      "#{demodulize_class(class_name).pluralize}"
+      demodulize_class(class_name).pluralize
     end
 
     def relationship_ids(class_string)
@@ -50,8 +50,8 @@ module Adminpanel
       ).url_for_oauth_code
     end
 
-    def field_value(properties, attribute, object)
-      case properties['type']
+    def field_value(attr_type, attribute, object)
+      case attr_type
       when 'select'
         belong_to_object_name(object, attribute.gsub('_id', ''))
       when 'checkbox'
@@ -65,6 +65,8 @@ module Adminpanel
           li_tags.html_safe
         end
       when 'file_field'
+        object[attribute]
+      when 'image_field'
         content_tag :ul do
           image_tag(object.send("#{attribute}_url", :thumb))
         end
