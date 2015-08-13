@@ -28,13 +28,7 @@ module Adminpanel
         :name,
         :max_files,
         :has_image,
-        {
-          sectionfiles_attributes: [
-            :id,
-            :file,
-            :_destroy
-          ]
-        }
+        sectionfile_ids: []
       )
     end
   end

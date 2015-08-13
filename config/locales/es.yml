@@ -193,5 +193,6 @@ es:
     remove_file: 'Eliminar'
     cancel_upload: 'Cancelar'
     cancel_upload_confirmation: 'Deseas cancelar la carga?'
+    max_files_reached: 'Ha cargado el número máximo de archivos admitidos por esta sección'
   search:
     placeholder: Buscar

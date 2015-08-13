@@ -1,5 +1,5 @@
 <% provide(:page_title, I18n.t('section.edit', title: @section.name)) %>
-<% breadcrumb_add('Secciones', sections_path) %>
+<%asdfasfas breadcrumb_add('Secciones', sections_path) %>
 <% breadcrumb_add(@section.name, section_path(@section)) %>
 <div class="row-fluid">
   <div class = "widget widget-padding span12">
@@ -18,18 +18,7 @@
         <% end %>
 
         <% if @section.has_image %>
-          <%= content_tag :div, class: 'file-collection-container', data: { max: @section.max_files } do %>
-            <%= f.fields_for :sectionfiles do |builder| %>
-              <%= render 'adminpanel/shared/image_fields', f: builder %>
-            <% end -%>
-
-            <% if @section.max_files != 0 && @section.max_files <= @section.sectionfiles.count %>
-              <% visibility = 'hidden' %>
-            <% else %>
-              <% visibility = 'not-hidden' %>
-            <% end %>
-              <%= link_to_add_fields 'Agregar Imagen', f, :sectionfiles, visibility %>
-          <% end %>
+          <%= render 'adminpanel/form/adminpanel_file_field', properties: { label: 'Imágenes', max_files: @section.max_files }, f: f, attribute: 'sectionfiles' %>
         <% end %>
       <% end %>
       <%= f.footer do %>

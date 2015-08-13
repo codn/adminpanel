@@ -132,5 +132,6 @@ en:
     remove_file: 'Remove file'
     cancel_upload: 'Cancela Upload'
     cancel_upload_confirmation: 'Do you wish to cancel the upload?'
+    max_files_reached: 'You can not upload any more files'
   search:
     placeholder: Search

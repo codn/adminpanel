@@ -5,7 +5,7 @@
 
   <div class="controls">
     <div class="zone">
-      <div id='<%= "#{attribute.singularize}_dropzone" %>'>
+      <div id='<%= "#{attribute.singularize}_dropzone" %>' data-max-files="<%= properties['max_files'] %>">
         <i class="fa fa-cloud-upload"></i>
         <div><%= I18n.t('dropzone.drag_here') %></div>
         <span><%= I18n.t('dropzone.or') %></span>
@@ -13,13 +13,13 @@
           <a href="#" class="btn"><%= I18n.t('dropzone.choose_files') %></a>
         </div>
         <p><%= I18n.t('dropzone.size_limit', file_size: '10 MB') %></p>
-        <% f.object.send(attribute).each do |a| %>
+        <% f.object.send(attribute).each do |attrib| %>
           <%= hidden_field_tag "#{f.object.class.to_controller_name.singularize}[#{attribute.singularize}_ids][]",
-                a.id,
+                attrib.id,
                 data: {
-                  file_url: a.file_url(:thumb),
-                  file_size: a.file_size,
-                  file_name: File.basename(a.file_url)
+                  file_url: attrib.file_url(:thumb),
+                  file_size: attrib.file_size,
+                  file_name: File.basename(attrib.file_url)
                 } %>
         <% end %>
       </div>

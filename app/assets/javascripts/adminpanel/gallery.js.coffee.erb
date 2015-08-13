@@ -17,6 +17,9 @@ DropzoneHandler =
         _this.dropzoneContainer = $("##{field}_dropzone")
 
         if _this.dropzoneContainer.length
+          maxfiles = $("##{_this.field}_dropzone").data('max-files')
+          maxfiles = null if typeof maxfiles == 'undefined'
+
           dropzone = new Dropzone(
             "##{_this.field}_dropzone",
             {
@@ -26,8 +29,10 @@ DropzoneHandler =
               headers: { 'X-CSRF-Token':  _this.csrf },
               addRemoveLinks: true,
               dictCancelUpload: "<%= I18n.t('dropzone.cancel_upload') %>",
-              dictCancelUploadConfirmation: "<%= I18n.t('dropzone.cancel_upload_confirmation') %>",
+              dictCancelUploadConfirmation: "<%= I18n.t('dropzone.cancel_upload_confirmation') %>"
               dictRemoveFile: "<%= I18n.t('dropzone.remove_file') %>"
+              dictMaxFilesExceeded: "<%= I18n.t('dropzone.max_files_reached') %>"
+              maxFiles: maxfiles
             }
           )
 
