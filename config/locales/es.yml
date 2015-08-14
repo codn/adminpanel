@@ -122,6 +122,7 @@ es:
     retweet: 'retweet'
     comment: 'comentar'
     publish: 'publicar-a-%{location}'
+    move_to_position: 'mover-posicion'
     facebook_page: 'pagina-en-facebook'
     new: 'nuevo'
     edit: 'editar'
