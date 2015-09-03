@@ -18,7 +18,7 @@ DropzoneHandler =
 
         if _this.dropzoneContainer.length
           maxfiles = $("##{_this.field}_dropzone").data('max-files')
-          maxfiles = null if typeof maxfiles == 'undefined'
+          maxfiles = null if (typeof maxfiles == 'undefined' || maxfiles == '')
 
           dropzone = new Dropzone(
             "##{_this.field}_dropzone",
