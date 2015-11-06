@@ -7,6 +7,7 @@ class EditTest < ViewCase
   teardown :teardown
 
   def test_submitting_with_same_information
+    sleep 0.2
     assert_button("Actualizar #{adminpanel_products(:first).name}")
     click_button("Actualizar #{adminpanel_products(:first).name}")
     assert_content( adminpanel_products(:first).name )
