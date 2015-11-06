@@ -24,10 +24,10 @@ Gem::Specification.new do |spec|
   spec.requirements  << 'imagemagick installed'
 
   spec.add_runtime_dependency 'rails',       '>= 4.2.0', '< 5.0.0'
-  spec.add_runtime_dependency 'mini_magick', '4.2.7'
+  spec.add_runtime_dependency 'mini_magick', '4.3.6'
   spec.add_runtime_dependency 'bcrypt',      '~> 3.1',   '>= 3.1.7'
   spec.add_runtime_dependency 'carrierwave', '~> 0.10',  '>= 0.10.0'
-  spec.add_runtime_dependency 'cancancan',   '~> 1.11.0','>= 1.11.0'
+  spec.add_runtime_dependency 'cancancan',   '~> 1.13.0','>= 1.13.0'
   spec.add_runtime_dependency 'friendly_id', '~> 5.1.0',   '>= 5.1.0'
 
   # Implemented APIs
@@ -53,5 +53,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'minitest-emoji',   '2.0.0'
   spec.add_development_dependency 'minitest-capybara','~> 0.7',   '>= 0.7.1'
   spec.add_development_dependency 'poltergeist',      '~> 1.5',   '>= 1.5.1'
-  spec.add_development_dependency 'sqlite3',          '~> 1.3',   '1.3.10'
+  spec.add_development_dependency 'sqlite3',          '~> 1.3',   '>= 1.3.10'
 end
