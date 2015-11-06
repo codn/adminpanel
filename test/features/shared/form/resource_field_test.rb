@@ -12,7 +12,7 @@ class ResourceFieldTest < ViewCase
 
     assert selector.find('option', text: 'Categoria')
     assert selector.find('option', text: 'Producto')
-    assert selector.find('option', text: 'Google Analytics')
+    assert selector.find('option', text: 'Analytics')
     assert selector.find('option', text: 'Usuario')
     assert selector.find('option', text: 'Rol')
     assert selector.find('option', text: 'Permiso')
