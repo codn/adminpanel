@@ -9,4 +9,4 @@ cache: bundler
 
 env:
   - RAILS=4.2.0
-  - RAILS=4.2.1
+  - RAILS=4.2.4
