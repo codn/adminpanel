@@ -1,15 +1,5 @@
 module Adminpanel
   module AnalyticsHelper
-  def first_fb_value metric
-      total = 0.0
-      # metric.first['values'].each do |value|
-      #   if value['value'] != []
-      #     total = total + value['value'].to_f
-      #   end
-      # end
-      # return total
-      metric.first['values'].last['value'].to_f
-    end
 
     def days_to_substract
       if params[:insight] == 'day'
@@ -20,14 +10,6 @@ module Adminpanel
         28
       else
         0
-      end
-    end
-
-    def divide_metrics metric_1, metric_2
-      if first_fb_value(metric_2) != 0.0
-        return first_fb_value(metric_1) / first_fb_value(metric_2)
-      else
-        return 0
       end
     end
 
@@ -44,6 +26,14 @@ module Adminpanel
 
     def tweet_link(tweet)
       "http://www.twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}"
+    end
+
+    def fb_insights(fb_auth)
+      if fb_auth
+        "#{Koala::Facebook::API.new(fb_auth.value).get_object('me')['link']}insights"
+      else
+        '#'
+      end
     end
 
     def exist_instagram_account?

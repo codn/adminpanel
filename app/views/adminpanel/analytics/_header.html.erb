@@ -4,7 +4,7 @@
   <%= link_to google_analytics_path, class: 'spinner-link' do %>
     <i class="fa fa-google"></i>
   <% end %>
-  <%= link_to fb_analytics_path, class: 'spinner-link' do %>
+  <%= link_to fb_insights(@fb_auth), target: '_blank' do %>
     <i class="fa fa-facebook"></i>
   <% end %>
   <%= link_to twitter_analytics_path, class: 'spinner-link' do %>

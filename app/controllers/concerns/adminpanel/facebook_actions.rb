@@ -56,6 +56,7 @@ module Adminpanel
       @fb_auths_count ||= Auth.find_by_key('facebook')
     end
 
+    # Creates or updates the Facebook Auth token.
     def update_fb_auth(account_selected_name)
       auth = Auth.find_by(key: 'facebook', name: account_selected_name)
       if auth.nil?
@@ -70,6 +71,8 @@ module Adminpanel
       end
     end
 
+    # Extracts the name of the model
+    # @return Name of the model [String]
     def model_name
       @model.name.demodulize.downcase # ex: posts
     end

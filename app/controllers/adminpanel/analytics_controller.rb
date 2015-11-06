@@ -4,7 +4,8 @@ module Adminpanel
     include Adminpanel::Analytics::InstagramAnalytics
 
     skip_before_action :set_resource_collection
-    before_action :check_if_fb_account, only:[:fb]
+
+    before_action :set_fb_token
 
     API_VERSION = 'v3'
     CACHED_API_FILE = "#{Rails.root}/tmp/cache/analytics-#{API_VERSION}.cache"
@@ -81,50 +82,6 @@ module Adminpanel
       end
     end
 
-    def fb
-      authorize! :read, Adminpanel::Analytic
-      if params[:insight].present?
-        period = params[:insight]
-      else
-        period = 'day' #default period
-      end
-      page_graph = Koala::Facebook::API.new(@auth.value)
-      @impressions,
-      @impressions_unique,
-
-      @new_likes,
-      @total_likes,
-
-      @hidden,
-      @hidden_unique,
-
-      @consumptions,
-      @consumptions_unique,
-
-      @views,
-      @views_unique,
-
-      @stories = page_graph.batch do |api|
-        #all information on same request
-        api.get_connections('me', 'insights', metric: 'page_impressions', period: period) #eye
-        api.get_connections('me', 'insights', metric: 'page_impressions_unique', period: period) #eye
-
-        api.get_connections('me', 'insights', metric: 'page_fan_adds') #fb-thumb
-        api.get_connections('me', 'insights', metric: 'page_fans') #fb-thumb
-
-        api.get_connections('me', 'insights', metric: 'page_negative_feedback', period: period)
-        api.get_connections('me', 'insights', metric: 'page_negative_feedback_unique', period: period)
-
-        api.get_connections('me', 'insights', metric: 'page_consumptions', period: period)
-        api.get_connections('me', 'insights', metric: 'page_consumptions_unique', period: period)
-
-        api.get_connections('me', 'insights', metric: 'page_views')
-        api.get_connections('me', 'insights', metric: 'page_views_unique')
-
-        api.get_connections('me', 'insights', metric: 'page_stories', period: period)
-      end
-    end
-
     # uses @client to fetch replies and tweets, for some statics
     def twitter
       authorize! :read, Adminpanel::Analytic
@@ -153,12 +110,11 @@ module Adminpanel
       end
     end
 
-  private
-    def check_if_fb_account
-      @auth = Adminpanel::Auth.find_by_key('facebook')
-      if @auth.nil? || @auth.value == ''
-        redirect_to analytics_path
+    private
+
+      def set_fb_token
+        @fb_auth = Adminpanel::Auth.find_by_key('facebook')
       end
-    end
+
   end
 end

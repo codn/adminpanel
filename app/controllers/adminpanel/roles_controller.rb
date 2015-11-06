@@ -3,7 +3,10 @@ module Adminpanel
 
     private
     def role_params
-      params.require(:role).permit(:name, {permission_ids: []})
+      params.require(:role).permit(
+        :name,
+        { permission_ids: [] }
+      )
 
     end
   end

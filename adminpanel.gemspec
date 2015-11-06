@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
   # Implemented APIs
   spec.add_runtime_dependency 'google-api-client', '~> 0.8.6'  # Google analytics
   spec.add_runtime_dependency 'instagram',         '~> 1.1.3'
-  spec.add_runtime_dependency 'koala',             '1.10.1' # Facebook
+  spec.add_runtime_dependency 'koala',             '2.2.0' # Facebook
   spec.add_runtime_dependency 'omniauth-twitter',  '1.1.0'  # login Twitter
   spec.add_runtime_dependency 'twitter',           '5.14.0' # Twitter
 
