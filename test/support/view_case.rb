@@ -23,11 +23,11 @@ class ViewCase < ActionView::TestCase
 
     def submit_modal(button)
       click_button button #the modal submit is a button actually, not a link
-      sleep 0.5
+      sleep 0.7
     end
 
     def trigger_modal(link)
       click_link link
-      sleep 0.5
+      sleep 0.7
     end
 end

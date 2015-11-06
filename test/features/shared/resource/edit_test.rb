@@ -9,6 +9,8 @@ class EditTest < ViewCase
   def test_submitting_with_same_information
     assert_button("Actualizar #{adminpanel_products(:first).name}")
     click_button("Actualizar #{adminpanel_products(:first).name}")
+    # p page.body
+    p adminpanel_products(:first)
     assert_content( adminpanel_products(:first).name )
     assert_content( adminpanel_products(:first).price )
   end
