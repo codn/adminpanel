@@ -8,11 +8,6 @@ class ViewCase < ActionView::TestCase
     Capybara.current_driver = :poltergeist
   end
 
-  protected
-    def assign_pictures_to_fixture(object, picture = 'dog-fries.png')
-      # object.file
-    end
-
   private
     def login(password = 'foobar')
       fill_in 'inputEmail', with: adminpanel_users(:valid).email
