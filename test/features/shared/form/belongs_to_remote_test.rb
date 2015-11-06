@@ -24,10 +24,7 @@ class BelongsToRemoteTest < ViewCase
     fill_in 'product_description', with: 'remote description lorem'
     fill_in 'product_price', with: '12.3'
     submit_modal 'Agregar Producto'
-    # remote_product = Adminpanel::Product.last
-    # assert_equal 'remote_product', remote_product.name
-    # assert_equal 'remote descrpition lorem', remote_product.description
-    # assert_equal '12.3', remote_product.price
+
     assert_xpath("//option[contains(text(), 'remote product' )]")
   end
 

@@ -10,6 +10,7 @@ class NewTest < ViewCase
   end
 
   def test_submitting_with_invalid_information
+    sleep 0.2
     click_button('Agregar Producto')
     assert_content('Producto no pudo guardarse debido a 3 errores')
   end

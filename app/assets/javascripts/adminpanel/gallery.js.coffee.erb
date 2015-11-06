@@ -5,6 +5,7 @@ DropzoneHandler =
   csrf: null
   form: null
   dropzoneContainer: null
+
   init: ->
     @csrf = $('meta[name="csrf-token"]').attr('content')
     _this = @
@@ -49,6 +50,7 @@ DropzoneHandler =
             _this.dropzoneContainer.find('.dz-image').last().data('id', input.val())
           )
     )
+
   onSuccessUpload: (file, serverResponse) ->
     $(file.previewElement).find('.dz-image').data('id', serverResponse['id'])
     @dropzoneContainer.append($('<input/>').attr('type', 'hidden').attr('name', "#{@form.data('dropzone')}[#{@field}_ids][]").val(serverResponse['id']))
