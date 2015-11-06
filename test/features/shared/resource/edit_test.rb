@@ -10,7 +10,7 @@ class EditTest < ViewCase
     assert_button("Actualizar #{adminpanel_products(:first).name}")
     click_button("Actualizar #{adminpanel_products(:first).name}")
     assert_content( adminpanel_products(:first).name )
-    assert_content( adminpanel_products(:first).price.to_s )
+    assert_content( adminpanel_products(:first).price )
   end
 
   def test_submitting_with_invalid_information

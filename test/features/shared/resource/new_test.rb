@@ -15,8 +15,8 @@ class NewTest < ViewCase
   end
 
   def test_submitting_with_valid_information
-    fill_in 'product_name', :with => 'product name'
-    fill_in 'product_price', :with => '855.5'
+    fill_in 'product_name', with: 'product name'
+    fill_in 'product_price', with: '855.5'
 
 
     page.execute_script(

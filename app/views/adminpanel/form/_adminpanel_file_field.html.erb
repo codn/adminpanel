@@ -1,6 +1,6 @@
 <div class="zone-container">
   <div class="zone-label">
-      <%= properties['label'] %>
+    <%= properties['label'] %>
   </div>
 
   <div class="controls">
@@ -19,7 +19,7 @@
                 data: {
                   file_url: attrib.file_url(:thumb),
                   file_size: attrib.file_size,
-                  file_name: File.basename(attrib.file_url)
+                  file_name: attrib.file_identifier
                 } %>
         <% end %>
       </div>

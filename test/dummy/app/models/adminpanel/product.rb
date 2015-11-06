@@ -7,6 +7,7 @@ module Adminpanel
 
     has_many :categorizations
     has_many :categories, through: :categorizations
+
     mount_images :photos
 
     validates_presence_of :name
