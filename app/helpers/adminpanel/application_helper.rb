@@ -6,7 +6,13 @@ module Adminpanel
 
     def adminpanel_form_for(name, *args, &block)
       options = args.extract_options!
-      options.reverse_merge! builder: Adminpanel::AdminpanelFormBuilder, html: { class: "form-horizontal" }
+      options.reverse_merge! builder: Adminpanel::AdminpanelFormBuilder, html: { class: 'form-horizontal' }
+      if name.class.has_gallery?
+        options[:html][:"data-dropzone"] = name.class.to_s.demodulize.underscore
+        options[:html][:"data-dropzone-galleries"] = name.class.galleries.to_json
+        options[:html][:"data-dropzone-url"] = url_for(controller: name.class.to_controller_name, action: :add_to_gallery)
+        options[:html][:"data-dropzone-delete-url"] = url_for(controller: name.class.to_controller_name, action: :remove_image)
+      end
 
       form_for(name, *(args << options), &block)
     end

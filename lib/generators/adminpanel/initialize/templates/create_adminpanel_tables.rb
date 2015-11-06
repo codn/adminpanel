@@ -16,7 +16,7 @@ class CreateAdminpanelTables < ActiveRecord::Migration
     create_permissions
     create_auths
     create_sections
-    create_sectionfiles
+    create_images
   end
 
   private
@@ -33,10 +33,14 @@ class CreateAdminpanelTables < ActiveRecord::Migration
     add_index :adminpanel_users, [:remember_token]
   end
 
-  def create_sectionfiles
-    create_table :adminpanel_sectionfiles do |t|
-      t.string  :file
-      t.integer :section_id
+  def create_images
+    create_table :adminpanel_images do |t|
+      t.string :file
+      t.integer :model_id
+      t.string :model_type
+      t.string :type
+      t.string :file_size
+      t.string :content_type
       t.timestamps
     end
   end

@@ -20,6 +20,10 @@ module Adminpanel
       resource_class(resource).twitter_share?
     end
 
+    def has_gallery?(resource)
+      resource_class(resource).has_gallery?
+    end
+
     def resource_is_sortable?(resource)
       resource_class(resource).is_sortable?
     end

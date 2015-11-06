@@ -5,8 +5,8 @@ var ready = function(){
     $('.accordion-heading .accordion-toggle').not($(this)[0], '.accordion-heading .accordion-toggle.collapse').addClass('collapsed');
   });
 
-  $(".knob").knob();
-
+  // show the overview boxes on the dashboard once they are loaded
+  $('.overview_boxes .box_row').css('display', 'inline-block');
 
   // init tooltips on .tips class elements, text for the tooltip is in the data-title attribute on the element itself
   // $('.tip').tooltip();

@@ -8,7 +8,7 @@ module Adminpanel
         :name,
         :category_ids,
         :description,
-        :photos_attributes => [:product_id, :file]
+        photo_ids: []
       )
     end
 

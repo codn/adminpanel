@@ -17,6 +17,8 @@ class NewTest < ViewCase
   def test_submitting_with_valid_information
     fill_in 'product_name', :with => 'product name'
     fill_in 'product_price', :with => '855.5'
+
+
     page.execute_script(
       %Q(
         $('#product_description').data('wysihtml5').editor.setValue('que pepsi');

@@ -41,7 +41,6 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       --no-skip-gallery
     )
     assert_file 'app/models/adminpanel/postfile.rb'
-    assert_migration 'db/migrate/create_adminpanel_postfiles.rb'
   end
 
   def test_initializer_update

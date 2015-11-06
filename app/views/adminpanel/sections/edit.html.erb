@@ -18,18 +18,7 @@
         <% end %>
 
         <% if @section.has_image %>
-          <%= content_tag :div, class: 'file-collection-container', data: { max: @section.max_files } do %>
-            <%= f.fields_for :sectionfiles do |builder| %>
-              <%= render 'adminpanel/shared/image_fields', f: builder %>
-            <% end -%>
-
-            <% if @section.max_files != 0 && @section.max_files <= @section.sectionfiles.count %>
-              <% visibility = 'hidden' %>
-            <% else %>
-              <% visibility = 'not-hidden' %>
-            <% end %>
-              <%= link_to_add_fields 'Agregar Imagen', f, :sectionfiles, visibility %>
-          <% end %>
+          <%= render 'adminpanel/form/adminpanel_file_field', properties: { label: 'Imágenes', max_files: @section.max_files }, f: f, attribute: 'sectionfiles' %>
         <% end %>
       <% end %>
       <%= f.footer do %>

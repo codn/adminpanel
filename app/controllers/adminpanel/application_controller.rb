@@ -13,6 +13,7 @@ module Adminpanel
     include Adminpanel::FacebookActions
     include Adminpanel::TwitterActions
     include Adminpanel::SitemapActions
+    include Adminpanel::GalleryActions
 
   private
     rescue_from CanCan::AccessDenied do |exception|
