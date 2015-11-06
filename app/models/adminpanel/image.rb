@@ -21,7 +21,7 @@ module Adminpanel
       end
 
       def delete_old_unused_images
-        self.class.where({ created_at: (Time.now - 30.minutes)..Time.now})
+        self.class.where('created_at < ?', Time.now - 30.minutes)
                   .delete_all(
                     model_id: nil,
                     model_type: nil,
