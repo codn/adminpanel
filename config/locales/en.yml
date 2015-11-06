@@ -41,7 +41,7 @@ en:
   Add Image: 'Add Image'
   wysiwyg:
     description: 'Write descrition here...'
-  Panel title: 'Panel Administrativo'
+  panel-title: 'Admin Panel'
   permission:
     0: 'Read'
     to_read: 'To see'
@@ -62,18 +62,20 @@ en:
   position: 'Position'
   action:
     add: 'Add %{resource}'
-    create: 'Create %{resource}'
+    cancel: Cancelar
     close: 'Close'
+    confirm: Confirmar
+    create: 'Create %{resource}'
+    delete_confirmation: "Are you sure you wan't to delete?"
+    delete: Delete
+    is_false: No
+    is_true: Yes
+    save_success: 'Has been saved successfully'
+    save: 'Save %{resource}'
     show: 'Show'
     submitting: 'Submitting...'
-    save: 'Save %{resource}'
-    save_success: 'Has been saved successfully'
     update: 'Update %{resource}'
-    delete: 'Delete'
     view: 'View'
-    delete_confirmation: "Are you sure you wan't to delete?"
-    is_true: 'Yes'
-    is_false: 'No'
   authentication:
     logout: 'Log out'
     login: 'Log in'

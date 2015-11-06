@@ -1,2 +1,3 @@
-$('tr[data-id=<%= params[:id] %>]').remove();
+$row = $('tr[data-id="<%= @resource_instance.id -%>"]');
+$row.fadeOut();
 Turbolinks.cacheCurrentPage();

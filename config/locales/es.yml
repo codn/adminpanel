@@ -9,10 +9,8 @@ es:
     Permission: 'Permisos'
     Section: 'Sección'
     attributes:
-      adminproject_id: 'Proyecto'
       brief: 'Pequeña descripción'
       body: 'Contenido'
-      client_id: 'Cliente'
       description: 'Descripción'
       email: 'Correo electrónico'
       file: 'Imagen'
@@ -44,7 +42,7 @@ es:
   Add Image: 'Agregar Imagen'
   wysiwyg:
     description: 'Escriba la descripción aquí'
-  Panel title: 'Panel Administrativo'
+  panel-title: 'Panel Administrativo'
   permission:
     0: 'Ver'
     to_read: 'Ver'
@@ -65,7 +63,9 @@ es:
   position: 'Posición'
   action:
     add: 'Agregar %{resource}'
+    cancel: Cancelar
     close: 'Cerrar'
+    confirm: Confirmar
     create: 'Crear %{resource}'
     delete_confirmation: 'Estás seguro que desea eliminar %{resource}?'
     delete: 'Eliminar'
@@ -132,11 +132,6 @@ es:
     add_to_gallery: 'agregar-a-galeria'
     remove_image: 'eliminar-image'
   analytics:
-    day: 'Hoy'
-    days_28: 'el mes'
-    now: 'Ahora'
-    week: 'Semana'
-    month: 'Mes'
     search: 'Buscar'
     impressions: 'Impresiones'
     unique: 'Únicas'

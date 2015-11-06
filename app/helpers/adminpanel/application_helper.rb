@@ -18,7 +18,7 @@ module Adminpanel
     end
 
     def full_title(page_title)
-      base_title = t("Panel title")
+      base_title = I18n.t("panel-title")
       if page_title.empty?
         base_title
       else
