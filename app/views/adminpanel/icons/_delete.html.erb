@@ -10,6 +10,7 @@
       title: I18n.t('action.delete', resource: resource.name),
       id: 'resource-delete',
       method: :delete,
+      remote: true,
       data: {
         confirm: I18n.t('action.delete_confirmation', resource: resource.name)
       }

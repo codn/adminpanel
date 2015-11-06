@@ -72,7 +72,10 @@ module Adminpanel
 
     def destroy
       @resource_instance.destroy
-      redirect_to action: :index
+      respond_to do |format|
+        format.html { redirect_to action: :index }
+        format.js { render('adminpanel/templates/destroy') }
+      end
     end
 
     private
