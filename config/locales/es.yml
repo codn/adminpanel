@@ -131,6 +131,7 @@ es:
     signin: 'iniciar-sesion'
     add_to_gallery: 'agregar-a-galeria'
     remove_image: 'eliminar-image'
+    move_to_position: 'mover-posicion'
   analytics:
     search: 'Buscar'
     impressions: 'Impresiones'
