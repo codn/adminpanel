@@ -10,6 +10,8 @@ module Adminpanel
       def mount_images(relation)
         has_many relation, dependent: :destroy, as: :model
         accepts_nested_attributes_for relation, allow_destroy: true
+        after_save :destroy_unattached_images
+        after_save :correlative_order_gallery
       end
 
       # implementing cache by default.
@@ -195,6 +197,17 @@ module Adminpanel
         else
           false
         end
+      end
+
+    end
+
+    def destroy_unattached_images
+      self.class.galleries.each{|gallery| gallery.last.constantize.delete_all(model_id: nil) }
+    end
+
+    def correlative_order_gallery
+      self.class.galleries.each do |gallery|
+        self.send(gallery.first.pluralize).ordered.each_with_index{ |image, index| image.update(position: index + 1) }
       end
     end
   end

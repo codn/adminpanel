@@ -5,12 +5,17 @@ DropzoneHandler =
   csrf: null
   form: null
   dropzoneContainer: null
+  resourceId: null
+  resourceClass: null
 
   init: ->
     @csrf = $('meta[name="csrf-token"]').attr('content')
     _this = @
     $('form[data-dropzone]').each((i,e)->
       _this.form = $(e)
+      _this.resourceClass = _this.form.data('resource-class')
+      _this.resourceId = _this.form.data('resource-id')
+
       fields = _this.form.data('dropzone-galleries')
       for field, className of fields
         _this.model = className
@@ -57,6 +62,9 @@ DropzoneHandler =
 
   addModelToData: (file, xhr, formData) ->
     formData.append('model', @model)
+    formData.append('resource_class', @resourceClass)
+    unless typeof @resourceId == 'undefined'
+      formData.append('resource_id', @resourceId)
 
   deleteFile: (file) ->
     imageToDelete = $(file.previewElement).find('.dz-image').data('id')
