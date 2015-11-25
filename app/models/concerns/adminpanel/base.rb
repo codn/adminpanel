@@ -11,7 +11,7 @@ module Adminpanel
         has_many relation, dependent: :destroy, as: :model
         accepts_nested_attributes_for relation, allow_destroy: true
         after_save :destroy_unattached_images
-        after_save :correlative_order_gallery
+        after_save :correlative_order_gallery, if: Proc.new { |model| model.class.has_sortable_gallery? }
       end
 
       # implementing cache by default.
