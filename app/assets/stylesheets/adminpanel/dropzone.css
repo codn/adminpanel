@@ -509,4 +509,7 @@
 
 .zone-container {
   width: 100%;
+  position: relative;
+  float: left;
+  margin-bottom: 20px;
 }

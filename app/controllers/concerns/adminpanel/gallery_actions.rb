@@ -4,9 +4,7 @@ module Adminpanel
 
     def add_to_gallery
       image_class = params[:model].constantize
-      image = image_class.new(file: params[:file], model_type: params[:resource_class])
-      Rails.logger.debug "---------------------------------"
-      Rails.logger.debug image.inspect
+      image = image_class.new(file: params[:file], model_type: params[:parent_object_class])
       image.model_id = params[:resource_id] if params[:resource_id]
 
       if image.save

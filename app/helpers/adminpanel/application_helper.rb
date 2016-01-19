@@ -8,8 +8,8 @@ module Adminpanel
       options = args.extract_options!
       options.reverse_merge! builder: Adminpanel::AdminpanelFormBuilder, html: { class: 'form-horizontal' }
       if name.class.has_gallery?
-        options[:html][:"data-resource-class"] = name.class.to_s
-        options[:html][:"data-resource-id"] = name.id
+        options[:html][:"data-parent-object-class"] = name.class.to_s
+        options[:html][:"data-parent-object-id"] = name.id
         options[:html][:"data-dropzone"] = name.class.to_s.demodulize.underscore
         options[:html][:"data-dropzone-galleries"] = name.class.galleries.to_json
         options[:html][:"data-dropzone-url"] = url_for(controller: name.class.to_controller_name, action: :add_to_gallery)
