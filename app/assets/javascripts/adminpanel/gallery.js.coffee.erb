@@ -1,32 +1,32 @@
 window.Dropzone.autoDiscover = false
 
 DropzoneHandler =
-  model: null
   csrf: null
-  form: null
-  dropzoneContainer: null
 
   init: ->
     @csrf = $('meta[name="csrf-token"]').attr('content')
     _this = @
     $('form[data-dropzone]').each((i,e)->
-      _this.form = $(e)
-      fields = _this.form.data('dropzone-galleries')
-      for field, className of fields
-        _this.model = className
-        _this.field = field
-        _this.dropzoneContainer = $("##{field}_dropzone")
+      form = $(e)
+      parentObjectClass = form.data('parent-object-class')
+      parentObjectId = form.data('parent-object-id')
 
-        if _this.dropzoneContainer.length
+      fields = form.data('dropzone-galleries')
+      for field, className of fields
+        model = className
+        field = field
+        dropzoneContainer = $("##{field}_dropzone")
+
+        if dropzoneContainer.length
           maxfiles = $("##{_this.field}_dropzone").data('max-files')
           maxfiles = null if (typeof maxfiles == 'undefined' || maxfiles == '')
 
           dropzone = new Dropzone(
-            "##{_this.field}_dropzone",
+            "##{field}_dropzone",
             {
-              url: _this.form.data('dropzone-url'),
-              previewsContainer: "##{_this.field}_dropzone",
-              clickable: "##{_this.field}_dropzone a.btn",
+              url: form.data('dropzone-url'),
+              previewsContainer: "##{field}_dropzone",
+              clickable: "##{field}_dropzone a.btn",
               headers: { 'X-CSRF-Token':  _this.csrf },
               addRemoveLinks: true,
               dictCancelUpload: "<%= I18n.t('dropzone.cancel_upload') %>",
@@ -37,39 +37,42 @@ DropzoneHandler =
             }
           )
 
-          dropzone.on('success', $.proxy(_this.onSuccessUpload, _this))
-          dropzone.on('sending', $.proxy(_this.addModelToData, _this))
-          dropzone.on('removedfile', $.proxy(_this.deleteFile, _this))
+          dropzone.on('success', $.proxy(_this.onSuccessUpload, _this, dropzoneContainer, form, field))
+          dropzone.on('sending', $.proxy(_this.addModelToData, _this, model, parentObjectClass, parentObjectId))
+          dropzone.on('removedfile', $.proxy(_this.deleteFile, _this, form, field, model))
 
-          _this.dropzoneContainer.find("input[type='hidden']").each((a, b)->
+          dropzoneContainer.find("input[type='hidden']").each((a, b)->
             input = $(b)
             mockFile = { name: input.data('file-name'), size: input.data('file-size') }
             dropzone.emit('addedfile', mockFile)
             dropzone.emit('thumbnail', mockFile, input.data('file-url'))
             dropzone.emit('complete', mockFile)
-            _this.dropzoneContainer.find('.dz-image').last().data('id', input.val())
+            dropzoneContainer.find('.dz-image').last().data('id', input.val())
           )
     )
 
-  onSuccessUpload: (file, serverResponse) ->
+  onSuccessUpload: (dropzoneContainer, form, field, file, serverResponse) ->
     $(file.previewElement).find('.dz-image').data('id', serverResponse['id'])
-    @dropzoneContainer.append($('<input/>').attr('type', 'hidden').attr('name', "#{@form.data('dropzone')}[#{@field}_ids][]").val(serverResponse['id']))
+    dropzoneContainer.append($('<input/>').attr('type', 'hidden').attr('name', "#{form.data('dropzone')}[#{field}_ids][]").val(serverResponse['id']))
 
-  addModelToData: (file, xhr, formData) ->
-    formData.append('model', @model)
+  addModelToData: (model, parentObjectClass, parentObjectId, file, xhr, formData) ->
+    formData.append('model', model)
+    formData.append('parent_object_class', parentObjectClass)
+    unless typeof parentObjectId == 'undefined'
+      formData.append('resource_id', parentObjectId)
 
-  deleteFile: (file) ->
+  deleteFile: (form, field, model, file) ->
     imageToDelete = $(file.previewElement).find('.dz-image').data('id')
     $.ajax(
-      url: @form.data('dropzone-delete-url'),
+      url: form.data('dropzone-delete-url'),
       dataType: 'json',
       data:
-        model: @model,
+        model: model,
         id: imageToDelete
       type: 'DELETE'
     )
 
-    $("input[type='hidden'][value='#{imageToDelete}'][name='#{@form.data('dropzone')}[#{@field}_ids][]']").remove()
+    $("input[type='hidden'][value='#{imageToDelete}'][name='#{form.data('dropzone')}[#{field}_ids][]']").remove()
 
 
 

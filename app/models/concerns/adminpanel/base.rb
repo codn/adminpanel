@@ -10,6 +10,8 @@ module Adminpanel
       def mount_images(relation)
         has_many relation, dependent: :destroy, as: :model
         accepts_nested_attributes_for relation, allow_destroy: true
+        after_save :destroy_unattached_images
+        after_save :correlative_order_gallery, if: Proc.new { |model| model.class.has_sortable_gallery? }
       end
 
       # implementing cache by default.
@@ -100,6 +102,19 @@ module Adminpanel
         return galleries
       end
 
+      def sortable_galleries
+        galleries = {}
+        form_attributes.each do |fields|
+          fields.each do |attribute, properties|
+            if properties['type'] == FILE_FIELD_NAME && "adminpanel/#{attribute}".classify.constantize.is_sortable?
+              galleries["#{attribute.singularize}"] = "adminpanel/#{attribute}".classify.constantize.to_s
+            end
+          end
+        end
+
+        galleries
+      end
+
       # returns the attribute that should be namespaced to be the class
       # ex: returns 'productfiles', so class is Adminpanel::Productfile
       def gallery_relationship
@@ -168,9 +183,7 @@ module Adminpanel
       end
 
       def has_sortable_gallery?
-        if has_gallery?
-          gallery_class.is_sortable?
-        end
+        !sortable_galleries.empty?
       end
 
       def to_controller_name
@@ -195,6 +208,17 @@ module Adminpanel
         else
           false
         end
+      end
+
+    end
+
+    def destroy_unattached_images
+      self.class.galleries.each{|gallery| gallery.last.constantize.delete_all(model_id: nil) }
+    end
+
+    def correlative_order_gallery
+      self.class.galleries.each do |gallery|
+        self.send(gallery.first.pluralize).ordered.each_with_index{ |image, index| image.update(position: index + 1) }
       end
     end
   end

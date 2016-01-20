@@ -4,8 +4,8 @@ module Adminpanel
       resource_class(resource).has_sortable_gallery?
     end
 
-    def sortable_gallery(resource)
-      resource_class(resource).gallery_relationship
+    def sortable_galleries(resource)
+      resource_class(resource).sortable_galleries
     end
 
     def resources_parameters(resource)

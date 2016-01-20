@@ -14,15 +14,15 @@ module Adminpanel
       assert_equal image.file_size.to_i, 52196
     end
 
-    test "deleting an image should destroy old unassigned images of the same type" do
+    test "updating a record with galleries should destroy old unassigned images of the same type" do
       unassigned_image = adminpanel_images(:unassigned)
       assert_not unassigned_image.nil?
-      assert_equal 1, Adminpanel::Galleryfile.where(model: nil, model_type: nil).count
+      assert_equal 1, Adminpanel::Galleryfile.where(model: nil).count
 
-      image = Adminpanel::Galleryfile.create
+      #trigger delete event
+      gallery = adminpanel_galleries(:one).save
 
-      # 1 because the variable image is saved and the fixture should be deleted
-      assert_equal 1, Adminpanel::Galleryfile.where(model: nil, model_type: nil).count
+      assert_equal 0, Adminpanel::Galleryfile.where(model: nil).count
       assert_raise ActiveRecord::RecordNotFound do
         unassigned_image.reload
       end
