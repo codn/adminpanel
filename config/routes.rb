@@ -20,10 +20,12 @@ Adminpanel::Engine.routes.draw do
       end
     else
       if gallery_is_sortable?(resource)
+        sortable_galleries(resource).each do |sortable_gallery_resource|
         # included sortable_gallery
-        resources sortable_gallery(resource), only: [:index] do
-          member do
-            put :move_to_position, as: 'move_to_position', path: I18n.t('routes.move_to_position')
+          resources sortable_gallery_resource.first.pluralize, only: [:index] do
+            member do
+              put :move_to_position, as: 'move_to_position', path: I18n.t('routes.move_to_position')
+            end
           end
         end
       end

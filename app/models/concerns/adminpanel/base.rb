@@ -102,6 +102,19 @@ module Adminpanel
         return galleries
       end
 
+      def sortable_galleries
+        galleries = {}
+        form_attributes.each do |fields|
+          fields.each do |attribute, properties|
+            if properties['type'] == FILE_FIELD_NAME && "adminpanel/#{attribute}".classify.constantize.is_sortable?
+              galleries["#{attribute.singularize}"] = "adminpanel/#{attribute}".classify.constantize.to_s
+            end
+          end
+        end
+
+        galleries
+      end
+
       # returns the attribute that should be namespaced to be the class
       # ex: returns 'productfiles', so class is Adminpanel::Productfile
       def gallery_relationship
@@ -170,9 +183,7 @@ module Adminpanel
       end
 
       def has_sortable_gallery?
-        if has_gallery?
-          gallery_class.is_sortable?
-        end
+        !sortable_galleries.empty?
       end
 
       def to_controller_name
