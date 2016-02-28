@@ -1,6 +1,7 @@
 ---
 title: Adminpanel
 category: behavior
+layout: post
 ---
 
 # def self.form_attributes

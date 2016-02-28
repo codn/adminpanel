@@ -1,6 +1,7 @@
 ---
 title: Sortable Gallery
 category: module
+layout: post
 ---
 
 This concern is used to make the 'gallery' (or files) of an instantce orderable (you'll be able to order them when viewing a member [show action]).

@@ -1,6 +1,7 @@
 ---
 title: Google Analytics
 category: module
+layout: post
 ---
 
 To take advantage of the Integration with the Google Analytics Service you should add the analytics script to the public side of your application and then create an intializer called when you setup your authentication with Google.

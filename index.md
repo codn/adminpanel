@@ -30,7 +30,7 @@ The core parts of this documentation are:
 
 * [Creating new resources](/adminpanel/generator/resource.html)
 
-* [Customizing your resources]({{site.baseurl}}{% post_url behaviors/2015-07-07-adminpanel %})
+* [Customizing your resources]({{site.baseurl}}/behaviors/2015-07-07-adminpanel)
 
 * [Preparing your application for production](/adminpanel/generator/dump.html)
 
@@ -39,7 +39,7 @@ The core parts of this documentation are:
 
 `bundle exec rake`
 
-* `adminpanel:section` [see details]({{site.baseurl}}{% post_url tasks/2015-01-09-section %})
+* `adminpanel:section` [see details]({{site.baseurl}}/tasks/2015-01-09-section)
 
 * `adminpanel:user` creates and displays password for admin@codn.mx user to log in.
 

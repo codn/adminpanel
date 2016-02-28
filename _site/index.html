@@ -5,8 +5,10 @@
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <title>Adminpanel by CoDN</title>
 
-  <link rel="stylesheet" href="stylesheets/styles.css">
-  <link rel="stylesheet" href="stylesheets/github-light.css">
+  <link rel="stylesheet" href="http://localhost:4000/adminpanel/public/stylesheets/styles.css">
+  <link rel="stylesheet" href="http://localhost:4000/adminpanel/public/stylesheets/github-light.css">
+  <link rel="stylesheet" href="http://localhost:4000/adminpanel/public/stylesheets/adminpanel.css">
+  <link rel="icon" type="image/png" href="http://localhost:4000/adminpanel/public/images/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <!--[if lt IE 9]>
   <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -17,126 +19,166 @@
 <body>
   <div class="wrapper">
     <header>
-  <h1>Adminpanel</h1>
-  <p>Administration panel with nice defaults and flexible customizations, supporting facebook, twitter, instagram and google analytics API, developed with the goal of generating your dynamic site very quickly</p>
+  <h1>
+    <a href="http://localhost:4000/adminpanel/">
+      Adminpanel
+    </a>
+  </h1>
 
-  <p class="view"><a href="https://github.com/codn/adminpanel">View the Project on GitHub <small>codn/adminpanel</small></a></p>
+  <p class="view"><a href="https://github.com/codn/adminpanel" target="_blank">View the Project on GitHub <small>codn/adminpanel</small></a></p>
 
+  <h3>Special Behavior</h3>
+  <ul class="features">
+    
+      <li class="">
+        <a href="/adminpanel/behavior/adminpanel.html">Adminpanel</a>
+      </li>
+    
+  </ul>
 
-  <ul>
-    <li><a href="https://github.com/codn/adminpanel/zipball/master">Download <strong>ZIP File</strong></a></li>
-    <li><a href="https://github.com/codn/adminpanel/tarball/master">Download <strong>TAR Ball</strong></a></li>
-    <li><a href="https://github.com/codn/adminpanel">View On <strong>GitHub</strong></a></li>
+  <h3>Modules</h3>
+  <ul class="features">
+    
+      <li class="">
+        <a href="/module/friendly.html">Friendly</a>
+      </li>
+    
+      <li class="">
+        <a href="/module/sitemaps.html">Sitemap</a>
+      </li>
+    
+      <li class="">
+        <a href="/module/sortable.html">Sortable</a>
+      </li>
+    
+      <li class="">
+        <a href="/module/sortable-gallery.html">Sortable Gallery</a>
+      </li>
+    
+      <li class="">
+        <a href="/module/facebook.html">Facebook</a>
+      </li>
+    
+      <li class="">
+        <a href="/module/twitter.html">Twitter</a>
+      </li>
+    
+      <li class="">
+        <a href="/module/instagram.html">Instagram</a>
+      </li>
+    
+      <li class="">
+        <a href="/module/google-analytics.html">Google Analytics</a>
+      </li>
+    
+  </ul>
+
+  <h3>Generators</h3>
+  <ul class="features">
+    
+      <li class="">
+        <a href="/generator/initialize-generator.html">Initialize Generator</a>
+      </li>
+    
+      <li class="">
+        <a href="/generator/resource.html">Resource</a>
+      </li>
+    
+      <li class="">
+        <a href="/generator/migration.html">Migration</a>
+      </li>
+    
+      <li class="">
+        <a href="/generator/gallery.html">Gallery</a>
+      </li>
+    
+      <li class="">
+        <a href="/generator/dump.html">Dump</a>
+      </li>
+    
+      <li class="">
+        <a href="/generator/custom-errors.html">Custom Errors</a>
+      </li>
+    
+      <li class="">
+        <a href="/generator/contact.html">Contact</a>
+      </li>
+    
+  </ul>
+
+  <h3>Tasks</h3>
+  <ul class="features">
+    
+      <li class="">
+        <a href="/task/section.html">Section</a>
+      </li>
+    
   </ul>
 </header>
 
+
     <section>
-  <h1>
-    <a id="-adminpanel" class="anchor" href="#-adminpanel" aria-hidden="true"><span class="octicon octicon-link"></span></a>
-    <a href="http://www.codn.mx" title="CoDN">
-      <img src="../images/codn.svg" alt="CoDN">
-    </a> Adminpanel
-  </h1>
+      <h1 id="codnhttpcllybzp9codnsvghttpwwwcodnmx-codn"><a href="http://www.codn.mx" title="CoDN"><img src="http://cl.ly/bZp9/codn.svg" alt="CoDN" /></a></h1>
 
-  <p>Thank you for considering this gem, we are going to use the lastest Rails version of Rails. make sure you can use it before trying this gem out.</p>
+<h3 id="this-gem-was-created-and-is-mantained-by-codn">This gem was created and is mantained by CoDN</h3>
 
-  <p>
-    <a href="http://badge.fury.io/rb/adminpanel"><img src="https://badge.fury.io/rb/adminpanel.svg" alt="Gem Version"></a>
-    <a href="https://travis-ci.org/codn/adminpanel"><img src="https://travis-ci.org/codn/adminpanel.svg?branch=master" alt="Build Status"></a>
-    <a href="https://codeclimate.com/github/codn/adminpanel"><img src="https://codeclimate.com/github/codn/adminpanel/badges/gpa.svg" alt="Code Climate"></a>
-  </p>
+<h2 id="installation">Installation</h2>
 
-  <h2>
-    <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation
-  </h2>
+<p>Add this line to your application’s Gemfile:</p>
 
-  <p>Add this line to your application's Gemfile:</p>
+<pre><code>gem 'adminpanel'
+</code></pre>
 
-  <pre><code>gem 'adminpanel'
-  </code></pre>
+<p>And then execute:</p>
 
-  <p>And then execute:</p>
+<pre><code>$ bundle
+</code></pre>
 
-  <pre><code>$ bundle
-  </code></pre>
+<p>Run:</p>
 
-  <p>Run:</p>
+<pre><code>rails g adminpanel:initialize
+rake db:migrate This create and seeds a user to the database (email: 'admin@admin.com', password: 'password').
+</code></pre>
 
-  <pre><code>rails g adminpanel:initialize
-    rake db:migrate
-  </code></pre>
+<p><strong>NOTE THAT THIS GEM DEPENDS ON ImageMagick SO MAKE SURE YOU HAVE IT BEFORE ADDING ADMINPANEL TO YOUR GEMFILE</strong></p>
 
-  <p>This create and seeds a user to the database (email: '<a href="mailto:admin@admin.com">admin@admin.com</a>', password: 'password').</p>
+<p>The core parts of this documentation are:</p>
 
-  <p>And mount the gem wherever you like!</p>
+<ul>
+  <li>
+    <p><a href="/adminpanel/generator/initialize-generator.html">Creating a New app</a></p>
+  </li>
+  <li>
+    <p><a href="/adminpanel/generator/resource.html">Creating new resources</a></p>
+  </li>
+  <li>
+    <p><a href="/adminpanel/behaviors/2015-07-07-adminpanel">Customizing your resources</a></p>
+  </li>
+  <li>
+    <p><a href="/adminpanel/generator/dump.html">Preparing your application for production</a></p>
+  </li>
+</ul>
 
-  <pre><code>mount Adminpanel::Engine =&gt; '/panel'
-  </code></pre>
+<h2 id="the-available-rake-tasks-are">The available rake tasks are</h2>
 
-  <h4>
-    <a id="optional" class="anchor" href="#optional" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optional
-  </h4>
+<p><code>bundle exec rake</code></p>
 
-  <p>In you application.rb</p>
+<ul>
+  <li>
+    <p><code>adminpanel:section</code> <a href="/adminpanel/tasks/2015-01-09-section">see details</a></p>
+  </li>
+  <li>
+    <p><code>adminpanel:user</code> creates and displays password for admin@codn.mx user to log in.</p>
+  </li>
+</ul>
 
-  <pre><code>config.i18n.default_locale = :es # or :en
-  </code></pre>
+<p>Any questions, errors or feature suggestions <a href="https://github.com/codn/adminpanel/issues/new">are welcome in the issues</a></p>
 
-  <p>no other language is currently supported, but pull requests are welcome.</p>
 
-  <h2>
-    <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage
-  </h2>
-
-  <p>To create a new resource: </p>
-
-  <pre><code>rails g adminpanel:resource product name price:float description:wysiwyg
-  </code></pre>
-
-  <p>check the <a href="https://github.com/codn/adminpanel/wiki/Generator-adminpanel:resource">Resource Generator wiki.</a> for more information.</p>
-
-  <p>Make sure you <a href="https://github.com/codn/adminpanel/wiki">read the wiki</a>, there is the descriptions of every relevant part of the gem.</p>
-
-  <h2>
-    <a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies
-  </h2>
-
-  <p>Please make sure that you have ImageMagick -v 2.13.2 installed before trying to use the gem.</p>
-
-  <h2>
-    <a id="integrated-apis" class="anchor" href="#integrated-apis" aria-hidden="true"><span class="octicon octicon-link"></span></a>Integrated APIs
-  </h2>
-
-  <p>Currently the integrations working are:</p>
-
-  <ul>
-    <li><a href="https://github.com/codn/adminpanel/wiki/include-Google-Analytics">Google Analytics Service</a></li>
-    <li><a href="https://github.com/codn/adminpanel/wiki/include-Adminpanel::Facebook">Facebook Share Link to Wall</a></li>
-    <li><a href="https://github.com/codn/adminpanel/wiki/include-Adminpanel::Twitter">Twitter API</a></li>
-    <li><a href="https://github.com/codn/adminpanel/wiki/include-Adminpanel::Instagram">Instagram API</a></li>
-  </ul>
-
-  <h2>
-    <a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing
-  </h2>
-
-  <ol>
-    <li>Fork it</li>
-    <li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
-    <li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
-    <li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
-    <li>Create new Pull Request</li>
-  </ol>
-
-  <p>Any questions, errors or feature suggestions <a href="https://github.com/codn/adminpanel/issues/new">are welcome in the issues</a></p>
-</section>
-<footer>
-  <p>This project is maintained by <a href="https://github.com/codn">CoDN</a></p>
-  <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-</footer>
-
+    </section>
+    
   </div>
-  <script src="javascripts/scale.fix.js"></script>
+  <script src="http://localhost:4000/adminpanel/public/javascripts/scale.fix.js"></script>
 <script type="text/javascript">
   var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
   document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));

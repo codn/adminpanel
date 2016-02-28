@@ -1,11 +1,11 @@
 encoding: UTF-8
 
-url:              http://codn.github.io/adminpanel/
-# url:              http://localhost:4000/adminpanel/
+# url:              http://codn.github.io/adminpanel/
+url:              http://localhost:4000/adminpanel/
 baseurl: /adminpanel
 
 # Dependencies
-markdown:         redcarpet
+markdown:         kramdown
 highlighter:      pygments
 
 # Permalinks
@@ -15,23 +15,15 @@ defaults:
   -
     scope:
       path: 'generators'
-    values:
-      layout: 'post'
 
   -
     scope:
       path: 'modules'
-    values:
-      layout: 'post'
 
   -
     scope:
       path: 'tasks'
-    values:
-      layout: 'post'
 
   -
     scope:
       path: 'behaviors'
-    values:
-      layout: 'post'

@@ -1,6 +1,7 @@
 ---
 title: Initialize Generator
 category: generator
+layout: post
 ---
 
 To create the default tables that adminpanel is going to use make sure to run the initializer

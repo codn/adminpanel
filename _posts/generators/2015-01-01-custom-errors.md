@@ -1,6 +1,7 @@
 ---
 title: Custom Errors
 category: generator
+layout: post
 ---
 This generator let you create custom error pages (404, 500 and so on). Generates `ErrorsController` and `errors#show`, You  may use your default app layout or create a less complex layout.
 
