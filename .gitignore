@@ -1,1 +1,5 @@
 _site/
+Gemfile
+Gemfile.lock
+*.gem
+test/

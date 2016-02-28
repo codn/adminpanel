@@ -26,13 +26,13 @@ This create and seeds a user to the database (email: 'admin@admin.com', password
 
 The core parts of this documentation are:
 
-* [Creating a New app](http://blog.codn.mx/adminpanel/generator/initialize-generator.html)
+* [Creating a New app](/adminpanel/generator/initialize-generator.html)
 
-* [Creating new resources](http://blog.codn.mx/adminpanel/generator/resource.html)
+* [Creating new resources](/adminpanel/generator/resource.html)
 
 * [Customizing your resources]({{site.baseurl}}{% post_url behaviors/2015-07-07-adminpanel %})
 
-* [Preparing your application for production](http://blog.codn.mx/adminpanel/generator/dump.html)
+* [Preparing your application for production](/adminpanel/generator/dump.html)
 
 
 ## The available rake tasks are
