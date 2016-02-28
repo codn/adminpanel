@@ -10,7 +10,6 @@ highlighter:      pygments
 
 # Permalinks
 permalink:        none
-relative_permalinks: true
 
 defaults:
   -
