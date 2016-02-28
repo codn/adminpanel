@@ -6,7 +6,7 @@ baseurl: /adminpanel
 
 # Dependencies
 markdown:         kramdown
-highlighter:      pygments
+highlighter:      rougue
 
 # Permalinks
 permalink:        none
