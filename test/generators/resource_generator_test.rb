@@ -163,7 +163,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
       /'date' => {/,
       /'user_id' => {/,
       /Adminpanel::User.all/,
-      /'type' => 'date',/,
+      /'type' => 'datepicker',/,
       /'admin_postfiles' => {/,
       /'type' => 'adminpanel_file_field',/,
       /'category_ids' => {/,

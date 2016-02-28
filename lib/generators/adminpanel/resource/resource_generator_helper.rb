@@ -112,7 +112,7 @@ module Adminpanel
     end
 
     def date_form_hash
-      attribute_hash(@attr_field, 'date')
+      attribute_hash(@attr_field, 'datepicker')
     end
 
     def file_field_form_hash
