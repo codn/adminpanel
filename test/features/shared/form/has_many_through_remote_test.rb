@@ -20,7 +20,14 @@ class HasManyThroughRemoteTest < ViewCase
   def test_adding_a_remote_product_with_valid_information
     trigger_modal 'Agregar Producto'
     fill_in 'product_name', with: 'remote checkbox of product'
-    fill_in 'product_description', with: 'remote description lorem'
+
+    page.execute_script(
+      %Q(
+        var editor = $('#description-trix-editor')[0].editor;
+        editor.insertString("Hello");
+      )
+    ) # to fill the wysiwyg editor
+
     fill_in 'product_price', with: '12.3'
     submit_modal 'Agregar Producto'
     assert_content 'remote checkbox of product'

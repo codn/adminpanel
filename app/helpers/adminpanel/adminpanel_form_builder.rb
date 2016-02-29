@@ -54,9 +54,8 @@ module Adminpanel
     def wysiwyg_field(method, *args)
 
       options = args.extract_options!
-      options.reverse_merge! class: 'wysihtml5 span7'
 
-      base_layout method, options, 'text_area_original'
+      hidden_field(method, id: "#{self.object.class.to_s.demodulize}-trix-#{method}") + base_layout(method, options, 'trix_field')
     end
 
     def text_area(method, *args)
@@ -199,6 +198,18 @@ module Adminpanel
     #     )
     #   end
     # end
+
+    protected
+      def trix_field(method, *args)
+        options = args.extract_options!
+        options.reverse_merge! input: "#{self.object.class.to_s.demodulize}-trix-#{method}", id: "#{method}-trix-editor"
+        options[:class] << ' trix-content'
+
+        @template.content_tag 'trix-editor', options do
+          self.object.send(method)
+        end
+      end
+
     private
 
       def base_layout(method, *args, input_type)
@@ -220,7 +231,7 @@ module Adminpanel
         options['data']['date_format'] ||= 'dd-mm-yyyy'
         options['data']['date'] ||= Time.now.strftime("%d-%m-%Y")
         options['value'] = options['data']['date']
-        
+
         @template.content_tag(
                   :div,
                   class: 'input-append date datepicker datepicker-basic',

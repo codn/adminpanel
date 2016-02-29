@@ -22,7 +22,8 @@ class NewTest < ViewCase
 
     page.execute_script(
       %Q(
-        $('#product_description').data('wysihtml5').editor.setValue('que pepsi');
+        var editor = $('#description-trix-editor')[0].editor;
+        editor.insertString("Que pepsi");
       )
     ) # to fill the wysiwyg editor
     click_button('Agregar Producto')
@@ -31,7 +32,7 @@ class NewTest < ViewCase
     saved_product = Adminpanel::Product.last
     assert_equal 'product name', saved_product.name
     assert_equal '855.5', saved_product.price
-    assert_equal 'que pepsi', saved_product.description
+    assert_equal '<div>Que pepsi</div>', saved_product.description
   end
 
   protected
