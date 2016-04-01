@@ -10,7 +10,8 @@ module Adminpanel
       if image.save
         response = {
           class: image_class.to_controller_name,
-          id: image.id
+          id: image.id,
+          image_url: image.file_url(:thumb)
         }
 
         respond_to do |f|

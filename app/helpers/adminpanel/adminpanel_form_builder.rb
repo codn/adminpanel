@@ -211,6 +211,8 @@ module Adminpanel
         options = args.extract_options!
         options.reverse_merge! input: "#{self.object.class.to_s.demodulize}-trix-#{method}", id: "#{method}-trix-editor"
         options[:class] << ' trix-content'
+        options[:data] ||= {}
+        options[:data][:uploader_name] = options['uploader'].to_s if options['uploader'].present?
 
         @template.content_tag 'trix-editor', options do
           self.object.send(method)
