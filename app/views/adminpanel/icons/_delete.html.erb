@@ -12,6 +12,9 @@
       method: :delete,
       remote: true,
       data: {
+        toggle: :tooltip,
+        placement: :left,
+        title: I18n.t('action.delete', resource: resource.name),
         confirm: I18n.t('action.delete_confirmation', resource: resource.name)
       }
     )

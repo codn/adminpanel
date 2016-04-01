@@ -9,7 +9,12 @@
       [resource],
       class: 'spinner-link',
       title: I18n.t('action.show', resource: resource.name),
-      id: 'show-resource-icon'
+      id: 'show-resource-icon',
+      data: {
+        toggle: :tooltip,
+        placement: :left,
+        title: I18n.t('action.show', resource: resource.name)
+      }
     )
   %>
 <% end %>

@@ -11,7 +11,12 @@
         action: :new
       },
       title: I18n.t('action.create', resource: @model.display_name),
-      class: 'spinner-link'
+      class: 'spinner-link',
+      data: {
+        toggle: :tooltip,
+        placement: :left,
+        title: I18n.t('action.create', resource: @model.display_name),
+      }
     )
   %>
 <% end %>

@@ -9,7 +9,7 @@ var ready = function(){
   $('.overview_boxes .box_row').css('display', 'inline-block');
 
   // init tooltips on .tips class elements, text for the tooltip is in the data-title attribute on the element itself
-  // $('.tip').tooltip();
+  $('[data-toggle="tooltip"]').tooltip();
 
   // init popover on .pop class elements
   // $('.pop').popover({

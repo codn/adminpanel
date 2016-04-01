@@ -8,7 +8,12 @@
       ),
       [:edit, resource],
       title: I18n.t('action.update', resource: resource.name),
-      class: 'spinner-link'
+      data: {
+        toggle: :tooltip,
+        placement: :left,
+        title: I18n.t('action.update', resource: resource.name)
+      },
+      class: 'tip spinner-link'
     )
   %>
 <% end %>
