@@ -1,12 +1,14 @@
+# Adminpanel API
+# This file must be included on every adminpanel resource.
+
 module Adminpanel
   module Base
     extend ActiveSupport::Concern
 
     module ClassMethods
-    FILE_FIELD_NAME = 'adminpanel_file_field'
+      FILE_FIELD_NAME = 'adminpanel_file_field'
 
 
-      # Adminpanel API
       def mount_images(relation)
         has_many relation, dependent: :destroy, as: :model
         accepts_nested_attributes_for relation, allow_destroy: true
@@ -31,7 +33,7 @@ module Adminpanel
         'please overwrite self.display_name'
       end
 
-      # side menu icon
+      # fontawesome icon to be used in the side-menu
       def icon
         'truck'
       end
@@ -59,7 +61,7 @@ module Adminpanel
       def display_attributes(type)
         display_attributes = []
         form_attributes.each do |attribute|
-          attribute.each do |name, properties|
+          attribute.each do |_, properties|
             if (
               properties['show'].nil? ||
               properties['show'] == 'true' ||
@@ -75,8 +77,8 @@ module Adminpanel
         return display_attributes
       end
 
-      # return true if model has adminpanel_file_field in
-      # it's attributes
+      # Check if this models has a gallery in its attributes
+      # @return boolean
       def has_gallery?
         form_attributes.each do |fields|
           fields.each do |attribute, properties|
@@ -85,16 +87,19 @@ module Adminpanel
             end
           end
         end
-        return false
+        false
       end
 
-      #Returns an array of all the adminpanel_field_field fields found in form_attributes
+      # Returns an array with all the adminpanel_file_field`s attributes found
+      # in form_attributes
+      # @return Hash
+      # => { sectionfiles: Adminpanel::SectionFile, ... }
       def galleries
         galleries = {}
         form_attributes.each do |fields|
-          fields.each do |attribute, properties|
+          fields.each do |relation, properties|
             if properties['type'] == FILE_FIELD_NAME
-              galleries["#{attribute.singularize}"] = "adminpanel/#{attribute}".classify.constantize.to_s
+              galleries["#{relation.singularize}"] = "adminpanel/#{relation}".classify.constantize.to_s
             end
           end
         end
@@ -102,12 +107,15 @@ module Adminpanel
         return galleries
       end
 
+      # Returns an array with all the adminpanel_file_field`s attributes who are
+      # sortable found in form_attributes
+      # @return Hash
       def sortable_galleries
         galleries = {}
         form_attributes.each do |fields|
-          fields.each do |attribute, properties|
-            if properties['type'] == FILE_FIELD_NAME && "adminpanel/#{attribute}".classify.constantize.is_sortable?
-              galleries["#{attribute.singularize}"] = "adminpanel/#{attribute}".classify.constantize.to_s
+          fields.each do |relation, properties|
+            if properties['type'] == FILE_FIELD_NAME && "adminpanel/#{relation}".classify.constantize.is_sortable?
+              galleries["#{relation.singularize}"] = "adminpanel/#{relation}".classify.constantize.to_s
             end
           end
         end
@@ -133,7 +141,8 @@ module Adminpanel
         "adminpanel/#{gallery_relationship}".classify.constantize
       end
 
-      # returns all the class of the attributes of a given type.
+      # Search for a model attribute's that are of a given type
+      # @return Array
       # Usage:
       # To get all classes of all belongs_to attributes:
       #   @model.relationships_of('belongs_to')
@@ -150,12 +159,14 @@ module Adminpanel
         return classes_of_relation
       end
 
+      # routes options to be used when generating this model routes
+      # @return Hash
       def routes_options
         { path: collection_name.parameterize }
       end
 
       def has_route?(route)
-        if (!exclude?(route)) && include_route(route)
+        if (!exclude_route?(route)) && include_route?(route)
           true
         else
           false
@@ -170,10 +181,12 @@ module Adminpanel
         false
       end
 
+      # Additional member routes for this resource
       def member_routes
         []
       end
 
+      # Additional collection routes for this resource
       def collection_routes
         []
       end
@@ -192,34 +205,34 @@ module Adminpanel
 
       private
 
-      def exclude?(route)
-        if routes_options[:except].nil?
-          false
-        elsif routes_options[:except].include?(route)
-          true
-        else
-          false
+        def exclude_route?(route)
+          if routes_options[:except].nil?
+            false
+          elsif routes_options[:except].include?(route)
+            true
+          else
+            false
+          end
+        end
+
+        def include_route?(route)
+          if routes_options[:only].nil? || routes_options[:only].include?(route)
+            true
+          else
+            false
+          end
+        end
+
+      end
+
+      def destroy_unattached_images
+        self.class.galleries.each{|gallery| gallery.last.constantize.delete_all(model_id: nil) }
+      end
+
+      def correlative_order_gallery
+        self.class.galleries.each do |gallery|
+          self.send(gallery.first.pluralize).ordered.each_with_index{ |image, index| image.update(position: index + 1) }
         end
       end
-
-      def include_route(route)
-        if routes_options[:only].nil? || routes_options[:only].include?(route)
-          true
-        else
-          false
-        end
-      end
-
-    end
-
-    def destroy_unattached_images
-      self.class.galleries.each{|gallery| gallery.last.constantize.delete_all(model_id: nil) }
-    end
-
-    def correlative_order_gallery
-      self.class.galleries.each do |gallery|
-        self.send(gallery.first.pluralize).ordered.each_with_index{ |image, index| image.update(position: index + 1) }
-      end
-    end
   end
 end

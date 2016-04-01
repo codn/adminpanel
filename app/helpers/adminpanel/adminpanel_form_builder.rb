@@ -55,7 +55,14 @@ module Adminpanel
 
       options = args.extract_options!
 
-      hidden_field(method, id: "#{self.object.class.to_s.demodulize}-trix-#{method}") + base_layout(method, options, 'trix_field')
+      hidden_field(
+          method,
+          id: "#{self.object.class.to_s.demodulize}-trix-#{method}"
+        ) + base_layout(
+          method,
+          options,
+          'trix_field'
+      )
     end
 
     def text_area(method, *args)
