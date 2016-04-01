@@ -8,7 +8,7 @@ if @model.fb_share? && can?(:publish, @model)
     options = { target: "#fb-#{resource.id}", toggle: 'modal' }
   end
   options[:toggle] ||= ''
-  options << ' tooltip'
+  options[:toggle] << ' tooltip'
   options[:title] = 'Compartir en Facebook'
 %>
   <%=
