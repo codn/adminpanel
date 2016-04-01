@@ -31,7 +31,12 @@ module Adminpanel
     def new
       @resource_instance = @model.new
       respond_to do |format|
-        render_new(format)
+        format.html do
+          render 'adminpanel/templates/new'
+        end
+        format.js do
+          render 'adminpanel/templates/new'
+        end
       end
     end
 
@@ -52,7 +57,12 @@ module Adminpanel
             end
           end
         else
-          render_new(format)
+          format.html do
+            render 'adminpanel/templates/new'
+          end
+          format.js do
+            render 'adminpanel/templates/new'
+          end
         end
       end
     end
@@ -101,15 +111,6 @@ module Adminpanel
     def whitelisted_params
       resource = controller_name.singularize.to_sym
       "#{resource}_params"
-    end
-
-    def render_new(format)
-      format.html do
-        render 'adminpanel/templates/new'
-      end
-      format.js do
-        render 'adminpanel/templates/new'
-      end
     end
   end
 end
