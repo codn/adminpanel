@@ -22,11 +22,11 @@ in the example above, `'name'` is the database field, `'type'` is the form type,
 
 ### types supported
 * `'type' => 'text_field'`
-* `'type' => 'adminpanel_file_field'` works for [adminpanel galleries](https://github.com/codn/adminpanel/wiki/Generator-adminpanel:gallery)
+* `'type' => 'adminpanel_file_field'` works for [adminpanel galleries]({{site.baseurl}}/modules/2015-01-02-gallery)
 * `'type' => 'file_field'` Used for single file input
 * `'type' => 'image_field'` Used for single image input
 * `'type' => 'text_area'`
-* `'type' => 'wysiwyg_field'`
+* `'type' => 'wysiwyg_field'` ([wysiwyg attachments]({{site.baseurl}}/modules/2016-02-04-wysiwyg-attachments))
 * `'type' => 'boolean'`
 * `'type' => 'number_field'`
 * `'type' => 'password_field'`
