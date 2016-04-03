@@ -26,7 +26,9 @@ def self.form_fields
   ]
 end
 ```
+
 # text_attachment.rb
+
 ```ruby
 module Adminpanel
   class TextAttachment < Image
@@ -35,10 +37,10 @@ module Adminpanel
 
   end
 end
-
 ```
 
 # Controller
+
 ```ruby
 def whitelisted_params
   params.require(:somet).permit(
