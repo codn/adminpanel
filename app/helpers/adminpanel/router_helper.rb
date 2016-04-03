@@ -21,7 +21,7 @@ module Adminpanel
     end
 
     def has_gallery?(resource)
-      resource_class(resource).has_gallery?
+      resource_class(resource).has_gallery? || resource_class(resource).has_trix_gallery?
     end
 
     def resource_is_sortable?(resource)

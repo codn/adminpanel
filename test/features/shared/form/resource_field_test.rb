@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class ResourceFieldTest < ViewCase
-  fixtures :all
 
   setup :sign_in
 

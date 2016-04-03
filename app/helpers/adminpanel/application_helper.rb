@@ -18,7 +18,7 @@ module Adminpanel
       if @model.has_trix_gallery?
         options[:html][:"data-trix-url"] = url_for(controller: @model.to_controller_name, action: :add_to_gallery)
         options[:html][:"data-parent-class"] ||= @model.to_s
-        options[:html][:"data-params-key"] ||= @model.to_s.demodulize.downcase
+        options[:html][:"data-params-key"] ||= @model.to_s.demodulize.underscore
       end
 
       form_for(object, *(args << options), &block)

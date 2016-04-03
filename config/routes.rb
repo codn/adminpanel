@@ -47,7 +47,7 @@ Adminpanel::Engine.routes.draw do
           if has_fb_share?(resource)
             # include facebook concern
             get :fb_choose_page, as: 'fb_choose_page', path: I18n.t('routes.publish', location: I18n.t('routes.facebook_page'))
-            post :fb_save_token, as: 'fb_save_token', path: 'guardar-token-fb'
+            post :fb_save_token, as: 'fb_save_token',  path: 'guardar-token-fb'
             post :fb_publish, to: "#{resource}#fb_publish", as: 'fb_publish', path: I18n.t('routes.publish', location: 'facebook')
           end
 
@@ -67,7 +67,7 @@ Adminpanel::Engine.routes.draw do
 
           if has_gallery?(resource)
             post :add_to_gallery, to: "#{resource}#add_to_gallery", as: 'add_to_gallery', path: I18n.t('routes.add_to_gallery')
-            delete :remove_image, to: "#{resource}#remove_image", as: 'remove_image', path: I18n.t('routes.remove_image')
+            delete :remove_image, to: "#{resource}#remove_image",   as: 'remove_image',   path: I18n.t('routes.remove_image')
           end
         end
       end

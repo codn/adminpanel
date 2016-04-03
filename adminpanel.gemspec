@@ -54,4 +54,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'minitest-capybara','0.7.1'
   spec.add_development_dependency 'poltergeist'
   spec.add_development_dependency 'sqlite3',          '~> 1.3',   '>= 1.3.10'
+  spec.add_development_dependency 'byebug'
 end

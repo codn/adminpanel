@@ -23,6 +23,7 @@ Adminpanel.setup do |config|
     :users,
     :mugs,
     :salesmen,
+    :test_objects,
     :file_resources
   ]
 end

@@ -4,6 +4,8 @@ module Adminpanel
     has_and_belongs_to_many :categories,
         join_table: "adminpanel_test_object_category"
 
+    mount_images :textfiles
+
     def self.form_attributes
       [
         {
@@ -29,6 +31,7 @@ module Adminpanel
         {
           'text' => {
             'type' => 'wysiwyg_field',
+            'uploader' => 'textfiles',
             'label' => 'wysi'
           }
         },

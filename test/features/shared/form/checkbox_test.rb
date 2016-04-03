@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class CheckboxTest < ViewCase
-  fixtures :all
 
   setup :sign_in
   teardown :teardown

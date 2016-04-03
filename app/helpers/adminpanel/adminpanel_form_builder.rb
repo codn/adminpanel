@@ -218,22 +218,22 @@ module Adminpanel
           options[:data][:uploader_class] = "Adminpanel::#{options['uploader'].to_s.singularize.capitalize}"
           relation_name = "#{options['uploader'].to_s.singularize}_ids"
           editor_images = self.object.send(options['uploader'].to_s)
-          empty_uploader = @template.hidden_field_tag "#{self.object.class.name.demodulize.downcase.to_s}[#{relation_name}][]"
+          empty_uploader_field = @template.hidden_field_tag "#{self.object.class.name.demodulize.underscore}[#{relation_name}][]"
         end
 
         editor = @template.content_tag 'trix-editor', options do
           self.object.send(method)
         end
-        editor_images = editor_images.map {|image|
+        editor_images_fields = editor_images.map {|image|
           @template.hidden_field_tag(
-            "#{self.object.class.name.demodulize.downcase.to_s}[#{relation_name}][]",
+            "#{self.object.class.name.demodulize.underscore}[#{relation_name}][]",
             image.id,
             data: {
               url: image.file_url(:thumb)
             }
           )
         }.join('').html_safe
-        editor + empty_uploader + editor_images
+        editor + empty_uploader_field + editor_images_fields
       end
 
     private

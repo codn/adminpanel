@@ -1,6 +1,5 @@
 require 'test_helper'
-require 'adminpanel/product'
-require 'adminpanel/category'
+
 class HasManyThroughRemoteTest < ViewCase
 
   setup :visit_adminpanel_new_department_path

@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class SelectTest < ViewCase
-  fixtures :all
 
   setup :sign_in
   teardown :teardown

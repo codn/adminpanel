@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class ModalContentsTest < ViewCase
-  fixtures :all
 
   setup :visit_adminpanel_new_user
 
