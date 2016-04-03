@@ -5,7 +5,7 @@ module Adminpanel
     belongs_to :model, polymorphic: true
 
     before_save :store_file_size_and_content_type
-    # after_save :delete_old_unused_images
+
     before_destroy :remove_attachment
 
     private
@@ -20,12 +20,5 @@ module Adminpanel
         end
       end
 
-      # def delete_old_unused_images
-      #   self.class.where('created_at < ?', Time.now - 30.minutes)
-      #             .delete_all(
-      #               model_id: nil,
-      #               type: self.type
-      #             )
-      # end
   end
 end

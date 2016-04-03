@@ -4,19 +4,24 @@ module Adminpanel
     include BreadcrumbsHelper
     include SharedPagesHelper
 
-    def adminpanel_form_for(name, *args, &block)
+    def adminpanel_form_for(object, *args, &block)
       options = args.extract_options!
       options.reverse_merge! builder: Adminpanel::AdminpanelFormBuilder, html: { class: 'form-horizontal' }
-      if name.class.has_gallery?
-        options[:html][:"data-parent-object-class"] = name.class.to_s
-        options[:html][:"data-parent-object-id"] = name.id
-        options[:html][:"data-dropzone"] = name.class.to_s.demodulize.underscore
-        options[:html][:"data-dropzone-galleries"] = name.class.galleries.to_json
-        options[:html][:"data-dropzone-url"] = url_for(controller: name.class.to_controller_name, action: :add_to_gallery)
-        options[:html][:"data-dropzone-delete-url"] = url_for(controller: name.class.to_controller_name, action: :remove_image)
+      if @model.has_gallery?
+        options[:html][:"data-parent-object-class"] = @model.to_s
+        options[:html][:"data-parent-object-id"] = object.id
+        options[:html][:"data-dropzone"] = @model.to_s.demodulize.underscore
+        options[:html][:"data-dropzone-galleries"] = @model.galleries.to_json
+        options[:html][:"data-dropzone-url"] = url_for(controller: @model.to_controller_name, action: :add_to_gallery)
+        options[:html][:"data-dropzone-delete-url"] = url_for(controller: @model.to_controller_name, action: :remove_image)
+      end
+      if @model.has_trix_gallery?
+        options[:html][:"data-trix-url"] = url_for(controller: @model.to_controller_name, action: :add_to_gallery)
+        options[:html][:"data-parent-class"] ||= @model.to_s
+        options[:html][:"data-params-key"] ||= @model.to_s.demodulize.downcase
       end
 
-      form_for(name, *(args << options), &block)
+      form_for(object, *(args << options), &block)
     end
 
     def full_title(page_title)

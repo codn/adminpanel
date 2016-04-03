@@ -212,11 +212,28 @@ module Adminpanel
         options.reverse_merge! input: "#{self.object.class.to_s.demodulize}-trix-#{method}", id: "#{method}-trix-editor"
         options[:class] << ' trix-content'
         options[:data] ||= {}
-        options[:data][:uploader_name] = options['uploader'].to_s if options['uploader'].present?
+        editor_images = []
+        if options['uploader'].present?
+          options[:data][:uploader_name] = options['uploader'].to_s
+          options[:data][:uploader_class] = "Adminpanel::#{options['uploader'].to_s.singularize.capitalize}"
+          relation_name = "#{options['uploader'].to_s.singularize}_ids"
+          editor_images = self.object.send(options['uploader'].to_s)
+          empty_uploader = @template.hidden_field_tag "#{self.object.class.name.demodulize.downcase.to_s}[#{relation_name}][]"
+        end
 
-        @template.content_tag 'trix-editor', options do
+        editor = @template.content_tag 'trix-editor', options do
           self.object.send(method)
         end
+        editor_images = editor_images.map {|image|
+          @template.hidden_field_tag(
+            "#{self.object.class.name.demodulize.downcase.to_s}[#{relation_name}][]",
+            image.id,
+            data: {
+              url: image.file_url(:thumb)
+            }
+          )
+        }.join('').html_safe
+        editor + empty_uploader + editor_images
       end
 
     private

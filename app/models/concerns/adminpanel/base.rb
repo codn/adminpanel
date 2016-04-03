@@ -90,6 +90,19 @@ module Adminpanel
         false
       end
 
+      # Check if this models has a trix editor with a gallery in its attributes
+      # @return boolean
+      def has_trix_gallery?
+        form_attributes.each do |fields|
+          fields.each do |attribute, properties|
+            if properties['type'] == 'wysiwyg_field' || properties['uploader'].present?
+              return true
+            end
+          end
+        end
+        false
+      end
+
       # Returns an array with all the adminpanel_file_field`s attributes found
       # in form_attributes
       # @return Hash
