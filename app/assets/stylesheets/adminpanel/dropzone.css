@@ -283,7 +283,8 @@
 .zone .dz-preview .dz-image {
   border-radius: 20px;
   overflow: hidden;
-  width: 120px;
+  min-width: 120px;
+  min-height: 120px;
   position: relative;
   display: block;
   z-index: 10;
