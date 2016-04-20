@@ -1,7 +1,6 @@
 module Adminpanel
   module Sitemap
     extend ActiveSupport::Concern
-    include Rails.application.routes.url_helpers
 
     included do
       after_create :ping_engines
@@ -18,11 +17,10 @@ module Adminpanel
     end
 
     def ping_engines
-      logger.info Time.now
       ping_urls.each do |name, url|
-        request = url % CGI.escape("#{root_url}/sitemap.xml")
+        request = url % CGI.escape("#{Rails.application.routes.url_helpers.root_url}/sitemap.xml")
         logger.info "  Pinging #{name} with #{request}"
-        if !Rails.env.development?
+        if Rails.env.production?
           response = Net::HTTP.get_response(URI.parse(request))
           logger.info "    #{response.code}: #{response.message}"
           logger.info "    Body: #{response.body}"
