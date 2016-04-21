@@ -74,7 +74,7 @@ module Adminpanel
     # |            |
     # |____________|
 
-    #  resize_to_limit: [500, 500] resize_to_fit, but only resizing if original image is larger
+    #  resize_to_limit: [500, 500] resize_to_fit, but only if original image is larger while retaining original
     #  _________________
     # |                 |
     # |        0        |
