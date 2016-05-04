@@ -211,7 +211,7 @@ module Adminpanel
 
       def trix_field(method, *args)
         options = args.extract_options!
-        options.reverse_merge! input: options[:trix_id], id: "#{method}-#{self.object.object_id}-trix-editor"
+        options.reverse_merge! input: options[:trix_id], id: "#{method}-trix-editor"
         options[:class] << ' trix-content'
         options[:data] ||= {}
         editor_images = []
