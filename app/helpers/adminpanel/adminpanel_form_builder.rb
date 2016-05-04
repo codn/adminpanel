@@ -55,9 +55,10 @@ module Adminpanel
 
       options = args.extract_options!
 
+      options[:trix_id] = "trix-#{method}-#{self.object.object_id}"
       hidden_field(
           method,
-          id: "#{self.object.class.to_s.demodulize}-trix-#{method}"
+          id: options[:trix_id]
         ) + base_layout(
           method,
           options,
@@ -207,9 +208,10 @@ module Adminpanel
     # end
 
     protected
+
       def trix_field(method, *args)
         options = args.extract_options!
-        options.reverse_merge! input: "#{self.object.class.to_s.demodulize}-trix-#{method}", id: "#{method}-trix-editor"
+        options.reverse_merge! input: options[:trix_id], id: "#{method}-#{self.object.object_id}-trix-editor"
         options[:class] << ' trix-content'
         options[:data] ||= {}
         editor_images = []
