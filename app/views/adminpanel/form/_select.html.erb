@@ -9,11 +9,11 @@
                     collection,
                     properties['id_method'],
                     properties['name_method'],
-                    @resource_instance.send(attribute)
+                    @resource_instance.try(attribute)
                   )
 
   elsif ['Hash', 'Array', 'HashWithIndifferentAccess'].include? collection.class.to_s.demodulize
-    collection = options_for_select(collection)
+    collection = options_for_select(collection, @resource_instance.try(attribute))
   end
 %>
 <%= f.select attribute, collection, { include_blank: true }, args  %>
