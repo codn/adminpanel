@@ -112,8 +112,9 @@ class SharedPagesHelperTest < ActionView::TestCase
   def test_file_field_in_field_value
     test_object = adminpanel_galleries(:one)
     attribute = 'file'
+
     assert_equal(
-      test_object[attribute],
+      nil,
       field_value(
         'file_field',
         attribute,

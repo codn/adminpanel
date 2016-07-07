@@ -65,7 +65,7 @@ module Adminpanel
           li_tags.html_safe
         end
       when 'file_field'
-        link_to(object[attribute], object.send("#{attribute}_url"))
+        link_to(object[attribute], object.try(:send, "#{attribute}_url")) unless object[attribute].nil?
       when 'image_field'
         content_tag :ul do
           image_tag(object.send("#{attribute}_url", :thumb))
