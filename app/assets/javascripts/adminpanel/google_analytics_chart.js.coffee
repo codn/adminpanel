@@ -1,5 +1,4 @@
-drawGraphic = ->
-
+$(document).on 'turbolinks:load', ->
   if $('#google-stats').length
     margin =
       top: 20
@@ -58,6 +57,3 @@ drawGraphic = ->
       .datum data
       .attr "class", "line"
       .attr "d", line
-
-$(document).on 'page:load', drawGraphic
-$(document).ready drawGraphic

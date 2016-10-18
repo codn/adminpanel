@@ -239,7 +239,7 @@ module Adminpanel
       end
 
       def destroy_unattached_images
-        self.class.galleries.each{|gallery| gallery.last.constantize.delete_all(model_id: nil) }
+        self.class.galleries.each{|gallery| gallery.last.constantize.where(model_id: nil).delete_all }
       end
 
       def correlative_order_gallery

@@ -7,15 +7,15 @@ Adminpanel::Engine.routes.draw do
     when :analytics
       resources :analytics, only: [:index] do
         collection do
-          get :google,               to: 'analytics#google', path: 'google'
+          get :google,               to: 'analytics#google'
 
-          get :twitter,              to:'analytics#twitter', path:'twitter'
-          post 'reply_to_tweet/:id', to: 'analytics#reply_to_tweet', as: 'reply_to', path: "twitter/#{I18n.t('routes.reply')}/:id"
-          post 'favorite_tweet/:id', to: 'analytics#favorite_tweet', as: 'favorite', path: "twitter/#{I18n.t('routes.favorite')}/:id"
-          post 'retweet_tweet/:id',  to: 'analytics#retweet_tweet',  as: 'retweet',  path: "twitter/#{I18n.t('routes.retweet')}/:id"
+          get :twitter,              to:'analytics#twitter'
+          post "twitter/#{I18n.t('routes.reply')}/:id", action: 'reply_to_tweet/:id', to: 'analytics#reply_to_tweet', as: 'reply_to'
+          post "twitter/#{I18n.t('routes.favorite')}/:id", action: 'favorite_tweet/:id', to: 'analytics#favorite_tweet', as: 'favorite'
+          post "twitter/#{I18n.t('routes.retweet')}/:id", action: 'retweet_tweet/:id',  to: 'analytics#retweet_tweet',  as: 'retweet'
 
           get :instagram,            to:'analytics#instagram'
-          post 'comment_to_instagram/:id', to: 'analytics#instagram_comment', as: 'comment_instagram', path: "instagram/#{I18n.t('routes.comment')}/:id"
+          post "instagram/#{I18n.t('routes.comment')}/:id", action: 'comment_to_instagram/:id', to: 'analytics#instagram_comment', as: 'comment_instagram'
         end
       end
     else
@@ -81,8 +81,8 @@ Adminpanel::Engine.routes.draw do
       get 'instagram_callback'
     end
   end
-  delete '/signout', to: 'sessions#destroy', as: 'signout', path: I18n.t('routes.signout')
-  get    '/signin',  to: 'sessions#new',     as: 'signin',  path: I18n.t('routes.signin')
+  delete 'signout', to: 'sessions#destroy', as: '/signout', path: I18n.t('routes.signout')
+  get    'signin',  to: 'sessions#new',     as: '/signin',  path: I18n.t('routes.signin')
 
 end
 

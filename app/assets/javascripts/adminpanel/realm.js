@@ -1,4 +1,4 @@
-var ready = function(){
+$(document).on('turbolinks:load', function(){
 
   // toggle arrow on menu items
   // $('.accordion-heading .accordion-toggle').click(function(){
@@ -56,11 +56,7 @@ var ready = function(){
 
   $('.datepicker-basic').datepicker();
 
-};
-
-$(document).ready(ready);
-$(document).on('page:load', ready);
-
+});
 
 //-----  Side menu functions -----
 

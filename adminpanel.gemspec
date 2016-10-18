@@ -51,6 +51,7 @@ Gem::Specification.new do |spec|
   # Test dependencies
   spec.add_development_dependency 'minitest',         '>= 5.7.0', '<= 6.0.0'
   spec.add_development_dependency 'minitest-emoji',   '2.0.0'
+  spec.add_development_dependency 'capybara',         '> 2.10.0'
   spec.add_development_dependency 'minitest-capybara','0.7.1'
   spec.add_development_dependency 'poltergeist'
   spec.add_development_dependency 'sqlite3',          '~> 1.3',   '>= 1.3.12'

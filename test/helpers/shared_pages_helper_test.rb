@@ -124,6 +124,7 @@ class SharedPagesHelperTest < ActionView::TestCase
   end
 
   def test_image_field_in_field_value
+    byebug
     test_object = adminpanel_galleries(:one)
     attribute = 'file'
     assert_equal(

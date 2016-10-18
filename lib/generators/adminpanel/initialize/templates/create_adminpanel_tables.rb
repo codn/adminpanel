@@ -3,10 +3,10 @@ class CreateAdminpanelTables < ActiveRecord::Migration
     super
     # Create a default user
     if direction == :up && Rails.env.development?
-      role = Adminpanel::Role.new(:name => "Admin")
+      role = Adminpanel::Role.new(name: "Admin")
       role.save
-      Adminpanel::User.new(:email => 'admin@admin.com', :name => "Admin", :password => 'password', :password_confirmation => 'password', :role_id => role.id).save
-      puts "The password for admin@admin.com is: password"
+      Adminpanel::User.new(email: 'webmaster@codn.mx', name: "Admin", password: '123456', password_confirmation: '123456', role_id: role.id).save
+      puts "The password for admin@admin.com is: 123456"
     end
   end
 

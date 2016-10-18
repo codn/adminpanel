@@ -2,10 +2,10 @@ ENV['RAILS_ENV'] = 'test'
 
 require File.expand_path('../dummy/config/environment', __FILE__)
 require 'rails/test_help'
-require 'minitest/autorun'
 require 'minitest/emoji' #emoji output
 require 'capybara/rails'
 require 'capybara/poltergeist'
+require 'minitest/capybara'
 
 Capybara.current_driver = :poltergeist
 
