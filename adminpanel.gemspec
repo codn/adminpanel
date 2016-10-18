@@ -19,11 +19,11 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib', 'app/assets']
 
-  spec.required_ruby_version = '>= 2.0.0'
+  spec.required_ruby_version = '>= 2.2.3'
 
   spec.requirements  << 'imagemagick installed'
 
-  spec.add_runtime_dependency 'rails',       '>= 4.2.0', '< 5.1'
+  spec.add_runtime_dependency 'rails',       '>= 5.0', '< 5.1'
   spec.add_runtime_dependency 'mini_magick', '4.3.6'
   spec.add_runtime_dependency 'bcrypt',      '~> 3.1',   '>= 3.1.7'
   spec.add_runtime_dependency 'carrierwave', '~> 0.10',  '>= 0.10.0'
@@ -38,18 +38,18 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'twitter',           '5.14.0' # Twitter
 
   # Asset dependencies
-  spec.add_runtime_dependency 'coffee-rails',       '~> 4.1.0', '>= 4.1.0'
+  spec.add_runtime_dependency 'coffee-rails',       '~> 4.2', '>= 4.2.0'
   spec.add_runtime_dependency 'font-awesome-rails', '~> 4.2',   '>= 4.2.0'
-  spec.add_runtime_dependency 'jquery-rails',       '~> 4.0.4', '>= 4.0.4'
+  spec.add_runtime_dependency 'jquery-rails',       '~> 4.2', '>= 4.2.0'
   spec.add_runtime_dependency 'jquery-ui-rails',    '~> 5.0.5', '>= 5.0.5'
   spec.add_runtime_dependency 'sass-rails',         '~> 5.0.0', '>= 5.0.0'
-  spec.add_runtime_dependency 'turbolinks',         '~> 2.5.0', '>= 2.5.2'
+  spec.add_runtime_dependency 'turbolinks',         '~> 5', '>= 5'
 
   # Development dependencies
   spec.add_runtime_dependency 'faker', '~> 1.3',   '>= 1.3.0'
 
   # Test dependencies
-  spec.add_development_dependency 'minitest',         '>= 5.4.0', '<= 6.0.0'
+  spec.add_development_dependency 'minitest',         '>= 5.7.0', '<= 6.0.0'
   spec.add_development_dependency 'minitest-emoji',   '2.0.0'
   spec.add_development_dependency 'minitest-capybara','0.7.1'
   spec.add_development_dependency 'poltergeist'
