@@ -13,7 +13,8 @@ module Adminpanel
           id: image.id,
           image_url: image.file_url(:thumb)
         }
-
+        p 'jaja'
+        p response
         respond_to do |f|
           f.json{ render status: :ok, json: response.to_json }
         end

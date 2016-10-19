@@ -126,10 +126,6 @@ ActiveRecord::Schema.define do
       t.integer  :test_object_id
       t.integer  :category_id
   end
-  create_table :adminpanel_file_resourcefiles do |t|
-      t.integer  :file_resource_id
-      t.string   :file
-  end
   create_table :adminpanel_file_resources do |t|
     t.string :name
     t.datetime :created_at

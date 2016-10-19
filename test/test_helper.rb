@@ -13,6 +13,7 @@ load Rails.root.join('db', 'schema.rb')
 
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
+Capybara.raise_server_errors = false
 class ActiveSupport::TestCase
   #fixtures live inside the dummy app
   fixtures :all

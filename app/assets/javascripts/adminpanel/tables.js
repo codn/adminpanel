@@ -128,6 +128,8 @@ var ready = function() {
 
 $(document).on('turbolinks:render', ready);
 $(document).on('turbolinks:before-cache', function(){
-  var dt = $('#information-table').dataTable({ "bRetrieve": true });
-  dt.fnDestroy();
+  if ($('#information-table').length) {
+    var dt = $('#information-table').dataTable({ "bRetrieve": true });
+    dt.fnDestroy();
+  }
 });

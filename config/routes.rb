@@ -81,8 +81,8 @@ Adminpanel::Engine.routes.draw do
       get 'instagram_callback'
     end
   end
-  delete 'signout', to: 'sessions#destroy', as: '/signout', path: I18n.t('routes.signout')
-  get    'signin',  to: 'sessions#new',     as: '/signin',  path: I18n.t('routes.signin')
+  delete I18n.t('routes.signout'), to: 'sessions#destroy', as: 'signout'
+  get    I18n.t('routes.signin'),  to: 'sessions#new',     as: 'signin'
 
 end
 

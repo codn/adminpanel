@@ -5,6 +5,7 @@ class ShowTest < ViewCase
 
   setup :sign_in
   def test_resource_contenets_and_links
+    visit adminpanel.product_path(adminpanel_products(:first))
     assert_content(adminpanel_products(:first).name)
     assert_content(adminpanel_products(:first).price)
     assert_content(adminpanel_products(:first).description)
@@ -16,6 +17,5 @@ class ShowTest < ViewCase
   def sign_in
     visit adminpanel.signin_path
     login
-    visit adminpanel.product_path( adminpanel_products(:first) )
   end
 end

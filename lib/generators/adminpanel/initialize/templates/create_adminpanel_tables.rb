@@ -41,6 +41,7 @@ class CreateAdminpanelTables < ActiveRecord::Migration
       t.string :type
       t.string :file_size
       t.string :content_type
+      t.integer :position
       t.timestamps
     end
   end

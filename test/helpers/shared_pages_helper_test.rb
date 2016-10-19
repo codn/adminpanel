@@ -114,7 +114,7 @@ class SharedPagesHelperTest < ActionView::TestCase
     attribute = 'file'
 
     assert_equal(
-      nil,
+      link_to('hipster.jpg', test_object.file_url),
       field_value(
         'file_field',
         attribute,
@@ -124,7 +124,6 @@ class SharedPagesHelperTest < ActionView::TestCase
   end
 
   def test_image_field_in_field_value
-    byebug
     test_object = adminpanel_galleries(:one)
     attribute = 'file'
     assert_equal(
