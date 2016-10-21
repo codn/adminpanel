@@ -3,7 +3,7 @@ module Adminpanel
     extend ActiveSupport::Concern
 
     def add_to_gallery
-      image_class = params[:model].constantize
+      image_class = params[:model].camelize.constantize
       image = image_class.new(file: params[:file], model_type: params[:parent_object_class])
       image.model_id = params[:resource_id] if params[:resource_id]
 
