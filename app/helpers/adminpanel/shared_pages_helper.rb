@@ -81,7 +81,7 @@ module Adminpanel
       when 'adminpanel_file_field'
         object.send(attribute).count
       when 'wysiwyg_field'
-        strip_tags(object.send(attributes).to_s).truncate(120)
+        strip_tags(object.send(attribute).to_s).truncate(120)
       else
         object.send(attribute)
       end
