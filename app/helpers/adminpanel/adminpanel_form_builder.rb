@@ -8,6 +8,7 @@ module Adminpanel
     alias_method :number_field_original, :number_field
     alias_method :email_field_original, :email_field
     alias_method :file_field_original, :file_field
+    alias_method :time_select_original, :time_select
 
     def body(&block)
       @template.content_tag :div, class: 'widget-body' do
@@ -151,6 +152,10 @@ module Adminpanel
 
     def datepicker(method, *args)
       base_layout( method, *args, 'datepickerize_base' )
+    end
+
+    def hours_select(method, *args)
+      base_layout( method, *args, 'time_select_original' )
     end
 
     # def prepend_field(name, *args)
