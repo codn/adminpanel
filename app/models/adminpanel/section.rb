@@ -22,7 +22,7 @@ module Adminpanel
     validates_format_of :description, with: VALID_EMAIL_REGEX, if: :is_email?, allow_blank: true
 
     default_scope do
-      order :order => :asc
+      order order: :asc
     end
 
     scope :of_page, -> (page) do
@@ -30,7 +30,7 @@ module Adminpanel
     end
 
     scope :with_description, -> do
-      where.not( description: '')
+      where.not(description: '')
     end
 
     def self.form_attributes

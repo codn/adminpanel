@@ -13,9 +13,6 @@ module Adminpanel
       @telephone.update_attribute(:description, '1' * 11)
       assert @telephone.invalid?
 
-      @telephone.update_attribute(:description, '01-2-3-4-5')
-      assert @telephone.invalid?
-
       @telephone.update_attribute(:description, '')
       assert @telephone.valid?
     end
