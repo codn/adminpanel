@@ -300,7 +300,7 @@ module Adminpanel
       def thumbnail_layout(attribute)
         @template.content_tag :div, class: 'control-group' do
           @template.content_tag :div, class: 'controls' do
-            @template.image_tag self.object.send("#{attribute}_url", :thumb)
+            @template.image_tag(self.object.send("#{attribute}_url", :thumb)) unless self.object.send("#{attribute}_url", :thumb).nil?
           end
         end
       end
