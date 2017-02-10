@@ -28,13 +28,6 @@ Adminpanel.setup do |config|
   # # Facebook app secret *MAKE SURE TO DON'T SHARE THIS SECRET*
   # config.fb_app_secret = 'fbs3cr3t'
 
-  ### TWITTER CONFIGURATIONS ###
-  # # Twitter consumer key
-  # config.twitter_api_key = 'tw1tt3r'
-
-  # # Twitter consumer secret *DON'T SHARE THIS SECRET EITHER*
-  # config.twitter_api_secret = 'tws3cr3t'
-
   ### INSTAGRAM CONFIGURATIONS ###
   # # Instagram consumer key
   # config.instagram_client_id = '1nst4gr4m'

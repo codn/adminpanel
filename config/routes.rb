@@ -9,11 +9,6 @@ Adminpanel::Engine.routes.draw do
         collection do
           get :google,               to: 'analytics#google'
 
-          get :twitter,              to:'analytics#twitter'
-          post "twitter/#{I18n.t('routes.reply')}/:id", action: 'reply_to_tweet/:id', to: 'analytics#reply_to_tweet', as: 'reply_to'
-          post "twitter/#{I18n.t('routes.favorite')}/:id", action: 'favorite_tweet/:id', to: 'analytics#favorite_tweet', as: 'favorite'
-          post "twitter/#{I18n.t('routes.retweet')}/:id", action: 'retweet_tweet/:id',  to: 'analytics#retweet_tweet',  as: 'retweet'
-
           get :instagram,            to:'analytics#instagram'
           post "instagram/#{I18n.t('routes.comment')}/:id", action: 'comment_to_instagram/:id', to: 'analytics#instagram_comment', as: 'comment_instagram'
         end
@@ -50,11 +45,6 @@ Adminpanel::Engine.routes.draw do
             post :fb_save_token, as: 'fb_save_token',  path: 'guardar-token-fb'
             post :fb_publish, to: "#{resource}#fb_publish", as: 'fb_publish', path: I18n.t('routes.publish', location: 'facebook')
           end
-
-          if has_twitter_share?(resource)
-            # include twitter concern
-            post :twitter_publish, to: "#{resource}#twitter_publish", as: 'twitter_publish', path: I18n.t('routes.publish', location: 'twitter')
-          end
         end
 
         collection do
@@ -84,9 +74,4 @@ Adminpanel::Engine.routes.draw do
   delete I18n.t('routes.signout'), to: 'sessions#destroy', as: 'signout'
   get    I18n.t('routes.signin'),  to: 'sessions#new',     as: 'signin'
 
-end
-
-Rails.application.routes.draw do
-  #route for oauth2 twitter callback
-  get 'auth/twitter/callback', to: 'adminpanel/sessions#twitter_callback'
 end

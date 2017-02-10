@@ -138,7 +138,6 @@ es:
     for: 'Estadísticas para '
     facebook: 'Facebook Insights'
     instagram: 'Noticias de Instagram'
-    twitter: 'Estadísticas de Twitter'
     said: 'dijo'
     explanation: 'Explicación de las métricas'
   fb:
@@ -149,12 +148,6 @@ es:
     page_select: 'Selecciona una cuenta para la publicación'
     message: 'Mensaje de la publicación'
     saved_token: 'Log in con Facebook exitoso, ya puedes publicar con la cuenta de Facebook'
-  twitter:
-    posted: 'Publicado en el twitter de %{user}'
-    not-posted: 'Hubo un error, no fue publicado, Por favor verifica tus credenciales o vuelve a iniciar sesión en la aplicación'
-    page_select: 'Selecciona una cuenta para la publicación'
-    message: 'Mensaje de la publicación'
-    saved_token: 'Log in con Twitter exitoso, ya puedes publicar con la cuenta de Twitter'
   breadcrumb:
     index: 'Inicio'
   dropzone:

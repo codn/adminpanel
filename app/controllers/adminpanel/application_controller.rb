@@ -11,7 +11,6 @@ module Adminpanel
     include Adminpanel::RestActions
     include Adminpanel::SortableActions
     include Adminpanel::FacebookActions
-    include Adminpanel::TwitterActions
     include Adminpanel::SitemapActions
     include Adminpanel::GalleryActions
 

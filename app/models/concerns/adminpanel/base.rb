@@ -190,10 +190,6 @@ module Adminpanel
         false
       end
 
-      def twitter_share?
-        false
-      end
-
       # Additional member routes for this resource
       def member_routes
         []

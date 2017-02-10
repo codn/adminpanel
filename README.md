@@ -21,7 +21,7 @@ Run:
     rails g adminpanel:initialize
     rake db:migrate
 This create and seeds a user to the database (email: 'admin@admin.com', password: 'password').
-    
+
 #### Optional
 
 Change the path where adminpanel is mounted
@@ -37,7 +37,7 @@ Change the panel locale
 
 ## Usage
 
-To create a new resource: 
+To create a new resource:
 ```
 rails g adminpanel:resource product name price:float description:wysiwyg
 ```
@@ -57,7 +57,6 @@ Currently the integrations working are:
 
 * [Google Analytics Service](http://codn.github.io/adminpanel/module/google-analytics.html)
 * [Facebook Share Link to Wall](http://codn.github.io/adminpanel/module/facebook)
-* [Twitter API](http://codn.github.io/adminpanel/module/twitter)
 * [Instagram API](http://codn.github.io/adminpanel/module/instagram)
 
 Any questions, errors or feature suggestions [are welcome in the issues](https://github.com/codn/adminpanel/issues/new)

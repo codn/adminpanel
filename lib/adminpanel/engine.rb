@@ -13,8 +13,6 @@ module Adminpanel
     :displayable_resources,
     :fb_app_id,
     :fb_app_secret,
-    :twitter_api_key,
-    :twitter_api_secret,
     :instagram_client_id,
     :instagram_client_secret
 
@@ -25,18 +23,12 @@ module Adminpanel
     self.analytics_application_name = 'AdminPanel'
     self.analytics_application_version = '1.0.0'
 
-    self.twitter_api_key = nil
-    self.twitter_api_secret = nil
-
     self.displayable_resources = [
       :users
     ]
 
     self.fb_app_id = nil
     self.fb_app_secret = nil
-
-    self.twitter_api_key = nil
-    self.twitter_api_secret = nil
 
     self.instagram_client_id = nil
     self.instagram_client_secret = nil

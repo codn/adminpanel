@@ -10,8 +10,7 @@ module Adminpanel
                                               :move_to_position,
                                               :fb_choose_page,
                                               :fb_save_token,
-                                              :fb_publish,
-                                              :twitter_publish
+                                              :fb_publish
                                             ]
       before_action :set_resource_collection, only: [:index, :destroy]
     end

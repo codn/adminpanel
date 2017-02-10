@@ -24,10 +24,6 @@ module Adminpanel
       metric.first['name']
     end
 
-    def tweet_link(tweet)
-      "http://www.twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}"
-    end
-
     def fb_insights(fb_auth)
       if fb_auth
         "#{Koala::Facebook::API.new(fb_auth.value).get_object('me')['link']}insights"
@@ -38,14 +34,6 @@ module Adminpanel
 
     def exist_instagram_account?
       if @instagram_token.nil?
-        false
-      else
-        true
-      end
-    end
-
-    def exist_twitter_account?
-      if @twitter_token.nil? || @twitter_secret.nil?
         false
       else
         true

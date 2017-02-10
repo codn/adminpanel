@@ -1,6 +1,5 @@
 module Adminpanel
   class AnalyticsController < Adminpanel::ApplicationController
-    include Adminpanel::Analytics::TwitterAnalytics
     include Adminpanel::Analytics::InstagramAnalytics
 
     skip_before_action :set_resource_collection
@@ -79,27 +78,6 @@ module Adminpanel
       respond_to do |format|
         format.html
         format.json {render :json => {:visit_count => @visitCount, :visits => @visits, :visit_dates => @visitDates }}
-      end
-    end
-
-    # uses @client to fetch replies and tweets, for some statics
-    def twitter
-      authorize! :read, Adminpanel::Analytic
-      if !@twitter_token.nil? && !@twitter_secret.nil?
-        @favorites = 0.0
-        @retweets = 0.0
-        @twitter_user = @twitter_client.user
-
-        # 20 is the number that we're using to measure statics.
-        @twitter_client.user_timeline(@twitter_user.username).take(20).collect do |tweet|
-          @favorites = @favorites + tweet.favorite_count.to_f
-          @retweets = @retweets + tweet.retweet_count.to_f
-        end
-
-        @tweets = @twitter_client.mentions_timeline.take(5)
-
-        @favorites = @favorites / 20.0
-        @retweets = @retweets / 20.0
       end
     end
 

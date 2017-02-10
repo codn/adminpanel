@@ -34,13 +34,6 @@ module Adminpanel
       redirect_to signin_path
     end
 
-    def twitter_callback
-      save_twitter_tokens
-      Rails.cache.clear
-      flash[:success] = I18n.t('twitter.saved_token')
-      redirect_to twitter_analytics_path
-    end
-
     def instagram_login
       redirect_to Instagram.authorize_url(redirect_uri: instagram_callback_sessions_url, scope: 'comments')
     end
@@ -58,17 +51,6 @@ module Adminpanel
       Instagram.configure do |config|
         config.client_id = Adminpanel.instagram_client_id
         config.client_secret = Adminpanel.instagram_client_secret
-      end
-    end
-
-    def save_twitter_tokens
-      twitter_user = "@#{request.env['omniauth.auth']['info']['nickname']}"
-      ['token', 'secret'].each do |key|
-        Auth.create(
-          key: "twitter-#{key}",
-          name: twitter_user,
-          value: request.env['omniauth.auth']['credentials'][key]
-        )
       end
     end
   end

@@ -16,10 +16,6 @@ module Adminpanel
       resource_class(resource).fb_share?
     end
 
-    def has_twitter_share?(resource)
-      resource_class(resource).twitter_share?
-    end
-
     def has_gallery?(resource)
       resource_class(resource).has_gallery? || resource_class(resource).has_trix_gallery?
     end

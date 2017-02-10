@@ -11,10 +11,8 @@ require 'instagram'
 require 'jquery-rails'
 require 'jquery-ui-rails'
 require 'koala'
-require 'omniauth-twitter'
 require 'sass'
 require 'turbolinks'
-require 'twitter'
 
 module Adminpanel
 end
