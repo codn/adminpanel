@@ -11,6 +11,7 @@
 /test/tmp/
 /test/version_tmp/
 /tmp/
+public/
 
 ## Documentation cache and generated files:
 /.yardoc/
@@ -27,3 +28,6 @@
 Gemfile.lock
 .ruby-version
 .ruby-gemset
+
+#Mac file system
+.DS_Store
