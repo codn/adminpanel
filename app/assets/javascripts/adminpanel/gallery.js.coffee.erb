@@ -76,4 +76,4 @@ DropzoneHandler =
 
 
 
-$(document).on('page:load ready', $.proxy(DropzoneHandler.init, DropzoneHandler))
+$(document).on('turbolinks:load', $.proxy(DropzoneHandler.init, DropzoneHandler))

@@ -14,7 +14,7 @@ class DropzoneElementGenerationTest < ViewCase
   test "render the form should add a hidden input for each existing photos" do
     product = adminpanel_products(:first)
     visit adminpanel.edit_product_path(product)
-
+    assert product.photos.count > 0
     assert_selector '#photo_dropzone'
     assert_selector "input[type='hidden'][name='product[photo_ids][]']", count: product.photos.count
   end

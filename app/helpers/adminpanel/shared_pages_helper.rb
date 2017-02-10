@@ -80,6 +80,8 @@ module Adminpanel
         I18n.t("#{object.class.name.demodulize.downcase}.#{object.send(attribute)}")
       when 'adminpanel_file_field'
         object.send(attribute).count
+      when 'wysiwyg_field'
+        strip_tags(object.send(attribute).to_s).truncate(120)
       else
         object.send(attribute)
       end

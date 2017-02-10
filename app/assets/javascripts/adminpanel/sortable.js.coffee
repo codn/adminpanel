@@ -1,4 +1,4 @@
-ready = ->
+$(document).on 'turbolinks:load', ->
   $('tbody#sortable').sortable
     update: (event, ui) ->
       position = 1
@@ -21,7 +21,3 @@ ready = ->
         else
           position++
   $('tbody#sortable').disableSelection
-
-
-$(document).ready(ready)
-$(document).on('page:load', ready)

@@ -10,7 +10,8 @@ class SortableGalleryUiTest < ViewCase
     visit adminpanel.gallery_path(adminpanel_galleries(:one))
 
     # assert for sortable stuff
-    assert_selector 'td.draggable.img'
+    assert adminpanel_galleries(:one).galleryfiles.count > 0
+    assert_selector 'td.draggable.img', count: adminpanel_galleries(:one).galleryfiles.count
   end
 
   protected

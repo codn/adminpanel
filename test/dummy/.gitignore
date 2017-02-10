@@ -6,14 +6,13 @@ capybara-*.html
 /tmp/test.log
 /tmp/development.log
 /db/*.sqlite3
-/public/uploads
+/public/uploads/
 /coverage/
 /spec/tmp
 **.orig
 rerun.txt
 pickle-email-*.html
 config/initializers/secret_token.rb
-/public/uploads/tmp
 
 ## Environment normalisation:
 /.bundle

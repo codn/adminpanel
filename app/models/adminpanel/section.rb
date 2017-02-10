@@ -7,26 +7,22 @@ module Adminpanel
     validates_length_of :description,
         minimum: 10,
         maximum: 10,
-        on: :update,
+        allow_blank: true,
         if: :is_a_phone?,
         message: I18n.t('activerecord.errors.messages.not_phone')
     validates_presence_of :description,
         minimum: 9,
         on: :update,
         if: :has_description
-    validates :description,
-        numericality: { only_integer: true },
-        on: :update,
-        if: :is_a_phone?
     validates_presence_of :key
     validates_presence_of :name
     validates_presence_of :page
 
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-    validates_format_of :description, with: VALID_EMAIL_REGEX, if: :is_email?
+    validates_format_of :description, with: VALID_EMAIL_REGEX, if: :is_email?, allow_blank: true
 
     default_scope do
-      order :order => :asc
+      order order: :asc
     end
 
     scope :of_page, -> (page) do
@@ -34,7 +30,7 @@ module Adminpanel
     end
 
     scope :with_description, -> do
-      where.not( description: '')
+      where.not(description: '')
     end
 
     def self.form_attributes
@@ -56,10 +52,10 @@ module Adminpanel
     end
 
     def description
-      if self.has_description && !self.attributes['description'].nil?
-        return self.attributes['description'].html_safe
+      if self.has_description
+        return super.try(:html_safe)
       else
-        return self.attributes['description']
+        return super
       end
     end
 
@@ -68,16 +64,13 @@ module Adminpanel
     end
 
     protected
-    def has_description?
-      !self.has_description.nil? || self.has_description
-    end
 
     def is_email?
-      key == 'email' && description != ''
+      self.key == 'email'
     end
 
     def is_a_phone?
-      key == 'phone' && description != ''
+      self.key == 'phone'
     end
   end
 end

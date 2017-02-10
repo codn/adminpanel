@@ -19,5 +19,3 @@
 //= require turbolinks
 //= require adminpanel/bootstrap
 //= require_tree .
-Turbolinks.enableTransitionCache();
-Turbolinks.enableProgressBar();

@@ -3,7 +3,7 @@ module Adminpanel
     extend ActiveSupport::Concern
 
     def add_to_gallery
-      image_class = params[:model].constantize
+      image_class = params[:model].camelize.constantize
       image = image_class.new(file: params[:file], model_type: params[:parent_object_class])
       image.model_id = params[:resource_id] if params[:resource_id]
 
@@ -13,7 +13,8 @@ module Adminpanel
           id: image.id,
           image_url: image.file_url(:thumb)
         }
-
+        p 'jaja'
+        p response
         respond_to do |f|
           f.json{ render status: :ok, json: response.to_json }
         end
