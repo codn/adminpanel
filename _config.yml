@@ -1,6 +1,6 @@
 encoding: UTF-8
 
-url:              http://codn.github.io/adminpanel/
+url:              https://codn.github.io/adminpanel/
 # url:              http://localhost:4000/adminpanel/
 baseurl: /adminpanel
 
