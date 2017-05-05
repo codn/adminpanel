@@ -212,6 +212,10 @@ module Adminpanel
         to_s.demodulize.underscore.pluralize
       end
 
+      def form_url
+        self
+      end
+
       private
 
         def exclude_route?(route)

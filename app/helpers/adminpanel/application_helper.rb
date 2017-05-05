@@ -20,6 +20,9 @@ module Adminpanel
         options[:html][:"data-parent-class"] ||= @model.to_s
         options[:html][:"data-params-key"] ||= @model.to_s.demodulize.underscore
       end
+      if @model.superclass == Adminpanel::Page
+        options[:url] = page_path(@resource_instance)
+      end
 
       form_for(object, *(args << options), &block)
     end

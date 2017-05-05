@@ -65,6 +65,7 @@ Adminpanel::Engine.routes.draw do
   end
 
   root to: "#{Adminpanel.displayable_resources.first}#index"
+  resources :pages
   resources :sessions, only: [:new, :create, :destroy] do
     collection do
       get 'instagram_login'
