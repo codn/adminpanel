@@ -5,24 +5,27 @@ layout: post
 ---
 
 To add attachments to a wysiwyg field, you need to mount an uploader with the
-name of the relation's model and add `uploader => :text_attachments` to your
+name of the relation's model and add `uploader => :trixfiles` to your
 wysiwyg hash.
 
 # Model
 ```ruby
-mount_uploader :text_attachments
+mount_uploader :trixfiles
 
 # ...
 
 def self.form_fields
   [
-  # ...
-  {
-    'text' => {
-      'type' => 'wysiwyg_field',
-      'uploader' => :text_attachments
-    }
-  }
+    # ...
+    {
+      'body' => {
+        'type' => 'wysiwyg_field',
+        'uploader' => :trixfiles,
+        'images' => true,
+        'label' => 'Cuerpo',
+        'show' => 'false'
+      },
+    },
   ]
 end
 ```
@@ -31,7 +34,7 @@ end
 
 ```ruby
 module Adminpanel
-  class TextAttachment < Image
+  class Trixfile < Image
     include Adminpanel::Base
     mount_uploader :file, TextAttachmentUploader
 
@@ -45,7 +48,7 @@ end
 def whitelisted_params
   params.require(:somet).permit(
     # ...
-    text_attachmentt_ids: [],
+    trixfile_ids: [],
     # ...
   )
 end
