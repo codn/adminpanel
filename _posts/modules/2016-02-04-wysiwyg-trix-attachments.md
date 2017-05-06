@@ -1,5 +1,5 @@
 ---
-title: Wysiwyg Attachments
+title: Wysiwyg Trix Attachments
 category: module
 layout: post
 ---
