@@ -33,13 +33,4 @@
       </li>
     {% endfor %}
   </ul>
-
-  <h3>Tasks</h3>
-  <ul class="features">
-    {% for post in site.categories['task'] %}
-      <li class="{% if page.url == post.url %}active{% endif %}">
-        <a href="{{ site.baseurl}}{{ post.url }}">{{ post.title }}</a>
-      </li>
-    {% endfor %}
-  </ul>
 </header>
