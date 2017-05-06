@@ -126,6 +126,11 @@ ActiveRecord::Schema.define do
       t.integer  :test_object_id
       t.integer  :category_id
   end
+  create_table :adminpanel_pages do |t|
+    t.string :name
+    t.string :type
+    t.text :fields
+  end
   create_table :adminpanel_file_resources do |t|
     t.string :name
     t.datetime :created_at

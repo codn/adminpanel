@@ -65,7 +65,12 @@ Adminpanel::Engine.routes.draw do
   end
 
   root to: "#{Adminpanel.displayable_resources.first}#index"
-  resources :pages
+  resources :pages, only: [:show, :edit, :update] do
+    collection do
+      post :add_to_gallery, to: "pages#add_to_gallery", as: 'add_to_gallery', path: I18n.t('routes.add_to_gallery')
+      delete :remove_image, to: "pages#remove_image",   as: 'remove_image',   path: I18n.t('routes.remove_image')
+    end
+  end
   resources :sessions, only: [:new, :create, :destroy] do
     collection do
       get 'instagram_login'

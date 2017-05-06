@@ -44,4 +44,10 @@ Adminpanel.setup do |config|
     #:auths,
     :sections
   ]
+
+  config.displayable_pages = [
+    # Adminpanel::HomePage,
+    # Adminpanel::AboutUsPage,
+    # Adminpanel::ContactPage
+  ]
 end

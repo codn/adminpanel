@@ -308,7 +308,7 @@ module Adminpanel
       def title_layout(attribute)
         @template.content_tag :div, class: 'control-group' do
           @template.content_tag :div, class: 'controls' do
-            @template.content_tag(:i, I18n.t('adminpanel.form.server_file', file: self.object["#{attribute}"]))
+            @template.content_tag(:i, I18n.t('adminpanel.form.server_file', file: self.object.send(attribute).to_s.split('/').last))
           end
         end
       end

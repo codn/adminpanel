@@ -8,7 +8,7 @@
     controller: params[:controller],
     action: 'index'
   }
-) %>
+) unless params[:skip_breadcrumb].present? %>
 
 <div class = "row-fluid">
   <div class = "widget widget-padding span12">

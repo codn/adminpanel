@@ -26,4 +26,11 @@ Adminpanel.setup do |config|
     :test_objects,
     :file_resources
   ]
+
+  config.displayable_pages = [
+    # Adminpanel::HomePage,
+    # Adminpanel::AboutUsPage,
+    # Adminpanel::ContactPage
+    Adminpanel::RandomPage
+  ]
 end

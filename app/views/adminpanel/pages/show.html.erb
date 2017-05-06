@@ -1,0 +1,94 @@
+<% provide(
+  :page_title,
+  I18n.t('action.show', resource: @resource_instance.name)
+) -%>
+
+<div class="row-fluid">
+  <div class="widget span12">
+    <div class="widget-header">
+      <%= content_tag(:i, nil, class: "fa fa-#{@model.icon}") %>
+      <h5>
+        <%= @model.display_name.humanize %>
+      </h5>
+      <div class="widget-buttons">
+        <%= render 'adminpanel/icons/edit',     resource: @resource_instance.becomes(Adminpanel::Page) %>
+      </div>
+    </div>
+    <div class="widget-body">
+      <div class="widget-tickets widget-tickets-large clearfix">
+        <ul>
+          <% @model.display_attributes('show').each do |fields| %>
+            <% fields.each do |attribute, properties| %>
+              <li class="priority-high">
+                <div class="span3">
+                  <h6><%= properties['label'] %></h6>
+                </div>
+                <div class="span8">
+                  <%= field_value(properties['type'], attribute, @resource_instance) %>
+                </div>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row-fluid">
+  <% if @model.has_gallery? %>
+    <% @model.galleries.each do |gallery| %>
+      <% gallery_class = gallery.last.constantize %>
+      <% gallery_relationship = gallery.first.pluralize %>
+      <div class="gallery-widget widget widget-padding span6">
+        <div class="widget-header">
+          <%= content_tag(:i, nil, class: "fa fa-#{@model.icon}") %>
+          <h5><%= I18n.t('gallery.container') %>: <%= @model.display_name.humanize %>
+            <%= render 'adminpanel/icons/edit', resource: @resource_instance.becomes(Adminpanel::Page) %>
+          </h5>
+        </div>
+        <% if gallery_class.is_sortable? %>
+          <div class="widget-body widget-tasks-assigned clearfix">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <td class="draggable-header"></td>
+                  <td><i class="fa fa-picture-o"></i></td>
+                </tr>
+              </thead>
+              <tbody id="sortable">
+                <% collection = @resource_instance.send(gallery_relationship).ordered %>
+                <% collection.each do |image| %>
+                  <tr
+                    data-id="<%= image.id %>"
+                    data-url="<%= url_for [:move_to_position, image] %>"
+                  >
+                    <td class="draggable img"><i class="fa fa-bars fa-2x"></i></td>
+                    <td>
+                      <%= link_to(
+                        image_tag(image.file_url(:thumb)),
+                        image.file.to_s,
+                        rel: "group",
+                        name: gallery_class.display_name
+                      ) %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% else %>
+          <div class="widget-body row-fluid">
+            <% @resource_instance.send(gallery_relationship).each do |image| %>
+              <%= link_to(
+                image_tag( image.file_url(:thumb) ),
+                image.file_url.to_s,
+                rel: 'group',
+                name: @model.display_name
+              ) %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

@@ -25,28 +25,6 @@
       </div>
     </div>
 
-    <!-- Render pages first -->
-    <% Adminpanel::Page.subclasses.each do |page_class| %>
-      <div class="accordion-group" data-filter="<%= page_class.instance.name -%>">
-        <div class="accordion-heading">
-          <%= link_to(
-            edit_page_path(page_class.instance),
-            data: {
-              no_transition_cache: true
-            },
-            class: "accordion-toggle accordion-navigation #{is_current_section?(:pages)} spinner-link"
-          ) do %>
-            <%= content_tag(
-              :i,
-              nil,
-              class: "fa fa-#{page_class.icon}"
-            ) %>
-            <%= page_class.instance.name %>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-
     <!-- Render models -->
     <% Adminpanel.displayable_resources.each do |resource| %>
       <% resource_class = symbol_class(resource) %>
@@ -71,6 +49,30 @@
           </div>
         </div>
       <% end %>
+    <% end %>
+
+    <!-- Render pages -->
+    <% Adminpanel.displayable_pages.each do |page_class| %>
+      <div class="accordion-group" data-filter="<%= page_class.instance.name -%>">
+        <div class="accordion-heading">
+          <%= link_to(
+            page_path(page_class.instance),
+            data: {
+              no_transition_cache: true
+            },
+            class: "accordion-toggle accordion-navigation
+                    #{params[:controller] == 'adminpanel/pages' && page_class.instance.id.to_s == params[:id].to_s ? 'active' : ''}
+                    spinner-link".squish
+          ) do %>
+            <%= content_tag(
+              :i,
+              nil,
+              class: "fa fa-#{page_class.icon}"
+            ) %>
+            <%= page_class.instance.name %>
+          <% end %>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>

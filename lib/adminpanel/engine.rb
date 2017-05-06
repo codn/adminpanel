@@ -11,6 +11,7 @@ module Adminpanel
     :analytics_application_name,
     :analytics_application_version,
     :displayable_resources,
+    :displayable_pages,
     :fb_app_id,
     :fb_app_secret,
     :instagram_client_id,
@@ -26,6 +27,8 @@ module Adminpanel
     self.displayable_resources = [
       :users
     ]
+
+    self.displayable_pages = []
 
     self.fb_app_id = nil
     self.fb_app_secret = nil

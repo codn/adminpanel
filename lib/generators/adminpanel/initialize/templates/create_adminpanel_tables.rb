@@ -17,6 +17,7 @@ class CreateAdminpanelTables < ActiveRecord::Migration
     create_auths
     create_sections
     create_images
+    create_pages
   end
 
   private
@@ -71,6 +72,14 @@ class CreateAdminpanelTables < ActiveRecord::Migration
     end
     add_index :adminpanel_auths, [:name]
     add_index :adminpanel_auths, [:key]
+  end
+
+  def create_pages
+    create_table :adminpanel_pages do |t|
+      t.string :name
+      t.string :type
+      t.text :fields
+    end
   end
 
   def create_sections

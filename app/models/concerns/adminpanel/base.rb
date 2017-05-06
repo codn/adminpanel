@@ -95,7 +95,7 @@ module Adminpanel
       def has_trix_gallery?
         form_attributes.each do |fields|
           fields.each do |attribute, properties|
-            if properties['type'] == 'wysiwyg_field' || properties['uploader'].present?
+            if properties['type'] == 'wysiwyg_field' && properties['uploader'].present?
               return true
             end
           end
