@@ -34,6 +34,8 @@ es:
         taken: 'ya está en uso'
         too_long: 'es muy larga'
         too_short: 'es muy corta, mínimo 6 caracteres'
+        greater_than: "debe ser mayor a %{count}"
+        less_than: "debe ser menor que %{count}"
   time:
     formats:
       default: '%d/%m/%Y'
