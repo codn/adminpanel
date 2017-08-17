@@ -2,7 +2,7 @@ module Adminpanel
   class Image < ActiveRecord::Base
     include Adminpanel::Base
 
-    belongs_to :model, polymorphic: true
+    belongs_to :model, polymorphic: true, optional: true
 
     before_save :store_file_size_and_content_type
 
