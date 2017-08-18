@@ -36,6 +36,7 @@ es:
         too_short: 'es muy corta, mínimo 6 caracteres'
         greater_than: "debe ser mayor a %{count}"
         less_than: "debe ser menor que %{count}"
+        required: 'es obligatoria'
   time:
     formats:
       default: '%d/%m/%Y'

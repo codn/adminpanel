@@ -52,7 +52,7 @@ module Adminpanel
             end
           end
         end
-        return "field #{field} 'label' property not found :("
+        return field
       end
 
       # returns the attributes that should be shown in the correspondin view
