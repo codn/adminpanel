@@ -68,7 +68,11 @@ module Adminpanel
         link_to(object.send("#{attribute}_url").split('/').last, object.try(:send, "#{attribute}_url")) if object.send("#{attribute}_url").present?
       when 'image_field'
         content_tag :ul do
-          image_tag(object.send("#{attribute}_url", :thumb))
+          if object.send("#{attribute}_url").present?
+            image_tag(object.send("#{attribute}_url", :thumb))
+          else
+            'N/A'
+          end
         end
       when 'boolean'
         if object.send(attribute)
