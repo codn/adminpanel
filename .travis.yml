@@ -1,8 +1,10 @@
 language: ruby
 
 rvm:
-  - 2.2.3
-  - 2.3.0
+  - 2.2
+  - 2.3
+  - 2.4
+  - 2.5
 
 sudo: false
 
@@ -11,5 +13,6 @@ dist: trusty
 cache: bundler
 
 env:
-  - RAILS=5.0.0.1
-  - RAILS=5.1.0
+  - RAILS=5.0
+  - RAILS=5.1
+  - RAILS=5.2
