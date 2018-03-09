@@ -32,6 +32,22 @@ class SelectTest < ViewCase
     assert select_field.find('option', text: adminpanel_products(:limit_images).supername)
   end
 
+  def test_select_with_multiple_option_should_create_select2
+    visit adminpanel.new_category_path
+    assert has_selector?('select[data-adminpanel-select2][multiple]', visible: false)
+    assert has_selector?('span.select2')
+
+  end
+
+  def test_select_with_grouped_should_render_optgroup
+    visit adminpanel.new_category_path
+
+    select_field = find('select[data-adminpanel-select2][multiple]', visible: false)
+
+    assert select_field
+    assert select_field.has_selector?('optgroup', visible: false)
+  end
+
   private
     def sign_in
       visit adminpanel.signin_path
