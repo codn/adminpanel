@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
 
   spec.requirements  << 'imagemagick installed'
 
-  spec.add_runtime_dependency 'rails',       '>= 5.0', '< 5.2'
+  spec.add_runtime_dependency 'rails',       '>= 5.0', '< 6'
   spec.add_runtime_dependency 'mini_magick', '4.3.6'
   spec.add_runtime_dependency 'bcrypt',      '~> 3.1',   '>= 3.1.7'
   spec.add_runtime_dependency 'carrierwave', '~> 0.10',  '>= 0.10.0'
