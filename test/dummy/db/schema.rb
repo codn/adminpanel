@@ -91,6 +91,7 @@ ActiveRecord::Schema.define do
   create_table :adminpanel_mugs do |t|
       t.string   :name
       t.integer  :number
+      t.integer  :category_id
       t.datetime :created_at,      null: false
       t.datetime :updated_at,      null: false
   end

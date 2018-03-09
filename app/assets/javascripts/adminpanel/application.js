@@ -18,4 +18,5 @@
 //= require jquery-ui/sortable
 //= require turbolinks
 //= require adminpanel/bootstrap
+//= require adminpanel/select2.full.min
 //= require_tree .

@@ -13,10 +13,24 @@
                   )
 
   elsif ['Hash', 'Array', 'HashWithIndifferentAccess'].include? collection.class.to_s.demodulize
-    collection = options_for_select(collection, @resource_instance.try(attribute))
+    if properties['grouped'].present? && properties['grouped']
+      collection = grouped_options_for_select(collection, @resource_instance.try(attribute))
+    else
+      collection = options_for_select(collection, @resource_instance.try(attribute))
+    end
   end
 %>
-<%= f.select attribute, collection, { include_blank: true }, args  %>
+<% if args['multiple'].present? %>
+
+  <div class="control-group">
+    <%= label_tag (args['label'] || f.object.class.human_attribute_name(attribute)), nil, {class: "control-label"} %>
+    <div class="controls">
+      <%= select_tag "#{model_name_from_record_or_class(f.object).param_key}[#{attribute}][]", collection, args.reverse_merge!(data: {adminpanel_select2: true}, class: 'span7') %>
+    </div>
+  </div>
+<% else %>
+  <%= f.select attribute, collection, { include_blank: true }, args  %>
+<% end %>
 
 <% if !is_modal &&
   (

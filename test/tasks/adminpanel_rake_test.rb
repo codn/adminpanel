@@ -3,7 +3,7 @@ require 'rails'
 
 class AdminpanelRakeTest < ActiveSupport::TestCase
   include Rake
-  include
+  # include
   Rake.application.rake_require 'tasks/adminpanel/adminpanel'
   Rake::Task.define_task(:environment)
 
