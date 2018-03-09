@@ -3,7 +3,7 @@ require 'rails'
 
 class AdminpanelRakeTest < ActiveSupport::TestCase
   include Rake
-  include
+
   Rake.application.rake_require 'tasks/adminpanel/adminpanel'
   Rake::Task.define_task(:environment)
 
@@ -13,7 +13,6 @@ class AdminpanelRakeTest < ActiveSupport::TestCase
     products_count = Adminpanel::Product.count
     Rake.application.invoke_task "adminpanel:populate[10, product, name:name description:lorem price:number]"
     assert_equal products_count + 10, Adminpanel::Product.count
-    # assert true
   end
 
   def test_section_task
