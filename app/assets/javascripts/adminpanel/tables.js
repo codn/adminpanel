@@ -126,7 +126,7 @@ var ready = function() {
   });
 }
 
-$(document).on('turbolinks:render', ready);
+$(document).on('turbolinks:load', ready);
 $(document).on('turbolinks:before-cache', function(){
   if ($('#information-table').length) {
     var dt = $('#information-table').dataTable({ "bRetrieve": true });
