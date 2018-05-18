@@ -16,3 +16,6 @@ env:
   - RAILS=5.0
   - RAILS=5.1
   - RAILS=5.2
+
+before_install:
+  - gem update --system
