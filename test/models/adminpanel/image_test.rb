@@ -10,8 +10,9 @@ module Adminpanel
       image.file.store! Rack::Test::UploadedFile.new(Rails.root.join('app/assets/images/hipster.jpg'), 'image/jpg')
 
       assert image.save
-      assert_equal image.content_type, 'image/jpg'
-      assert_equal image.file_size.to_i, 52196
+
+      assert_equal 'image/jpg', image.file.content_type
+      assert_equal  52196, image.file_size.to_i
     end
 
     test "updating a record with galleries should destroy old unassigned images of the same type" do

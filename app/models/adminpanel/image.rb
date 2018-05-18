@@ -14,7 +14,7 @@ module Adminpanel
       end
 
       def store_file_size_and_content_type
-        if file.present? && file_changed?
+        if file.present?
           self.content_type = file.file.content_type
           self.file_size = file.file.size
         end
