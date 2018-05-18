@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'rails',       '>= 5.0', '< 6'
   spec.add_runtime_dependency 'mini_magick', '4.3.6'
   spec.add_runtime_dependency 'bcrypt',      '~> 3.1',   '>= 3.1.7'
-  spec.add_runtime_dependency 'carrierwave', '~> 0.10',  '>= 0.10.0'
+  spec.add_runtime_dependency 'carrierwave'
   spec.add_runtime_dependency 'cancancan',   '~> 1.16.0'
   spec.add_runtime_dependency 'friendly_id', '~> 5.1.0',   '>= 5.1.0'
 

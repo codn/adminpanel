@@ -17,7 +17,7 @@ module Adminpanel
       end
 
       # implementing cache by default.
-      def belongs_to(name, scope = nil, options = {})
+      def belongs_to(name, scope = nil, **options)
         super(name, scope, options.reverse_merge!({touch: true}))
       end
 
