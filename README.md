@@ -55,7 +55,6 @@ Make sure you [read the docs](http://codn.github.io/adminpanel), there is the de
 
 Currently the integrations working are:
 
-* [Google Analytics Service](http://codn.github.io/adminpanel/module/google-analytics.html)
 * [Facebook Share Link to Wall](http://codn.github.io/adminpanel/module/facebook)
 * [Instagram API](http://codn.github.io/adminpanel/module/instagram)
 
