@@ -31,7 +31,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'friendly_id', '~> 5.1.0',   '>= 5.1.0'
 
   # Implemented APIs
-  spec.add_runtime_dependency 'google-api-client', '~> 0.8.6'  # Google analytics
   spec.add_runtime_dependency 'instagram',         '~> 1.1', '>= 1.1.3'
   spec.add_runtime_dependency 'koala',             '2.2.0' # Facebook
 

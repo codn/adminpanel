@@ -7,8 +7,6 @@ Adminpanel::Engine.routes.draw do
     when :analytics
       resources :analytics, only: [:index] do
         collection do
-          get :google,               to: 'analytics#google'
-
           get :instagram,            to:'analytics#instagram'
           post "instagram/#{I18n.t('routes.comment')}/:id", action: 'comment_to_instagram/:id', to: 'analytics#instagram_comment', as: 'comment_instagram'
         end
