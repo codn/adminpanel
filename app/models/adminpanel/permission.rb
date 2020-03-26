@@ -19,7 +19,8 @@ module Adminpanel
     validates_presence_of :resource
 
     def name
-      "#{self.role.name}: #{I18n.t("#{self.class.name.demodulize.downcase}.#{self.action}")} #{self['resource']}"
+      # "#{self.role.name}: #{I18n.t("#{self.class.name.demodulize.downcase}.#{self.action}")} #{self['resource']}"
+      "#{I18n.t("#{self.class.name.demodulize.downcase}.#{self.action}")} #{self['resource']}"
     end
 
     def self.form_attributes
