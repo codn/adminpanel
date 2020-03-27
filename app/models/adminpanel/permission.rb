@@ -20,7 +20,7 @@ module Adminpanel
 
     def name
       # "#{self.role.name}: #{I18n.t("#{self.class.name.demodulize.downcase}.#{self.action}")} #{self['resource']}"
-      "#{I18n.t("#{self.class.name.demodulize.downcase}.#{self.action}")} #{self['resource']}"
+      "#{I18n.t("#{'permission'}.#{self.action}")} #{self['resource']}"
     end
 
     def self.form_attributes
